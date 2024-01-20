@@ -1,0 +1,9 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyBP4dNQya7X7zlGzOjqw0M4dYLVg3oy-fk",
+  authDomain: "college-erp-3f5d6.firebaseapp.com",
+  projectId: "college-erp-3f5d6",
+  storageBucket: "college-erp-3f5d6.appspot.com",
+  messagingSenderId: "535423341876",
+  appId: "1:535423341876:web:42beab439414ef7a4bc161",
+  measurementId: "G-PW08QDG01V"
+};
