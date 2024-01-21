@@ -6,11 +6,11 @@ const ErrorHandler = require('../utils/ErrorHandler')
 // ---------------->STUDENT CREDENTIALS<--------------------
 exports.registerStudent = catchAsyncError(async (req, res, next) => {
   let { loginid, password } = req.body
-  let user = await studentCredential.findOne({ loginid })
+  /*  let user = await studentCredential.findOne({ loginid })
   if (!user) {
     return next(new ErrorHandler('User With This LoginId Already Exists', 400))
-  }
-  user = await studentCredential.create({
+  } */
+  const user = await studentCredential.create({
     loginid,
     password
   })
@@ -41,7 +41,15 @@ exports.loginStudent = catchAsyncError(async (req, res, next) => {
 })
 
 exports.updateStudent = catchAsyncError(async (req, res, next) => {
-  let user = await studentCredential.findByIdAndUpdate(req.params.id, req.body)
+  let user = await studentCredential.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    {
+      new: true,
+      runValidators: true,
+      useFindAndModify: false
+    }
+  )
   if (!user) {
     return next(new ErrorHandler('No User Exists!', 400))
   }
@@ -52,10 +60,11 @@ exports.updateStudent = catchAsyncError(async (req, res, next) => {
 })
 
 exports.deleteStudent = catchAsyncError(async (req, res, next) => {
-  let user = await studentCredential.findByIdAndDelete(req.params.id)
+  let user = await studentCredential.findById(req.params.id)
   if (!user) {
     return next(new ErrorHandler('No User Exists!', 400))
   }
+  await user.deleteOne()
   res.status(200).json({
     success: true,
     message: 'Deleted Successfull!'
@@ -64,7 +73,7 @@ exports.deleteStudent = catchAsyncError(async (req, res, next) => {
 
 // ---------------->STUDENT DETAILS<--------------------
 exports.getDetails = catchAsyncError(async (req, res, next) => {
-  let user = await studentDetails.find(req.body)
+  let user = await studentDetails.find()
   if (!user) {
     return next(new ErrorHandler('No Student Found', 400))
   }

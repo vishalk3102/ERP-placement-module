@@ -1,99 +1,99 @@
-const express = require("express");
-const router = express.Router();
-const facultyDetails = require("../../models/Faculty/FacultyDetails");
+const express = require('express')
+const router = express.Router()
+const facultyDetails = require('../../models/Faculty/facultyDetails')
 
-router.post("/getDetails", async (req, res) => {
+router.post('/getDetails', async (req, res) => {
   try {
-    let user = await facultyDetails.find(req.body);
+    let user = await facultyDetails.find(req.body)
     if (!user) {
       return res
         .status(400)
-        .json({ success: false, message: "No Faculty Found" });
+        .json({ success: false, message: 'No Faculty Found' })
     }
     const data = {
       success: true,
-      message: "Faculty Details Found!",
-      user,
-    };
-    res.json(data);
+      message: 'Faculty Details Found!',
+      user
+    }
+    res.json(data)
   } catch (error) {
-    res.status(500).json({ success: false, message: "Internal Server Error" });
+    res.status(500).json({ success: false, message: 'Internal Server Error' })
   }
-});
+})
 
-router.post("/addDetails", async (req, res) => {
+router.post('/addDetails', async (req, res) => {
   try {
-    let user = await facultyDetails.findOne(req.body);
+    let user = await facultyDetails.findOne(req.body)
     if (user) {
       return res.status(400).json({
         success: false,
-        message: "Faculty With This EmployeeId Already Exists",
-      });
+        message: 'Faculty With This EmployeeId Already Exists'
+      })
     }
-    user = await facultyDetails.create(req.body);
+    user = await facultyDetails.create(req.body)
     const data = {
       success: true,
-      message: "Faculty Details Added!",
-      user,
-    };
-    res.json(data);
+      message: 'Faculty Details Added!',
+      user
+    }
+    res.json(data)
   } catch (error) {
-    res.status(500).json({ success: false, message: "Internal Server Error" });
+    res.status(500).json({ success: false, message: 'Internal Server Error' })
   }
-});
+})
 
-router.post("/updateDetails/:id", async (req, res) => {
+router.post('/updateDetails/:id', async (req, res) => {
   try {
-    let user = await facultyDetails.findByIdAndUpdate(req.params.id, req.body);
+    let user = await facultyDetails.findByIdAndUpdate(req.params.id, req.body)
     if (!user) {
       return res.status(400).json({
         success: false,
-        message: "No Faculty Found",
-      });
+        message: 'No Faculty Found'
+      })
     }
     const data = {
       success: true,
-      message: "Updated Successfull!",
-    };
-    res.json(data);
+      message: 'Updated Successfull!'
+    }
+    res.json(data)
   } catch (error) {
-    res.status(500).json({ success: false, message: "Internal Server Error" });
+    res.status(500).json({ success: false, message: 'Internal Server Error' })
   }
-});
+})
 
-router.delete("/deleteDetails/:id", async (req, res) => {
+router.delete('/deleteDetails/:id', async (req, res) => {
   try {
-    let user = await facultyDetails.findByIdAndDelete(req.params.id);
+    let user = await facultyDetails.findByIdAndDelete(req.params.id)
     if (!user) {
       return res.status(400).json({
         success: false,
-        message: "No Faculty Found",
-      });
+        message: 'No Faculty Found'
+      })
     }
     const data = {
       success: true,
-      message: "Deleted Successfull!",
-    };
-    res.json(data);
+      message: 'Deleted Successfull!'
+    }
+    res.json(data)
   } catch (error) {
-    res.status(500).json({ success: false, message: "Internal Server Error" });
+    res.status(500).json({ success: false, message: 'Internal Server Error' })
   }
-});
+})
 
-router.get("/count", async (req, res) => {
+router.get('/count', async (req, res) => {
   try {
-    let user = await facultyDetails.count(req.body);
+    let user = await facultyDetails.count(req.body)
     const data = {
       success: true,
-      message: "Count Successfull!",
-      user,
-    };
-    res.json(data);
+      message: 'Count Successfull!',
+      user
+    }
+    res.json(data)
   } catch (error) {
     res
       .status(500)
-      .json({ success: false, message: "Internal Server Error", error });
+      .json({ success: false, message: 'Internal Server Error', error })
   }
-});
+})
 
-module.exports = router;
+module.exports = router

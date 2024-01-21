@@ -1,16 +1,16 @@
-const AdminCredentials = require('../models/Admin/AdminCredentials')
-const AdminDetails = require('../models/Admin/AdminDetails')
+const adminCredentials = require('../models/Admin/AdminCredentials')
+const adminDetails = require('../models/Admin/AdminDetails')
 const catchAsyncError = require('../middlewares/catchAsyncError')
 const ErrorHandler = require('../utils/ErrorHandler')
 
 // ---------------->ADMIN CREDENTIALS<--------------------
 exports.registerAdmin = catchAsyncError(async (req, res, next) => {
   let { loginid, password } = req.body
-  let user = await adminCredential.findOne({ loginid })
+  /* let user = await adminCredentials.findOne({ loginid })
   if (!user) {
     return next(new ErrorHandler('Admin With This LoginId Already Exists', 400))
-  }
-  user = await adminCredential.create({
+  } */
+  user = await adminCredentials.create({
     loginid,
     password
   })
@@ -24,7 +24,7 @@ exports.registerAdmin = catchAsyncError(async (req, res, next) => {
 
 exports.loginAdmin = catchAsyncError(async (req, res, next) => {
   let { loginid, password } = req.body
-  let user = await adminCredential.findOne({ loginid })
+  let user = await adminCredentials.findOne({ loginid })
   if (!user) {
     return next(new ErrorHandler('Wrong Credential', 400))
   }
@@ -41,7 +41,7 @@ exports.loginAdmin = catchAsyncError(async (req, res, next) => {
 })
 
 exports.updateAdmin = catchAsyncError(async (req, res, next) => {
-  let user = await adminCredential.findByIdAndUpdate(req.params.id, req.body)
+  let user = await adminCredentials.findByIdAndUpdate(req.params.id, req.body)
   if (!user) {
     return next(new ErrorHandler('No Admin Exists', 400))
   }
@@ -52,7 +52,7 @@ exports.updateAdmin = catchAsyncError(async (req, res, next) => {
 })
 
 exports.deleteAdmin = catchAsyncError(async (req, res, next) => {
-  let user = await adminCredential.findByIdAndDelete(req.params.id)
+  let user = await adminCredentials.findByIdAndDelete(req.params.id)
   if (!user) {
     return next(new ErrorHandler('No Admin Exists!', 400))
   }
@@ -76,7 +76,7 @@ exports.getDetails = catchAsyncError(async (req, res, next) => {
 })
 
 exports.addDetails = catchAsyncError(async (req, res, next) => {
-  let user = await studentDetails.findOne(req.body)
+  let user = await adminDetails.findOne(req.body)
   if (user) {
     return next(
       new ErrorHandler('Admin With This EmployeeId Already Exists', 400)

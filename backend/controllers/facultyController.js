@@ -6,10 +6,10 @@ const ErrorHandler = require('../utils/ErrorHandler')
 // ---------------->FACULTY CREDENTIALS<--------------------
 exports.registerFaculty = catchAsyncError(async (req, res, next) => {
   let { loginid, password } = req.body
-  let user = await facultyCredentials.findOne({ loginid })
+  /* let user = await facultyCredentials.findOne({ loginid })
   if (!user) {
     return next(new ErrorHandler('User With This LoginId Already Exists', 400))
-  }
+  } */
   user = await facultyCredentials.create({
     loginid,
     password
@@ -76,12 +76,10 @@ exports.getDetails = catchAsyncError(async (req, res, next) => {
 })
 
 exports.addDetails = catchAsyncError(async (req, res, next) => {
-  let user = await facultyDetails.findOne({
-    enrollmentNo: req.body.enrollmentNo
-  })
+  let user = await facultyDetails.findOne(req.body)
   if (user) {
     return next(
-      new ErrorHandler('Faculty With This Enrollment Already Exists', 400)
+      new ErrorHandler('Faculty With This EmployeeId Already Exists', 400)
     )
   }
   user = await facultyDetails.create(req.body)
