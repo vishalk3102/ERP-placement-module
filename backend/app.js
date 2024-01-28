@@ -48,10 +48,10 @@ const faculty = require('./routes/Faculty/facultyRoute')
 const other = require('./routes/Other/otherRoute')
 // const order = require("./routes/orderRoute");
 
-app.use('/api/v1', student)
-app.use('/api/v1', admin)
-app.use('/api/v1', faculty)
-app.use('/api/v1', other)
+app.use('/api', student)
+app.use('/api', admin)
+app.use('/api', faculty)
+app.use('/api', other)
 
 // app.use('/api/student/auth', require('./routes/Student Api/studentCredential'))
 // app.use('/api/faculty/auth', require('./routes/Faculty Api/facultyCredential'))
