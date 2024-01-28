@@ -1,5 +1,5 @@
-const facultyCredentials = require('../models/Faculty/facultyCredentials')
-const facultyDetails = require('../models/Faculty/facultyDetails')
+const facultyCredentials = require('../models/Faculty/FacultyDetails')
+const facultyDetails = require('../models/Faculty/FacultyDetails')
 const catchAsyncError = require('../middlewares/catchAsyncError')
 const ErrorHandler = require('../utils/ErrorHandler')
 
