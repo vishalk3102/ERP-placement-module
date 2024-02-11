@@ -125,11 +125,11 @@ exports.deleteDetails = catchAsyncError(async (req, res, next) => {
 })
 
 exports.count = catchAsyncError(async (req, res, next) => {
-  let user = await studentDetails.count(req.body)
+  let counts = await studentDetails.count(req.body)
 
   res.status(200).json({
     success: true,
     message: 'Count Successfull!',
-    user
+    counts
   })
 })

@@ -1,9 +1,16 @@
-import { legacy_createStore as createStore } from "redux";
-import { reducers } from "./reducers";
+import { configureStore } from '@reduxjs/toolkit'
+import { adminReducer, adminDetailsReducer } from './adminReducer'
+import { facultyReducer, facultyDetailsReducer } from './facultyReducer'
 
-const mystore = createStore(
-  reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const store = configureStore({
+  reducer: {
+    admin: adminReducer,
+    adminDetail: adminDetailsReducer,
+    faculty: facultyReducer,
+    facultyDetail: facultyDetailsReducer
+  }
+})
 
-export default mystore;
+export default store
+
+export const server = 'https://erp-b911.onrender.com/api'
