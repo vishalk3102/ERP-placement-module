@@ -8,7 +8,7 @@ export const adminReducer = createReducer(
     },
     registerAdminSuccess: (state, action) => {
       state.loading = false
-      state.message = 'Registered Successfull'
+      state.message = action.payload.message
     },
     registerAdminFail: (state, action) => {
       state.loading = false
@@ -19,7 +19,7 @@ export const adminReducer = createReducer(
     },
     loginAdminSuccess: (state, action) => {
       state.loading = false
-      state.message = 'login  Successfull'
+      state.message = action.payload.message
     },
     loginAdminFail: (state, action) => {
       state.loading = false
@@ -30,7 +30,7 @@ export const adminReducer = createReducer(
     },
     updateAdminSuccess: (state, action) => {
       state.loading = false
-      state.message = 'update  Successfull'
+      state.message = action.payload.message
     },
     updateAdminFail: (state, action) => {
       state.loading = false
@@ -41,7 +41,7 @@ export const adminReducer = createReducer(
     },
     deleteAdminSuccess: (state, action) => {
       state.loading = false
-      state.message = 'delete Successfull'
+      state.message = action.payload.message
     },
     deleteAdminFail: (state, action) => {
       state.loading = false
@@ -86,7 +86,7 @@ export const adminDetailsReducer = createReducer(
     },
     updateDetailsAdminSuccess: (state, action) => {
       state.loading = false
-      state.message = 'update  Successfull'
+      state.message = action.payload.message
     },
     updateDetailsAdminFail: (state, action) => {
       state.loading = false
@@ -97,7 +97,7 @@ export const adminDetailsReducer = createReducer(
     },
     deleteDetailsAdminSuccess: (state, action) => {
       state.loading = false
-      state.message = 'delete Successfull'
+      state.message = action.payload.message
     },
     deleteDetailsAdminFail: (state, action) => {
       state.loading = false

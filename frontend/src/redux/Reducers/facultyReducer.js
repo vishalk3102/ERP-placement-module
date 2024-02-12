@@ -8,7 +8,7 @@ export const facultyReducer = createReducer(
     },
     registerFacultySuccess: (state, action) => {
       state.loading = false
-      state.message = 'Registered Successfull'
+      state.message = action.payload.message
     },
     registerFacultyFail: (state, action) => {
       state.loading = false
@@ -19,7 +19,7 @@ export const facultyReducer = createReducer(
     },
     loginFacultySuccess: (state, action) => {
       state.loading = false
-      state.message = 'login  Successfull'
+      state.message = action.payload.message
     },
     loginFacultyFail: (state, action) => {
       state.loading = false
@@ -30,7 +30,7 @@ export const facultyReducer = createReducer(
     },
     updateFacultySuccess: (state, action) => {
       state.loading = false
-      state.message = 'update  Successfull'
+      state.message = action.payload.message
     },
     updateFacultyFail: (state, action) => {
       state.loading = false
@@ -41,7 +41,7 @@ export const facultyReducer = createReducer(
     },
     deleteFacultySuccess: (state, action) => {
       state.loading = false
-      state.message = 'delete Successfull'
+      state.message = action.payload.message
     },
     deleteFacultyFail: (state, action) => {
       state.loading = false
@@ -86,7 +86,7 @@ export const facultyDetailsReducer = createReducer(
     },
     updateDetailsFacultySuccess: (state, action) => {
       state.loading = false
-      state.message = 'update  Successfull'
+      state.message = action.payload.message
     },
     updateDetailsFacultyFail: (state, action) => {
       state.loading = false
@@ -97,7 +97,7 @@ export const facultyDetailsReducer = createReducer(
     },
     deleteDetailsFacultySuccess: (state, action) => {
       state.loading = false
-      state.message = 'delete Successfull'
+      state.message = action.payload.message
     },
     deleteDetailsFacultyFail: (state, action) => {
       state.loading = false
