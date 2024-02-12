@@ -106,6 +106,7 @@ exports.updateDetails = catchAsyncError(async (req, res, next) => {
   if (!user) {
     return next(new ErrorHandler('No Student Found', 400))
   }
+
   res.status(200).json({
     success: true,
     message: 'Updated Successfull'
