@@ -22,7 +22,8 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: true
+    required: true,
+    validate: [validator.isEmail, 'Please provide a valid email']
   },
   password: {
     type: String,
@@ -83,11 +84,11 @@ userSchema.pre('save', async function (next) {
 })
 
 // JWT TOKEN
-userSchema.methods.getJWTToken = () => {
-  return (
-    jwt.sign({ id: this._id }, process.env.JWT_SECRET),
-    { expireIn: process.env.JWT_EXPIRE }
-  )
+userSchema.methods.getJWTToken = function () {
+  const token = jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+    expiresIn: '1d'
+  })
+  return token
 }
 
 // COMPARE PASSWORD

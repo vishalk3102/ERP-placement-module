@@ -30,10 +30,6 @@ exports.login = catchAsyncError(async (req, res, next) => {
     return next(new ErrorHandler('Invalid Credentials', 401))
   }
 
-  /*  res.status(200).json({
-    success: true,
-    message: 'Login Successfull'
-  }) */
   sendToken(user, 200, res)
 })
 
@@ -52,7 +48,10 @@ exports.logout = catchAsyncError(async (req, res, next) => {
 
 // GET MY PROFILE
 exports.getMyProfile = catchAsyncError(async (req, res, next) => {
-  const userId = req.user.userId
+  if (!req.user || !req.user._id) {
+    return next(new ErrorHandler('User not authenticated', 401))
+  }
+  const userId = req.user._id
   let user = await User.findById(userId)
   if (!user) {
     return next(new ErrorHandler('User Not Found', 400))
@@ -65,7 +64,10 @@ exports.getMyProfile = catchAsyncError(async (req, res, next) => {
 
 // UPDATE MY PROFILE
 exports.updateMyProfile = catchAsyncError(async (req, res, next) => {
-  const userId = req.user.userId
+  if (!req.user || !req.user._id) {
+    return next(new ErrorHandler('User not authenticated', 401))
+  }
+  const userId = req.user._id
   let user = await User.findById(userId)
   if (!user) {
     return next(new ErrorHandler('User Not Found', 400))
