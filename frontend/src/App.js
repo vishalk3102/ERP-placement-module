@@ -5,6 +5,8 @@ import StudentHome from './Screens/Student/Home'
 import FacultyHome from './Screens/Faculty/Home'
 import AdminHome from './Screens/Admin/Home'
 
+import toast, { Toaster } from 'react-hot-toast'
+
 const App = () => {
   return (
     <>
@@ -15,6 +17,7 @@ const App = () => {
           <Route path='faculty' element={<FacultyHome />} />
           <Route path='admin' element={<AdminHome />} />
         </Routes>
+        <Toaster />
       </Router>
     </>
   )

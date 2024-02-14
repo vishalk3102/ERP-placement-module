@@ -38,8 +38,7 @@ const userSchema = new mongoose.Schema({
 
   // COMMON FIELD FOR ADMIN  AND EMPLOYEE
   employeeId: {
-    type: Number,
-    required: true
+    type: Number
   },
 
   // FACULTY FIELD
@@ -55,8 +54,7 @@ const userSchema = new mongoose.Schema({
 
   // STUDENT FIELD
   enrollmentNo: {
-    type: Number,
-    unique: true
+    type: Number
   },
   semester: {
     type: Number
@@ -64,7 +62,6 @@ const userSchema = new mongoose.Schema({
   branch: {
     type: String
   },
-
   createdAt: {
     type: Date,
     default: Date.now()

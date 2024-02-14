@@ -24,6 +24,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  password: {
+    type: String,
+    required: true
+  },
   phoneNumber: {
     type: Number,
     required: true
@@ -38,8 +42,7 @@ const userSchema = new mongoose.Schema({
 
   // COMMON FIELD FOR ADMIN  AND EMPLOYEE
   employeeId: {
-    type: Number,
-    required: true
+    type: Number
   },
 
   // FACULTY FIELD
@@ -55,8 +58,7 @@ const userSchema = new mongoose.Schema({
 
   // STUDENT FIELD
   enrollmentNo: {
-    type: Number,
-    unique: true
+    type: Number
   },
   semester: {
     type: Number
@@ -64,7 +66,6 @@ const userSchema = new mongoose.Schema({
   branch: {
     type: String
   },
-
   createdAt: {
     type: Date,
     default: Date.now()
@@ -82,9 +83,9 @@ userSchema.pre('save', async function (next) {
 })
 
 // JWT TOKEN
-userSchema.method.getJWTToken = () => {
+userSchema.methods.getJWTToken = () => {
   return (
-    jwt.sign({ id: thid._id }, process.env.JWT_SECRET),
+    jwt.sign({ id: this._id }, process.env.JWT_SECRET),
     { expireIn: process.env.JWT_EXPIRE }
   )
 }
@@ -93,4 +94,5 @@ userSchema.method.getJWTToken = () => {
 userSchema.methods.comparePassword = async function (password) {
   return await bcrypt.compare(password, this.password)
 }
+
 module.exports = mongoose.model('User', userSchema)
