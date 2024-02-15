@@ -1,5 +1,4 @@
-const express = require('express')
-const Branch = require('../models/Other/Branch')
+const Branch = require('../models/BranchModel')
 const catchAsyncError = require('../middlewares/catchAsyncError')
 const ErrorHandler = require('../utils/ErrorHandler')
 

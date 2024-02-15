@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Material = require('../models/Other/Material')
+const Material = require('../models/MaterialModel')
 const catchAsyncError = require('../middlewares/catchAsyncError')
 const ErrorHandler = require('../utils/ErrorHandler')
 

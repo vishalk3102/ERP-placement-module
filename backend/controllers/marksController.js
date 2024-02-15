@@ -1,5 +1,5 @@
 const express = require('express')
-const Marks = require('../models/Other/Marks')
+const Marks = require('../models/MarksModel')
 const catchAsyncError = require('../middlewares/catchAsyncError')
 const ErrorHandler = require('../utils/ErrorHandler')
 

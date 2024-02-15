@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Notice = require('../models/Other/Notice')
+const Notice = require('../models/NoticeModel')
 const catchAsyncError = require('../middlewares/catchAsyncError')
 const ErrorHandler = require('../utils/ErrorHandler')
 

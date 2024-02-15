@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Timetable = require('../models/Other/Timetable')
+const Timetable = require('../models/TimetableModel')
 const catchAsyncError = require('../middlewares/catchAsyncError')
 const ErrorHandler = require('../utils/ErrorHandler')
 

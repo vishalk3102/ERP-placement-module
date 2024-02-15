@@ -1,5 +1,5 @@
 const express = require('express')
-const Subject = require('../models/Other/Subject')
+const Subject = require('../models/SubjectModel')
 const catchAsyncError = require('../middlewares/catchAsyncError')
 const ErrorHandler = require('../utils/ErrorHandler')
 
