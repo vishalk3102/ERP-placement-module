@@ -23,4 +23,4 @@ router.delete(
   deleteSubject
 )
 
-router.get('')
+module.exports = router

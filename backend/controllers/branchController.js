@@ -16,9 +16,14 @@ exports.getBranch = catchAsyncError(async (req, res, next) => {
 exports.addBranch = catchAsyncError(async (req, res, next) => {
   let { name } = req.body
   let branch = await Branch.findOne({ name })
-  if (!branch) {
+  console.log(branch)
+  if (branch) {
     return next(new ErrorHandler('Already Exists', 400))
   }
+
+  branch = await Branch.create({
+    name
+  })
   res.status(200).json({
     success: true,
     message: 'Branch Added!'

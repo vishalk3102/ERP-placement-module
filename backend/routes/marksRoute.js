@@ -27,4 +27,4 @@ router.delete(
   deleteMarks
 )
 
-router.get('')
+module.exports = router

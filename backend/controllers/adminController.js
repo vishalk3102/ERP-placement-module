@@ -48,8 +48,8 @@ exports.registerStudent = catchAsyncError(async (req, res, next) => {
     branch
   } = req.body
 
-  let user = await User.findOne({ employeeId })
-  if (!user) {
+  let user = await User.findOne({ enrollmentNo })
+  if (user) {
     return next(
       new ErrorHandler('Student With this LoginId Already Exists', 400)
     )
@@ -120,7 +120,7 @@ exports.registerFaculty = catchAsyncError(async (req, res, next) => {
   } = req.body
 
   let user = await User.findOne({ employeeId })
-  if (!user) {
+  if (user) {
     return next(
       new ErrorHandler('Faculty With this LoginId Already Exists', 400)
     )

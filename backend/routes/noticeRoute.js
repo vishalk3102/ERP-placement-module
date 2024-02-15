@@ -30,4 +30,4 @@ router.delete(
   deleteNotice
 )
 
-router.get('')
+module.exports = router

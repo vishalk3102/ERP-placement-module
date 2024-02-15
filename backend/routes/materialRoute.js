@@ -30,4 +30,4 @@ router.delete(
   deleteMaterial
 )
 
-router.get('')
+module.exports = router

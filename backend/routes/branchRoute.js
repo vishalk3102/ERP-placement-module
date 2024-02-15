@@ -23,4 +23,4 @@ router.delete(
   deleteBranch
 )
 
-router.get('')
+module.exports = router

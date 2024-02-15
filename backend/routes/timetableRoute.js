@@ -23,4 +23,4 @@ router.delete(
   deleteTimetable
 )
 
-router.get('')
+module.exports = router
