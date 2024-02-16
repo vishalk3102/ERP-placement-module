@@ -5,7 +5,7 @@ const ErrorHandler = require('../utils/ErrorHandler')
 
 exports.getSubject = catchAsyncError(async (req, res, next) => {
   let subjects = await Subject.find()
-  if (!subjects || subjects.length === 0) {
+  if (!subjects) {
     return next(new ErrorHandler('No Subject Available', 400))
   }
   res.status(200).json({
@@ -24,13 +24,13 @@ exports.addSubject = catchAsyncError(async (req, res, next) => {
     return next(new ErrorHandler('Subject Already Exists', 400))
   }
 
-  subject = new Subject({ name, code })
-  await subject.save()
+  // subject = new Subject({ name, code })
+  // await subject.save()
 
-  /*  await Subject.create({
+  subject = await Subject.create({
     name,
     code
-  }) */
+  })
   res.status(200).json({
     success: true,
     message: 'Subject Added!',
@@ -39,11 +39,10 @@ exports.addSubject = catchAsyncError(async (req, res, next) => {
 })
 
 exports.deleteSubject = catchAsyncError(async (req, res, next) => {
-  let subject = await Subject.findById(req.params.id)
+  let subject = await Subject.findByIdAndDelete(req.params.id)
   if (!subject) {
     return next(new ErrorHandler('No Subject Exists!', 400))
   }
-  await subject.deleteOne()
   res.status(200).json({
     success: true,
     message: 'Subject Deleted!'

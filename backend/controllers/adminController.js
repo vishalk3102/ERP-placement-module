@@ -15,12 +15,12 @@ exports.registerAdmin = catchAsyncError(async (req, res, next) => {
     gender
   } = req.body
 
-  /*  let user = await User.findOne({ employeeId })
-  if (!user) {
+  let user = await User.findOne({ employeeId })
+  if (user) {
     return next(new ErrorHandler('Admin With this LoginId Already Exists', 400))
-  } */
+  }
 
-  const user = await User.create({
+  user = await User.create({
     userType: 'admin',
     employeeId,
     firstName,
@@ -34,49 +34,40 @@ exports.registerAdmin = catchAsyncError(async (req, res, next) => {
   sendToken(user, 201, res)
 })
 
-// REGISTER STUDENT
-exports.registerStudent = catchAsyncError(async (req, res, next) => {
-  let {
-    enrollmentNo,
-    firstName,
-    lastName,
-    email,
-    password,
-    phoneNumber,
-    gender,
-    semester,
-    branch
-  } = req.body
+//GET ALL  ADMIN  --admin
+exports.getAllAdmin = catchAsyncError(async (req, res, next) => {
+  let admins = await User.find({ userType: 'admin' })
 
-  let user = await User.findOne({ enrollmentNo })
-  if (user) {
-    return next(
-      new ErrorHandler('Student With this LoginId Already Exists', 400)
-    )
-  }
-
-  user = await User.create({
-    userType: 'student',
-    enrollmentNo,
-    firstName,
-    lastName,
-    email,
-    password,
-    phoneNumber,
-    gender,
-    semester,
-    branch
+  res.status(200).json({
+    success: true,
+    message: 'All Faculties Loaded',
+    admins
   })
-  sendToken(user, 201, res)
 })
 
-// UPDATE STUDENT
-exports.updateStudent = catchAsyncError(async (req, res, next) => {
+// GET ADMIN
+exports.getAdmin = catchAsyncError(async (req, res, next) => {
   const { id } = req.params
 
-  let student = await User.findById(id)
-  if (!student) {
-    return next(new ErrorHandler('No Student Exists', 400))
+  let admin = await User.findById(id)
+  if (!admin) {
+    return next(new ErrorHandler('No Admin Exists', 400))
+  }
+
+  res.status(200).json({
+    success: true,
+    message: 'admin Details Loaded',
+    admin
+  })
+})
+
+// UPDATE ADMIN
+exports.updateAdmin = catchAsyncError(async (req, res, next) => {
+  const { id } = req.params
+
+  let admin = await User.findById(id)
+  if (!admin) {
+    return next(new ErrorHandler('No Admin Exists', 400))
   }
 
   await User.findByIdAndUpdate(id, req.body)
@@ -87,84 +78,13 @@ exports.updateStudent = catchAsyncError(async (req, res, next) => {
   })
 })
 
-// DELETE STUDENT
-exports.deleteStudent = catchAsyncError(async (req, res, next) => {
+// DELETE ADMIN
+exports.deleteAdmin = catchAsyncError(async (req, res, next) => {
   const { id } = req.params
 
-  let student = await User.findById(id)
-  if (!student) {
-    return next(new ErrorHandler('No Student Exists', 400))
-  }
-
-  await User.findByIdAndDelete(id, req.body)
-
-  res.status(200).json({
-    success: true,
-    message: 'Successfully Updated'
-  })
-})
-
-// REGISTER FACULTY
-exports.registerFaculty = catchAsyncError(async (req, res, next) => {
-  let {
-    employeeId,
-    firstName,
-    lastName,
-    email,
-    password,
-    phoneNumber,
-    gender,
-    department,
-    post,
-    experience
-  } = req.body
-
-  let user = await User.findOne({ employeeId })
-  if (user) {
-    return next(
-      new ErrorHandler('Faculty With this LoginId Already Exists', 400)
-    )
-  }
-
-  user = await User.create({
-    userType: 'faculty',
-    employeeId,
-    firstName,
-    lastName,
-    email,
-    password,
-    phoneNumber,
-    gender,
-    department,
-    post,
-    experience
-  })
-  sendToken(user, 201, res)
-})
-// UPDATE FACULTY
-exports.updateFaculty = catchAsyncError(async (req, res, next) => {
-  const { id } = req.params
-
-  let faculty = await User.findById(id)
-  if (!faculty) {
-    return next(new ErrorHandler('No Student Exists', 400))
-  }
-
-  await User.findByIdAndUpdate(id, req.body)
-
-  res.status(200).json({
-    success: true,
-    message: 'Successfully Updated'
-  })
-})
-
-// DELETE FACULTY
-exports.deleteFaculty = catchAsyncError(async (req, res, next) => {
-  const { id } = req.params
-
-  let faculty = await User.findById(id)
-  if (!faculty) {
-    return next(new ErrorHandler('No Student Exists', 400))
+  let admin = await User.findById(id)
+  if (!admin) {
+    return next(new ErrorHandler('No Admin Exists', 400))
   }
 
   await User.findByIdAndDelete(id, req.body)
