@@ -7,15 +7,18 @@ const {
   getCompany,
   getStudent,
   updateStudent,
-  deleteStudent
+  deleteStudent,
+  getAllStudent,
+  registerPlacementProfile
 } = require('../controllers/placementController')
 
 const { isAuthenticated, authorizeAdmin } = require('../middlewares/auth')
+const { registerStudent } = require('../controllers/studentController')
 const router = express.Router()
 
 // STUDENT
 router.post('/placement/register', isAuthenticated, registerPlacementProfile)
-router.get('/placement/:id', isAuthenticated, getStudent)
+router.get('/admin/placement/student/:id', isAuthenticated, getStudent)
 router.get(
   '/admin/placement/students',
   isAuthenticated,

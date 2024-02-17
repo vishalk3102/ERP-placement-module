@@ -47,11 +47,13 @@ const user = require('./routes/userRoute')
 const admin = require('./routes/adminRoute')
 const faculty = require('./routes/facultyRoute')
 const student = require('./routes/studentRoute')
+const placement = require('./routes/placementRoute')
 
 app.use('/api/v1', user)
 app.use('/api/v1', admin)
 app.use('/api/v1', faculty)
 app.use('/api/v1', student)
+app.use('/api/v1', placement)
 
 app.use(errorMiddleware)
 module.exports = app

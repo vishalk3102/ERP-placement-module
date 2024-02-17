@@ -120,7 +120,7 @@ exports.registerCompanyProfile = catchAsyncError(async (req, res, next) => {
     contactPhone
   } = req.body
 
-  const company = await Placement.create({
+  const company = await Company.create({
     companyName,
     industry,
     website,
