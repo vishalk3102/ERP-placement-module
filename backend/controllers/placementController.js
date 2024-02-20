@@ -1,9 +1,11 @@
 const catchAsyncError = require('../middlewares/catchAsyncError')
 const ErrorHandler = require('../utils/ErrorHandler')
+const sendToken = require('../utils/jwtToken')
 const User = require('../models/userModel')
 const Company = require('../models/companyModel')
 const Placement = require('../models/placementModel')
-const sendToken = require('../utils/jwtToken')
+const Application = require('../models/Placement/applicationModel')
+const JobPosting = require('../models/Placement/jobPostingModel')
 
 // STUDENT
 // REGISTER FOR PLACEMENT PROFILE --student
@@ -186,5 +188,69 @@ exports.deleteCompany = catchAsyncError(async (req, res, next) => {
   res.status(200).json({
     success: true,
     message: 'Company Details  deleted Successfully'
+  })
+})
+
+// JOB POSTING
+// CREATE JOB POST --admin
+exports.createJobPosting = catchAsyncError(async (req, res, next) => {
+  const newJob = await JobPosting.create(req.body)
+
+  res.status(201).json({
+    success: true,
+    message: 'Job Posting Create successfully'
+  })
+})
+
+// GET JOB POST --admin
+exports.getJobPosting = catchAsyncError(async (req, res, next) => {
+  const job = JobPosting.findById(req.params.id)
+
+  if (!job) {
+    next(new ErrorHandler("Job doesn't exist ", 400))
+  }
+  res.status(201).json({
+    success: true,
+    message: 'Job loaded',
+    job
+  })
+})
+
+// GET ALL JOB POST --admin
+exports.getAllJobPostings = catchAsyncError(async (req, res, next) => {
+  const jobs = JobPosting.find()
+
+  res.status(201).json({
+    success: true,
+    message: 'All Job loaded',
+    jobs
+  })
+})
+
+// UPDATE JOB POST --admin
+exports.updateJobPosting = catchAsyncError(async (req, res, next) => {
+  const job = JobPosting.findById(req.params.id)
+
+  if (!job) {
+    next(new ErrorHandler("Job doesn't exist ", 400))
+  }
+  await job.findByIdAndUpdate(req.params.id, req.body)
+  res.status(201).json({
+    success: true,
+    message: 'Job updated successfully'
+  })
+})
+
+// DELETE JOB POST --admin
+exports.deleteJobPosting = catchAsyncError(async (req, res, next) => {
+  const job = JobPosting.findById(req.params.id)
+
+  if (!job) {
+    next(new ErrorHandler("Job doesn't exist ", 400))
+  }
+  await job.findByIdAndDelete(req.params.id)
+  res.status(201).json({
+    success: true,
+    message: 'Job deleted successfully'
   })
 })

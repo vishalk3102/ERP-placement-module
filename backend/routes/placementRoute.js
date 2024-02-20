@@ -9,11 +9,14 @@ const {
   updateStudent,
   deleteStudent,
   getAllStudent,
-  registerPlacementProfile
-} = require('../controllers/placementController')
-
+  registerPlacementProfile,
+  createJobPosting,
+  getJobPosting,
+  getAllJobPostings,
+  updateJobPosting,
+  deleteJobPosting
+} = require('../controllers/placementcontroller')
 const { isAuthenticated, authorizeAdmin } = require('../middlewares/auth')
-const { registerStudent } = require('../controllers/studentController')
 const router = express.Router()
 
 // STUDENT
@@ -68,6 +71,38 @@ router.delete(
   isAuthenticated,
   authorizeAdmin,
   deleteCompany
+)
+
+// JOB POSTING
+router.post(
+  '/admin/placement/jobs/create',
+  isAuthenticated,
+  authorizeAdmin,
+  createJobPosting
+)
+router.get(
+  '/admin/placement/jobs/:id',
+  isAuthenticated,
+  authorizeAdmin,
+  getJobPosting
+)
+router.get(
+  '/admin/placement/jobs',
+  isAuthenticated,
+  authorizeAdmin,
+  getAllJobPostings
+)
+router.put(
+  '/admin/placement/jobs/update/:id',
+  isAuthenticated,
+  authorizeAdmin,
+  updateJobPosting
+)
+router.delete(
+  '/admin/placement/jobs/delete/:id',
+  isAuthenticated,
+  authorizeAdmin,
+  deleteJobPosting
 )
 
 module.exports = router
