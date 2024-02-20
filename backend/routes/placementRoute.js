@@ -61,13 +61,13 @@ router.post(
   registerCompanyProfile
 )
 router.put(
-  '/admin/placement/company/update/:id',
+  '/admin/placement/company/:id',
   isAuthenticated,
   authorizeAdmin,
   updateCompany
 )
 router.delete(
-  '/admin/placement/company/delete/:id',
+  '/admin/placement/company/:id',
   isAuthenticated,
   authorizeAdmin,
   deleteCompany
@@ -75,7 +75,7 @@ router.delete(
 
 // JOB POSTING
 router.post(
-  '/admin/placement/jobs/create',
+  '/admin/placement/jobs/newjob',
   isAuthenticated,
   authorizeAdmin,
   createJobPosting
@@ -93,13 +93,13 @@ router.get(
   getAllJobPostings
 )
 router.put(
-  '/admin/placement/jobs/update/:id',
+  '/admin/placement/jobs/:id',
   isAuthenticated,
   authorizeAdmin,
   updateJobPosting
 )
 router.delete(
-  '/admin/placement/jobs/delete/:id',
+  '/admin/placement/jobs/:id',
   isAuthenticated,
   authorizeAdmin,
   deleteJobPosting
