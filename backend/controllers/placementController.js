@@ -204,7 +204,7 @@ exports.createJobPosting = catchAsyncError(async (req, res, next) => {
 
 // GET JOB POST --admin
 exports.getJobPosting = catchAsyncError(async (req, res, next) => {
-  const job = JobPosting.findById(req.params.id)
+  const job = await JobPosting.findById(req.params.id)
 
   if (!job) {
     next(new ErrorHandler("Job doesn't exist ", 400))
@@ -218,7 +218,7 @@ exports.getJobPosting = catchAsyncError(async (req, res, next) => {
 
 // GET ALL JOB POST --admin
 exports.getAllJobPostings = catchAsyncError(async (req, res, next) => {
-  const jobs = JobPosting.find()
+  const jobs = await JobPosting.find()
 
   res.status(201).json({
     success: true,
@@ -229,12 +229,12 @@ exports.getAllJobPostings = catchAsyncError(async (req, res, next) => {
 
 // UPDATE JOB POST --admin
 exports.updateJobPosting = catchAsyncError(async (req, res, next) => {
-  const job = JobPosting.findById(req.params.id)
+  const job = await JobPosting.findById(req.params.id)
 
   if (!job) {
     next(new ErrorHandler("Job doesn't exist ", 400))
   }
-  await job.findByIdAndUpdate(req.params.id, req.body)
+  await JobPosting.findByIdAndUpdate(req.params.id, req.body)
   res.status(201).json({
     success: true,
     message: 'Job updated successfully'
@@ -243,12 +243,12 @@ exports.updateJobPosting = catchAsyncError(async (req, res, next) => {
 
 // DELETE JOB POST --admin
 exports.deleteJobPosting = catchAsyncError(async (req, res, next) => {
-  const job = JobPosting.findById(req.params.id)
+  const job = await JobPosting.findById(req.params.id)
 
   if (!job) {
     next(new ErrorHandler("Job doesn't exist ", 400))
   }
-  await job.findByIdAndDelete(req.params.id)
+  await JobPosting.findByIdAndDelete(req.params.id)
   res.status(201).json({
     success: true,
     message: 'Job deleted successfully'
