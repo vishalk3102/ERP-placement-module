@@ -12,6 +12,12 @@ import {
   subjectReducer,
   timetableReducer
 } from './Reducers/otherReducer'
+import {
+  studentPlacementReducer,
+  AdminPlacementReducer,
+  jobPostingReducer,
+  CompanyReducer
+} from './Reducers/placementReducer'
 
 const store = configureStore({
   reducer: {
@@ -24,7 +30,11 @@ const store = configureStore({
     materials: materialsReducer,
     notice: noticeReducer,
     subject: subjectReducer,
-    timetable: timetableReducer
+    timetable: timetableReducer,
+    studentPlacement: studentPlacementReducer,
+    adminPlacement: AdminPlacementReducer,
+    jobs: jobPostingReducer,
+    company: CompanyReducer
   }
 })
 

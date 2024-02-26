@@ -14,7 +14,12 @@ const {
   getJobPosting,
   getAllJobPostings,
   updateJobPosting,
-  deleteJobPosting
+  deleteJobPosting,
+  applyForJob,
+  getEligibleJobPostings,
+  getAllAppliedApplications,
+  getApplicationsByCompany,
+  getAppliedApplication
 } = require('../controllers/placementcontroller')
 const { isAuthenticated, authorizeAdmin } = require('../middlewares/auth')
 const router = express.Router()
@@ -103,6 +108,22 @@ router.delete(
   isAuthenticated,
   authorizeAdmin,
   deleteJobPosting
+)
+
+//JOB POST AND APPLICATION -- student
+router.get('/placement/jobs', isAuthenticated, getEligibleJobPostings)
+router.post('/placement/jobs/apply', isAuthenticated, applyForJob)
+router.get(
+  '/placement/applications',
+  isAuthenticated,
+  getAllAppliedApplications
+)
+router.get('/placement/application/:id', isAuthenticated, getAppliedApplication)
+router.get(
+  '/admin/placement/applications',
+  isAuthenticated,
+  authorizeAdmin,
+  getApplicationsByCompany
 )
 
 module.exports = router

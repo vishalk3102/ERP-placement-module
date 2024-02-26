@@ -57,14 +57,14 @@ exports.registerPlacementProfile = catchAsyncError(async (req, res, next) => {
 
 // GET STUDENT --admin
 exports.getStudent = catchAsyncError(async (req, res, next) => {
-  const placementProfile = await Placement.findById(req.params.id)
-  if (!placementProfile) {
+  const student = await Placement.findById(req.params.id)
+  if (!student) {
     return next(new ErrorHandler('You are not registered for placement', 404))
   }
   res.status(200).json({
     status: 'success',
     message: 'profile fetched successfully',
-    placementProfile
+    student
   })
 })
 
@@ -209,7 +209,7 @@ exports.getJobPosting = catchAsyncError(async (req, res, next) => {
   if (!job) {
     next(new ErrorHandler("Job doesn't exist ", 400))
   }
-  res.status(201).json({
+  res.status(200).json({
     success: true,
     message: 'Job loaded',
     job
@@ -220,7 +220,7 @@ exports.getJobPosting = catchAsyncError(async (req, res, next) => {
 exports.getAllJobPostings = catchAsyncError(async (req, res, next) => {
   const jobs = await JobPosting.find()
 
-  res.status(201).json({
+  res.status(200).json({
     success: true,
     message: 'All Job loaded',
     jobs
@@ -252,5 +252,67 @@ exports.deleteJobPosting = catchAsyncError(async (req, res, next) => {
   res.status(201).json({
     success: true,
     message: 'Job deleted successfully'
+  })
+})
+
+// APPLICATION TRACKING
+// GET ALL  ELIGIBLE JOB POST --student
+exports.getEligibleJobPostings = catchAsyncError(async (req, res, next) => {
+  const jobPostings = await JobPosting.find()
+
+  res.status(200).json({
+    success: true,
+    count: jobPostings.length,
+    jobPostings
+  })
+})
+
+// APPLY TO JOB POSTING --student
+exports.applyForJob = catchAsyncError(async (req, res, next) => {
+  const newJob = await Application.create(req.body)
+
+  res.status(201).json({
+    success: true,
+    message: 'Successfully Applied for Job'
+  })
+})
+
+// GET APPLIED JOB APPLICATION --student
+exports.getAppliedApplication = catchAsyncError(async (req, res, next) => {
+  const application = await Application.findById(req.params.id)
+
+  if (!application) {
+    next(new ErrorHandler("You haven't applied to any job yes", 400))
+  }
+  res.status(200).json({
+    success: true,
+    application
+  })
+})
+
+// GET ALL APPLIED JOB APPLICATION --student
+exports.getAllAppliedApplications = catchAsyncError(async (req, res, next) => {
+  const studentId = req.params.studentId
+  const applications = await Application.find({ student: studentId })
+
+  res.status(200).json({
+    success: true,
+    message: 'All Application loaded',
+    count: applications.length,
+    applications
+  })
+})
+
+// GET APPLICATION COMPANY WISE --admin
+exports.getApplicationsByCompany = catchAsyncError(async (req, res, next) => {
+  const companyId = req.params.companyId
+  const applications = await Application.find({
+    'jobPosting.company': companyId
+  })
+
+  res.status(200).json({
+    success: true,
+    count: applications.length,
+    applications
   })
 })
