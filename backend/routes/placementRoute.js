@@ -34,13 +34,13 @@ router.get(
   getAllStudent
 )
 router.put(
-  '/admin/placement/student/update/:id',
+  '/admin/placement/student/:id',
   isAuthenticated,
   authorizeAdmin,
   updateStudent
 )
 router.delete(
-  '/admin/placement/student/delete/:id',
+  '/admin/placement/student/:id',
   isAuthenticated,
   authorizeAdmin,
   deleteStudent
