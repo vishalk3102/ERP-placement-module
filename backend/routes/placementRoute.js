@@ -27,24 +27,11 @@ const router = express.Router()
 // STUDENT
 router.post('/placement/register', isAuthenticated, registerPlacementProfile)
 router.get('/admin/placement/student/:id', isAuthenticated, getStudent)
-router.get(
-  '/admin/placement/students',
-  isAuthenticated,
-  authorizeAdmin,
-  getAllStudent
-)
-router.put(
-  '/admin/placement/student/:id',
-  isAuthenticated,
-  authorizeAdmin,
-  updateStudent
-)
-router.delete(
-  '/admin/placement/student/:id',
-  isAuthenticated,
-  authorizeAdmin,
-  deleteStudent
-)
+router
+  .route('/admin/placement/students')
+  .get(isAuthenticated, authorizeAdmin, getAllStudent)
+  .put(isAuthenticated, authorizeAdmin, updateStudent)
+  .delete(isAuthenticated, authorizeAdmin, deleteStudent)
 
 // COMPANY
 router.get(
@@ -53,30 +40,18 @@ router.get(
   authorizeAdmin,
   getAllCompanies
 )
-router.get(
-  '/admin/placement/company/:id',
-  isAuthenticated,
-  authorizeAdmin,
-  getCompany
-)
+
 router.post(
   '/admin/placement/company/register',
   isAuthenticated,
   authorizeAdmin,
   registerCompanyProfile
 )
-router.put(
-  '/admin/placement/company/:id',
-  isAuthenticated,
-  authorizeAdmin,
-  updateCompany
-)
-router.delete(
-  '/admin/placement/company/:id',
-  isAuthenticated,
-  authorizeAdmin,
-  deleteCompany
-)
+router
+  .route('/admin/placement/company/:id')
+  .get(isAuthenticated, authorizeAdmin, getCompany)
+  .put(isAuthenticated, authorizeAdmin, updateCompany)
+  .delete(isAuthenticated, authorizeAdmin, deleteCompany)
 
 // JOB POSTING
 router.post(
@@ -85,30 +60,19 @@ router.post(
   authorizeAdmin,
   createJobPosting
 )
-router.get(
-  '/admin/placement/jobs/:id',
-  isAuthenticated,
-  authorizeAdmin,
-  getJobPosting
-)
+
 router.get(
   '/admin/placement/jobs',
   isAuthenticated,
   authorizeAdmin,
   getAllJobPostings
 )
-router.put(
-  '/admin/placement/jobs/:id',
-  isAuthenticated,
-  authorizeAdmin,
-  updateJobPosting
-)
-router.delete(
-  '/admin/placement/jobs/:id',
-  isAuthenticated,
-  authorizeAdmin,
-  deleteJobPosting
-)
+
+router
+  .route('/admin/placement/jobs/:id')
+  .get(isAuthenticated, authorizeAdmin, getJobPosting)
+  .put(isAuthenticated, authorizeAdmin, updateJobPosting)
+  .delete(isAuthenticated, authorizeAdmin, deleteJobPosting)
 
 //JOB POST AND APPLICATION -- student
 router.get('/placement/jobs', isAuthenticated, getEligibleJobPostings)

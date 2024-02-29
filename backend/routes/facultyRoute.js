@@ -21,7 +21,6 @@ const router = express.Router()
 
 // FACULTY ROUTE
 router.get('/admin/faculty', isAuthenticated, authorizeAdmin, getAllFaculty)
-router.get('/admin/faculty/:id', isAuthenticated, authorizeAdmin, getFaculty)
 
 router.post(
   '/admin/faculty/register',
@@ -29,18 +28,11 @@ router.post(
   authorizeAdmin,
   registerFaculty
 )
-router.put(
-  '/admin/faculty/update/:id',
-  isAuthenticated,
-  authorizeAdmin,
-  updateFaculty
-)
-router.delete(
-  '/admin/faculty/delete/:id',
-  isAuthenticated,
-  authorizeAdmin,
-  deleteFaculty
-)
+router
+  .route('/admin/faculty/:id')
+  .get(isAuthenticated, authorizeAdmin, getFaculty)
+  .put(isAuthenticated, authorizeAdmin, updateFaculty)
+  .delete(isAuthenticated, authorizeAdmin, deleteFaculty)
 
 // MATERIAL ROUTE
 router.post(

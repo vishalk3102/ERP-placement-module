@@ -17,25 +17,17 @@ const router = express.Router()
 
 // STUDENT ROUTE
 router.get('/admin/student', isAuthenticated, authorizeAdmin, getAllStudent)
-router.get('/admin/student/:id', isAuthenticated, authorizeAdmin, getStudent)
 router.post(
   '/admin/student/register',
   isAuthenticated,
   authorizeAdmin,
   registerStudent
 )
-router.put(
-  '/admin/student/update/:id',
-  isAuthenticated,
-  authorizeAdmin,
-  updateStudent
-)
-router.delete(
-  '/admin/student/delete/:id',
-  isAuthenticated,
-  authorizeAdmin,
-  deleteStudent
-)
+router
+  .route('/admin/student/:id')
+  .get(isAuthenticated, authorizeAdmin, getStudent)
+  .put(isAuthenticated, authorizeAdmin, updateStudent)
+  .delete(isAuthenticated, authorizeAdmin, deleteStudent)
 
 // BRANCH
 router.get('/branch/getbranch', isAuthenticated, getBranch)
