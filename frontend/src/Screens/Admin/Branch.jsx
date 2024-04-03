@@ -4,10 +4,15 @@ import { toast } from 'react-hot-toast'
 import Heading from '../../components/Heading'
 import { MdOutlineDelete } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
+import {
+  getBranch,
+  addBranch,
+  deleteBranch
+} from '../../Redux/Actions/otherAction'
 
 const Branch = () => {
   const [selected, setSelected] = useState('add')
-  const [branch, setBranch] = useState()
+  const [branch, setBranch] = useState('')
   const dispatch = useDispatch()
   const { loading, branches, error } = useSelector(state => state.branch)
 

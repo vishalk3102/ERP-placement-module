@@ -1,10 +1,5 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
-import { setUserData } from '../../redux/actions'
-import { baseApiURL } from '../../baseUrl'
-import toast from 'react-hot-toast'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import Loader from '../../components/Loader'
 const Profile = () => {
   const { loading, user } = useSelector(state => state.auth)

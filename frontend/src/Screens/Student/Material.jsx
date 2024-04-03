@@ -1,14 +1,13 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Heading from '../../components/Heading'
 import { IoMdLink } from 'react-icons/io'
 import { HiOutlineCalendar, HiOutlineSearch } from 'react-icons/hi'
 import toast from 'react-hot-toast'
-import { baseApiURL } from '../../baseUrl'
 import { useSelector, useDispatch } from 'react-redux'
+import { getMaterials } from '../../Redux/Actions/otherAction'
 
 const Material = () => {
-  const { loading, material } = useSelector((state = state.materials))
+  const { error, loading, material } = useSelector(state => state.materials)
   const dispatch = useDispatch()
 
   useEffect(() => {

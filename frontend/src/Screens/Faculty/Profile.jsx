@@ -1,10 +1,5 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import { baseApiURL } from '../../baseUrl'
-import { toast } from 'react-hot-toast'
-import { useDispatch } from 'react-redux'
-import { setUserData } from '../../redux/actions'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import Loader from '../../components/Loader'
 
 const Profile = () => {
@@ -22,7 +17,7 @@ const Profile = () => {
               <p className='text-lg font-normal mb-2'>
                 Employee Id:{user.employeeId}
               </p>
-              <p className='text-lg font-normal mb-2'>Post: {data[0].post}</p>
+              <p className='text-lg font-normal mb-2'>Post: {user.post}</p>
               <p className='text-lg font-normal mb-2'>Email Id: {user.email}</p>
               <p className='text-lg font-normal mb-2'>
                 Phone Number: {user.phoneNumber}

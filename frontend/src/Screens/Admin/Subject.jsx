@@ -4,6 +4,11 @@ import { toast } from 'react-hot-toast'
 import Heading from '../../components/Heading'
 import { MdOutlineDelete } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
+import {
+  getSubject,
+  addSubject,
+  deleteSubject
+} from '../../Redux/Actions/otherAction'
 
 const Subjects = () => {
   const [name, setName] = useSelector('')
@@ -21,11 +26,11 @@ const Subjects = () => {
   }, [dispatch, error])
 
   const addSubjectHandler = () => {
-    dispatch(addBranch({ name, code }))
+    dispatch(addSubject({ name, code }))
   }
 
   const deleteSubjectHandler = id => {
-    dispatch(deleteBranch(id))
+    dispatch(deleteSubject(id))
   }
   return (
     <div className='w-[85%] mx-auto mt-10 flex justify-center items-start flex-col mb-10'>
@@ -71,7 +76,7 @@ const Subjects = () => {
             <input
               type='name'
               id='name'
-              value={data.name}
+              value={name}
               onChange={e => setName(e.target.value)}
               className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
             />

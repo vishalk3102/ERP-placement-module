@@ -110,7 +110,7 @@ const Profile = () => {
               <p className='text-lg font-normal mb-2'>
                 Enrollment No: {user.enrollmentNo}
               </p>
-              <p className='text-lg font-normal mb-2'>Branch: {data.branch}</p>
+              <p className='text-lg font-normal mb-2'>Branch: {user.branch}</p>
               <p className='text-lg font-normal mb-2'>
                 Semester: {user.semester}
               </p>
