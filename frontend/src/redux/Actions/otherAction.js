@@ -8,7 +8,7 @@ export const getBranch = () => async dispatch => {
       type: 'getBranchRequest'
     })
 
-    const { data } = await axios.get(`${server}/admin/auth/register`)
+    const { data } = await axios.get(`${server}/branch/getbranch`)
     dispatch({
       type: 'getBranchSuccess',
       payload: data.branches
@@ -21,13 +21,14 @@ export const getBranch = () => async dispatch => {
   }
 }
 
-export const addBranch = () => async dispatch => {
+export const addBranch = name => async dispatch => {
   try {
     dispatch({
       type: 'addBranchRequest'
     })
 
-    const { data } = await axios.post(`${server}/admin/auth/register`)
+    const { data } = await axios.post(`${server}/admin/branch/add`, { name })
+
     dispatch({
       type: 'addBranchSuccess',
       payload: data.message
@@ -40,13 +41,14 @@ export const addBranch = () => async dispatch => {
   }
 }
 
-export const deleteBranch = () => async dispatch => {
+export const deleteBranch = id => async dispatch => {
   try {
     dispatch({
       type: 'deleteBranchRequest'
     })
 
-    const { data } = await axios.delete(`${server}/admin/auth/register`)
+    const { data } = await axios.delete(`${server}/admin/branch/delete/${id}`)
+
     dispatch({
       type: 'deleteBranchSuccess',
       payload: data.message
@@ -117,17 +119,17 @@ export const deleteMarks = () => async dispatch => {
   }
 }
 
-// MARKS ACTION
+// MATERIALS ACTION
 export const getMaterials = () => async dispatch => {
   try {
     dispatch({
       type: 'getMaterialsRequest'
     })
 
-    const { data } = await axios.get(`${server}/admin/auth/register`)
+    const { data } = await axios.get(`${server}/material/getmaterial`)
     dispatch({
       type: 'getMaterialsSuccess',
-      payload: data.mark
+      payload: data.material
     })
   } catch (error) {
     dispatch({
@@ -291,32 +293,37 @@ export const getSubject = () => async dispatch => {
   }
 }
 
-export const addSubject = () => async dispatch => {
-  try {
-    dispatch({
-      type: 'addSubjectRequest'
-    })
+export const addSubject =
+  ({ name, code }) =>
+  async dispatch => {
+    try {
+      dispatch({
+        type: 'addSubjectRequest'
+      })
 
-    const { data } = await axios.post(`${server}/admin/auth/register`)
-    dispatch({
-      type: 'addSubjectSuccess',
-      payload: data.message
-    })
-  } catch (error) {
-    dispatch({
-      type: 'addSubjectFail',
-      payload: error.response.data.message
-    })
+      const { data } = await axios.post(`${server}/admin/subject/add`, {
+        name,
+        code
+      })
+      dispatch({
+        type: 'addSubjectSuccess',
+        payload: data.message
+      })
+    } catch (error) {
+      dispatch({
+        type: 'addSubjectFail',
+        payload: error.response.data.message
+      })
+    }
   }
-}
 
-export const deleteSubject = () => async dispatch => {
+export const deleteSubject = id => async dispatch => {
   try {
     dispatch({
       type: 'deleteSubjectRequest'
     })
 
-    const { data } = await axios.delete(`${server}/admin/auth/register`)
+    const { data } = await axios.delete(`${server}/admin/subject/delete/${id}`)
     dispatch({
       type: 'deleteSubjectSuccess',
       payload: data.message

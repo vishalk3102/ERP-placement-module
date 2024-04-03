@@ -21,25 +21,6 @@ export const registerStudent = () => async dispatch => {
   }
 }
 
-export const loginStudent = () => async dispatch => {
-  try {
-    dispatch({
-      type: 'loginStudentRequest'
-    })
-
-    const { data } = await axios.get(`${server}/admin/auth/login`)
-    dispatch({
-      type: 'loginStudentSuccess',
-      payload: data.message
-    })
-  } catch (error) {
-    dispatch({
-      type: 'loginStudentFail',
-      payload: error.response.data.message
-    })
-  }
-}
-
 export const updateStudent = id => async dispatch => {
   try {
     dispatch({

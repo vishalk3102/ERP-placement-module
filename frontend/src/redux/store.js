@@ -18,9 +18,11 @@ import {
   jobPostingReducer,
   CompanyReducer
 } from './Reducers/placementReducer'
+import { authReducer } from './Reducers/authReducer'
 
 const store = configureStore({
   reducer: {
+    auth: authReducer,
     admin: adminReducer,
     adminDetail: adminDetailsReducer,
     faculty: facultyReducer,

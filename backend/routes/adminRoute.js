@@ -24,28 +24,18 @@ router.put('/admin/update/:id', isAuthenticated, authorizeAdmin, updateAdmin)
 router.delete('/admin/delete/:id', isAuthenticated, authorizeAdmin, deleteAdmin)
 
 // BRANCH
-router.post(
-  '/admin/branch/addbranch',
-  isAuthenticated,
-  authorizeAdmin,
-  addBranch
-)
+router.post('/admin/branch/add', isAuthenticated, authorizeAdmin, addBranch)
 router.delete(
-  '/admin/branch/deletebranch/:id',
+  '/admin/branch/delete/:id',
   isAuthenticated,
   authorizeAdmin,
   deleteBranch
 )
 
 // SUBJECT
-router.post(
-  '/admin/subject/addsubject',
-  isAuthenticated,
-  authorizeAdmin,
-  addSubject
-)
+router.post('/admin/subject/add', isAuthenticated, authorizeAdmin, addSubject)
 router.delete(
-  '/admin/subject/deletesubject/:id',
+  '/admin/subject/delete/:id',
   isAuthenticated,
   authorizeAdmin,
   deleteSubject
@@ -53,13 +43,13 @@ router.delete(
 
 // TIMETABLE
 router.post(
-  '/admin/timetable/addtimetable',
+  '/admin/timetable/add',
   isAuthenticated,
   authorizeAdmin,
   addTimetable
 )
 router.delete(
-  '/admin/timetable/deletetimetable/:id',
+  '/admin/timetable/delete/:id',
   isAuthenticated,
   authorizeAdmin,
   deleteTimetable

@@ -14,17 +14,6 @@ export const studentReducer = createReducer(
       state.loading = false
       state.error = action.payload
     },
-    loginStudentRequest: state => {
-      state.loading = true
-    },
-    loginStudentSuccess: (state, action) => {
-      state.loading = false
-      state.message = action.payload.message
-    },
-    loginStudentFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
     updateStudentRequest: state => {
       state.loading = true
     },

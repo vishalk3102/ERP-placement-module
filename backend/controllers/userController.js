@@ -6,20 +6,21 @@ const User = require('../models/userModel')
 
 // LOGIN USER FUNCTION
 exports.login = catchAsyncError(async (req, res, next) => {
-  // let { loginId, password, userType } = req.body
-  let { employeeId, password } = req.body
+  let { userId, password, userType } = req.body
 
-  if (!employeeId || !password) {
-    return next(new ErrorHandler('Please Enter loginId and Password'))
+  if (!userId || !password) {
+    return next(new ErrorHandler('Please Enter userId and Password'))
   }
 
-  // if (userType === 'admin' || userType === 'faculty') {
-  //   let user = await User.findOne({ employeeId: loginId })
-  // } else {
-  //   let user = await User.findOne({ enrollmentNo: loginId })
-  // }
-  // let user = await User.findOne({ employeeId })
-  let user = await User.findOne({ employeeId }).select('+password')
+  let user = null
+  if (userType === 'admin' || userType === 'faculty') {
+    let employeeId = userId
+    user = await User.findOne({ employeeId }).select('+password')
+  } else {
+    let enrollmentNo = userId
+    user = await User.findOne({ enrollmentNo }).select('+password')
+  }
+
   if (!user) {
     return next(new ErrorHandler('Invalid Credentials', 401))
   }

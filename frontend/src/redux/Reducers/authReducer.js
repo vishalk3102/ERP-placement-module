@@ -1,8 +1,19 @@
 import { createReducer } from '@reduxjs/toolkit'
 
 export const authReducer = createReducer(
-  {},
+  { user: null },
   {
+    loginRequest: state => {
+      state.loading = true
+    },
+    loginSuccess: (state, action) => {
+      state.loading = false
+      state.user = action.payload
+    },
+    loginFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
     loadUserRequest: state => {
       state.loading = true
     },
