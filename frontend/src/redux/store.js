@@ -42,4 +42,4 @@ const store = configureStore({
 
 export default store
 
-export const server = 'https://erp-b911.onrender.com/api'
+export const server = 'https://erp-b911.onrender.com/api/v1'
