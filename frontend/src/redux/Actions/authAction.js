@@ -1,31 +1,33 @@
 import axios from 'axios'
 import { server } from '../Store'
 
-export const loginUser = (userId, password, selected) => async dispatch => {
-  try {
-    dispatch({
-      type: 'loginRequest'
-    })
+export const loginUser =
+  ({ userId, password, selected }) =>
+  async dispatch => {
+    try {
+      dispatch({
+        type: 'loginRequest'
+      })
 
-    const config = { headers: { 'Content-Type': 'application/json' } }
+      const config = { headers: { 'Content-Type': 'application/json' } }
 
-    const { data } = await axios.post(
-      `${server}/login`,
-      { userId, password, selected },
-      config
-    )
+      const { data } = await axios.post(
+        `${server}/login`,
+        { userId, password, selected },
+        config
+      )
 
-    dispatch({
-      type: 'loginSuccess',
-      payload: data.user
-    })
-  } catch (error) {
-    dispatch({
-      type: 'loginFail',
-      payload: error.response.data.message
-    })
+      dispatch({
+        type: 'loginSuccess',
+        payload: data.user
+      })
+    } catch (error) {
+      dispatch({
+        type: 'loginFail',
+        payload: error.response.data.message
+      })
+    }
   }
-}
 
 export const loadUser = () => async dispatch => {
   try {
