@@ -1,178 +1,178 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import Navbar from "../../components/Navbar";
-import { toast, Toaster } from "react-hot-toast";
-import axios from "axios";
-import Notice from "../../components/Notice";
-import Student from "./Student";
-import Faculty from "./Faculty";
-import Subjects from "./Subject";
-import { baseApiURL } from "../../baseUrl";
-import Admin from "./Admin";
-import Profile from "./Profile";
-import Branch from "./Branch";
+import React, { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import Navbar from '../../components/Navbar'
+import { toast, Toaster } from 'react-hot-toast'
+import axios from 'axios'
+import Notice from '../../components/Notice'
+import Student from './Student'
+import Faculty from './Faculty'
+import Subjects from './Subject'
+import { baseApiURL } from '../../baseUrl'
+import Admin from './Admin'
+import Profile from './Profile'
+import Branch from './Branch'
 
 const Home = () => {
-  const router = useLocation();
-  const navigate = useNavigate();
-  const [load, setLoad] = useState(false);
-  const [selectedMenu, setSelectedMenu] = useState("Profile");
+  const router = useLocation()
+  const navigate = useNavigate()
+  const [load, setLoad] = useState(false)
+  const [selectedMenu, setSelectedMenu] = useState('Profile')
   const [dashboardData, setDashboardData] = useState({
-    studentCount: "",
-    facultyCount: "",
-  });
+    studentCount: '',
+    facultyCount: ''
+  })
   useEffect(() => {
     if (router.state === null) {
-      navigate("/");
+      navigate('/')
     }
-    setLoad(true);
-  }, [navigate, router.state]);
+    setLoad(true)
+  }, [navigate, router.state])
 
   useEffect(() => {
-    getStudentCount();
-    getFacultyCount();
-  }, []);
+    getStudentCount()
+    getFacultyCount()
+  }, [])
 
   const getStudentCount = () => {
     const headers = {
-      "Content-Type": "application/json",
-    };
+      'Content-Type': 'application/json'
+    }
     axios
       .get(`${baseApiURL()}/student/details/count`, {
-        headers: headers,
+        headers: headers
       })
-      .then((response) => {
+      .then(response => {
         if (response.data.success) {
           setDashboardData({
             ...dashboardData,
-            studentCount: response.data.user,
-          });
+            studentCount: response.data.user
+          })
         } else {
-          toast.error(response.data.message);
+          toast.error(response.data.message)
         }
       })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+      .catch(error => {
+        console.error(error)
+      })
+  }
 
   const getFacultyCount = () => {
     const headers = {
-      "Content-Type": "application/json",
-    };
+      'Content-Type': 'application/json'
+    }
     axios
       .get(`${baseApiURL()}/faculty/details/count`, {
-        headers: headers,
+        headers: headers
       })
-      .then((response) => {
+      .then(response => {
         if (response.data.success) {
           setDashboardData({
             ...dashboardData,
-            facultyCount: response.data.user,
-          });
+            facultyCount: response.data.user
+          })
         } else {
-          toast.error(response.data.message);
+          toast.error(response.data.message)
         }
       })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+      .catch(error => {
+        console.error(error)
+      })
+  }
 
   return (
     <>
       {load && (
         <>
           <Navbar />
-          <div className="w-[100%] mx-auto mt-8 flex justify-center items-start flex-col container">
-            <ul className="flex justify-evenly items-center gap-10 w-[90%] mx-auto">
+          <div className='w-[100%] mx-auto mt-8 flex justify-center items-start flex-col container'>
+            <ul className='flex justify-evenly items-center gap-10 w-[90%] mx-auto'>
               <li
                 className={`text-center rounded-sm px-4 py-2 w-1/5 cursor-pointer ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all ${
-                  selectedMenu === "Profile"
-                    ? "border-b-2 pb-2 border-blue-500 bg-blue-100 rounded-sm"
-                    : "bg-blue-500 text-white hover:bg-blue-600 border-b-2 border-blue-500"
+                  selectedMenu === 'Profile'
+                    ? 'border-b-2 pb-2 border-blue-500 bg-blue-100 rounded-sm'
+                    : 'bg-blue-500 text-white hover:bg-blue-600 border-b-2 border-blue-500'
                 }`}
-                onClick={() => setSelectedMenu("Profile")}
+                onClick={() => setSelectedMenu('Profile')}
               >
                 Profile
               </li>
               <li
                 className={`text-center rounded-sm px-4 py-2 w-1/5 cursor-pointer ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all ${
-                  selectedMenu === "Student"
-                    ? "border-b-2 pb-2 border-blue-500 bg-blue-100 rounded-sm"
-                    : "bg-blue-500 text-white hover:bg-blue-600 border-b-2 border-blue-500"
+                  selectedMenu === 'Student'
+                    ? 'border-b-2 pb-2 border-blue-500 bg-blue-100 rounded-sm'
+                    : 'bg-blue-500 text-white hover:bg-blue-600 border-b-2 border-blue-500'
                 }`}
-                onClick={() => setSelectedMenu("Student")}
+                onClick={() => setSelectedMenu('Student')}
               >
                 Student
               </li>
               <li
                 className={`text-center rounded-sm px-4 py-2 w-1/5 cursor-pointer ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all ${
-                  selectedMenu === "Faculty"
-                    ? "border-b-2 pb-2 border-blue-500 bg-blue-100 rounded-sm"
-                    : "bg-blue-500 text-white hover:bg-blue-600 border-b-2 border-blue-500"
+                  selectedMenu === 'Faculty'
+                    ? 'border-b-2 pb-2 border-blue-500 bg-blue-100 rounded-sm'
+                    : 'bg-blue-500 text-white hover:bg-blue-600 border-b-2 border-blue-500'
                 }`}
-                onClick={() => setSelectedMenu("Faculty")}
+                onClick={() => setSelectedMenu('Faculty')}
               >
                 Faculty
               </li>
               <li
                 className={`text-center rounded-sm px-4 py-2 w-1/5 cursor-pointer ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all ${
-                  selectedMenu === "Branch"
-                    ? "border-b-2 pb-2 border-blue-500 bg-blue-100 rounded-sm"
-                    : "bg-blue-500 text-white hover:bg-blue-600 border-b-2 border-blue-500"
+                  selectedMenu === 'Branch'
+                    ? 'border-b-2 pb-2 border-blue-500 bg-blue-100 rounded-sm'
+                    : 'bg-blue-500 text-white hover:bg-blue-600 border-b-2 border-blue-500'
                 }`}
-                onClick={() => setSelectedMenu("Branch")}
+                onClick={() => setSelectedMenu('Branch')}
               >
                 Branch
               </li>
               <li
                 className={`text-center rounded-sm px-4 py-2 w-1/5 cursor-pointer ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all ${
-                  selectedMenu === "Notice"
-                    ? "border-b-2 pb-2 border-blue-500 bg-blue-100 rounded-sm"
-                    : "bg-blue-500 text-white hover:bg-blue-600 border-b-2 border-blue-500"
+                  selectedMenu === 'Notice'
+                    ? 'border-b-2 pb-2 border-blue-500 bg-blue-100 rounded-sm'
+                    : 'bg-blue-500 text-white hover:bg-blue-600 border-b-2 border-blue-500'
                 }`}
-                onClick={() => setSelectedMenu("Notice")}
+                onClick={() => setSelectedMenu('Notice')}
               >
                 Notice
               </li>
               <li
                 className={`text-center rounded-sm px-4 py-2 w-1/5 cursor-pointer ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all ${
-                  selectedMenu === "Subjects"
-                    ? "border-b-2 pb-2 border-blue-500 bg-blue-100 rounded-sm"
-                    : "bg-blue-500 text-white hover:bg-blue-600 border-b-2 border-blue-500"
+                  selectedMenu === 'Subjects'
+                    ? 'border-b-2 pb-2 border-blue-500 bg-blue-100 rounded-sm'
+                    : 'bg-blue-500 text-white hover:bg-blue-600 border-b-2 border-blue-500'
                 }`}
-                onClick={() => setSelectedMenu("Subjects")}
+                onClick={() => setSelectedMenu('Subjects')}
               >
                 Subjects
               </li>
               <li
                 className={`text-center rounded-sm px-4 py-2 w-1/5 cursor-pointer ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all ${
-                  selectedMenu === "Admin"
-                    ? "border-b-2 pb-2 border-blue-500 bg-blue-100 rounded-sm"
-                    : "bg-blue-500 text-white hover:bg-blue-600 border-b-2 border-blue-500"
+                  selectedMenu === 'Admin'
+                    ? 'border-b-2 pb-2 border-blue-500 bg-blue-100 rounded-sm'
+                    : 'bg-blue-500 text-white hover:bg-blue-600 border-b-2 border-blue-500'
                 }`}
-                onClick={() => setSelectedMenu("Admin")}
+                onClick={() => setSelectedMenu('Admin')}
               >
                 Admins
               </li>
             </ul>
           </div>
           <>
-            {selectedMenu === "Branch" && <Branch />}
-            {selectedMenu === "Notice" && <Notice />}
-            {selectedMenu === "Student" && <Student />}
-            {selectedMenu === "Faculty" && <Faculty />}
-            {selectedMenu === "Subjects" && <Subjects />}
-            {selectedMenu === "Admin" && <Admin />}
-            {selectedMenu === "Profile" && <Profile />}
+            {selectedMenu === 'Branch' && <Branch />}
+            {/* {selectedMenu === "Notice" && <Notice />} */}
+            {selectedMenu === 'Student' && <Student />}
+            {selectedMenu === 'Faculty' && <Faculty />}
+            {selectedMenu === 'Subjects' && <Subjects />}
+            {selectedMenu === 'Admin' && <Admin />}
+            {selectedMenu === 'Profile' && <Profile />}
           </>
         </>
       )}
-      <Toaster position="bottom-center" />
+      <Toaster position='bottom-center' />
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

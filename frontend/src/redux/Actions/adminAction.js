@@ -8,7 +8,7 @@ export const registerAdmin = () => async dispatch => {
       type: 'registerAdminRequest'
     })
 
-    const { data } = await axios.get(`${server}/admin/auth/register`)
+    const { data } = await axios.get(`${server}/admin/register`)
     dispatch({
       type: 'registerAdminSuccess',
       payload: data.message
@@ -46,7 +46,7 @@ export const updateAdmin = id => async dispatch => {
       type: 'updateAdminRequest'
     })
 
-    const { data } = await axios.get(`${server}/admin/auth/update/${id}`)
+    const { data } = await axios.get(`${server}/admin/update/${id}`)
     dispatch({
       type: 'updateAdminSuccess',
       payload: data.message

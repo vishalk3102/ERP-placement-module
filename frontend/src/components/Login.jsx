@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 const Login = () => {
   const dispatch = useDispatch()
 
-  const { loading, error, message } = useSelector(state => state.user)
+  // const { loading, error, message } = useSelector(state => state.user)
 
   const [selected, setSelected] = useState('Student')
   const [userId, setUserId] = useState('')
@@ -19,16 +19,16 @@ const Login = () => {
     dispatch(loginUser(userId, password, selected.toLowerCase()))
   }
 
-  useEffect(() => {
-    if (message) {
-      toast.success(message)
-      dispatch({ type: 'clearMessage' })
-    }
-    if (error) {
-      toast.error(error)
-      dispatch({ type: 'clearError' })
-    }
-  }, [dispatch, message, error])
+  // useEffect(() => {
+  //   if (message) {
+  //     toast.success(message)
+  //     dispatch({ type: 'clearMessage' })
+  //   }
+  //   if (error) {
+  //     toast.error(error)
+  //     dispatch({ type: 'clearError' })
+  //   }
+  // }, [dispatch, message, error])
 
   return (
     <div className='bg-white h-[100vh] w-full flex justify-between items-center'>
