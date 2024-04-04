@@ -20,7 +20,7 @@ const {
   getAllAppliedApplications,
   getApplicationsByCompany,
   getAppliedApplication
-} = require('../controllers/placementcontroller')
+} = require('../controllers/placementController')
 const { isAuthenticated, authorizeAdmin } = require('../middlewares/auth')
 const router = express.Router()
 
