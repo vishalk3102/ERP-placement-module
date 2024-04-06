@@ -48,7 +48,7 @@ const App = () => {
     <>
       <Router>
         <Routes>
-          <Route
+          {/* <Route
             exact
             path='/'
             element={
@@ -86,7 +86,12 @@ const App = () => {
                 <AdminHome />
               </ProtectedRoute>
             }
-          />
+          /> */}
+
+          <Route exact path='/' element={<Login />} />
+          <Route exact path='/student/home' element={<StudentHome />} />
+          <Route exact path='/faculty/home' element={<FacultyHome />} />
+          <Route exact path='/admin/home' element={<AdminHome />} />
 
           {/* ADMIN PLACEMENT DASHBOARD ROUTE  */}
           <Route

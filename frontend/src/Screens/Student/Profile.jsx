@@ -12,7 +12,7 @@ const Profile = () => {
     current: ''
   }) */
 
-  const { loading, user } = useSelector(state => state.auth)
+  // const { loading, user } = useSelector(state => state.auth)
 
   // useEffect(() => {
   //   const headers = {
@@ -98,27 +98,24 @@ const Profile = () => {
   //     })
   // }
 
+  const loading = false
   return (
     <div className='w-[85%] mx-auto my-8 flex justify-between items-start'>
       {loading === false ? (
         <>
           <div>
-            <p className='text-2xl font-semibold'>
-              Hello {user.firstName} {user.lastName} 👋
-            </p>
+            <p className='text-2xl font-semibold'>Hello Vishal Kumar 👋</p>
             <div className='mt-3'>
               <p className='text-lg font-normal mb-2'>
-                Enrollment No: {user.enrollmentNo}
+                Enrollment No: GE2020021657
               </p>
-              <p className='text-lg font-normal mb-2'>Branch: {user.branch}</p>
+              <p className='text-lg font-normal mb-2'>Branch: B-Tech(CSE)</p>
+              <p className='text-lg font-normal mb-2'>Semester: 8th</p>
               <p className='text-lg font-normal mb-2'>
-                Semester: {user.semester}
-              </p>
-              <p className='text-lg font-normal mb-2'>
-                Phone Number: +91 {user.phoneNumber}
+                Phone Number: +91 8459126643
               </p>
               <p className='text-lg font-normal mb-2'>
-                Email Address: {user.email}
+                Email Address: vishal.k3102@gmail.com
               </p>
             </div>
             {/* <button
