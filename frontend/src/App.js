@@ -10,12 +10,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { loadUser } from './Redux/Actions/authAction'
 import { useEffect } from 'react'
 import { ProtectedRoute } from 'protected-route-react'
-import Dashboard from './Screens/Placement/Admin/Dashboard'
+import AdminDashboard from './Screens/Placement/Admin/Dashboard'
 import Company from './Screens/Placement/Admin/Company'
 import JobPosting from './Screens/Placement/Admin/JobPosting'
 import Student from './Screens/Placement/Admin/Student'
 import Application from './Screens/Placement/Admin/Application'
 import CompanyWiseStudentList from './Screens/Placement/Admin/CompanyWiseStudentList'
+
+import StudentDashboard from './Screens/Placement/Student/Dashboard'
+import StudentProfile from './Screens/Placement/Student/Profile'
+import StudentCompany from './Screens/Placement/Student/Company'
+import StudentEligibleJobs from './Screens/Placement/Student/EligibleJobs'
+import StudentApplications from './Screens/Placement/Student/Application'
 const App = () => {
   const dispatch = useDispatch()
 
@@ -82,10 +88,11 @@ const App = () => {
             }
           />
 
+          {/* ADMIN PLACEMENT DASHBOARD ROUTE  */}
           <Route
             exact
             path='/admin/placement/dashboard'
-            element={<Dashboard />}
+            element={<AdminDashboard />}
           />
           <Route exact path='/admin/placement/student' element={<Student />} />
           <Route
@@ -107,6 +114,33 @@ const App = () => {
             exact
             path='/admin/placement/application/company/companywise'
             element={<CompanyWiseStudentList />}
+          />
+
+          {/* STUDENT PLACEMENT DASHBOARD ROUTES */}
+          <Route
+            exact
+            path='/student/placement/dashboard'
+            element={<StudentDashboard />}
+          />
+          <Route
+            exact
+            path='/student/placement/profile'
+            element={<StudentProfile />}
+          />
+          <Route
+            exact
+            path='/student/placement/company'
+            element={<StudentCompany />}
+          />
+          <Route
+            exact
+            path='/student/placement/eligiblejobs'
+            element={<StudentEligibleJobs />}
+          />
+          <Route
+            exact
+            path='/student/placement/application'
+            element={<StudentApplications />}
           />
         </Routes>
         <Toaster />
