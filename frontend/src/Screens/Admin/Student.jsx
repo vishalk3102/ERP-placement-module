@@ -28,7 +28,7 @@ const Student = () => {
         </div>
       </div>
       {selected === 'add' && <AddStudent />}
-      {/* {selected === "edit" && <EditStudent />} */}
+      {selected === 'edit' && <EditStudent />}
     </div>
   )
 }
