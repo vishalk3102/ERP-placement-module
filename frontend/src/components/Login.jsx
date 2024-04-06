@@ -4,11 +4,15 @@ import toast, { Toaster } from 'react-hot-toast'
 import collegeImg from '../assets/college.jpg'
 import { loginUser } from '../Redux/Actions/authAction'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  // const { loading, error, message } = useSelector(state => state.user)
+  // const { loading, error, message, isAuthenticated } = useSelector(
+  //   state => state.user
+  // )
 
   const [selected, setSelected] = useState('Student')
   const [userId, setUserId] = useState('')
@@ -17,7 +21,19 @@ const Login = () => {
   const handleLoginSubmit = e => {
     e.preventDefault()
     dispatch(loginUser(userId, password, selected.toLowerCase()))
+    navigate('/student')
   }
+
+  // useEffect(() => {
+  //   if (error) {
+  //     toast.error(error)
+  //     dispatch({ type: 'clearError' })
+  //   }
+
+  //   if (isAuthenticated) {
+  //     navigate('/admin')
+  //   }
+  // }, [dispatch, error, isAuthenticated, navigate])
 
   // useEffect(() => {
   //   if (message) {

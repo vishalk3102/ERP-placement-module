@@ -19,6 +19,10 @@ const jobPostingSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  eligibleCourse: {
+    type: String,
+    required: true
+  },
   deadline: {
     type: Date,
     required: true
