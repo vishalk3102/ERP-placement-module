@@ -2,10 +2,6 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import SideNavbar from './SideNavbar'
-import { MdEdit } from 'react-icons/md'
-import { MdDelete } from 'react-icons/md'
-import { IoEye } from 'react-icons/io5'
-import CompanyDetails from './CompanyDetail'
 
 const Application = () => {
   const [selectedCompany, setSelectedCompany] = useState(null)
@@ -19,8 +15,117 @@ const Application = () => {
       id: 2,
       name: 'Company B',
       students: ['David', 'Emma', 'Frank']
+    },
+    {
+      id: 1,
+      name: 'Company A',
+      students: ['Alice', 'Bob', 'Charlie']
+    },
+    {
+      id: 2,
+      name: 'Company B',
+      students: ['David', 'Emma', 'Frank']
+    },
+    {
+      id: 1,
+      name: 'Company A',
+      students: ['Alice', 'Bob', 'Charlie']
+    },
+    {
+      id: 2,
+      name: 'Company B',
+      students: ['David', 'Emma', 'Frank']
+    },
+    {
+      id: 1,
+      name: 'Company A',
+      students: ['Alice', 'Bob', 'Charlie']
+    },
+    {
+      id: 2,
+      name: 'Company B',
+      students: ['David', 'Emma', 'Frank']
+    },
+    {
+      id: 1,
+      name: 'Company A',
+      students: ['Alice', 'Bob', 'Charlie']
+    },
+    {
+      id: 2,
+      name: 'Company B',
+      students: ['David', 'Emma', 'Frank']
+    },
+    {
+      id: 1,
+      name: 'Company A',
+      students: ['Alice', 'Bob', 'Charlie']
+    },
+    {
+      id: 2,
+      name: 'Company B',
+      students: ['David', 'Emma', 'Frank']
+    },
+    {
+      id: 1,
+      name: 'Company A',
+      students: ['Alice', 'Bob', 'Charlie']
+    },
+    {
+      id: 2,
+      name: 'Company B',
+      students: ['David', 'Emma', 'Frank']
+    },
+    {
+      id: 1,
+      name: 'Company A',
+      students: ['Alice', 'Bob', 'Charlie']
+    },
+    {
+      id: 2,
+      name: 'Company B',
+      students: ['David', 'Emma', 'Frank']
+    },
+    {
+      id: 1,
+      name: 'Company A',
+      students: ['Alice', 'Bob', 'Charlie']
+    },
+    {
+      id: 2,
+      name: 'Company B',
+      students: ['David', 'Emma', 'Frank']
+    },
+    {
+      id: 1,
+      name: 'Company A',
+      students: ['Alice', 'Bob', 'Charlie']
+    },
+    {
+      id: 2,
+      name: 'Company B',
+      students: ['David', 'Emma', 'Frank']
+    },
+    {
+      id: 1,
+      name: 'Company A',
+      students: ['Alice', 'Bob', 'Charlie']
+    },
+    {
+      id: 2,
+      name: 'Company B',
+      students: ['David', 'Emma', 'Frank']
+    },
+    {
+      id: 1,
+      name: 'Company A',
+      students: ['Alice', 'Bob', 'Charlie']
+    },
+    {
+      id: 2,
+      name: 'Company B',
+      students: ['David', 'Emma', 'Frank']
     }
-    // Add more dummy data as needed
   ])
 
   const handleTabClick = companyId => {
@@ -39,25 +144,19 @@ const Application = () => {
             >
               Company Wise Registered Student Application
             </h2>
-            <div className='border-solid border-2 border-black'>
-              <div className='container mx-auto p-4'>
-                <div className='flex'>
-                  {companyData.map(company => (
-                    <Link
-                      key={company.id}
-                      to={`/admin/application/company/companydetail`}
-                      className={`cursor-pointer p-2 rounded-md ${
-                        selectedCompany === company.id
-                          ? 'bg-blue-500 text-white'
-                          : 'bg-gray-200 text-gray-700'
-                      } mr-2`}
-                      onClick={() => handleTabClick(company.id)}
-                    >
-                      {company.name}
-                    </Link>
-                  ))}
+            <div className='border-solid border-2 border-black my-6 flex justify-evenly  items-center flex-wrap'>
+              {companyData.map(company => (
+                <div className='text-[#fff] text-[18px] font-semibold flex justify-center items-center bg-blue-500  rounded m-4 py-4 px-8 hover:bg-blue-700 ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all'>
+                  {' '}
+                  <Link
+                    key={company.id}
+                    to={`/admin/placement/application/company/companywise`}
+                    onClick={() => handleTabClick(company.id)}
+                  >
+                    {company.name}
+                  </Link>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </Box>

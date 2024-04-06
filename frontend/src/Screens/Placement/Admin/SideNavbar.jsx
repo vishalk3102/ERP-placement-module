@@ -171,7 +171,7 @@ const SideNavbar = () => {
           <ListItem
             disablePadding
             sx={{ display: 'block' }}
-            onClick={() => navigate('/admin/dashboard')}
+            onClick={() => navigate('/admin/placement/dashboard')}
           >
             <ListItemButton
               sx={{
@@ -195,7 +195,7 @@ const SideNavbar = () => {
           <ListItem
             disablePadding
             sx={{ display: 'block' }}
-            onClick={() => navigate('/admin/dashboard')}
+            onClick={() => navigate('/admin/placement/dashboard')}
           >
             <ListItemButton
               sx={{
@@ -222,7 +222,7 @@ const SideNavbar = () => {
           <ListItem
             disablePadding
             sx={{ display: 'block' }}
-            onClick={() => navigate('/admin/student')}
+            onClick={() => navigate('/admin/placement/student')}
           >
             <ListItemButton
               sx={{
@@ -246,7 +246,7 @@ const SideNavbar = () => {
           <ListItem
             disablePadding
             sx={{ display: 'block' }}
-            onClick={() => navigate('/admin/companies')}
+            onClick={() => navigate('/admin/placement/companies')}
           >
             <ListItemButton
               sx={{
@@ -273,7 +273,7 @@ const SideNavbar = () => {
           <ListItem
             disablePadding
             sx={{ display: 'block' }}
-            onClick={() => navigate('/admin/jobposting')}
+            onClick={() => navigate('/admin/placement/jobposting')}
           >
             <ListItemButton
               sx={{
@@ -300,7 +300,7 @@ const SideNavbar = () => {
           <ListItem
             disablePadding
             sx={{ display: 'block' }}
-            onClick={() => navigate('/admin/application')}
+            onClick={() => navigate('/admin/placement/application')}
           >
             <ListItemButton
               sx={{

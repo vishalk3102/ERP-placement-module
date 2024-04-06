@@ -43,7 +43,7 @@ const JobPosting = () => {
             >
               Job Posting List
             </h2>
-            <div className='flex justify-end '>
+            <div className='flex justify-end mt-8'>
               <button className='text-[#fff] text-[14px] font-semibold flex justify-center items-center bg-blue-500  rounded p-3 hover:bg-blue-700 ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all'>
                 {' '}
                 Create Job Post{' '}
@@ -53,7 +53,7 @@ const JobPosting = () => {
               </button>
             </div>
             <div className='overflow-auto'>
-              <table className='table-auto border-solid border-2 border-black border-collapse rounded mx-auto my-10'>
+              <table className='table-auto border-solid border-2 border-black border-collapse rounded mx-auto my-5'>
                 <thead>
                   <tr className='w-[100%] border-solid border-2 border-black'>
                     <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400  border border-slate-900 p-3 uppercase text-center'>

@@ -15,7 +15,7 @@ import Company from './Screens/Placement/Admin/Company'
 import JobPosting from './Screens/Placement/Admin/JobPosting'
 import Student from './Screens/Placement/Admin/Student'
 import Application from './Screens/Placement/Admin/Application'
-import CompanyDetail from './Screens/Placement/Admin/CompanyDetail'
+import CompanyWiseStudentList from './Screens/Placement/Admin/CompanyWiseStudentList'
 const App = () => {
   const dispatch = useDispatch()
 
@@ -82,15 +82,31 @@ const App = () => {
             }
           />
 
-          <Route exact path='/admin/dashboard' element={<Dashboard />} />
-          <Route exact path='/admin/student' element={<Student />} />
-          <Route exact path='/admin/companies' element={<Company />} />
-          <Route exact path='/admin/jobposting' element={<JobPosting />} />
-          <Route exact path='/admin/application' element={<Application />} />
           <Route
             exact
-            path='/admin/application/company/companydetail'
-            element={<CompanyDetail />}
+            path='/admin/placement/dashboard'
+            element={<Dashboard />}
+          />
+          <Route exact path='/admin/placement/student' element={<Student />} />
+          <Route
+            exact
+            path='/admin/placement/companies'
+            element={<Company />}
+          />
+          <Route
+            exact
+            path='/admin/placement/jobposting'
+            element={<JobPosting />}
+          />
+          <Route
+            exact
+            path='/admin/placement/application'
+            element={<Application />}
+          />
+          <Route
+            exact
+            path='/admin/placement/application/company/companywise'
+            element={<CompanyWiseStudentList />}
           />
         </Routes>
         <Toaster />
