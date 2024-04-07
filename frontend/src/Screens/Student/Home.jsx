@@ -89,7 +89,7 @@ const Home = () => {
           </li>
         </ul>
         <>
-          {/* {selectedMenu === "Timetable" && <Timetable />} */}
+          {selectedMenu === 'Timetable' && <Timetable />}
           {/* {selectedMenu === "Marks" && <Marks />} */}
           {selectedMenu === 'Material' && <Material />}
           {/* {selectedMenu === "Notice" && <Notice />} */}

@@ -2,9 +2,10 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import Loader from '../../components/Loader'
+import profile from '../Placement/Student/profile.jpg'
 
 const Profile = () => {
-  // const [showPass, setShowPass] = useState(false)
+  const [showPass, setShowPass] = useState(false)
   // const router = useLocation()
   // const [data, setData] = useState()
   /* const [password, setPassword] = useState({
@@ -118,53 +119,45 @@ const Profile = () => {
                 Email Address: vishal.k3102@gmail.com
               </p>
             </div>
-            {/* <button
+            <button
               className={`${
-                showPass ? "bg-red-100 text-red-600" : "bg-blue-600 text-white"
+                showPass ? 'bg-red-100 text-red-600' : 'bg-blue-600 text-white'
               }  px-3 py-1 rounded mt-4`}
               onClick={() => setShowPass(!showPass)}
             >
-              {!showPass ? "Change Password" : "Close Change Password"}
+              {!showPass ? 'Change Password' : 'Close Change Password'}
             </button>
             {showPass && (
               <form
-                className="mt-4 border-t-2 border-blue-500 flex flex-col justify-center items-start"
-                onSubmit={checkPasswordHandler}
+                className='mt-4 border-t-2 border-blue-500 flex flex-col justify-center items-start'
+                // onSubmit={checkPasswordHandler}
               >
                 <input
-                  type="password"
-                  value={password.current}
-                  onChange={(e) =>
-                    setPassword({ ...password, current: e.target.value })
-                  }
-                  placeholder="Current Password"
-                  className="px-3 py-1 border-2 border-blue-500 outline-none rounded mt-4"
+                  type='password'
+                  placeholder='Current Password'
+                  className='px-3 py-1 border-2 border-blue-500 outline-none rounded mt-4'
                 />
                 <input
-                  type="password"
-                  value={password.new}
-                  onChange={(e) =>
-                    setPassword({ ...password, new: e.target.value })
-                  }
-                  placeholder="New Password"
-                  className="px-3 py-1 border-2 border-blue-500 outline-none rounded mt-4"
+                  type='password'
+                  placeholder='New Password'
+                  className='px-3 py-1 border-2 border-blue-500 outline-none rounded mt-4'
                 />
                 <button
-                  className="mt-4 hover:border-b-2 hover:border-blue-500"
-                  onClick={checkPasswordHandler}
-                  type="submit"
+                  className='mt-4 hover:border-b-2 hover:border-blue-500'
+                  // onClick={checkPasswordHandler}
+                  type='submit'
                 >
                   Change Password
                 </button>
               </form>
-            )} */}
+            )}
           </div>
 
-          {/*    <img
-            src={user.profile}
+          <img
+            src={profile}
             alt='student profile'
             className='h-[200px] w-[200px] object-cover rounded-lg shadow-md'
-          /> */}
+          />
         </>
       ) : (
         <Loader />

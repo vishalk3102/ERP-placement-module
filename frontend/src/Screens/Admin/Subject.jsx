@@ -4,34 +4,34 @@ import { toast } from 'react-hot-toast'
 import Heading from '../../components/Heading'
 import { MdOutlineDelete } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  getSubject,
-  addSubject,
-  deleteSubject
-} from '../../Redux/Actions/otherAction'
+// import {
+//   getSubject,
+//   addSubject,
+//   deleteSubject
+// } from '../../Redux/Actions/otherAction'
 
 const Subjects = () => {
-  const [name, setName] = useSelector('')
-  const [code, setCode] = useSelector('')
+  const [name, setName] = useState('')
+  const [code, setCode] = useState('')
   const [selected, setSelected] = useState('add')
-  const dispatch = useDispatch()
-  const { loading, subjects, error } = useSelector(state => state.branch)
+  // const dispatch = useDispatch()
+  // const { loading, subjects, error } = useSelector(state => state.branch)
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error)
-      dispatch({ type: 'clearError' })
-    }
-    dispatch(getSubject())
-  }, [dispatch, error])
+  // useEffect(() => {
+  //   if (error) {
+  //     toast.error(error)
+  //     dispatch({ type: 'clearError' })
+  //   }
+  //   dispatch(getSubject())
+  // }, [dispatch, error])
 
-  const addSubjectHandler = () => {
-    dispatch(addSubject({ name, code }))
-  }
+  // const addSubjectHandler = () => {
+  //   dispatch(addSubject({ name, code }))
+  // }
 
-  const deleteSubjectHandler = id => {
-    dispatch(deleteSubject(id))
-  }
+  // const deleteSubjectHandler = id => {
+  //   dispatch(deleteSubject(id))
+  // }
   return (
     <div className='w-[85%] mx-auto mt-10 flex justify-center items-start flex-col mb-10'>
       <div className='flex justify-between items-center w-full'>
@@ -83,7 +83,7 @@ const Subjects = () => {
           </div>
           <button
             className='mt-6 bg-blue-500 px-6 py-3 text-white'
-            onClick={addSubjectHandler}
+            // onClick={addSubjectHandler}
           >
             Add Subject
           </button>
@@ -92,25 +92,23 @@ const Subjects = () => {
       {selected === 'view' && (
         <div className='mt-8 w-full'>
           <ul>
-            {subjects &&
+            {/* {subjects &&
               subjects.map(item => {
-                return (
-                  <li
-                    key={item.code}
-                    className='bg-blue-100 py-3 px-6 mb-3 flex justify-between items-center w-[70%]'
-                  >
-                    <div>
-                      {item.code} - {item.name}
-                    </div>
-                    <button
-                      className='text-2xl hover:text-red-500'
-                      onClick={() => deleteSubjectHandler(item._id)}
-                    >
-                      <MdOutlineDelete />
-                    </button>
-                  </li>
-                )
-              })}
+                return ( */}
+            <li
+              // key={item.code}
+              className='bg-blue-100 py-3 px-6 mb-3 flex justify-between items-center w-[70%]'
+            >
+              <div>101 - Computer Science</div>
+              <button
+                className='text-2xl hover:text-red-500'
+                // onClick={() => deleteSubjectHandler(item._id)}
+              >
+                <MdOutlineDelete />
+              </button>
+            </li>
+            {/* )
+              })} */}
           </ul>
         </div>
       )}

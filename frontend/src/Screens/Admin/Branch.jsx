@@ -4,33 +4,33 @@ import { toast } from 'react-hot-toast'
 import Heading from '../../components/Heading'
 import { MdOutlineDelete } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  getBranch,
-  addBranch,
-  deleteBranch
-} from '../../Redux/Actions/otherAction'
+// import {
+//   getBranch,
+//   addBranch,
+//   deleteBranch
+// } from '../../Redux/Actions/otherAction'
 
 const Branch = () => {
   const [selected, setSelected] = useState('add')
   const [branch, setBranch] = useState('')
-  const dispatch = useDispatch()
-  const { loading, branches, error } = useSelector(state => state.branch)
+  // const dispatch = useDispatch()
+  // const { loading, branches, error } = useSelector(state => state.branch)
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error)
-      dispatch({ type: 'clearError' })
-    }
-    dispatch(getBranch())
-  }, [dispatch, error])
+  // useEffect(() => {
+  //   if (error) {
+  //     toast.error(error)
+  //     dispatch({ type: 'clearError' })
+  //   }
+  //   dispatch(getBranch())
+  // }, [dispatch, error])
 
-  const addBranchHandler = () => {
-    dispatch(addBranch(branch))
-  }
+  // const addBranchHandler = () => {
+  //   dispatch(addBranch(branch))
+  // }
 
-  const deleteBranchHandler = id => {
-    dispatch(deleteBranch(id))
-  }
+  // const deleteBranchHandler = id => {
+  //   dispatch(deleteBranch(id))
+  // }
 
   return (
     <div className='w-[85%] mx-auto mt-10 flex justify-center items-start flex-col mb-10'>
@@ -71,7 +71,7 @@ const Branch = () => {
           </div>
           <button
             className='mt-6 bg-blue-500 px-6 py-3 text-white'
-            onClick={addBranchHandler}
+            // onClick={addBranchHandler}
           >
             Add Branch
           </button>
@@ -80,23 +80,23 @@ const Branch = () => {
       {selected === 'view' && (
         <div className='mt-8 w-full'>
           <ul>
-            {branches &&
+            {/* {branches &&
               branches.map((item, index) => {
-                return (
-                  <li
-                    key={index}
-                    className='bg-blue-100 py-3 px-6 mb-3 flex justify-between items-center w-[70%]'
-                  >
-                    <div>{item.name}</div>
-                    <button
-                      className='text-2xl hover:text-red-500'
-                      onClick={() => deleteBranchHandler(item._id)}
-                    >
-                      <MdOutlineDelete />
-                    </button>
-                  </li>
-                )
-              })}
+                return ( */}
+            <li
+              // key={index}
+              className='bg-blue-100 py-3 px-6 mb-3 flex justify-between items-center w-[70%]'
+            >
+              <div>CSE</div>
+              <button
+                className='text-2xl hover:text-red-500'
+                // onClick={() => deleteBranchHandler(item._id)}
+              >
+                <MdOutlineDelete />
+              </button>
+            </li>
+            {/* )
+              })} */}
           </ul>
         </div>
       )}

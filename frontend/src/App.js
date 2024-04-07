@@ -48,46 +48,6 @@ const App = () => {
     <>
       <Router>
         <Routes>
-          {/* <Route
-            exact
-            path='/'
-            element={
-              <ProtectedRoute
-                isAuthenticated={!isAuthenticated}
-                redirect='/student'
-              >
-                <Login />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            exact
-            path='/student'
-            element={
-              <ProtectedRoute isAuthenticated={isAuthenticated}>
-                <StudentHome />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            exact
-            path='/faculty'
-            element={
-              <ProtectedRoute isAuthenticated={isAuthenticated}>
-                <FacultyHome />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            exact
-            path='/admin'
-            element={
-              <ProtectedRoute isAuthenticated={isAuthenticated}>
-                <AdminHome />
-              </ProtectedRoute>
-            }
-          /> */}
-
           <Route exact path='/' element={<Login />} />
           <Route exact path='/student/home' element={<StudentHome />} />
           <Route exact path='/faculty/home' element={<FacultyHome />} />
