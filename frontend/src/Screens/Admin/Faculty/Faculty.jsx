@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
-import Heading from '../../components/Heading'
-import AddStudent from './Student/AddStudent'
-import EditStudent from './Student/EditStudent'
-const Student = () => {
+import Heading from '../../../components/Heading'
+import EditFaculty from './EditFaculty'
+import AddFaculty from './AddFaculty'
+
+const Faculty = () => {
   const [selected, setSelected] = useState('add')
+
   return (
     <div className='w-[85%] mx-auto mt-10 flex justify-center items-start flex-col mb-10'>
       <div className='flex justify-between items-center w-full'>
-        <Heading title='Student Details' />
+        <Heading title='Faculty Details' />
         <div className='flex justify-end items-center w-full'>
           <button
             className={`${
@@ -15,7 +17,7 @@ const Student = () => {
             }border-blue-500 px-4 py-2 text-black rounded-sm mr-6`}
             onClick={() => setSelected('add')}
           >
-            Add Student
+            Add Faculty
           </button>
           <button
             className={`${
@@ -23,14 +25,14 @@ const Student = () => {
             }border-blue-500 px-4 py-2 text-black rounded-sm`}
             onClick={() => setSelected('edit')}
           >
-            Edit Student
+            Edit Faculty
           </button>
         </div>
       </div>
-      {selected === 'add' && <AddStudent />}
-      {selected === 'edit' && <EditStudent />}
+      {selected === 'add' && <AddFaculty />}
+      {selected === 'edit' && <EditFaculty />}
     </div>
   )
 }
 
-export default Student
+export default Faculty

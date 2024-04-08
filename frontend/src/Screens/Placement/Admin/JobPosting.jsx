@@ -44,13 +44,15 @@ const JobPosting = () => {
               Job Posting List
             </h2>
             <div className='flex justify-end mt-8'>
-              <button className='text-[#fff] text-[14px] font-semibold flex justify-center items-center bg-blue-500  rounded p-3 hover:bg-blue-700 ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all'>
-                {' '}
-                Create Job Post{' '}
-                <span className=''>
-                  <IoIosAdd size={24} />
-                </span>
-              </button>
+              <Link to='/admin/placement/jobposting/create'>
+                <button className='text-[#fff] text-[14px] font-semibold flex justify-center items-center bg-blue-500  rounded p-3 hover:bg-blue-700 ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all'>
+                  {' '}
+                  Create Job Post{' '}
+                  <span className=''>
+                    <IoIosAdd size={24} />
+                  </span>
+                </button>
+              </Link>
             </div>
             <div className='overflow-auto'>
               <table className='table-auto border-solid border-2 border-black border-collapse rounded mx-auto my-5'>
@@ -133,12 +135,14 @@ const JobPosting = () => {
                       </Link>
                     </td>
                     <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      <button
-                        className='p-1 m-1'
-                        // onClick={() => processOrderHandler(i._id)}
-                      >
-                        <MdEdit size={24} />
-                      </button>
+                      <Link to='/admin/placement/jobposting/edit'>
+                        <button
+                          className='p-1 m-1'
+                          // onClick={() => processOrderHandler(i._id)}
+                        >
+                          <MdEdit size={24} />
+                        </button>
+                      </Link>
                       <button
                         className='p-1 m-1'
                         // onClick={() => processOrderHandler(i._id)}

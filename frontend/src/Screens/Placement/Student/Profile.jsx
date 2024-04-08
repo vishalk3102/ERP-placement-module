@@ -2,7 +2,6 @@ import React from 'react'
 import Box from '@mui/material/Box'
 import SideNavbar from './SideNavbar'
 import profile from './profile.jpg'
-import { IoIosAdd } from 'react-icons/io'
 import { MdDownload } from 'react-icons/md'
 
 const Profile = () => {
@@ -62,6 +61,13 @@ const Profile = () => {
                       <span className='font-medium p-1'>GE2020021657</span>
                     </li>
                     <li className='text-[0.8rem] md:text-[1rem] font-semibold p-2 my-1'>
+                      University Roll No :
+                      <span className='font-medium p-1'>2017132</span>
+                    </li>
+                    <li className='text-[0.8rem] md:text-[1rem] font-semibold p-2 my-1'>
+                      University :<span className='font-medium p-1'>GEU</span>
+                    </li>
+                    <li className='text-[0.8rem] md:text-[1rem] font-semibold p-2 my-1'>
                       Course :<span className='font-medium p-1'>B-Tech</span>
                     </li>
                     <li className='text-[0.8rem] md:text-[1rem] font-semibold p-2 my-1'>
@@ -72,12 +78,20 @@ const Profile = () => {
                       <span className='font-medium p-1'>95%</span>
                     </li>
                     <li className='text-[0.8rem] md:text-[1rem] font-semibold p-2 my-1'>
-                      12th Percentage :
-                      <span className='font-medium p-1'>90%</span>
+                      10th Completion year :
+                      <span className='font-medium p-1'>2017</span>
+                    </li>
+                    <li className='text-[0.8rem] md:text-[1rem] font-semibold p-2 my-1'>
+                      12th Completion year :
+                      <span className='font-medium p-1'>2019</span>
                     </li>
                     <li className='text-[0.8rem] md:text-[1rem] font-semibold p-2 my-1'>
                       B-Tech Average CGPA :
                       <span className='font-medium p-1'>8.67</span>
+                    </li>
+                    <li className='text-[0.8rem] md:text-[1rem] font-semibold p-2 my-1'>
+                      Graduation Year :
+                      <span className='font-medium p-1'>2024</span>
                     </li>
                   </ul>
                 </div>

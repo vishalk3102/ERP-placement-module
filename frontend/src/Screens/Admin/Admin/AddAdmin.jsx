@@ -7,6 +7,7 @@ import { baseApiURL } from '../../../baseUrl'
 import { FiUpload } from 'react-icons/fi'
 import { useDispatch } from 'react-redux'
 import { registerAdmin } from '../../../Redux/Actions/adminAction'
+import profile from '../../Placement/Student/profile.jpg'
 
 const AddAdmin = () => {
   // const [file, setFile] = useState()
@@ -207,7 +208,7 @@ const AddAdmin = () => {
           <option value='Female'>Female</option>
         </select>
       </div>
-      {/* <div className='w-[40%]'>
+      <div className='w-[80%]'>
         <label htmlFor='file' className='leading-7 text-sm '>
           Select Profile
         </label>
@@ -220,18 +221,12 @@ const AddAdmin = () => {
             <FiUpload />
           </span>
         </label>
-        <input
-          hidden
-          type='file'
-          id='file'
-          accept='image/*'
-          onChange={e => setFile(e.target.files[0])}
-        />
-      </div> */}
+        <input hidden type='file' id='file' accept='image/*' />
+      </div>
       {/* {data.profile && (
-        <div className='w-full flex justify-center items-center'>
-          <img src={data.profile} alt='student' className='h-36' />
-        </div>
+      <div className='w-full flex justify-center items-center'>
+        <img src={profile} alt='student' className='h-36' />
+      </div>
       )} */}
       <button
         type='submit'

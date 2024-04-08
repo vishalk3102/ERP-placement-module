@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Navbar from '../../components/Navbar'
-// import Notice from '../../components/Notice'
+import Notice from '../../components/Notice'
 import Profile from './Profile'
-// import Timetable from './Timetable'
+import Timetable from './Timetable'
 import { Toaster } from 'react-hot-toast'
-// import Material from './Material'
-// import Marks from './Marks'
+import Material from './Material'
+import Marks from './Marks'
 // import Student from './Student'
 const Home = () => {
   const router = useLocation()
@@ -87,10 +87,10 @@ const Home = () => {
           </li>
         </ul>
         <>
-          {/* {selectedMenu === "Timetable" && <Timetable />} */}
-          {/* {selectedMenu === "Upload Marks" && <Marks />} */}
-          {/* {selectedMenu === "Material" && <Material />} */}
-          {/* {selectedMenu === "Notice" && <Notice />} */}
+          {selectedMenu === 'Timetable' && <Timetable />}
+          {selectedMenu === 'Upload Marks' && <Marks />}
+          {selectedMenu === 'Material' && <Material />}
+          {selectedMenu === 'Notice' && <Notice />}
           {selectedMenu === 'My Profile' && <Profile />}
         </>
       </>

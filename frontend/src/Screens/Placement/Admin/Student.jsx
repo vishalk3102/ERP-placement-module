@@ -134,12 +134,14 @@ const Student = () => {
                       </Link>
                     </td>
                     <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      <button
-                        className='p-1 m-1'
-                        // onClick={() => processOrderHandler(i._id)}
-                      >
-                        <MdEdit size={24} />
-                      </button>
+                      <Link to='/admin/placement/student/edit'>
+                        <button
+                          className='p-1 m-1'
+                          // onClick={() => processOrderHandler(i._id)}
+                        >
+                          <MdEdit size={24} />
+                        </button>
+                      </Link>
                       <button
                         className='p-1 m-1'
                         // onClick={() => processOrderHandler(i._id)}

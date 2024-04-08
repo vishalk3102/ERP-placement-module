@@ -90,9 +90,9 @@ const Home = () => {
         </ul>
         <>
           {selectedMenu === 'Timetable' && <Timetable />}
-          {/* {selectedMenu === "Marks" && <Marks />} */}
+          {selectedMenu === 'Marks' && <Marks />}
           {selectedMenu === 'Material' && <Material />}
-          {/* {selectedMenu === "Notice" && <Notice />} */}
+          {selectedMenu === 'Notice' && <Notice />}
           {selectedMenu === 'My Profile' && <Profile />}
         </>
       </>

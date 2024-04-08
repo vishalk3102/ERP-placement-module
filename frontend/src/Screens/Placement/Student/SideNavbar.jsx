@@ -197,6 +197,30 @@ const SideNavbar = () => {
           <ListItem
             disablePadding
             sx={{ display: 'block' }}
+            onClick={() => navigate('/student/placement/register')}
+          >
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center'
+                }}
+              >
+                <PersonIcon style={{ color: '#feb21a' }} />
+              </ListItemIcon>
+              <ListItemText primary='Register' sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem
+            disablePadding
+            sx={{ display: 'block' }}
             onClick={() => navigate('/student/placement/profile')}
           >
             <ListItemButton
@@ -299,7 +323,7 @@ const SideNavbar = () => {
           <ListItem
             disablePadding
             sx={{ display: 'block' }}
-            onClick={() => navigate('/student/placement/dashboard')}
+            onClick={() => navigate('/student/placement/drive')}
           >
             <ListItemButton
               sx={{
@@ -326,7 +350,7 @@ const SideNavbar = () => {
           <ListItem
             disablePadding
             sx={{ display: 'block' }}
-            onClick={() => navigate('/student/placement/dashboard')}
+            onClick={() => navigate('/student/placement/notice')}
           >
             <ListItemButton
               sx={{

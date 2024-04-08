@@ -22,6 +22,15 @@ import StudentProfile from './Screens/Placement/Student/Profile'
 import StudentCompany from './Screens/Placement/Student/Company'
 import StudentEligibleJobs from './Screens/Placement/Student/EligibleJobs'
 import StudentApplications from './Screens/Placement/Student/Application'
+import Registration from './Screens/Placement/Student/Registration'
+import AddCompany from './Screens/Placement/Admin/AddCompany'
+import CreateJobPost from './Screens/Placement/Admin/CreateJobPost'
+import EditCompany from './Screens/Placement/Admin/EditCompany'
+import EditJobPost from './Screens/Placement/Admin/EditJobPost'
+import EditStudent from './Screens/Placement/Admin/EditStudent'
+import PlacementDrive from './Screens/Placement/Student/PlacementDrive'
+import Notice from './Screens/Placement/Student/Notice'
+
 const App = () => {
   const dispatch = useDispatch()
 
@@ -62,13 +71,38 @@ const App = () => {
           <Route exact path='/admin/placement/student' element={<Student />} />
           <Route
             exact
+            path='/admin/placement/student/edit'
+            element={<EditStudent />}
+          />
+          <Route
+            exact
             path='/admin/placement/companies'
             element={<Company />}
           />
           <Route
             exact
+            path='/admin/placement/company/add'
+            element={<AddCompany />}
+          />
+          <Route
+            exact
+            path='/admin/placement/company/edit'
+            element={<EditCompany />}
+          />
+          <Route
+            exact
             path='/admin/placement/jobposting'
             element={<JobPosting />}
+          />
+          <Route
+            exact
+            path='/admin/placement/jobposting/create'
+            element={<CreateJobPost />}
+          />
+          <Route
+            exact
+            path='/admin/placement/jobposting/edit'
+            element={<EditJobPost />}
           />
           <Route
             exact
@@ -94,6 +128,11 @@ const App = () => {
           />
           <Route
             exact
+            path='/student/placement/register'
+            element={<Registration />}
+          />
+          <Route
+            exact
             path='/student/placement/company'
             element={<StudentCompany />}
           />
@@ -107,6 +146,12 @@ const App = () => {
             path='/student/placement/application'
             element={<StudentApplications />}
           />
+          <Route
+            exact
+            path='/student/placement/drive'
+            element={<PlacementDrive />}
+          />
+          <Route exact path='/student/placement/notice' element={<Notice />} />
         </Routes>
         <Toaster />
       </Router>
