@@ -65,6 +65,21 @@ const Student = () => {
                       Phone Number
                     </th>
                     <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      University
+                    </th>
+                    <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      University Roll No
+                    </th>
+                    <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      Course
+                    </th>
+                    <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      Branch
+                    </th>
+                    <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      Semester
+                    </th>
+                    <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
                       10th Percentage
                     </th>
                     <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
@@ -77,7 +92,7 @@ const Student = () => {
                       12th Completion year
                     </th>
                     <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
-                      Course
+                      B-tech Aggregate
                     </th>
                     <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
                       Graduation Year
@@ -111,6 +126,21 @@ const Student = () => {
                       8459126643
                     </td>
                     <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                      GEU
+                    </td>
+                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                      2017132
+                    </td>
+                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                      B-tech
+                    </td>
+                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                      CSE
+                    </td>
+                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                      8th
+                    </td>
+                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
                       95%
                     </td>
                     <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
@@ -123,13 +153,16 @@ const Student = () => {
                       2019
                     </td>
                     <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      B-tech(CSE)
+                      8.67
                     </td>
                     <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
                       2024
                     </td>
                     <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center '>
-                      <Link to='' className='flex justify-center items-center'>
+                      <Link
+                        to='/admin/placement/student/view'
+                        className='flex justify-center items-center'
+                      >
                         <IoEye size={24} />
                       </Link>
                     </td>

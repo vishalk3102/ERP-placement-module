@@ -130,7 +130,10 @@ const JobPosting = () => {
                       2:00PM , 25 April 2024
                     </td>
                     <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center '>
-                      <Link to='' className='flex justify-center items-center'>
+                      <Link
+                        to='/admin/placement/jobposting/view'
+                        className='flex justify-center items-center'
+                      >
                         <IoEye size={24} />
                       </Link>
                     </td>

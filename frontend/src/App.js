@@ -30,6 +30,9 @@ import EditJobPost from './Screens/Placement/Admin/EditJobPost'
 import EditStudent from './Screens/Placement/Admin/EditStudent'
 import PlacementDrive from './Screens/Placement/Student/PlacementDrive'
 import Notice from './Screens/Placement/Student/Notice'
+import ViewJobPost from './Screens/Placement/Admin/ViewJobPost'
+import ViewCompany from './Screens/Placement/Admin/ViewCompany'
+import ViewStudent from './Screens/Placement/Admin/ViewStudent'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -76,6 +79,11 @@ const App = () => {
           />
           <Route
             exact
+            path='/admin/placement/student/view'
+            element={<ViewStudent />}
+          />
+          <Route
+            exact
             path='/admin/placement/companies'
             element={<Company />}
           />
@@ -91,6 +99,11 @@ const App = () => {
           />
           <Route
             exact
+            path='/admin/placement/company/view'
+            element={<ViewCompany />}
+          />
+          <Route
+            exact
             path='/admin/placement/jobposting'
             element={<JobPosting />}
           />
@@ -103,6 +116,11 @@ const App = () => {
             exact
             path='/admin/placement/jobposting/edit'
             element={<EditJobPost />}
+          />
+          <Route
+            exact
+            path='/admin/placement/jobposting/view'
+            element={<ViewJobPost />}
           />
           <Route
             exact
