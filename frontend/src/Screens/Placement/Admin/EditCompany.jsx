@@ -142,7 +142,7 @@ const EditCompany = () => {
                   type='submit'
                   className='bg-blue-500 px-6 py-3 rounded-sm mb-6 text-white'
                 >
-                  Add Company
+                  Update
                 </button>
               </div>
             </form>

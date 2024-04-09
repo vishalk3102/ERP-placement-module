@@ -146,7 +146,7 @@ const EditJobPost = () => {
                   type='submit'
                   className='bg-blue-500 px-6 py-3 rounded-sm mb-6 text-white'
                 >
-                  Post Job
+                  Update Post Job
                 </button>
               </div>
             </form>

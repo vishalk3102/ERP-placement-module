@@ -376,7 +376,7 @@ const EditStudent = () => {
                   type='submit'
                   className='bg-blue-500 px-6 py-3 rounded-sm mb-6 text-white'
                 >
-                  Register
+                  Update
                 </button>
               </div>
             </form>
