@@ -10,29 +10,38 @@ import { useDispatch, useSelector } from 'react-redux'
 import { loadUser } from './Redux/Actions/authAction'
 import { useEffect } from 'react'
 import { ProtectedRoute } from 'protected-route-react'
-import AdminDashboard from './Screens/Placement/Admin/Dashboard'
-import Company from './Screens/Placement/Admin/Company'
-import JobPosting from './Screens/Placement/Admin/JobPosting'
-import Student from './Screens/Placement/Admin/Student'
-import Application from './Screens/Placement/Admin/Application'
-import CompanyWiseStudentList from './Screens/Placement/Admin/CompanyWiseStudentList'
 
+// Student Placement
 import StudentDashboard from './Screens/Placement/Student/Dashboard'
+import Registration from './Screens/Placement/Student/Registration'
 import StudentProfile from './Screens/Placement/Student/Profile'
 import StudentCompany from './Screens/Placement/Student/Company'
 import StudentEligibleJobs from './Screens/Placement/Student/EligibleJobs'
 import StudentApplications from './Screens/Placement/Student/Application'
-import Registration from './Screens/Placement/Student/Registration'
-import AddCompany from './Screens/Placement/Admin/AddCompany'
-import CreateJobPost from './Screens/Placement/Admin/CreateJobPost'
-import EditCompany from './Screens/Placement/Admin/EditCompany'
-import EditJobPost from './Screens/Placement/Admin/EditJobPost'
-import EditStudent from './Screens/Placement/Admin/EditStudent'
 import PlacementDrive from './Screens/Placement/Student/PlacementDrive'
 import Notice from './Screens/Placement/Student/Notice'
-import ViewJobPost from './Screens/Placement/Admin/ViewJobPost'
-import ViewCompany from './Screens/Placement/Admin/ViewCompany'
-import ViewStudent from './Screens/Placement/Admin/ViewStudent'
+
+// Admin Placement
+import AdminDashboard from './Screens/Placement/Admin/Dashboard'
+import Application from './Screens/Placement/Admin/Application'
+import CompanyWiseStudentList from './Screens/Placement/Admin/CompanyWiseStudentList'
+
+//Company
+import Company from './Screens/Placement/Admin/Company/Company'
+import AddCompany from './Screens/Placement/Admin/Company/AddCompany'
+import ViewCompany from './Screens/Placement/Admin/Company/ViewCompany'
+import EditCompany from './Screens/Placement/Admin/Company/EditCompany'
+
+//Job Post
+import JobPosting from './Screens/Placement/Admin/JobPost/JobPosting'
+import CreateJobPost from './Screens/Placement/Admin/JobPost/CreateJobPost'
+import EditJobPost from './Screens/Placement/Admin/JobPost/EditJobPost'
+import ViewJobPost from './Screens/Placement/Admin/JobPost/ViewJobPost'
+
+//Student
+import Student from './Screens/Placement/Admin/Student/Student'
+import EditStudent from './Screens/Placement/Admin/Student/EditStudent'
+import ViewStudent from './Screens/Placement/Admin/Student/ViewStudent'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -151,7 +160,7 @@ const App = () => {
           />
           <Route
             exact
-            path='/student/placement/company'
+            path='/student/placement/companies'
             element={<StudentCompany />}
           />
           <Route

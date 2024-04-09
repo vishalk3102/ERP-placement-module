@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { FiUpload } from 'react-icons/fi'
 import Box from '@mui/material/Box'
-import SideNavbar from './SideNavbar'
+import SideNavbar from '../SideNavbar'
 
 const EditStudent = () => {
   const [enrollmentNo, setEnrollmentNo] = useState('')
   const [universityRollNo, setUniversityRollNo] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
+  const [dob, setDob] = useState('')
+  const [gender, setGender] = useState('')
   const [email, setEmail] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
-  const [gender, setGender] = useState('')
-  const [dob, setDob] = useState('')
   const [university, setUniversity] = useState('')
   const [course, setCourse] = useState('')
   const [branch, setBranch] = useState('')
@@ -31,10 +31,10 @@ const EditStudent = () => {
       universityRollNo,
       firstName,
       lastName,
+      dob,
+      gender,
       email,
       phoneNumber,
-      gender,
-      dob,
       university,
       course,
       branch,
@@ -257,7 +257,7 @@ const EditStudent = () => {
                   htmlFor='highSchoolCompletionYear'
                   className='leading-7 text-sm'
                 >
-                  Year of Completion (10th)
+                  Year of Completion High School
                 </label>
                 <input
                   type='number'
@@ -272,7 +272,7 @@ const EditStudent = () => {
                   htmlFor='intermediatePercentage'
                   className='leading-7 text-sm'
                 >
-                  12th Percentage
+                  Intermediate Percentage
                 </label>
                 <input
                   type='number'
@@ -287,7 +287,7 @@ const EditStudent = () => {
                   htmlFor='intermediateCompletionYear'
                   className='leading-7 text-sm'
                 >
-                  Year of Completion (12th)
+                  Year of Completion Intermediate
                 </label>
                 <input
                   type='number'

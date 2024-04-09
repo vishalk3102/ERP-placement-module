@@ -48,7 +48,7 @@ const Company = () => {
                 <thead>
                   <tr className='w-[100%] border-solid border-2 border-black'>
                     <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400  border border-slate-900 p-3 uppercase text-center'>
-                      Company Id
+                      S.No
                     </th>
                     <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
                       Company Name

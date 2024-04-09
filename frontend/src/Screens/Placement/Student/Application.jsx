@@ -57,7 +57,7 @@ const Application = () => {
                       Website
                     </th>
                     <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
-                      Industry
+                      Title
                     </th>
                     <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
                       Location
@@ -82,7 +82,7 @@ const Application = () => {
                       www.contata.com
                     </td>
                     <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      IT
+                      Software Developer
                     </td>
                     <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
                       Noida

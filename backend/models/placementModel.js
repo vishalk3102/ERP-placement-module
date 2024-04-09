@@ -1,39 +1,51 @@
 const mongoose = require('mongoose')
 
 const academicSchema = new mongoose.Schema({
-  degree: {
+  enrollmentNo: {
     type: String,
-    required: true
+    required: True
   },
-  major: {
-    type: String,
-    required: true
+  universityRollNo: {
+    type: Number,
+    required: True
   },
   university: {
     type: String,
     required: true
   },
-  graduationYear: {
-    type: Number,
+  course: {
+    type: String,
+    required: true
+  },
+  branch: {
+    type: String,
+    required: true
+  },
+  semester: {
+    type: String,
     required: true
   },
   CGPA: {
     type: Number,
     required: true
   },
-  percentage10th: {
+  graduationYear: {
     type: Number,
     required: true
   },
-  yearOfCompletion10th: {
+  percentageHighSchool: {
     type: Number,
     required: true
   },
-  percentage12th: {
+  yearOfCompletionHighSchool: {
     type: Number,
     required: true
   },
-  yearOfCompletion12th: {
+  percentageIntermediate: {
+    type: Number,
+    required: true
+  },
+  yearOfCompletionIntermediate: {
     type: Number,
     required: true
   }
@@ -63,7 +75,7 @@ const studentPlacementSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    enum: ['Male', 'Female', 'Other'],
+    enum: ['Male', 'Female'],
     required: true
   },
   academics: academicSchema,

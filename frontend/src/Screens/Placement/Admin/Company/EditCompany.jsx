@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { FiUpload } from 'react-icons/fi'
 import Box from '@mui/material/Box'
-import SideNavbar from './SideNavbar'
+import SideNavbar from '../SideNavbar'
 
-const AddCompany = () => {
+const EditCompany = () => {
   const [companyName, setCompanyName] = useState('')
   const [website, setWebsite] = useState('')
   const [industry, setIndustry] = useState('')
@@ -22,9 +22,9 @@ const AddCompany = () => {
           <div className='max-w-[1200px] w-[100%] mx-auto my-10'>
             <h2
               className='text-[#000] text-[2.5rem] font-bold
-              text-center uppercase p-2 mt-5'
+                text-center uppercase p-2 mt-5'
             >
-              Add Company Profile
+              Edit Company Profile
             </h2>
             <form
               //   onSubmit={handleSubmit}
@@ -142,7 +142,7 @@ const AddCompany = () => {
                   type='submit'
                   className='bg-blue-500 px-6 py-3 rounded-sm mb-6 text-white'
                 >
-                  Add Company
+                  Update
                 </button>
               </div>
             </form>
@@ -153,4 +153,4 @@ const AddCompany = () => {
   )
 }
 
-export default AddCompany
+export default EditCompany

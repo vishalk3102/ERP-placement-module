@@ -18,15 +18,18 @@ exports.registerPlacementProfile = catchAsyncError(async (req, res, next) => {
     dateOfBirth,
     gender,
     academics: {
-      degree,
-      major,
       university,
-      graduationYear,
+      enrollmentNo,
+      universityRollNo,
+      course,
+      branch,
+      semester,
       CGPA,
-      percentage10th,
-      yearOfCompletion10th,
-      percentage12th,
-      yearOfCompletion12th
+      graduationYear,
+      percentageHighSchool,
+      yearOfCompletionHighSchool,
+      percentageIntermediate,
+      yearOfCompletionIntermediate
     }
   } = req.body
 
@@ -38,20 +41,23 @@ exports.registerPlacementProfile = catchAsyncError(async (req, res, next) => {
     dateOfBirth,
     gender,
     academics: {
-      degree,
-      major,
       university,
-      graduationYear,
+      enrollmentNo,
+      universityRollNo,
+      course,
+      branch,
+      semester,
       CGPA,
-      percentage10th,
-      yearOfCompletion10th,
-      percentage12th,
-      yearOfCompletion12th
+      graduationYear,
+      percentageHighSchool,
+      yearOfCompletionHighSchool,
+      percentageIntermediate,
+      yearOfCompletionIntermediate
     }
   })
   res.status(200).json({
     success: true,
-    message: 'Registered for Placement'
+    message: 'Successfully Registered'
   })
 })
 
@@ -59,7 +65,7 @@ exports.registerPlacementProfile = catchAsyncError(async (req, res, next) => {
 exports.getStudent = catchAsyncError(async (req, res, next) => {
   const student = await Placement.findById(req.params.id)
   if (!student) {
-    return next(new ErrorHandler('You are not registered for placement', 404))
+    return next(new ErrorHandler('Student Details Not Found', 404))
   }
   res.status(200).json({
     status: 'success',
@@ -74,7 +80,7 @@ exports.getAllStudent = catchAsyncError(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: 'All Student loaded',
+    message: 'All Student Fetched',
     students
   })
 })
@@ -89,7 +95,7 @@ exports.updateStudent = catchAsyncError(async (req, res, next) => {
   await Placement.findByIdAndUpdate(id, req.body)
   res.status(200).json({
     success: true,
-    message: 'Student Details  updated Successfully'
+    message: 'Updated Successfully'
   })
 })
 
@@ -103,7 +109,7 @@ exports.deleteStudent = catchAsyncError(async (req, res, next) => {
   await Placement.findByIdAndDelete(id)
   res.status(200).json({
     success: true,
-    message: 'Student Details  deleted Successfully'
+    message: 'Deleted Successfully'
   })
 })
 
@@ -194,8 +200,29 @@ exports.deleteCompany = catchAsyncError(async (req, res, next) => {
 // JOB POSTING
 // CREATE JOB POST --admin
 exports.createJobPosting = catchAsyncError(async (req, res, next) => {
-  const newJob = await JobPosting.create(req.body)
+  const {
+    companyName,
+    title,
+    description,
+    qualifications,
+    eligibleCourse,
+    package,
+    location,
+    registrationLink,
+    deadline
+  } = req.body
 
+  const newJob = await JobPosting.create({
+    companyName,
+    title,
+    description,
+    qualifications,
+    eligibleCourse,
+    package,
+    location,
+    registrationLink,
+    deadline
+  })
   res.status(201).json({
     success: true,
     message: 'Job Posting Create successfully'

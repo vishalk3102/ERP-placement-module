@@ -1,6 +1,6 @@
 import React from 'react'
 import Box from '@mui/material/Box'
-import SideNavbar from './SideNavbar'
+import SideNavbar from '../SideNavbar'
 
 const ViewStudent = () => {
   return (

@@ -23,6 +23,18 @@ const jobPostingSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  package: {
+    type: Number,
+    required: true
+  },
+  location: {
+    type: String,
+    required: true
+  },
+  registrationLink: {
+    type: String,
+    required: true
+  },
   deadline: {
     type: Date,
     required: true

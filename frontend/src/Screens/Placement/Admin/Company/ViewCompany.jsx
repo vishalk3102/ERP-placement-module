@@ -1,26 +1,26 @@
 import React, { useState } from 'react'
 import Box from '@mui/material/Box'
-import SideNavbar from './SideNavbar'
+import SideNavbar from '../SideNavbar'
 
-const ViewJobPost = () => {
-  // State variables for job post details
+const ViewCompany = () => {
+  // State variables for company details
   const [companyName, setCompanyName] = useState('')
-  const [title, setTitle] = useState('')
-  const [eligibleCourse, setEligibleCourse] = useState('')
-  const [qualifications, setQualifications] = useState('')
-  const [description, setDescription] = useState('')
-  const [salaryPackage, setSalaryPackage] = useState('')
+  const [website, setWebsite] = useState('')
+  const [industry, setIndustry] = useState('')
   const [location, setLocation] = useState('')
-  const [registrationLink, setRegistrationLink] = useState('')
-  const [deadline, setDeadline] = useState('')
+  const [salaryPackage, setSalaryPackage] = useState('')
+  const [about, setAbout] = useState('')
+  const [contactPerson, setContactPerson] = useState('')
+  const [contactPhone, setContactPhone] = useState('')
+  const [contactEmail, setContactEmail] = useState('')
 
   return (
-    <section id='Student' className='w-full h-full  mt-20'>
+    <section id='Student' className='w-full h-full mt-20'>
       <Box sx={{ display: 'flex', marginTop: '5rem' }}>
         <SideNavbar />
         <div className='max-w-[1200px] w-[100%] mx-auto my-10'>
           <h2 className='text-[#000] text-[2.5rem] font-bold text-center uppercase p-2 mt-5'>
-            Job Post Details
+            Company Details
           </h2>
           <div className='w-[90%] mx-auto bg-gray-200 border-2 border-solid rounded-[10px] my-4'>
             <div className='grid grid-cols-2 md:grid-cols-4 w-[80%] mx-auto my-2'>
@@ -35,44 +35,29 @@ const ViewJobPost = () => {
                   </li>
                   <li className='text-[14px] md:text-[1rem] font-semibold capitalize p-1 md:p-2'>
                     {' '}
-                    Title :
+                    Website :
                     <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                      Associate Software Developers
+                      www.contata.com
                     </span>
                   </li>
                   <li className='text-[14px] md:text-[1rem] font-semibold capitalize p-1 md:p-2'>
                     {' '}
-                    Eligible Course :
+                    Industry :
                     <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                      B-Tech/MCA
+                      IT
                     </span>
                   </li>
                   <li className='text-[14px] md:text-[1rem] font-semibold capitalize p-1 md:p-2'>
                     {' '}
-                    Qualifications :
+                    About :
                     <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                      10th : 75% ,12th : 75% ,B-Tech : 75%,No active Backlog
-                    </span>
-                  </li>
-                  <li className='text-[14px] md:text-[1rem] font-semibold capitalize p-1 md:p-2'>
-                    {' '}
-                    Description :
-                    <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                      Its an american company deals in petroleum and natural gas
-                      sector
+                      IT company that provide service to other companies
                     </span>
                   </li>
                 </ul>
               </div>
               <div className='col-span-1 md:col-span-2 '>
                 <ul className='flex flex-col justify-center items-start p-4'>
-                  <li className='text-[14px] md:text-[1rem] font-semibold capitalize p-1 md:p-2'>
-                    {' '}
-                    Salary Package :
-                    <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                      Rs 4.5LPA
-                    </span>
-                  </li>
                   <li className='text-[14px] md:text-[1rem] font-semibold capitalize p-1 md:p-2'>
                     {' '}
                     Location :
@@ -82,19 +67,32 @@ const ViewJobPost = () => {
                   </li>
                   <li className='text-[14px] md:text-[1rem] font-semibold capitalize p-1 md:p-2'>
                     {' '}
-                    Registration Link :
+                    Salary Package :
                     <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                      www.conatata.com
+                      4.5LPA
                     </span>
                   </li>
                   <li className='text-[14px] md:text-[1rem] font-semibold capitalize p-1 md:p-2'>
                     {' '}
-                    Deadline :
+                    Contact Person :
                     <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                      25 April 2024
+                      Vishal Kumar
                     </span>
                   </li>
-                  {/* Add more fields here */}
+                  <li className='text-[14px] md:text-[1rem] font-semibold capitalize p-1 md:p-2'>
+                    {' '}
+                    Contact Phone :
+                    <span className='text-[14px] md:text-[0.9rem] font-normal '>
+                      8459126643
+                    </span>
+                  </li>
+                  <li className='text-[14px] md:text-[1rem] font-semibold capitalize p-1 md:p-2'>
+                    {' '}
+                    Contact Email :
+                    <span className='text-[14px] md:text-[0.9rem] font-normal '>
+                      vishal.k3102@gmail.com
+                    </span>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -105,4 +103,4 @@ const ViewJobPost = () => {
   )
 }
 
-export default ViewJobPost
+export default ViewCompany

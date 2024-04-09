@@ -105,26 +105,6 @@ const Application = () => {
       id: 2,
       name: 'Company B',
       students: ['David', 'Emma', 'Frank']
-    },
-    {
-      id: 1,
-      name: 'Company A',
-      students: ['Alice', 'Bob', 'Charlie']
-    },
-    {
-      id: 2,
-      name: 'Company B',
-      students: ['David', 'Emma', 'Frank']
-    },
-    {
-      id: 1,
-      name: 'Company A',
-      students: ['Alice', 'Bob', 'Charlie']
-    },
-    {
-      id: 2,
-      name: 'Company B',
-      students: ['David', 'Emma', 'Frank']
     }
   ])
 

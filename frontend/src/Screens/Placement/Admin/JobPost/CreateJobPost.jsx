@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FiUpload } from 'react-icons/fi'
 import Box from '@mui/material/Box'
-import SideNavbar from './SideNavbar'
+import SideNavbar from '../SideNavbar'
 
 const CreateJobPost = () => {
   const [companyName, setCompanyName] = useState('')
