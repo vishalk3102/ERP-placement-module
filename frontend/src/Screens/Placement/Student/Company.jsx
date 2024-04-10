@@ -8,27 +8,30 @@ import { IoIosAdd } from 'react-icons/io'
 import { MdEdit } from 'react-icons/md'
 import { MdDelete } from 'react-icons/md'
 import { IoEye } from 'react-icons/io5'
+import { getAllCompanyStudent } from '../../../Redux/Actions/placementAction'
 
 const Company = () => {
-  //   const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-  //   const { loading, orders, error, message } = useSelector(state => state.admin)
+  const { loading, companies, error, message } = useSelector(
+    state => state.studentPlacement
+  )
 
-  //   useEffect(() => {
-  //     if (message) {
-  //       toast.success(message)
-  //       dispatch({ type: 'clearMessage' })
-  //     }
-  //     if (error) {
-  //       toast.error(error)
-  //       dispatch({ type: 'clearError' })
-  //     }
-  //     dispatch(getAdminOrders())
-  //   }, [dispatch, message, error])
+  useEffect(() => {
+    if (message) {
+      toast.success(message)
+      dispatch({ type: 'clearMessage' })
+    }
+    if (error) {
+      toast.error(error)
+      dispatch({ type: 'clearError' })
+    }
+    dispatch(getAllCompanyStudent())
+  }, [dispatch, message, error])
 
-  //   const processOrderHandler = id => {
-  //     dispatch(processOrder(id))
-  //   }
+  /*  const processOrderHandler = id => {
+      dispatch(processOrder(id))
+    } */
 
   return (
     <>

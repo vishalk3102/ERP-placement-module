@@ -221,7 +221,7 @@ const SideNavbar = () => {
           <ListItem
             disablePadding
             sx={{ display: 'block' }}
-            onClick={() => navigate('/student/placement/profile')}
+            onClick={() => navigate('/student/placement/me')}
           >
             <ListItemButton
               sx={{

@@ -3,11 +3,11 @@ const mongoose = require('mongoose')
 const academicSchema = new mongoose.Schema({
   enrollmentNo: {
     type: String,
-    required: True
+    required: true
   },
   universityRollNo: {
     type: Number,
-    required: True
+    required: true
   },
   university: {
     type: String,

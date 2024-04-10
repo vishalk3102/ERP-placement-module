@@ -55,9 +55,21 @@ exports.registerPlacementProfile = catchAsyncError(async (req, res, next) => {
       yearOfCompletionIntermediate
     }
   })
-  res.status(200).json({
+  res.status(201).json({
     success: true,
     message: 'Successfully Registered'
+  })
+})
+
+// GET PLACEMENT PROFILE --student
+exports.getPlacementProfile = catchAsyncError(async (req, res, next) => {
+  const user = await Placement.findById(req.params.id)
+  if (!user) {
+    return next(new ErrorHandler('User Details Not Found', 404))
+  }
+  res.status(200).json({
+    status: 'success',
+    user
   })
 })
 
@@ -145,7 +157,7 @@ exports.registerCompanyProfile = catchAsyncError(async (req, res, next) => {
   })
 })
 
-// GET ALL COMPANIES --admin
+// GET ALL COMPANIES --admin/student
 exports.getAllCompanies = catchAsyncError(async (req, res, next) => {
   let companies = await Company.find({})
 

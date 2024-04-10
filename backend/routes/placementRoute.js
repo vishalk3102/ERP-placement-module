@@ -19,23 +19,24 @@ const {
   getEligibleJobPostings,
   getAllAppliedApplications,
   getApplicationsByCompany,
-  getAppliedApplication
+  getAppliedApplication,
+  getPlacementProfile
 } = require('../controllers/placementController')
 const { isAuthenticated, authorizeAdmin } = require('../middlewares/auth')
 const router = express.Router()
 
 // ADMIN PLACEMENT ROUTES
 // --> STUDENT
-router.get('/admin/placement/student', isAuthenticated, getAllStudent)
-router.get('/admin/placement/student/view/:id', isAuthenticated, getStudent)
-router.put('/admin/placement/student/edit/:id', isAuthenticated, updateStudent)
+router.get('/admin/placement/students', isAuthenticated, getAllStudent)
+router.get('/admin/placement/student/:id', isAuthenticated, getStudent)
+router.put('/admin/placement/student/:id', isAuthenticated, updateStudent)
 router.delete('/admin/placement/student/:id', isAuthenticated, deleteStudent)
 
 // --> COMPANY
 router.get(
   '/admin/placement/companies',
-  isAuthenticated,
-  authorizeAdmin,
+  // isAuthenticated,
+  // authorizeAdmin,
   getAllCompanies
 )
 router.post(
@@ -45,13 +46,13 @@ router.post(
   registerCompanyProfile
 )
 router.get(
-  '/admin/placement/company/view/:id',
+  '/admin/placement/company/:id',
   isAuthenticated,
   authorizeAdmin,
   getCompany
 )
 router.put(
-  '/admin/placement/company/edit/:id',
+  '/admin/placement/company/:id',
   isAuthenticated,
   authorizeAdmin,
   updateCompany
@@ -65,7 +66,7 @@ router.delete(
 
 // --> JOB POSTING
 router.get(
-  '/admin/placement/jobposting',
+  '/admin/placement/jobpostings',
   isAuthenticated,
   authorizeAdmin,
   getAllJobPostings
@@ -77,13 +78,13 @@ router.post(
   createJobPosting
 )
 router.get(
-  '/admin/placement/jobposting/view/:id',
+  '/admin/placement/jobposting/:id',
   isAuthenticated,
   authorizeAdmin,
   getJobPosting
 )
 router.put(
-  '/admin/placement/jobposting/edit/:id',
+  '/admin/placement/jobposting/:id',
   isAuthenticated,
   authorizeAdmin,
   updateJobPosting
@@ -109,6 +110,7 @@ router.post(
   isAuthenticated,
   registerPlacementProfile
 )
+router.get('/student/placement/me', isAuthenticated, getPlacementProfile)
 router.get(
   '/student/placement/companies',
   isAuthenticated,

@@ -7,7 +7,7 @@ export const registerPlacementProfile = () => async dispatch => {
       type: 'registerStudentForPlacementRequest'
     })
 
-    const { data } = await axios.post(`${server}/placement/register`)
+    const { data } = await axios.post(`${server}/student/placement/register`)
     dispatch({
       type: 'registerStudentForPlacementSuccess',
       payload: data.message
@@ -19,6 +19,62 @@ export const registerPlacementProfile = () => async dispatch => {
     })
   }
 }
+export const getPlacementProfile = () => async dispatch => {
+  try {
+    dispatch({
+      type: 'getProfileRequest'
+    })
+
+    const { data } = await axios.post(`${server}/student/placement/me`)
+    dispatch({
+      type: 'getProfileSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getProfileFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
+// export const getCompanyStudent = () => async dispatch => {
+//   try {
+//     dispatch({
+//       type: 'getCompanyRequest'
+//     })
+
+//     const { data } = await axios.get(`${server}/student/placement/company/:id`)
+//     dispatch({
+//       type: 'getCompanySuccess',
+//       payload: data
+//     })
+//   } catch (error) {
+//     dispatch({
+//       type: 'getCompanyFail',
+//       payload: error.response.data.message
+//     })
+//   }
+// }
+
+export const getAllCompanyStudent = () => async dispatch => {
+  try {
+    dispatch({
+      type: 'getAllCompanyRequest'
+    })
+
+    const { data } = await axios.get(`${server}/student/placement/companies`)
+    dispatch({
+      type: 'getAllCompanySuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getAllCompanyFail',
+      payload: error.response.data.message
+    })
+  }
+}
 
 export const getEligibleJobPostings = () => async dispatch => {
   try {
@@ -26,7 +82,7 @@ export const getEligibleJobPostings = () => async dispatch => {
       type: 'getEligibleJobPostingsRequest'
     })
 
-    const { data } = await axios.get(`${server}/placement/jobs`)
+    const { data } = await axios.get(`${server}/student/placement/eligiblejobs`)
     dispatch({
       type: 'getEligibleJobPostingsSuccess',
       payload: data
@@ -58,31 +114,13 @@ export const applyForJob = () => async dispatch => {
   }
 }
 
-export const getAppliedApplication = () => async dispatch => {
-  try {
-    dispatch({
-      type: 'getAppliedApplicationRequest'
-    })
-
-    const { data } = await axios.get(`${server}/placement/application/:id`)
-    dispatch({
-      type: 'getAppliedApplicationSuccess',
-      payload: data
-    })
-  } catch (error) {
-    dispatch({
-      type: 'getAppliedApplicationFail',
-      payload: error.response.data.message
-    })
-  }
-}
 export const getAllAppliedApplications = () => async dispatch => {
   try {
     dispatch({
       type: 'getAllAppliedApplicationRequest'
     })
 
-    const { data } = await axios.get(`${server}/placement/applications`)
+    const { data } = await axios.get(`${server}/student/placement/application`)
     dispatch({
       type: 'getAllAppliedApplicationSuccess',
       payload: data
@@ -195,7 +233,9 @@ export const createJobPosting = () => async dispatch => {
       type: 'createJobPostingRequest'
     })
 
-    const { data } = await axios.post(`${server}/admin/placement/jobs/newjob`)
+    const { data } = await axios.post(
+      `${server}/admin/placement/jobposting/create`
+    )
     dispatch({
       type: 'createJobPostingSuccess',
       payload: data
@@ -214,7 +254,7 @@ export const updateJobPosting = () => async dispatch => {
       type: 'updateJobPostingRequest'
     })
 
-    const { data } = await axios.put(`${server}/admin/placement/jobs/:id`)
+    const { data } = await axios.put(`${server}/admin/placement/jobposting/:id`)
     dispatch({
       type: 'updateJobPostingSuccess',
       payload: data
@@ -233,7 +273,9 @@ export const deleteJobPosting = () => async dispatch => {
       type: 'deleteJobPostingRequest'
     })
 
-    const { data } = await axios.delete(`${server}/admin/placement/jobs/:id`)
+    const { data } = await axios.delete(
+      `${server}/admin/placement/jobposting/:id`
+    )
     dispatch({
       type: 'deleteJobPostingSuccess',
       payload: data
@@ -252,7 +294,7 @@ export const getJobPosting = () => async dispatch => {
       type: 'getJobPostingRequest'
     })
 
-    const { data } = await axios.get(`${server}/admin/placement/jobs/:id`)
+    const { data } = await axios.get(`${server}/admin/placement/jobposting/:id`)
     dispatch({
       type: 'getJobPostingSuccess',
       payload: data
@@ -271,7 +313,7 @@ export const getAllJobPosting = () => async dispatch => {
       type: 'getAllJobPostingRequest'
     })
 
-    const { data } = await axios.get(`${server}/admin/placement/jobs`)
+    const { data } = await axios.get(`${server}/admin/placement/jobpostings`)
     dispatch({
       type: 'getAllJobPostingSuccess',
       payload: data
@@ -290,9 +332,7 @@ export const registerCompany = () => async dispatch => {
       type: 'registerCompanyProfileRequest'
     })
 
-    const { data } = await axios.post(
-      `${server}/admin/placement/company/register`
-    )
+    const { data } = await axios.post(`${server}/admin/placement/company/add`)
     dispatch({
       type: 'registerCompanyProfileSuccess',
       payload: data
@@ -330,7 +370,7 @@ export const getAllCompany = () => async dispatch => {
       type: 'getAllCompanyRequest'
     })
 
-    const { data } = await axios.get(`${server}/admin/placement/company`)
+    const { data } = await axios.get(`${server}/admin/placement/companies`)
     dispatch({
       type: 'getAllCompanySuccess',
       payload: data

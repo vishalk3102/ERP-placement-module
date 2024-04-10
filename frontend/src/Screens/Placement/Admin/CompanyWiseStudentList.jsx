@@ -40,7 +40,7 @@ const CompanyWiseStudentList = () => {
             >
               Contata Solutions Placed Students List
             </h2>{' '}
-            <div className='flex justify-end mt-8'>
+            <div className='flex justify-end mt-8 w-[80%] mx-auto'>
               <button className='text-[#fff] text-[14px] font-semibold flex justify-center items-center bg-blue-500  rounded p-3 hover:bg-blue-700 ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all'>
                 {' '}
                 Download CSV
@@ -56,18 +56,11 @@ const CompanyWiseStudentList = () => {
                     <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400  border border-slate-900 p-3 uppercase text-center'>
                       S.NO
                     </th>
-                    <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400  border border-slate-900 p-3 uppercase text-center'>
-                      Enrollment No
-                    </th>
+
                     <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
                       Student Name
                     </th>
-                    <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
-                      Date of birth
-                    </th>
-                    <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
-                      Gender
-                    </th>
+
                     <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
                       Email
                     </th>
@@ -75,25 +68,13 @@ const CompanyWiseStudentList = () => {
                       Phone Number
                     </th>
                     <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
-                      High School Percentage
-                    </th>
-                    <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
-                      High School Completion year
-                    </th>
-                    <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
-                      Intermediate Percentage
-                    </th>
-                    <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
-                      Intermediate Completion year
+                      University
                     </th>
                     <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
                       Course
                     </th>
                     <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
-                      Graduation Year
-                    </th>
-                    <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
-                      Package
+                      Branch
                     </th>
                   </tr>
                 </thead>
@@ -102,18 +83,11 @@ const CompanyWiseStudentList = () => {
                     <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
                       1
                     </td>
-                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      20021657
-                    </td>
+
                     <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
                       Vishal Kumar
                     </td>
-                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-left'>
-                      31/01/2002
-                    </td>
-                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      Male
-                    </td>
+
                     <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
                       vishal.k3102@gmail.com
                     </td>
@@ -121,25 +95,13 @@ const CompanyWiseStudentList = () => {
                       8459126643
                     </td>
                     <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      95%
+                      GEU
                     </td>
                     <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      2017
+                      BTech
                     </td>
                     <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      91%
-                    </td>
-                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      2019
-                    </td>
-                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      B-tech(CSE)
-                    </td>
-                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      2024
-                    </td>
-                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      Rs 4.5LPA
+                      CSE
                     </td>
                   </tr>
                 </tbody>

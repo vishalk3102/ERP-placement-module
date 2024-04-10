@@ -31,6 +31,8 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useNavigate } from 'react-router-dom'
+import { SlCalender } from 'react-icons/sl'
+import { IoIosNotifications } from 'react-icons/io'
 // import { logout } from '../../Redux/Actions/userAction'
 
 const drawerWidth = 240
@@ -222,7 +224,7 @@ const SideNavbar = () => {
           <ListItem
             disablePadding
             sx={{ display: 'block' }}
-            onClick={() => navigate('/admin/placement/student')}
+            onClick={() => navigate('/admin/placement/students')}
           >
             <ListItemButton
               sx={{
@@ -322,6 +324,57 @@ const SideNavbar = () => {
                 primary='Applications'
                 sx={{ opacity: open ? 1 : 0 }}
               />
+            </ListItemButton>
+          </ListItem>
+          <ListItem
+            disablePadding
+            sx={{ display: 'block' }}
+            onClick={() => navigate('/admin/placement/application')}
+          >
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center'
+                }}
+              >
+                <SlCalender size={24} style={{ color: '#feb21a' }} />
+              </ListItemIcon>
+              <ListItemText
+                primary='Placement Drive'
+                sx={{ opacity: open ? 1 : 0 }}
+              />
+            </ListItemButton>
+          </ListItem>
+          <ListItem
+            disablePadding
+            sx={{ display: 'block' }}
+            onClick={() => navigate('/admin/placement/application')}
+          >
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center'
+                }}
+              >
+                <IoIosNotifications size={24} style={{ color: '#feb21a' }} />
+              </ListItemIcon>
+              <ListItemText primary='Notice' sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
           <ListItem

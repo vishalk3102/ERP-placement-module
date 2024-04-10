@@ -14,6 +14,39 @@ export const studentPlacementReducer = createReducer(
       state.loading = false
       state.error = action.payload
     },
+    getProfileRequest: state => {
+      state.loading = true
+    },
+    getProfileSuccess: (state, action) => {
+      state.loading = false
+      state.user = action.payload
+    },
+    getProfileFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    getAllCompanyRequest: state => {
+      state.loading = true
+    },
+    getAllCompanySuccess: (state, action) => {
+      state.loading = false
+      state.companies = action.payload.companies
+    },
+    getAllCompanyFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    getCompanyRequest: state => {
+      state.loading = true
+    },
+    getCompanySuccess: (state, action) => {
+      state.loading = false
+      state.company = action.payload
+    },
+    getCompanyFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
     getEligibleJobPostingsRequest: state => {
       state.loading = true
     },
@@ -34,17 +67,6 @@ export const studentPlacementReducer = createReducer(
       state.message = action.payload.message
     },
     applyForJobFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
-    getAppliedApplicationRequest: state => {
-      state.loading = true
-    },
-    getAppliedApplicationSuccess: (state, action) => {
-      state.loading = false
-      state.application = action.payload.application
-    },
-    getAppliedApplicationFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },
@@ -72,17 +94,6 @@ export const studentPlacementReducer = createReducer(
 export const AdminPlacementReducer = createReducer(
   { students: [] },
   {
-    getStudentRequest: state => {
-      state.loading = true
-    },
-    getStudentSuccess: (state, action) => {
-      state.loading = false
-      state.student = action.payload
-    },
-    getStudentFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
     getAllStudentRequest: state => {
       state.loading = true
     },
@@ -94,15 +105,14 @@ export const AdminPlacementReducer = createReducer(
       state.loading = false
       state.error = action.payload
     },
-    getApplicationsByCompanyRequest: state => {
+    getStudentRequest: state => {
       state.loading = true
     },
-    getApplicationsByCompanySuccess: (state, action) => {
+    getStudentSuccess: (state, action) => {
       state.loading = false
-      state.count = action.payload.count
-      state.applications = action.payload.applications
+      state.student = action.payload
     },
-    getApplicationsByCompanyFail: (state, action) => {
+    getStudentFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },
@@ -125,6 +135,18 @@ export const AdminPlacementReducer = createReducer(
       state.message = action.payload.message
     },
     deleteStudentFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    getApplicationsByCompanyRequest: state => {
+      state.loading = true
+    },
+    getApplicationsByCompanySuccess: (state, action) => {
+      state.loading = false
+      state.count = action.payload.count
+      state.applications = action.payload.applications
+    },
+    getApplicationsByCompanyFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },
