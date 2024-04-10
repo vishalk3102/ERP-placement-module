@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit'
 
 export const studentPlacementReducer = createReducer(
-  { eligibleCompanies: [] },
+  { eligibleCompanies: [], companies: [] },
   {
     registerStudentForPlacementRequest: state => {
       state.loading = true
