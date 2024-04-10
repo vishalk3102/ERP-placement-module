@@ -1,10 +1,32 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-hot-toast'
 import Box from '@mui/material/Box'
 import SideNavbar from './SideNavbar'
 import profile from './profile.jpg'
 import { MdDownload } from 'react-icons/md'
+import { getPlacementProfile } from '../../../Redux/Actions/placementAction'
 
 const Profile = () => {
+  const dispatch = useDispatch()
+
+  const { loading, user, error, message } = useSelector(
+    state => state.studentPlacement
+  )
+
+  useEffect(() => {
+    if (message) {
+      toast.success(message)
+      dispatch({ type: 'clearMessage' })
+    }
+    if (error) {
+      toast.error(error)
+      dispatch({ type: 'clearError' })
+    }
+    dispatch(getPlacementProfile())
+  }, [dispatch, message, error])
+
   return (
     <>
       <section id='Profile' className='w-full h-full  mt-20'>

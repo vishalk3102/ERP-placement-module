@@ -8,27 +8,26 @@ import { IoIosAdd } from 'react-icons/io'
 import { MdEdit } from 'react-icons/md'
 import { MdDelete } from 'react-icons/md'
 import { IoEye } from 'react-icons/io5'
+import { getEligibleJobPostings } from '../../../Redux/Actions/placementAction'
 
 const EligibleJobs = () => {
-  //   const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-  //   const { loading, orders, error, message } = useSelector(state => state.admin)
+  const { loading, eligibleCompanies, error, message } = useSelector(
+    state => state.studentPlacement
+  )
 
-  //   useEffect(() => {
-  //     if (message) {
-  //       toast.success(message)
-  //       dispatch({ type: 'clearMessage' })
-  //     }
-  //     if (error) {
-  //       toast.error(error)
-  //       dispatch({ type: 'clearError' })
-  //     }
-  //     dispatch(getAdminOrders())
-  //   }, [dispatch, message, error])
-
-  //   const processOrderHandler = id => {
-  //     dispatch(processOrder(id))
-  //   }
+  useEffect(() => {
+    if (message) {
+      toast.success(message)
+      dispatch({ type: 'clearMessage' })
+    }
+    if (error) {
+      toast.error(error)
+      dispatch({ type: 'clearError' })
+    }
+    dispatch(getEligibleJobPostings())
+  }, [dispatch, message, error])
 
   return (
     <>
