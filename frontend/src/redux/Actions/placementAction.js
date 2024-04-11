@@ -393,13 +393,20 @@ export const getAllCompany = () => async dispatch => {
   }
 }
 
-export const updateCompany = () => async dispatch => {
+export const updateCompany = formData => async dispatch => {
   try {
     dispatch({
       type: 'updateCompanyRequest'
     })
 
-    const { data } = await axios.put(`${server}/admin/placement/company/:id`)
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const { data } = await axios.put(
+      `${server}/admin/placement/company/:id`,
+      formData,
+      config
+    )
     dispatch({
       type: 'updateCompanySuccess',
       payload: data
@@ -411,13 +418,15 @@ export const updateCompany = () => async dispatch => {
     })
   }
 }
-export const deleteCompany = () => async dispatch => {
+export const deleteCompany = id => async dispatch => {
   try {
     dispatch({
       type: 'deleteCompanyRequest'
     })
 
-    const { data } = await axios.delete(`${server}/admin/placement/company/:id`)
+    const { data } = await axios.delete(
+      `${server}/admin/placement/company/${id}`
+    )
     dispatch({
       type: 'deleteCompanySuccess',
       payload: data
