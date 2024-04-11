@@ -35,7 +35,7 @@ router.delete('/admin/placement/student/:id', isAuthenticated, deleteStudent)
 // --> COMPANY
 router.get('/admin/placement/companies', getAllCompanies)
 router.post('/admin/placement/company/add', registerCompanyProfile)
-router.get('/admin/placement/company/:id', getCompany)
+router.get('/admin/placement/company/view/:id', getCompany)
 router.put('/admin/placement/company/:id', updateCompany)
 router.delete('/admin/placement/company/:id', deleteCompany)
 

@@ -1,34 +1,28 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-hot-toast'
 import Box from '@mui/material/Box'
 import SideNavbar from './SideNavbar'
-import { IoIosAdd } from 'react-icons/io'
-import { MdEdit } from 'react-icons/md'
-import { MdDelete } from 'react-icons/md'
-import { IoEye } from 'react-icons/io5'
+import { getAllAppliedApplications } from '../../../Redux/Actions/placementAction'
 
 const Application = () => {
-  //   const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-  //   const { loading, orders, error, message } = useSelector(state => state.admin)
+  const { loading, applications, error, message } = useSelector(
+    state => state.admin
+  )
 
-  //   useEffect(() => {
-  //     if (message) {
-  //       toast.success(message)
-  //       dispatch({ type: 'clearMessage' })
-  //     }
-  //     if (error) {
-  //       toast.error(error)
-  //       dispatch({ type: 'clearError' })
-  //     }
-  //     dispatch(getAdminOrders())
-  //   }, [dispatch, message, error])
-
-  //   const processOrderHandler = id => {
-  //     dispatch(processOrder(id))
-  //   }
+  useEffect(() => {
+    if (message) {
+      toast.success(message)
+      dispatch({ type: 'clearMessage' })
+    }
+    if (error) {
+      toast.error(error)
+      dispatch({ type: 'clearError' })
+    }
+    dispatch(getAllAppliedApplications())
+  }, [dispatch, message, error])
 
   return (
     <>

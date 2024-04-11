@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-hot-toast'
 import { FiUpload } from 'react-icons/fi'
 import Box from '@mui/material/Box'
 import SideNavbar from '../SideNavbar'
+import { registerCompany } from '../../../../Redux/Actions/placementAction'
 
 const AddCompany = () => {
   const [companyName, setCompanyName] = useState('')
@@ -13,6 +17,43 @@ const AddCompany = () => {
   const [contactPerson, setContactPerson] = useState('')
   const [contactPhone, setContactPhone] = useState('')
   const [contactEmail, setContactEmail] = useState('')
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const { error, message } = useSelector(state => state.company)
+
+  useEffect(() => {
+    if (message) {
+      toast.success(message)
+      dispatch({ type: 'clearMessage' })
+    }
+    if (error) {
+      toast.error(error)
+      dispatch({ type: 'clearError' })
+    }
+  }, [dispatch, message, error])
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    console.log()
+
+    const formData = {
+      companyName,
+      website,
+      industry,
+      location,
+      salaryPackage,
+      about,
+      contactPerson,
+      contactPhone,
+      contactEmail
+    }
+
+    console.log(formData)
+    dispatch(registerCompany(formData))
+    navigate('/admin/placement/companies')
+  }
 
   return (
     <>
@@ -27,7 +68,7 @@ const AddCompany = () => {
               Add Company Profile
             </h2>
             <form
-              //   onSubmit={handleSubmit}
+              onSubmit={handleSubmit}
               className='w-[100%] flex justify-center items-center flex-wrap gap-6 mx-auto mt-10'
             >
               <div className='w-[40%]'>

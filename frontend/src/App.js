@@ -109,7 +109,7 @@ const App = () => {
           />
           <Route
             exact
-            path='/admin/placement/company/view'
+            path='/admin/placement/company/view/:id'
             element={<ViewCompany />}
           />
           <Route

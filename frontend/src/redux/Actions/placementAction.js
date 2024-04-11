@@ -326,13 +326,21 @@ export const getAllJobPosting = () => async dispatch => {
   }
 }
 
-export const registerCompany = () => async dispatch => {
+export const registerCompany = formData => async dispatch => {
   try {
     dispatch({
       type: 'registerCompanyProfileRequest'
     })
 
-    const { data } = await axios.post(`${server}/admin/placement/company/add`)
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const { data } = await axios.post(
+      `${server}/admin/placement/company/add`,
+      formData,
+      config
+    )
+
     dispatch({
       type: 'registerCompanyProfileSuccess',
       payload: data
@@ -345,13 +353,15 @@ export const registerCompany = () => async dispatch => {
   }
 }
 
-export const getCompany = () => async dispatch => {
+export const getCompany = id => async dispatch => {
   try {
     dispatch({
       type: 'getCompanyRequest'
     })
 
-    const { data } = await axios.get(`${server}/admin/placement/company/:id`)
+    const { data } = await axios.get(
+      `${server}/admin/placement/company/view/${id}`
+    )
     dispatch({
       type: 'getCompanySuccess',
       payload: data

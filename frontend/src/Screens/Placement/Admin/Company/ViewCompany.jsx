@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-hot-toast'
 import Box from '@mui/material/Box'
 import SideNavbar from '../SideNavbar'
+import { getCompany } from '../../../../Redux/Actions/placementAction'
 
 const ViewCompany = () => {
-  // State variables for company details
   const [companyName, setCompanyName] = useState('')
   const [website, setWebsite] = useState('')
   const [industry, setIndustry] = useState('')
@@ -13,6 +16,18 @@ const ViewCompany = () => {
   const [contactPerson, setContactPerson] = useState('')
   const [contactPhone, setContactPhone] = useState('')
   const [contactEmail, setContactEmail] = useState('')
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const params = useParams()
+
+  const { loading, company, error, message } = useSelector(
+    state => state.company
+  )
+
+  useEffect(() => {
+    dispatch(getCompany(params.id))
+  }, [dispatch, message, error, params.id])
 
   return (
     <section id='Student' className='w-full h-full mt-20'>
