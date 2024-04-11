@@ -99,7 +99,7 @@ export const AdminPlacementReducer = createReducer(
     },
     getAllStudentSuccess: (state, action) => {
       state.loading = false
-      state.students = action.payload
+      state.students = action.payload.students
     },
     getAllStudentFail: (state, action) => {
       state.loading = false
@@ -110,7 +110,7 @@ export const AdminPlacementReducer = createReducer(
     },
     getStudentSuccess: (state, action) => {
       state.loading = false
-      state.student = action.payload
+      state.student = action.payload.student
     },
     getStudentFail: (state, action) => {
       state.loading = false

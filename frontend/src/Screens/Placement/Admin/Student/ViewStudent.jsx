@@ -43,21 +43,21 @@ const ViewStudent = () => {
                         {' '}
                         Student Name :
                         <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                          Vishal Kumar
+                          {student.firstName} {student.lastName}
                         </span>
                       </li>
                       <li className='text-[14px] md:text-[1rem] font-semibold capitalize p-1 md:p-2'>
                         {' '}
                         Date of Birth :
                         <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                          31 Jan 2002
+                          {student.dateOfBirth}
                         </span>
                       </li>
                       <li className='text-[14px] md:text-[1rem] font-semibold capitalize p-1 md:p-2'>
                         {' '}
                         Gender :
                         <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                          Male
+                          {student.gender}
                         </span>
                       </li>
                     </ul>
@@ -68,14 +68,14 @@ const ViewStudent = () => {
                         {' '}
                         Email :
                         <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                          vishal.k3102@gmail.com
+                          {student.email}
                         </span>
                       </li>
                       <li className='text-[14px] md:text-[1rem] font-semibold capitalize p-1 md:p-2'>
                         {' '}
                         Phone Number :
                         <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                          8459126643
+                          {student.phoneNumber}
                         </span>
                       </li>
                     </ul>
@@ -94,7 +94,7 @@ const ViewStudent = () => {
                         {' '}
                         Enrollment No :
                         <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                          GE-202017132
+                          {student.academics.enrollmentNo}
                         </span>
                       </li>
 
@@ -102,7 +102,7 @@ const ViewStudent = () => {
                         {' '}
                         University :
                         <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                          Graphic Era University
+                          {student.academics.university}
                         </span>
                       </li>
 
@@ -110,7 +110,7 @@ const ViewStudent = () => {
                         {' '}
                         Branch :
                         <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                          Computer Science and Engineering
+                          {student.academics.branch}
                         </span>
                       </li>
 
@@ -118,7 +118,7 @@ const ViewStudent = () => {
                         {' '}
                         HighSchool Percentage :
                         <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                          95%
+                          {student.academics.percentageHighSchool}
                         </span>
                       </li>
 
@@ -126,7 +126,7 @@ const ViewStudent = () => {
                         {' '}
                         Intermediate Percentage :
                         <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                          91%
+                          {student.academics.percentageIntermediate}
                         </span>
                       </li>
 
@@ -134,7 +134,7 @@ const ViewStudent = () => {
                         {' '}
                         B-Tech Aggregate :
                         <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                          8.67 GPA
+                          {student.academics.CGPA}
                         </span>
                       </li>
                     </ul>
@@ -145,42 +145,42 @@ const ViewStudent = () => {
                         {' '}
                         University Roll No :
                         <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                          20021657
+                          {student.academics.universityRollNo}
                         </span>
                       </li>
                       <li className='text-[14px] md:text-[1rem] font-semibold capitalize p-1 md:p-2'>
                         {' '}
                         Course :
                         <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                          Bachelor's of Technology
+                          {student.academics.course}
                         </span>
                       </li>
                       <li className='text-[14px] md:text-[1rem] font-semibold capitalize p-1 md:p-2'>
                         {' '}
                         Semester :
                         <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                          8th
+                          {student.academics.semester}
                         </span>
                       </li>
                       <li className='text-[14px] md:text-[1rem] font-semibold capitalize p-1 md:p-2'>
                         {' '}
                         HighSchool Completion Year :
                         <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                          2017
+                          {student.academics.yearOfCompletionHighSchool}
                         </span>
                       </li>
                       <li className='text-[14px] md:text-[1rem] font-semibold capitalize p-1 md:p-2'>
                         {' '}
                         Intermediate Completion Year :
                         <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                          2019
+                          {student.academics.yearOfCompletionIntermediate}
                         </span>
                       </li>
                       <li className='text-[14px] md:text-[1rem] font-semibold capitalize p-1 md:p-2'>
                         {' '}
                         Graduation Year :
                         <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                          2024
+                          {student.academics.graduationYear}
                         </span>
                       </li>
                     </ul>

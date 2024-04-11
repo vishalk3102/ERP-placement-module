@@ -84,12 +84,12 @@ const App = () => {
           <Route exact path='/admin/placement/students' element={<Student />} />
           <Route
             exact
-            path='/admin/placement/student/edit'
+            path='/admin/placement/student/edit/:id'
             element={<EditStudent />}
           />
           <Route
             exact
-            path='/admin/placement/student/view'
+            path='/admin/placement/student/view/:id'
             element={<ViewStudent />}
           />
           <Route

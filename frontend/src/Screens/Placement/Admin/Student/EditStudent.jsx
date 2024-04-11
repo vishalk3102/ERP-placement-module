@@ -44,24 +44,26 @@ const EditStudent = () => {
 
   useEffect(() => {
     if (student) {
-      setEnrollmentNo(student.enrollmentNo)
-      setUniversityRollNo(student.universityRollNo)
+      setEnrollmentNo(student.academics.enrollmentNo)
+      setUniversityRollNo(student.academics.universityRollNo)
       setFirstName(student.firstName)
       setLastName(student.lastName)
-      setDob(student.dob)
+      setDob(student.dateOfBirth)
       setGender(student.gender)
       setEmail(student.email)
       setPhoneNumber(student.phoneNumber)
-      setUniversity(student.university)
-      setCourse(student.course)
-      setBranch(student.branch)
-      setSemester(student.semester)
-      setHighSchoolPercentage(student.highSchoolPercentage)
-      setIntermediatePercentage(student.intermediatePercentage)
-      setBtechCgpa(student.BtechCgpa)
-      setHighSchoolCompletionYear(student.highSchoolCompletionYear)
-      setIntermediateCompletionYear(student.highSchoolCompletionYear)
-      setBtechGraduationYear(student.btechGraduationYear)
+      setUniversity(student.academics.university)
+      setCourse(student.academics.course)
+      setBranch(student.academics.branch)
+      setSemester(student.academics.semester)
+      setHighSchoolPercentage(student.academics.percentageHighSchool)
+      setIntermediatePercentage(student.academics.percentageIntermediate)
+      setBtechCgpa(student.academics.CGPA)
+      setHighSchoolCompletionYear(student.academics.yearOfCompletionHighSchool)
+      setIntermediateCompletionYear(
+        student.academics.yearOfCompletionIntermediate
+      )
+      setBtechGraduationYear(student.academics.graduationYear)
     }
   }, [student])
 

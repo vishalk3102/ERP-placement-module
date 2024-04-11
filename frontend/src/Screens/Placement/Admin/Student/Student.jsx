@@ -117,87 +117,90 @@ const Student = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {students.map((i, index) => {
-                      return (
-                        <tr className='border border-slate-900 '>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            1
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            20021657
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            Vishal Kumar
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-left'>
-                            31/01/2002
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            Male
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            vishal.k3102@gmail.com
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            8459126643
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            GEU
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            2017132
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            B-tech
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            CSE
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            8th
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            95%
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            2017
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            91%
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            2019
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            8.67
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            2024
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center '>
-                            <Link
-                              to={`/admin/placement/student/view/${i._id}`}
-                              className='flex justify-center items-center'
-                            >
-                              <IoEye size={24} />
-                            </Link>
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            <Link to={`/admin/placement/student/edit/${i._id}`}>
-                              <button className='p-1 m-1'>
-                                <MdEdit size={24} />
+                    {students &&
+                      students.map(i => {
+                        return (
+                          <tr className='border border-slate-900 '>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                              1
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                              {i.academics.enrollmentNo}
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                              {i.firstName} {i.lastName}
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-left'>
+                              {i.dateOfBirth}
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                              {i.gender}
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                              {i.email}
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                              {i.phoneNumber}
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                              {i.academics.university}
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                              {i.academics.universityRollNo}
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                              {i.academics.course}
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                              {i.academics.branch}
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                              {i.academics.semester}
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                              {i.academics.percentageHighSchool}
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                              {i.academics.yearOfCompletionHighSchool}
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                              {i.academics.percentageIntermediate}
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                              {i.academics.yearOfCompletionIntermediate}
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                              8. {i.academics.CGPA}
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                              {i.academics.graduationYear}
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center '>
+                              <Link
+                                to={`/admin/placement/student/view/${i._id}`}
+                                className='flex justify-center items-center'
+                              >
+                                <IoEye size={24} />
+                              </Link>
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                              <Link
+                                to={`/admin/placement/student/edit/${i._id}`}
+                              >
+                                <button className='p-1 m-1'>
+                                  <MdEdit size={24} />
+                                </button>
+                              </Link>
+                              <button
+                                className='p-1 m-1'
+                                onClick={() => deleteHandler(i._id)}
+                              >
+                                <MdDelete size={24} />
                               </button>
-                            </Link>
-                            <button
-                              className='p-1 m-1'
-                              onClick={() => deleteHandler(i._id)}
-                            >
-                              <MdDelete size={24} />
-                            </button>
-                          </td>
-                        </tr>
-                      )
-                    })}
+                            </td>
+                          </tr>
+                        )
+                      })}
                   </tbody>
                 </table>
               </div>
