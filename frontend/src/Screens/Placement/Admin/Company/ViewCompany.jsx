@@ -11,23 +11,21 @@ const ViewCompany = () => {
   const dispatch = useDispatch()
   const params = useParams()
 
-  const { loading, company, error, message } = useSelector(
-    state => state.company
-  )
+  const { loading, company } = useSelector(state => state.company)
 
   useEffect(() => {
     dispatch(getCompany(params.id))
-  }, [dispatch, message, error, params.id])
+  }, [dispatch, params.id])
 
   return (
     <section id='Student' className='w-full h-full mt-20'>
       <Box sx={{ display: 'flex', marginTop: '5rem' }}>
         <SideNavbar />
-        <div className='max-w-[1200px] w-[100%] mx-auto my-10'>
-          <h2 className='text-[#000] text-[2.5rem] font-bold text-center uppercase p-2 mt-5'>
-            Company Details
-          </h2>
-          {loading === false ? (
+        {loading === false ? (
+          <div className='max-w-[1200px] w-[100%] mx-auto my-10'>
+            <h2 className='text-[#000] text-[2.5rem] font-bold text-center uppercase p-2 mt-5'>
+              Company Details
+            </h2>
             <div className='w-[90%] mx-auto bg-gray-200 border-2 border-solid rounded-[10px] my-4'>
               <div className='grid grid-cols-2 md:grid-cols-4 w-[80%] mx-auto my-2'>
                 <div className='col-span-1 md:col-span-2 '>
@@ -96,10 +94,10 @@ const ViewCompany = () => {
                 </div>
               </div>
             </div>
-          ) : (
-            <Loader />
-          )}
-        </div>
+          </div>
+        ) : (
+          <Loader />
+        )}
       </Box>
     </section>
   )

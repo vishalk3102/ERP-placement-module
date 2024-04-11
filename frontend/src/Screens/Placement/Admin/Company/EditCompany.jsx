@@ -20,9 +20,7 @@ const EditCompany = () => {
     dispatch(getCompany(params.id))
   }, [dispatch, params.id])
 
-  const { loading, company, error, message } = useSelector(
-    state => state.company
-  )
+  const { loading, company } = useSelector(state => state.company)
 
   const [companyName, setCompanyName] = useState('')
   const [website, setWebsite] = useState('')
@@ -59,8 +57,6 @@ const EditCompany = () => {
       contactPhone,
       contactEmail
     }
-
-    console.log(formData)
     dispatch(updateCompany(formData, params.id))
     navigate('/admin/placement/companies')
   }

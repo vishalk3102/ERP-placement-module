@@ -27,10 +27,10 @@ const router = express.Router()
 
 // ADMIN PLACEMENT ROUTES
 // --> STUDENT
-router.get('/admin/placement/students', isAuthenticated, getAllStudent)
-router.get('/admin/placement/student/view/:id', isAuthenticated, getStudent)
-router.put('/admin/placement/student/:id', isAuthenticated, updateStudent)
-router.delete('/admin/placement/student/:id', isAuthenticated, deleteStudent)
+router.get('/admin/placement/students', getAllStudent)
+router.get('/admin/placement/student/view/:id', getStudent)
+router.put('/admin/placement/student/:id', updateStudent)
+router.delete('/admin/placement/student/:id', deleteStudent)
 
 // --> COMPANY
 router.get('/admin/placement/companies', getAllCompanies)

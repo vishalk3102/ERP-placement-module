@@ -133,13 +133,15 @@ export const getAllAppliedApplications = () => async dispatch => {
   }
 }
 
-export const getStudent = () => async dispatch => {
+export const getStudent = id => async dispatch => {
   try {
     dispatch({
       type: 'getStudentRequest'
     })
 
-    const { data } = await axios.get(`${server}/admin/placement/student/:id`)
+    const { data } = await axios.get(
+      `${server}/admin/placement/student/view/${id}`
+    )
     dispatch({
       type: 'getStudentSuccess',
       payload: data
@@ -170,6 +172,51 @@ export const getAllStudent = () => async dispatch => {
     })
   }
 }
+export const updateStudent = (formData, id) => async dispatch => {
+  try {
+    dispatch({
+      type: 'updateStudentRequest'
+    })
+
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const { data } = await axios.put(
+      `${server}/admin/placement/student/${id}`,
+      formData,
+      config
+    )
+    dispatch({
+      type: 'updateStudentSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'updateStudentFail',
+      payload: error.response.data.message
+    })
+  }
+}
+export const deleteStudent = id => async dispatch => {
+  try {
+    dispatch({
+      type: 'deleteStudentRequest'
+    })
+
+    const { data } = await axios.delete(
+      `${server}/admin/placement/student/${id}`
+    )
+    dispatch({
+      type: 'deleteStudentSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'deleteStudentFail',
+      payload: error.response.data.message
+    })
+  }
+}
 
 export const getApplicationsByCompany = () => async dispatch => {
   try {
@@ -185,43 +232,6 @@ export const getApplicationsByCompany = () => async dispatch => {
   } catch (error) {
     dispatch({
       type: 'getApplicationsByCompanyFail',
-      payload: error.response.data.message
-    })
-  }
-}
-
-export const updateStudent = () => async dispatch => {
-  try {
-    dispatch({
-      type: 'updateStudentRequest'
-    })
-
-    const { data } = await axios.put(`${server}/admin/placement/student/:id`)
-    dispatch({
-      type: 'updateStudentSuccess',
-      payload: data
-    })
-  } catch (error) {
-    dispatch({
-      type: 'updateStudentFail',
-      payload: error.response.data.message
-    })
-  }
-}
-export const deleteStudent = () => async dispatch => {
-  try {
-    dispatch({
-      type: 'deleteStudentRequest'
-    })
-
-    const { data } = await axios.delete(`${server}/admin/placement/student/:id`)
-    dispatch({
-      type: 'deleteStudentSuccess',
-      payload: data
-    })
-  } catch (error) {
-    dispatch({
-      type: 'deleteStudentFail',
       payload: error.response.data.message
     })
   }
