@@ -393,7 +393,7 @@ export const getAllCompany = () => async dispatch => {
   }
 }
 
-export const updateCompany = formData => async dispatch => {
+export const updateCompany = (formData, id) => async dispatch => {
   try {
     dispatch({
       type: 'updateCompanyRequest'
@@ -403,7 +403,7 @@ export const updateCompany = formData => async dispatch => {
       headers: { 'Content-Type': 'application/json' }
     }
     const { data } = await axios.put(
-      `${server}/admin/placement/company/:id`,
+      `${server}/admin/placement/company/${id}`,
       formData,
       config
     )

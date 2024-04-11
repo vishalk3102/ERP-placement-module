@@ -61,7 +61,7 @@ const EditCompany = () => {
     }
 
     console.log(formData)
-    dispatch(updateCompany(formData))
+    dispatch(updateCompany(formData, params.id))
     navigate('/admin/placement/companies')
   }
 

@@ -8,7 +8,10 @@ import { IoIosAdd } from 'react-icons/io'
 import { MdEdit } from 'react-icons/md'
 import { MdDelete } from 'react-icons/md'
 import { IoEye } from 'react-icons/io5'
-import { getAllCompanyStudent } from '../../../../Redux/Actions/placementAction'
+import {
+  deleteCompany,
+  getAllCompanyStudent
+} from '../../../../Redux/Actions/placementAction'
 import Loader from '../../../../components/Loader'
 
 const Company = () => {
@@ -30,9 +33,9 @@ const Company = () => {
     dispatch(getAllCompanyStudent())
   }, [dispatch, message, error])
 
-  // const processOrderHandler = id => {
-  //   dispatch(processOrder(id))
-  // }
+  const deleteHandler = id => {
+    dispatch(deleteCompany(id))
+  }
 
   return (
     <>
@@ -145,7 +148,7 @@ const Company = () => {
                             </Link>
                             <button
                               className='p-1 m-1'
-                              // onClick={() => processOrderHandler(i._id)}
+                              onClick={() => deleteHandler(i._id)}
                             >
                               <MdDelete size={24} />
                             </button>
