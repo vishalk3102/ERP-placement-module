@@ -104,7 +104,7 @@ const App = () => {
           />
           <Route
             exact
-            path='/admin/placement/company/edit'
+            path='/admin/placement/company/edit/:id'
             element={<EditCompany />}
           />
           <Route

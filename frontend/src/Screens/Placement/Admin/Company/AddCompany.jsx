@@ -12,7 +12,6 @@ const AddCompany = () => {
   const [website, setWebsite] = useState('')
   const [industry, setIndustry] = useState('')
   const [location, setLocation] = useState('')
-  const [salaryPackage, setSalaryPackage] = useState('')
   const [about, setAbout] = useState('')
   const [contactPerson, setContactPerson] = useState('')
   const [contactPhone, setContactPhone] = useState('')
@@ -43,7 +42,6 @@ const AddCompany = () => {
       website,
       industry,
       location,
-      salaryPackage,
       about,
       contactPerson,
       contactPhone,
@@ -116,18 +114,6 @@ const AddCompany = () => {
                   id='location'
                   value={location}
                   onChange={e => setLocation(e.target.value)}
-                  className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
-                />
-              </div>
-              <div className='w-[40%]'>
-                <label htmlFor='package' className='leading-7 text-sm '>
-                  Package
-                </label>
-                <input
-                  type='text'
-                  id='package'
-                  value={salaryPackage}
-                  onChange={e => setSalaryPackage(e.target.value)}
                   className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                 />
               </div>

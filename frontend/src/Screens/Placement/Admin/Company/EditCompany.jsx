@@ -1,18 +1,70 @@
 import React, { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-hot-toast'
 import { FiUpload } from 'react-icons/fi'
 import Box from '@mui/material/Box'
 import SideNavbar from '../SideNavbar'
+import {
+  getCompany,
+  updateCompany
+} from '../../../../Redux/Actions/placementAction'
 
 const EditCompany = () => {
-  const [companyName, setCompanyName] = useState('')
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const params = useParams()
+
+  const { loading, company, error, message } = useSelector(
+    state => state.company
+  )
+
+  useEffect(() => {
+    dispatch(getCompany(params.id))
+  }, [dispatch, message, error, params.id])
+
+  const [companyName, setCompanyName] = useState()
   const [website, setWebsite] = useState('')
   const [industry, setIndustry] = useState('')
   const [location, setLocation] = useState('')
-  const [salaryPackage, setSalaryPackage] = useState('')
   const [about, setAbout] = useState('')
   const [contactPerson, setContactPerson] = useState('')
   const [contactPhone, setContactPhone] = useState('')
   const [contactEmail, setContactEmail] = useState('')
+
+  // useEffect(() => {
+  //   if (company) {
+  //       companyName: company.companyName || '',
+  //       website: company.website || '',
+  //       industry: company.industry || '',
+  //       location: company.location || '',
+  //       about: company.about || '',
+  //       contactPerson: company.contactPerson || '',
+  //       contactPhone: company.contactPhone || '',
+  //       contactEmail: company.contactEmail || ''
+  //     });
+  //   }
+  // }, [company]);
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    console.log()
+
+    const formData = {
+      companyName,
+      website,
+      industry,
+      location,
+      about,
+      contactPerson,
+      contactPhone,
+      contactEmail
+    }
+
+    console.log(formData)
+    dispatch(updateCompany(formData))
+    navigate('/admin/placement/companies')
+  }
 
   return (
     <>
@@ -27,7 +79,7 @@ const EditCompany = () => {
               Edit Company Profile
             </h2>
             <form
-              //   onSubmit={handleSubmit}
+              onSubmit={handleSubmit}
               className='w-[100%] flex justify-center items-center flex-wrap gap-6 mx-auto mt-10'
             >
               <div className='w-[40%]'>
@@ -75,18 +127,6 @@ const EditCompany = () => {
                   id='location'
                   value={location}
                   onChange={e => setLocation(e.target.value)}
-                  className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
-                />
-              </div>
-              <div className='w-[40%]'>
-                <label htmlFor='package' className='leading-7 text-sm '>
-                  Package
-                </label>
-                <input
-                  type='text'
-                  id='package'
-                  value={salaryPackage}
-                  onChange={e => setSalaryPackage(e.target.value)}
                   className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                 />
               </div>

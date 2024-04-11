@@ -136,11 +136,8 @@ const Company = () => {
                           </Link>
                         </td>
                         <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                          <Link to='/admin/placement/company/edit'>
-                            <button
-                              className='p-1 m-1'
-                              // onClick={() => processOrderHandler(i._id)}
-                            >
+                          <Link to={`/admin/placement/company/edit/${i._id}`}>
+                            <button className='p-1 m-1'>
                               <MdEdit size={24} />
                             </button>
                           </Link>
