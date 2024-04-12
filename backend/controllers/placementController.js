@@ -217,7 +217,7 @@ exports.createJobPosting = catchAsyncError(async (req, res, next) => {
     description,
     qualifications,
     eligibleCourse,
-    package,
+    salaryPackage,
     location,
     registrationLink,
     deadline

@@ -111,32 +111,31 @@ const JobPosting = () => {
                               1
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              Contata Solution
+                              {i.companyName}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              Software Developer
+                              {i.title}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              B-tech(CS) & MCA(2024 passing out batch only)
+                              {i.eligibleCourse}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              10th-85% ,12th-85% ,B-tech-85%
+                              {i.qualifications}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              Lorem ipsum dolor sit, amet consectetur
-                              adipisicing elit. Nihil, animi!
+                              {i.description}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              Rs 4.5LPA
+                              {i.salaryPackage}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              Noida
+                              {i.location}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              www.registration.com
+                              {i.registrationLink}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              2:00PM , 25 April 2024
+                              {i.deadline}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center '>
                               <Link
@@ -147,9 +146,7 @@ const JobPosting = () => {
                               </Link>
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              <Link
-                                to={`/admin/placement/jobposting/edit/${i._id}`}
-                              >
+                              <Link to={`/admin/placement/jobposting/${i._id}`}>
                                 <button className='p-1 m-1'>
                                   <MdEdit size={24} />
                                 </button>

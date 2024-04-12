@@ -124,12 +124,12 @@ const App = () => {
           />
           <Route
             exact
-            path='/admin/placement/jobposting/edit'
+            path='/admin/placement/jobposting/edit/:id'
             element={<EditJobPost />}
           />
           <Route
             exact
-            path='/admin/placement/jobposting/view'
+            path='/admin/placement/jobposting/view/:id'
             element={<ViewJobPost />}
           />
           <Route

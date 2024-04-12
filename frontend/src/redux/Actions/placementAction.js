@@ -237,14 +237,19 @@ export const getApplicationsByCompany = () => async dispatch => {
   }
 }
 
-export const createJobPosting = () => async dispatch => {
+export const createJobPosting = formData => async dispatch => {
   try {
     dispatch({
       type: 'createJobPostingRequest'
     })
 
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
     const { data } = await axios.post(
-      `${server}/admin/placement/jobposting/create`
+      `${server}/admin/placement/jobposting/create`,
+      formData,
+      config
     )
     dispatch({
       type: 'createJobPostingSuccess',
@@ -258,13 +263,15 @@ export const createJobPosting = () => async dispatch => {
   }
 }
 
-export const updateJobPosting = () => async dispatch => {
+export const updateJobPosting = id => async dispatch => {
   try {
     dispatch({
       type: 'updateJobPostingRequest'
     })
 
-    const { data } = await axios.put(`${server}/admin/placement/jobposting/:id`)
+    const { data } = await axios.put(
+      `${server}/admin/placement/jobposting/${id}`
+    )
     dispatch({
       type: 'updateJobPostingSuccess',
       payload: data
@@ -277,14 +284,14 @@ export const updateJobPosting = () => async dispatch => {
   }
 }
 
-export const deleteJobPosting = () => async dispatch => {
+export const deleteJobPosting = id => async dispatch => {
   try {
     dispatch({
       type: 'deleteJobPostingRequest'
     })
 
     const { data } = await axios.delete(
-      `${server}/admin/placement/jobposting/:id`
+      `${server}/admin/placement/jobposting/${id}`
     )
     dispatch({
       type: 'deleteJobPostingSuccess',
@@ -298,13 +305,15 @@ export const deleteJobPosting = () => async dispatch => {
   }
 }
 
-export const getJobPosting = () => async dispatch => {
+export const getJobPosting = id => async dispatch => {
   try {
     dispatch({
       type: 'getJobPostingRequest'
     })
 
-    const { data } = await axios.get(`${server}/admin/placement/jobposting/:id`)
+    const { data } = await axios.get(
+      `${server}/admin/placement/jobposting/view/${id}`
+    )
     dispatch({
       type: 'getJobPostingSuccess',
       payload: data

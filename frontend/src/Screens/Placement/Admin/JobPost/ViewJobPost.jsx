@@ -1,18 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-hot-toast'
 import Box from '@mui/material/Box'
 import SideNavbar from '../SideNavbar'
+import { getJobPosting } from '../../../../Redux/Actions/placementAction'
 
 const ViewJobPost = () => {
-  // State variables for job post details
-  const [companyName, setCompanyName] = useState('')
-  const [title, setTitle] = useState('')
-  const [eligibleCourse, setEligibleCourse] = useState('')
-  const [qualifications, setQualifications] = useState('')
-  const [description, setDescription] = useState('')
-  const [salaryPackage, setSalaryPackage] = useState('')
-  const [location, setLocation] = useState('')
-  const [registrationLink, setRegistrationLink] = useState('')
-  const [deadline, setDeadline] = useState('')
+  const dispatch = useDispatch()
+  const params = useParams()
+
+  const { loading, job } = useSelector(state => state.jobs)
+
+  useEffect(() => {
+    dispatch(getJobPosting(params.id))
+  }, [dispatch, params.id])
 
   return (
     <section id='Student' className='w-full h-full  mt-20'>
