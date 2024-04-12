@@ -3,9 +3,9 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-hot-toast'
 import Box from '@mui/material/Box'
-import SideNavbar from '../SideNavbar'
-import { getCompany } from '../../../../Redux/Actions/placementAction'
-import Loader from '../../../../components/Loader'
+import SideNavbar from '../Student/SideNavbar'
+import Loader from '../../../components/Loader'
+import { getCompanyStudent } from '../../../Redux/Actions/placementAction'
 
 const ViewCompany = () => {
   const dispatch = useDispatch()
@@ -14,7 +14,7 @@ const ViewCompany = () => {
   const { loading, company } = useSelector(state => state.company)
 
   useEffect(() => {
-    dispatch(getCompany(params.id))
+    dispatch(getCompanyStudent(params.id))
   }, [dispatch, params.id])
 
   return (

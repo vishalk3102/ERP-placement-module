@@ -38,24 +38,26 @@ export const getPlacementProfile = () => async dispatch => {
   }
 }
 
-// export const getCompanyStudent = () => async dispatch => {
-//   try {
-//     dispatch({
-//       type: 'getCompanyRequest'
-//     })
+export const getCompanyStudent = id => async dispatch => {
+  try {
+    dispatch({
+      type: 'getCompanyRequest'
+    })
 
-//     const { data } = await axios.get(`${server}/student/placement/company/:id`)
-//     dispatch({
-//       type: 'getCompanySuccess',
-//       payload: data
-//     })
-//   } catch (error) {
-//     dispatch({
-//       type: 'getCompanyFail',
-//       payload: error.response.data.message
-//     })
-//   }
-// }
+    const { data } = await axios.get(
+      `${server}/student/placement/company/view/${id}`
+    )
+    dispatch({
+      type: 'getCompanySuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getCompanyFail',
+      payload: error.response.data.message
+    })
+  }
+}
 
 export const getAllCompanyStudent = () => async dispatch => {
   try {
@@ -71,6 +73,27 @@ export const getAllCompanyStudent = () => async dispatch => {
   } catch (error) {
     dispatch({
       type: 'getAllCompanyFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
+export const getJobPostStudent = id => async dispatch => {
+  try {
+    dispatch({
+      type: 'getJobPostingRequest'
+    })
+
+    const { data } = await axios.get(
+      `${server}/student/placement/jobposting/view/${id}`
+    )
+    dispatch({
+      type: 'getJobPostingSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getJobPostingFail',
       payload: error.response.data.message
     })
   }

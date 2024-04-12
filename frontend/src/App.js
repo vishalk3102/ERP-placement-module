@@ -43,6 +43,8 @@ import Student from './Screens/Placement/Admin/Student/Student'
 import EditStudent from './Screens/Placement/Admin/Student/EditStudent'
 import ViewStudent from './Screens/Placement/Admin/Student/ViewStudent'
 import Apply from './Screens/Placement/Student/Apply'
+import ViewStudentCompany from './Screens/Placement/Student/ViewCompany'
+import ViewStudentJobPost from './Screens/Placement/Student/ViewJobPost'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -167,7 +169,7 @@ const App = () => {
           <Route
             exact
             path='/student/placement/company/view/:id'
-            element={<StudentCompany />}
+            element={<ViewStudentCompany />}
           />
           <Route
             exact
@@ -177,7 +179,7 @@ const App = () => {
           <Route
             exact
             path='/student/placement/eligiblejob/view/:id'
-            element={<StudentEligibleJobs />}
+            element={<ViewStudentJobPost />}
           />
           <Route
             exact

@@ -47,6 +47,17 @@ export const studentPlacementReducer = createReducer(
       state.loading = false
       state.error = action.payload
     },
+    getJobPostingRequest: state => {
+      state.loading = true
+    },
+    getJobPostingSuccess: (state, action) => {
+      state.loading = false
+      state.job = action.payload.job
+    },
+    getJobPostingFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
     getEligibleJobPostingsRequest: state => {
       state.loading = true
     },

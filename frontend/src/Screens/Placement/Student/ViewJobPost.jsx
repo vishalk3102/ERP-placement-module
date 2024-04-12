@@ -3,18 +3,18 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-hot-toast'
 import Box from '@mui/material/Box'
-import SideNavbar from '../SideNavbar'
-import { getJobPosting } from '../../../../Redux/Actions/placementAction'
-import Loader from '../../../../components/Loader'
+import SideNavbar from '../Student/SideNavbar'
+import Loader from '../../../components/Loader'
+import { getJobPostStudent } from '../../../Redux/Actions/placementAction'
 
 const ViewJobPost = () => {
   const dispatch = useDispatch()
   const params = useParams()
 
-  const { loading, job } = useSelector(state => state.jobs)
+  const { loading, job } = useSelector(state => state.studentPlacement)
 
   useEffect(() => {
-    dispatch(getJobPosting(params.id))
+    dispatch(getJobPostStudent(params.id))
   }, [dispatch, params.id])
 
   return (
