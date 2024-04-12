@@ -114,7 +114,7 @@ const App = () => {
           />
           <Route
             exact
-            path='/admin/placement/jobposting'
+            path='/admin/placement/jobpostings'
             element={<JobPosting />}
           />
           <Route

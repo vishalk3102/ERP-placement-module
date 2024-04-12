@@ -20,19 +20,6 @@ const CreateJobPost = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { error, message } = useSelector(state => state.jobs)
-
-  useEffect(() => {
-    if (message) {
-      toast.success(message)
-      dispatch({ type: 'clearMessage' })
-    }
-    if (error) {
-      toast.error(error)
-      dispatch({ type: 'clearError' })
-    }
-  }, [dispatch, message, error])
-
   const handleSubmit = e => {
     e.preventDefault()
     console.log()
@@ -51,7 +38,7 @@ const CreateJobPost = () => {
 
     console.log(formData)
     dispatch(createJobPosting(formData))
-    navigate('/admin/placement/companies')
+    navigate('/admin/placement/jobposting')
   }
 
   return (

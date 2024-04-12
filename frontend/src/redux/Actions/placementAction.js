@@ -263,14 +263,19 @@ export const createJobPosting = formData => async dispatch => {
   }
 }
 
-export const updateJobPosting = id => async dispatch => {
+export const updateJobPosting = (formData, id) => async dispatch => {
   try {
     dispatch({
       type: 'updateJobPostingRequest'
     })
 
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
     const { data } = await axios.put(
-      `${server}/admin/placement/jobposting/${id}`
+      `${server}/admin/placement/jobposting/${id}`,
+      formData,
+      config
     )
     dispatch({
       type: 'updateJobPostingSuccess',
