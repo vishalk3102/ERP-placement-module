@@ -29,10 +29,6 @@ const Company = () => {
     dispatch(getAllCompanyStudent())
   }, [dispatch, message, error])
 
-  /*  const processOrderHandler = id => {
-      dispatch(processOrder(id))
-    } */
-
   return (
     <>
       {/* <MetaData title='Orders' /> */}
@@ -66,9 +62,6 @@ const Company = () => {
                       Location
                     </th>
                     <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
-                      Package
-                    </th>
-                    <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
                       About
                     </th>
                     <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
@@ -86,44 +79,47 @@ const Company = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className='border border-slate-900'>
-                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      1
-                    </td>
-                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      Contata Solution
-                    </td>
-                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-left'>
-                      www.contata.com
-                    </td>
-                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      IT
-                    </td>
-                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      Noida
-                    </td>
-                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      Rs 4.5LPA
-                    </td>
-                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Nihil, animi!
-                    </td>
-                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      Vishal Kumar
-                    </td>
-                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      vishal.k3102@gmail.com
-                    </td>
-                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                      8459126643
-                    </td>
-                    <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center '>
-                      <Link to='' className='flex justify-center items-center'>
-                        <IoEye size={24} />
-                      </Link>
-                    </td>
-                  </tr>
+                  {companies.map((i, index) => {
+                    return (
+                      <tr className='border border-slate-900' key={i}>
+                        <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                          1
+                        </td>
+                        <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                          {i.companyName}
+                        </td>
+                        <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-left'>
+                          {i.website}
+                        </td>
+                        <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                          {i.industry}
+                        </td>
+                        <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                          {i.location}
+                        </td>
+                        <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                          {i.about}
+                        </td>
+                        <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                          {i.contactPerson}
+                        </td>
+                        <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                          {i.contactEmail}
+                        </td>
+                        <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                          {i.contactPhone}
+                        </td>
+                        <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center '>
+                          <Link
+                            to={`/student/placement/company/view/${i._id}`}
+                            className='flex justify-center items-center'
+                          >
+                            <IoEye size={24} />
+                          </Link>
+                        </td>
+                      </tr>
+                    )
+                  })}
                 </tbody>
               </table>
             </div>

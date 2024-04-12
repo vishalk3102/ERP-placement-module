@@ -102,68 +102,7 @@ const JobPosting = () => {
                       </th>
                     </tr>
                   </thead>
-                  <tbody>
-                    {jobs &&
-                      jobs.map((i, index) => {
-                        return (
-                          <tr className='border border-slate-900 '>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              1
-                            </td>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              {i.companyName}
-                            </td>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              {i.title}
-                            </td>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              {i.eligibleCourse}
-                            </td>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              {i.qualifications}
-                            </td>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              {i.description}
-                            </td>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              {i.salaryPackage}
-                            </td>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              {i.location}
-                            </td>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              {i.registrationLink}
-                            </td>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              {i.deadline}
-                            </td>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center '>
-                              <Link
-                                to={`/admin/placement/jobposting/view/${i._id}`}
-                                className='flex justify-center items-center'
-                              >
-                                <IoEye size={24} />
-                              </Link>
-                            </td>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              <Link
-                                to={`/admin/placement/jobposting/edit/${i._id}`}
-                              >
-                                <button className='p-1 m-1'>
-                                  <MdEdit size={24} />
-                                </button>
-                              </Link>
-                              <button
-                                className='p-1 m-1'
-                                onClick={() => deleteHandler(i._id)}
-                              >
-                                <MdDelete size={24} />
-                              </button>
-                            </td>
-                          </tr>
-                        )
-                      })}
-                  </tbody>
+                  <tbody></tbody>
                 </table>
               </div>
             </div>

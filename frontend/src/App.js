@@ -166,7 +166,17 @@ const App = () => {
           />
           <Route
             exact
+            path='/student/placement/company/view/:id'
+            element={<StudentCompany />}
+          />
+          <Route
+            exact
             path='/student/placement/eligiblejobs'
+            element={<StudentEligibleJobs />}
+          />
+          <Route
+            exact
+            path='/student/placement/eligiblejob/view/:id'
             element={<StudentEligibleJobs />}
           />
           <Route

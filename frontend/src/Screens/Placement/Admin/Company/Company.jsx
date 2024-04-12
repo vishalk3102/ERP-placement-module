@@ -101,62 +101,7 @@ const Company = () => {
                       </th>
                     </tr>
                   </thead>
-                  <tbody>
-                    {companies.map((i, index) => {
-                      return (
-                        <tr className='border border-slate-900' key={i}>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            1
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            {i.companyName}
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-left'>
-                            {i.website}
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            {i.industry}
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            {i.location}
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            {i.about}
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            {i.contactPerson}
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            {i.contactEmail}
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            {i.contactPhone}
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center '>
-                            <Link
-                              to={`/admin/placement/company/view/${i._id}`}
-                              className='flex justify-center items-center'
-                            >
-                              <IoEye size={24} />
-                            </Link>
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                            <Link to={`/admin/placement/company/edit/${i._id}`}>
-                              <button className='p-1 m-1'>
-                                <MdEdit size={24} />
-                              </button>
-                            </Link>
-                            <button
-                              className='p-1 m-1'
-                              onClick={() => deleteHandler(i._id)}
-                            >
-                              <MdDelete size={24} />
-                            </button>
-                          </td>
-                        </tr>
-                      )
-                    })}
-                  </tbody>
+                  <tbody></tbody>
                 </table>
               </div>
             </div>
