@@ -319,7 +319,7 @@ exports.applyForJob = catchAsyncError(async (req, res, next) => {
     branch
   } = req.body
 
-  const studentId = await Placement.findOne({ email }, { _id: 1 })
+  const studentId = await Placement.findOne({ email: email }, { _id: 1 })
   const jobPostingId = req.params.id
 
   const newJob = await Application.create({
@@ -381,9 +381,10 @@ exports.GetAllCompanyApplication = catchAsyncError(async (req, res, next) => {
 
 // GET APPLICATION COMPANY WISE --admin
 exports.getApplicationsByCompany = catchAsyncError(async (req, res, next) => {
-  const id = req.params.id
+  const companyId = req.params.id
+  console.log(companyId)
   const applications = await Application.find({
-    jobPosting: id
+    jobPosting: companyId
   })
 
   res.status(200).json({

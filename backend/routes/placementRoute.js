@@ -64,6 +64,6 @@ router.get('/student/placement/application', getAllAppliedApplications)
 
 router.post('/student/placement/eligiblejobs/apply/:id', applyForJob)
 router.get('/admin/placement/application', GetAllCompanyApplication)
-router.get('/admin/placement/application/:id', getAppliedApplication)
+router.get('/admin/placement/application/:id', getApplicationsByCompany)
 
 module.exports = router
