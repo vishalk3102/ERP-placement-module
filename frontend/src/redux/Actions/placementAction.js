@@ -131,13 +131,21 @@ export const getEligibleJobPostings = () => async dispatch => {
   }
 }
 
-export const applyForJob = () => async dispatch => {
+export const applyForJob = (formData, id) => async dispatch => {
   try {
     dispatch({
       type: 'applyForJobRequest'
     })
 
-    const { data } = await axios.post(`${server}/placement/jobs/apply`)
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+
+    const { data } = await axios.post(
+      `${server}/student/placement/eligiblejobs/apply/${id}`,
+      formData,
+      config
+    )
     dispatch({
       type: 'applyForJobSuccess',
       payload: data

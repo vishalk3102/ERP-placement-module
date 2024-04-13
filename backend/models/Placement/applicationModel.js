@@ -11,10 +11,37 @@ const applicationSchema = new mongoose.Schema({
     ref: 'jobPosting',
     required: true
   },
-  status: {
+  firstName: {
     type: String,
-    enum: ['applied', 'shortlisted', 'rejected'],
-    default: 'applied'
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  phoneNumber: {
+    type: String,
+    required: true
+  },
+  university: {
+    type: String,
+    required: true
+  },
+  course: {
+    type: String,
+    required: true
+  },
+  branch: {
+    type: String,
+    required: true
+  },
+  universityRollNo: {
+    type: String,
+    required: true
   }
 })
 

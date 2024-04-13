@@ -308,11 +308,37 @@ exports.getEligibleJobPostings = catchAsyncError(async (req, res, next) => {
 
 // APPLY TO JOB POSTING --student
 exports.applyForJob = catchAsyncError(async (req, res, next) => {
-  const newJob = await Application.create(req.body)
+  const {
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    university,
+    universityRollNo,
+    course,
+    branch
+  } = req.body
+
+  const studentId = await Placement.findOne({ email }, { _id: 1 })
+  const jobPostingId = req.params.id
+
+  const newJob = await Application.create({
+    student: studentId,
+    jobPosting: jobPostingId,
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    university,
+    universityRollNo,
+    course,
+    branch
+  })
 
   res.status(201).json({
     success: true,
-    message: 'Successfully Applied for Job'
+    message: 'Successfully Applied for Job',
+    newJob
   })
 })
 
@@ -344,7 +370,7 @@ exports.getAllAppliedApplications = catchAsyncError(async (req, res, next) => {
 
 // GET ALL COMPANIES IN APPLICATION TAB --admin
 exports.GetAllCompanyApplication = catchAsyncError(async (req, res, next) => {
-  const companies = await jobPosting.find({})
+  const companies = await JobPosting.find({})
 
   res.status(200).json({
     success: true,
@@ -357,7 +383,7 @@ exports.GetAllCompanyApplication = catchAsyncError(async (req, res, next) => {
 exports.getApplicationsByCompany = catchAsyncError(async (req, res, next) => {
   const id = req.params.id
   const applications = await Application.find({
-    'jobPosting._id': id
+    jobPosting: id
   })
 
   res.status(200).json({

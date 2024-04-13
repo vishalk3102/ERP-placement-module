@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { FiUpload } from 'react-icons/fi'
+import { useDispatch, useSelector } from 'react-redux'
 import Box from '@mui/material/Box'
 import SideNavbar from '../Student/SideNavbar'
+import { applyForJob } from '../../../Redux/Actions/placementAction'
 
 const Apply = () => {
   const [enrollmentNo, setEnrollmentNo] = useState('')
   const [universityRollNo, setUniversityRollNo] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-  const [dob, setDob] = useState('')
+  const [dateOfBirth, SetDateOfBirth] = useState('')
   const [gender, setGender] = useState('')
   const [email, setEmail] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
@@ -24,6 +27,25 @@ const Apply = () => {
     useState('')
   const [btechGraduationYear, setBtechGraduationYear] = useState('')
 
+  const dispatch = useDispatch()
+  const params = useParams()
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    const formData = {
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      university,
+      universityRollNo,
+      course,
+      branch
+    }
+    console.log(formData)
+    dispatch(applyForJob(formData, params.id))
+  }
+
   return (
     <>
       <section id='Profile' className='w-full h-full'>
@@ -37,7 +59,7 @@ const Apply = () => {
               Registration Form for Contata
             </h2>
             <form
-              //   onSubmit={handleSubmit}
+              onSubmit={handleSubmit}
               className='w-[100%] flex justify-center items-center flex-wrap gap-6 mx-auto mt-10'
             >
               <div className='w-[40%]'>
@@ -99,9 +121,8 @@ const Apply = () => {
                   onChange={e => setUniversity(e.target.value)}
                 >
                   <option defaultValue>-- Select --</option>
-                  <option value='University A'>University A</option>
-                  <option value='University B'>University B</option>
-                  {/* Add more options as needed */}
+                  <option value='GEU'>GEU</option>
+                  <option value='GEHU'>GEHU</option>
                 </select>
               </div>
               <div className='w-[40%]'>
@@ -129,6 +150,8 @@ const Apply = () => {
                   onChange={e => setBranch(e.target.value)}
                 >
                   <option defaultValue>-- Select --</option>
+                  <option value='CSE'>CSE</option>
+                  <option value='CSST'>CST</option>
                   {/*  {branch?.map(branch => {
                 return (
                   <option value={branch.name} key={branch.name}>
@@ -139,6 +162,21 @@ const Apply = () => {
                 </select>
               </div>
               <div className='w-[40%]'>
+                <label
+                  htmlFor='university-rollno'
+                  className='leading-7 text-sm '
+                >
+                  Enter University Rollno
+                </label>
+                <input
+                  type='text'
+                  id='university-rollno'
+                  value={universityRollNo}
+                  onChange={e => setUniversityRollNo(e.target.value)}
+                  className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+                />
+              </div>
+              {/*  <div className='w-[40%]'>
                 <label htmlFor='file' className='leading-7 text-sm '>
                   Upload Resume
                 </label>
@@ -158,7 +196,7 @@ const Apply = () => {
                   accept='image/*'
                   // onChange={e => setFile(e.target.files[0])}
                 />
-              </div>
+              </div> */}
               <div className='w-[80%] flex justify-center items-center'>
                 <button
                   type='submit'
