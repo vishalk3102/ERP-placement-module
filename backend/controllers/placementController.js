@@ -57,7 +57,8 @@ exports.registerPlacementProfile = catchAsyncError(async (req, res, next) => {
   })
   res.status(201).json({
     success: true,
-    message: 'Successfully Registered'
+    message: 'Successfully Registered',
+    user
   })
 })
 

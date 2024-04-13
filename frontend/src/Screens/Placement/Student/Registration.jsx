@@ -14,18 +14,19 @@ const Registration = () => {
   const [email, setEmail] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
   const [gender, setGender] = useState('')
-  const [dob, setDob] = useState('')
+  const [dateOfBirth, setDateOfBirth] = useState('')
   const [university, setUniversity] = useState('')
   const [course, setCourse] = useState('')
   const [branch, setBranch] = useState('')
   const [semester, setSemester] = useState('')
-  const [highSchoolPercentage, setHighSchoolPercentage] = useState('')
-  const [intermediatePercentage, setIntermediatePercentage] = useState('')
-  const [BtechCgpa, setBtechCgpa] = useState('')
-  const [highSchoolCompletionYear, setHighSchoolCompletionYear] = useState('')
-  const [intermediateCompletionYear, setIntermediateCompletionYear] =
+  const [percentageHighSchool, setPercentageHighSchool] = useState('')
+  const [percentageIntermediate, setPercentageIntermediate] = useState('')
+  const [CGPA, setCGPA] = useState('')
+  const [yearOfCompletionHighSchool, setYearOfCompletionHighSchool] =
     useState('')
-  const [btechGraduationYear, setBtechGraduationYear] = useState('')
+  const [yearOfCompletionIntermediate, setYearOfCompletionIntermediate] =
+    useState('')
+  const [graduationYear, setGraduationYear] = useState('')
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -33,25 +34,47 @@ const Registration = () => {
   const handleSubmit = e => {
     e.preventDefault()
     const formData = {
-      enrollmentNo,
-      universityRollNo,
+      // enrollmentNo,
+      // universityRollNo,
+      // firstName,
+      // lastName,
+      // email,
+      // phoneNumber,
+      // gender,
+      // dateOfBirth,
+      // university,
+      // course,
+      // branch,
+      // semester,
+      // percentageHighSchool,
+      // percentageIntermediate,
+      // CGPA,
+      // yearOfCompletionHighSchool,
+      // yearOfCompletionIntermediate,
+      // graduationYear
+
       firstName,
       lastName,
       email,
       phoneNumber,
+      dateOfBirth,
       gender,
-      dob,
-      university,
-      course,
-      branch,
-      semester,
-      highSchoolPercentage,
-      intermediatePercentage,
-      BtechCgpa,
-      highSchoolCompletionYear,
-      intermediateCompletionYear,
-      btechGraduationYear
+      academics: {
+        university,
+        enrollmentNo,
+        universityRollNo,
+        course,
+        branch,
+        semester,
+        CGPA,
+        graduationYear,
+        percentageHighSchool,
+        yearOfCompletionHighSchool,
+        percentageIntermediate,
+        yearOfCompletionIntermediate
+      }
     }
+    console.log(formData)
     dispatch(registerPlacementProfile(formData, navigate))
   }
   return (
@@ -167,8 +190,8 @@ const Registration = () => {
                 <input
                   type='date'
                   id='dateOfBirth'
-                  value={dob}
-                  onChange={e => setDob(e.target.value)}
+                  value={dateOfBirth}
+                  onChange={e => setDateOfBirth(e.target.value)}
                   className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                 />
               </div>
@@ -255,8 +278,8 @@ const Registration = () => {
                 <input
                   type='number'
                   id='highSchoolPercentage'
-                  value={highSchoolPercentage}
-                  onChange={e => setHighSchoolPercentage(e.target.value)}
+                  value={percentageHighSchool}
+                  onChange={e => setPercentageHighSchool(e.target.value)}
                   className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                 />
               </div>
@@ -270,8 +293,8 @@ const Registration = () => {
                 <input
                   type='number'
                   id='highSchoolCompletionYear'
-                  value={highSchoolCompletionYear}
-                  onChange={e => setHighSchoolCompletionYear(e.target.value)}
+                  value={yearOfCompletionHighSchool}
+                  onChange={e => setYearOfCompletionHighSchool(e.target.value)}
                   className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                 />
               </div>
@@ -285,8 +308,8 @@ const Registration = () => {
                 <input
                   type='number'
                   id='intermediatePercentage'
-                  value={intermediatePercentage}
-                  onChange={e => setIntermediatePercentage(e.target.value)}
+                  value={percentageIntermediate}
+                  onChange={e => setPercentageIntermediate(e.target.value)}
                   className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                 />
               </div>
@@ -300,8 +323,10 @@ const Registration = () => {
                 <input
                   type='number'
                   id='intermediateCompletionYear'
-                  value={intermediateCompletionYear}
-                  onChange={e => setIntermediateCompletionYear(e.target.value)}
+                  value={yearOfCompletionIntermediate}
+                  onChange={e =>
+                    setYearOfCompletionIntermediate(e.target.value)
+                  }
                   className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                 />
               </div>
@@ -312,8 +337,8 @@ const Registration = () => {
                 <input
                   type='number'
                   id='BtechCgpa'
-                  value={BtechCgpa}
-                  onChange={e => setBtechCgpa(e.target.value)}
+                  value={CGPA}
+                  onChange={e => setCGPA(e.target.value)}
                   className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                 />
               </div>
@@ -327,8 +352,8 @@ const Registration = () => {
                 <input
                   type='number'
                   id='btechGraduationYear'
-                  value={btechGraduationYear}
-                  onChange={e => setBtechGraduationYear(e.target.value)}
+                  value={graduationYear}
+                  onChange={e => setGraduationYear(e.target.value)}
                   className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                 />
               </div>

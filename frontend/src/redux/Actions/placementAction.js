@@ -36,7 +36,7 @@ export const getPlacementProfile = id => async dispatch => {
       type: 'getProfileRequest'
     })
 
-    const { data } = await axios.post(
+    const { data } = await axios.get(
       `${server}/student/placement/profile/${id}`
     )
     dispatch({
