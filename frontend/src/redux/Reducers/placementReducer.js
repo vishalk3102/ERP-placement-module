@@ -150,6 +150,18 @@ export const AdminPlacementReducer = createReducer(
       state.loading = false
       state.error = action.payload
     },
+    getApplicationsRequest: state => {
+      state.loading = true
+    },
+    getApplicationsSuccess: (state, action) => {
+      state.loading = false
+      state.count = action.payload.count
+      state.companies = action.payload.companies
+    },
+    getApplicationsFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
     getApplicationsByCompanyRequest: state => {
       state.loading = true
     },
@@ -157,6 +169,7 @@ export const AdminPlacementReducer = createReducer(
       state.loading = false
       state.count = action.payload.count
       state.applications = action.payload.applications
+      state.companyName = action.payload.companyName
     },
     getApplicationsByCompanyFail: (state, action) => {
       state.loading = false

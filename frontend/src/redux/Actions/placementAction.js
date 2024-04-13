@@ -142,7 +142,7 @@ export const applyForJob = (formData, id) => async dispatch => {
     }
 
     const { data } = await axios.post(
-      `${server}/student/placement/eligiblejobs/apply/${id}`,
+      `${server}/student/placement/eligiblejob/apply/${id}`,
       formData,
       config
     )
@@ -262,13 +262,33 @@ export const deleteStudent = id => async dispatch => {
   }
 }
 
-export const getApplicationsByCompany = () => async dispatch => {
+export const getApplications = () => async dispatch => {
+  try {
+    dispatch({
+      type: 'getApplicationsRequest'
+    })
+
+    const { data } = await axios.get(`${server}/admin/placement/application`)
+    dispatch({
+      type: 'getApplicationsSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getApplicationsFail',
+      payload: error.response.data.message
+    })
+  }
+}
+export const getApplicationsByCompany = id => async dispatch => {
   try {
     dispatch({
       type: 'getApplicationsByCompanyRequest'
     })
 
-    const { data } = await axios.get(`${server}/admin/placement/applications`)
+    const { data } = await axios.get(
+      `${server}/admin/placement/application/${id}`
+    )
     dispatch({
       type: 'getApplicationsByCompanySuccess',
       payload: data

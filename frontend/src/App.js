@@ -141,7 +141,7 @@ const App = () => {
           />
           <Route
             exact
-            path='/admin/placement/application/company/companywise'
+            path='/admin/placement/application/:id'
             element={<CompanyWiseStudentList />}
           />
 
@@ -183,7 +183,7 @@ const App = () => {
           />
           <Route
             exact
-            path='/student/placement/eligiblejobs/apply/:id'
+            path='/student/placement/eligiblejob/apply/:id'
             element={<Apply />}
           />
           <Route

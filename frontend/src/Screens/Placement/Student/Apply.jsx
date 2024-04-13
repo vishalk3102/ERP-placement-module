@@ -29,6 +29,7 @@ const Apply = () => {
 
   const dispatch = useDispatch()
   const params = useParams()
+  const navigate = useNavigate()
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -44,6 +45,7 @@ const Apply = () => {
     }
     console.log(formData)
     dispatch(applyForJob(formData, params.id))
+    navigate('/student/placement/eligiblejobs')
   }
 
   return (

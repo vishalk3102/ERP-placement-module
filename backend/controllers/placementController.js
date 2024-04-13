@@ -382,7 +382,9 @@ exports.GetAllCompanyApplication = catchAsyncError(async (req, res, next) => {
 // GET APPLICATION COMPANY WISE --admin
 exports.getApplicationsByCompany = catchAsyncError(async (req, res, next) => {
   const companyId = req.params.id
-  console.log(companyId)
+  const company = await JobPosting.findById(companyId)
+  const companyName = company.companyName
+
   const applications = await Application.find({
     jobPosting: companyId
   })
@@ -390,6 +392,7 @@ exports.getApplicationsByCompany = catchAsyncError(async (req, res, next) => {
   res.status(200).json({
     success: true,
     count: applications.length,
-    applications
+    applications,
+    companyName
   })
 })
