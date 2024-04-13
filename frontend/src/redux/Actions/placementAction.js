@@ -18,11 +18,11 @@ export const registerPlacementProfile =
       )
       dispatch({
         type: 'registerStudentForPlacementSuccess',
-        payload: data.message
+        payload: data
       })
 
-      const { _id } = data
-      navigate(`/student/placement/profile/${_id}`)
+      const id = data.user._id
+      navigate(`/student/placement/profile/${id}`)
     } catch (error) {
       dispatch({
         type: 'registerStudentForPlacementFail',

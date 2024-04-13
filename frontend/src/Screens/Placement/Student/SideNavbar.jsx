@@ -107,7 +107,9 @@ const SideNavbar = () => {
   const [open, setOpen] = useState(false)
 
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const { user } = useSelector(state => state.studentPlacement)
+
+  const id = user ? user._id : ''
 
   const handleDrawerOpen = () => {
     setOpen(true)
@@ -221,7 +223,9 @@ const SideNavbar = () => {
           <ListItem
             disablePadding
             sx={{ display: 'block' }}
-            onClick={() => navigate('/student/placement/profile/:id')}
+            onClick={() =>
+              navigate(`/student/placement/profile/661a94388acf6d30ede671cd`)
+            }
           >
             <ListItemButton
               sx={{

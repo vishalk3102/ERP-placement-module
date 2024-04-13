@@ -8,7 +8,8 @@ export const studentPlacementReducer = createReducer(
     },
     registerStudentForPlacementSuccess: (state, action) => {
       state.loading = false
-      state.message = action.payload
+      state.message = action.payload.message
+      state.user = action.payload.user
     },
     registerStudentForPlacementFail: (state, action) => {
       state.loading = false
@@ -19,7 +20,7 @@ export const studentPlacementReducer = createReducer(
     },
     getProfileSuccess: (state, action) => {
       state.loading = false
-      state.user = action.payload
+      state.user = action.payload.user
     },
     getProfileFail: (state, action) => {
       state.loading = false

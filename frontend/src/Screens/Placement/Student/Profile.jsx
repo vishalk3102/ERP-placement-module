@@ -66,9 +66,7 @@ const Profile = () => {
                         {' '}
                         Student Name :
                         <span className='text-[14px] md:text-[0.9rem] font-normal '>
-                          Vishal Kumar
-                          {user.firstName}
-                          {user.lastName}
+                          {`${user.firstName} ${user.lastName}`}
                         </span>
                       </li>
                       <li className='text-[14px] md:text-[1rem] font-semibold capitalize p-1 md:p-2'>
@@ -89,7 +87,7 @@ const Profile = () => {
                   </div>
                   <div className='col-span-1 md:col-span-2 '>
                     <ul className='flex flex-col justify-center items-start p-4'>
-                      <li className='text-[14px] md:text-[1rem] font-semibold capitalize p-1 md:p-2'>
+                      <li className='text-[14px] md:text-[1rem] font-semibold  p-1 md:p-2'>
                         {' '}
                         Email :
                         <span className='text-[14px] md:text-[0.9rem] font-normal '>
