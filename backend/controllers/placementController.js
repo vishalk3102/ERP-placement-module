@@ -342,11 +342,22 @@ exports.getAllAppliedApplications = catchAsyncError(async (req, res, next) => {
   })
 })
 
+// GET ALL COMPANIES IN APPLICATION TAB --admin
+exports.GetAllCompanyApplication = catchAsyncError(async (req, res, next) => {
+  const companies = await jobPosting.find({})
+
+  res.status(200).json({
+    success: true,
+    count: companies.length,
+    companies
+  })
+})
+
 // GET APPLICATION COMPANY WISE --admin
 exports.getApplicationsByCompany = catchAsyncError(async (req, res, next) => {
-  const companyId = req.params.companyId
+  const id = req.params.id
   const applications = await Application.find({
-    'jobPosting.company': companyId
+    'jobPosting._id': id
   })
 
   res.status(200).json({

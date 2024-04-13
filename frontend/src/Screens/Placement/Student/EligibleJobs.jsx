@@ -119,13 +119,14 @@ const EligibleJobs = () => {
                               {i.location}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              <button
-                                className='text-[#fff] text-[14px] font-semibold flex justify-center items-center bg-blue-500  rounded p-3 px-6 hover:bg-blue-700 ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all mx-auto'
-                                onClick={() => handleApply(i.registrationLink)}
+                              <Link
+                                to={`/student/placement/eligiblejobs/apply/${i._id}`}
                               >
-                                {' '}
-                                Apply
-                              </button>
+                                <button className='text-[#fff] text-[14px] font-semibold flex justify-center items-center bg-blue-500  rounded p-3 px-6 hover:bg-blue-700 ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all mx-auto'>
+                                  {' '}
+                                  Apply
+                                </button>
+                              </Link>
                             </td>
 
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>

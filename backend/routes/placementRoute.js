@@ -20,7 +20,8 @@ const {
   getAllAppliedApplications,
   getApplicationsByCompany,
   getAppliedApplication,
-  getPlacementProfile
+  getPlacementProfile,
+  GetAllCompanyApplication
 } = require('../controllers/placementController')
 const { isAuthenticated, authorizeAdmin } = require('../middlewares/auth')
 const router = express.Router()
@@ -61,7 +62,8 @@ router.get('/student/placement/eligiblejobs', getEligibleJobPostings)
 router.get('/student/placement/eligiblejob/view/:id', getJobPosting)
 router.get('/student/placement/application', getAllAppliedApplications)
 
-// router.post('/placement/jobs/apply', isAuthenticated, applyForJob)
-// router.get('/placement/application/:id', isAuthenticated, getAppliedApplication)
+router.post('/student/placement/eligiblejobs/apply/:id', applyForJob)
+router.get('/admin/placement/application', GetAllCompanyApplication)
+router.get('/admin/placement/application/:id', getAppliedApplication)
 
 module.exports = router
