@@ -54,7 +54,7 @@ router.get(
 
 // STUDENT
 router.post('/student/placement/register', registerPlacementProfile)
-router.get('/student/placement/me', getPlacementProfile)
+router.get('/student/placement/profile/:id', getPlacementProfile)
 router.get('/student/placement/companies', getAllCompanies)
 router.get('/student/placement/company/view/:id', getCompany)
 router.get('/student/placement/eligiblejobs', getEligibleJobPostings)

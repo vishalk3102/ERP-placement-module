@@ -1,31 +1,44 @@
 import axios from 'axios'
 import { server } from '../Store'
 
-export const registerPlacementProfile = () => async dispatch => {
-  try {
-    dispatch({
-      type: 'registerStudentForPlacementRequest'
-    })
+export const registerPlacementProfile =
+  (formData, navigate) => async dispatch => {
+    try {
+      dispatch({
+        type: 'registerStudentForPlacementRequest'
+      })
 
-    const { data } = await axios.post(`${server}/student/placement/register`)
-    dispatch({
-      type: 'registerStudentForPlacementSuccess',
-      payload: data.message
-    })
-  } catch (error) {
-    dispatch({
-      type: 'registerStudentForPlacementFail',
-      payload: error.response.data.message
-    })
+      const config = {
+        headers: { 'Content-Type': 'application/json' }
+      }
+      const { data } = await axios.post(
+        `${server}/student/placement/register`,
+        formData,
+        config
+      )
+      dispatch({
+        type: 'registerStudentForPlacementSuccess',
+        payload: data.message
+      })
+
+      const { _id } = data
+      navigate(`/student/placement/profile/${_id}`)
+    } catch (error) {
+      dispatch({
+        type: 'registerStudentForPlacementFail',
+        payload: error.response.data.message
+      })
+    }
   }
-}
-export const getPlacementProfile = () => async dispatch => {
+export const getPlacementProfile = id => async dispatch => {
   try {
     dispatch({
       type: 'getProfileRequest'
     })
 
-    const { data } = await axios.post(`${server}/student/placement/me`)
+    const { data } = await axios.post(
+      `${server}/student/placement/profile/${id}`
+    )
     dispatch({
       type: 'getProfileSuccess',
       payload: data

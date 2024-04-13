@@ -153,7 +153,7 @@ const App = () => {
           />
           <Route
             exact
-            path='/student/placement/me'
+            path='/student/placement/profile/:id'
             element={<StudentProfile />}
           />
           <Route

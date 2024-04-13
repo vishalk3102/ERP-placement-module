@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { FiUpload } from 'react-icons/fi'
+import { useDispatch, useSelector } from 'react-redux'
 import Box from '@mui/material/Box'
 import SideNavbar from './SideNavbar'
+import { registerPlacementProfile } from '../../../Redux/Actions/placementAction'
 
 const Registration = () => {
   const [enrollmentNo, setEnrollmentNo] = useState('')
@@ -23,6 +26,9 @@ const Registration = () => {
   const [intermediateCompletionYear, setIntermediateCompletionYear] =
     useState('')
   const [btechGraduationYear, setBtechGraduationYear] = useState('')
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -46,7 +52,7 @@ const Registration = () => {
       intermediateCompletionYear,
       btechGraduationYear
     }
-    console.log(formData)
+    dispatch(registerPlacementProfile(formData, navigate))
   }
   return (
     <>
@@ -177,8 +183,8 @@ const Registration = () => {
                   onChange={e => setUniversity(e.target.value)}
                 >
                   <option defaultValue>-- Select --</option>
-                  <option value='University A'>University A</option>
-                  <option value='University B'>University B</option>
+                  <option value='GEU'>GEU</option>
+                  <option value='GEHU'>GEHU</option>
                   {/* Add more options as needed */}
                 </select>
               </div>
@@ -207,6 +213,8 @@ const Registration = () => {
                   onChange={e => setBranch(e.target.value)}
                 >
                   <option defaultValue>-- Select --</option>
+                  <option value='CSE'>CSE</option>
+                  <option value='CSST'>CST</option>
                   {/*  {branch?.map(branch => {
                 return (
                   <option value={branch.name} key={branch.name}>
@@ -324,7 +332,7 @@ const Registration = () => {
                   className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                 />
               </div>
-              <div className='w-[40%]'>
+              {/*  <div className='w-[40%]'>
                 <label htmlFor='file' className='leading-7 text-sm '>
                   Upload Profile Photo
                 </label>
@@ -365,7 +373,7 @@ const Registration = () => {
                   accept='image/*'
                   // onChange={e => setFile(e.target.files[0])}
                 />
-              </div>
+              </div> */}
               {/*  {data.profile && (
             <div className='w-full flex justify-center items-center'>
               <img src={data.profile} alt='student' className='h-36' />

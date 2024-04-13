@@ -36,7 +36,6 @@ const CreateJobPost = () => {
       deadline
     }
 
-    console.log(formData)
     dispatch(createJobPosting(formData))
     navigate('/admin/placement/jobposting')
   }
