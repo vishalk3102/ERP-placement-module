@@ -175,6 +175,61 @@ export const AdminPlacementReducer = createReducer(
       state.loading = false
       state.error = action.payload
     },
+    CreateDriveRequest: state => {
+      state.loading = true
+    },
+    CreateDriveSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    CreateDriveFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    getAllDriveRequest: state => {
+      state.loading = true
+    },
+    getAllDriveSuccess: (state, action) => {
+      state.loading = false
+      state.drives = action.payload.drives
+    },
+    getAllDriveFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    getDriveRequest: state => {
+      state.loading = true
+    },
+    getDriveSuccess: (state, action) => {
+      state.loading = false
+      state.drive = action.payload.drive
+    },
+    getDriveFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    updateDriveRequest: state => {
+      state.loading = true
+    },
+    updateDriveSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    updateDriveFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    deleteDriveRequest: state => {
+      state.loading = true
+    },
+    deleteDriveSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    deleteDriveFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
     clearError: state => {
       state.error = null
     },

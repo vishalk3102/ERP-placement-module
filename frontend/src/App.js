@@ -18,13 +18,18 @@ import StudentProfile from './Screens/Placement/Student/Profile'
 import StudentCompany from './Screens/Placement/Student/Company'
 import StudentEligibleJobs from './Screens/Placement/Student/EligibleJobs'
 import StudentApplications from './Screens/Placement/Student/Application'
-import PlacementDrive from './Screens/Placement/Student/PlacementDrive'
+import StudentPlacementDrive from './Screens/Placement/Student/PlacementDrive'
 import Notice from './Screens/Placement/Student/Notice'
 
 // Admin Placement
 import AdminDashboard from './Screens/Placement/Admin/Dashboard'
 import Application from './Screens/Placement/Admin/Application'
 import CompanyWiseStudentList from './Screens/Placement/Admin/CompanyWiseStudentList'
+
+// Placement Drive
+import PlacementDrive from './Screens/Placement/Admin/Placement Drive/PlacementDrive'
+import AddDrive from './Screens/Placement/Admin/Placement Drive/AddDrive'
+import EditDrive from './Screens/Placement/Admin/Placement Drive/EditDrive'
 
 //Company
 import Company from './Screens/Placement/Admin/Company/Company'
@@ -144,6 +149,21 @@ const App = () => {
             path='/admin/placement/application/:id'
             element={<CompanyWiseStudentList />}
           />
+          <Route
+            exact
+            path='/admin/placement/drive'
+            element={<PlacementDrive />}
+          />
+          <Route
+            exact
+            path='/admin/placement/drive/add'
+            element={<AddDrive />}
+          />
+          <Route
+            exact
+            path='/admin/placement/drive/:id'
+            element={<EditDrive />}
+          />
 
           {/* STUDENT PLACEMENT DASHBOARD ROUTES */}
           <Route
@@ -194,7 +214,7 @@ const App = () => {
           <Route
             exact
             path='/student/placement/drive'
-            element={<PlacementDrive />}
+            element={<StudentPlacementDrive />}
           />
           <Route exact path='/student/placement/notice' element={<Notice />} />
         </Routes>

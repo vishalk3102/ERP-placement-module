@@ -26,114 +26,6 @@ const Application = () => {
     dispatch(getApplications())
   }, [dispatch, message, error])
 
-  // const [selectedCompany, setSelectedCompany] = useState(null)
-  // const [companyData] = useState([
-  //   {
-  //     id: 1,
-  //     name: 'Company A',
-  //     students: ['Alice', 'Bob', 'Charlie']
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Company B',
-  //     students: ['David', 'Emma', 'Frank']
-  //   },
-  //   {
-  //     id: 1,
-  //     name: 'Company A',
-  //     students: ['Alice', 'Bob', 'Charlie']
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Company B',
-  //     students: ['David', 'Emma', 'Frank']
-  //   },
-  //   {
-  //     id: 1,
-  //     name: 'Company A',
-  //     students: ['Alice', 'Bob', 'Charlie']
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Company B',
-  //     students: ['David', 'Emma', 'Frank']
-  //   },
-  //   {
-  //     id: 1,
-  //     name: 'Company A',
-  //     students: ['Alice', 'Bob', 'Charlie']
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Company B',
-  //     students: ['David', 'Emma', 'Frank']
-  //   },
-  //   {
-  //     id: 1,
-  //     name: 'Company A',
-  //     students: ['Alice', 'Bob', 'Charlie']
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Company B',
-  //     students: ['David', 'Emma', 'Frank']
-  //   },
-  //   {
-  //     id: 1,
-  //     name: 'Company A',
-  //     students: ['Alice', 'Bob', 'Charlie']
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Company B',
-  //     students: ['David', 'Emma', 'Frank']
-  //   },
-  //   {
-  //     id: 1,
-  //     name: 'Company A',
-  //     students: ['Alice', 'Bob', 'Charlie']
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Company B',
-  //     students: ['David', 'Emma', 'Frank']
-  //   },
-  //   {
-  //     id: 1,
-  //     name: 'Company A',
-  //     students: ['Alice', 'Bob', 'Charlie']
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Company B',
-  //     students: ['David', 'Emma', 'Frank']
-  //   },
-  //   {
-  //     id: 1,
-  //     name: 'Company A',
-  //     students: ['Alice', 'Bob', 'Charlie']
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Company B',
-  //     students: ['David', 'Emma', 'Frank']
-  //   },
-  //   {
-  //     id: 1,
-  //     name: 'Company A',
-  //     students: ['Alice', 'Bob', 'Charlie']
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Company B',
-  //     students: ['David', 'Emma', 'Frank']
-  //   }
-  // ])
-
-  // const handleTabClick = companyId => {
-  //   setSelectedCompany(companyId)
-  // }
-
   return (
     <>
       <section id='Orders' className='w-full h-full  mt-20'>
@@ -147,7 +39,7 @@ const Application = () => {
               >
                 Company Wise Registered Student Application
               </h2>
-              <div className='border-solid border-2 border-black my-6 flex justify-evenly  items-center flex-wrap'>
+              <div className='my-6 flex justify-evenly  items-center flex-wrap'>
                 {companies &&
                   companies.map((i, index) => (
                     <div className='text-[#fff] text-[18px] font-semibold flex justify-center items-center bg-blue-500  rounded m-4 py-4 px-8 hover:bg-blue-700 ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all capitalize'>

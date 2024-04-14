@@ -21,9 +21,16 @@ const {
   getApplicationsByCompany,
   getAppliedApplication,
   getPlacementProfile,
-  GetAllCompanyApplication
+  GetAllCompanyApplication,
+  getAllDrive,
+  createDrive,
+  getDrive
 } = require('../controllers/placementController')
 const { isAuthenticated, authorizeAdmin } = require('../middlewares/auth')
+const {
+  updateDrive,
+  deleteDrive
+} = require('../../frontend/src/Redux/Actions/placementAction')
 const router = express.Router()
 
 // ADMIN PLACEMENT ROUTES
@@ -47,11 +54,16 @@ router.get('/admin/placement/jobposting/view/:id', getJobPosting)
 router.put('/admin/placement/jobposting/:id', updateJobPosting)
 router.delete('/admin/placement/jobposting/:id', deleteJobPosting)
 
-//--> Application
-router.get(
-  '/admin/placement/application/company/companywise',
-  getApplicationsByCompany
-)
+//--> APPLICATION
+router.get('/admin/placement/application', GetAllCompanyApplication)
+router.get('/admin/placement/application/:id', getApplicationsByCompany)
+
+// --> PLACEMENT DRIVE
+router.get('/admin/placement/drive', getAllDrive)
+router.post('/admin/placement/drive/add', createDrive)
+router.get('/admin/placement/drive/:id', getDrive)
+router.put('/admin/placement/drive/:id', updateDrive)
+router.delete('/admin/placement/drive/:id', deleteDrive)
 
 // STUDENT
 router.post('/student/placement/register', registerPlacementProfile)
@@ -63,7 +75,5 @@ router.get('/student/placement/eligiblejob/view/:id', getJobPosting)
 router.get('/student/placement/application', getAllAppliedApplications)
 
 router.post('/student/placement/eligiblejob/apply/:id', applyForJob)
-router.get('/admin/placement/application', GetAllCompanyApplication)
-router.get('/admin/placement/application/:id', getApplicationsByCompany)
 
 module.exports = router

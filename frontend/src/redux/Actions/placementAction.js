@@ -526,3 +526,113 @@ export const deleteCompany = id => async dispatch => {
     })
   }
 }
+
+// PLACEMENT DRIVE
+export const createDrive = formData => async dispatch => {
+  try {
+    dispatch({
+      type: 'CreateDriveRequest'
+    })
+
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const { data } = await axios.post(
+      `${server}/admin/placement/drive/add`,
+      formData,
+      config
+    )
+    dispatch({
+      type: 'CreateDriveSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'CreateDriveFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
+export const getDrive = id => async dispatch => {
+  try {
+    dispatch({
+      type: 'getDriveRequest'
+    })
+
+    const { data } = await axios.get(`${server}/admin/placement/student/${id}`)
+    dispatch({
+      type: 'getDriveSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getDriveFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
+export const getAllDrive = () => async dispatch => {
+  try {
+    dispatch({
+      type: 'getAllDriveRequest'
+    })
+
+    const { data } = await axios.get(`${server}/admin/placement/drive`)
+    dispatch({
+      type: 'getAllDriveSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getAllDriveFail',
+      payload: error.response.data.message
+    })
+  }
+}
+export const updateDrive = (formData, id) => async dispatch => {
+  try {
+    dispatch({
+      type: 'updateDriveRequest'
+    })
+
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const { data } = await axios.put(
+      `${server}/admin/placement/drive/${id}`,
+      formData,
+      config
+    )
+    dispatch({
+      type: 'updateDriveSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'updateDriveFail',
+      payload: error.response.data.message
+    })
+  }
+}
+export const deleteDrive = id => async dispatch => {
+  try {
+    dispatch({
+      type: 'deleteDriveRequest'
+    })
+
+    const { data } = await axios.delete(
+      `${server}/admin/placement/student/${id}`
+    )
+    dispatch({
+      type: 'deleteDriveSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'deleteDriveFail',
+      payload: error.response.data.message
+    })
+  }
+}

@@ -6,6 +6,7 @@ const Company = require('../models/companyModel')
 const Placement = require('../models/placementModel')
 const Application = require('../models/Placement/applicationModel')
 const JobPosting = require('../models/Placement/jobPostingModel')
+const PlacementDrive = require('../models/Placement/driveModel')
 
 // STUDENT
 // REGISTER FOR PLACEMENT PROFILE --student
@@ -342,19 +343,6 @@ exports.applyForJob = catchAsyncError(async (req, res, next) => {
   })
 })
 
-// GET APPLIED JOB APPLICATION --student
-exports.getAppliedApplication = catchAsyncError(async (req, res, next) => {
-  const application = await Application.findById(req.params.id)
-
-  if (!application) {
-    next(new ErrorHandler("You haven't applied to any job yes", 400))
-  }
-  res.status(200).json({
-    success: true,
-    application
-  })
-})
-
 // GET ALL APPLIED JOB APPLICATION --student
 exports.getAllAppliedApplications = catchAsyncError(async (req, res, next) => {
   const studentId = req.params.studentId
@@ -394,5 +382,75 @@ exports.getApplicationsByCompany = catchAsyncError(async (req, res, next) => {
     count: applications.length,
     applications,
     companyName
+  })
+})
+
+// PLACEMENT DRIVE
+// CREATE DRIVE
+exports.createDrive = catchAsyncError(async (req, res, next) => {
+  const { companyName, location, date } = req.body
+
+  const newDrive = await JobPosting.create({
+    companyName,
+    location,
+    date
+  })
+  res.status(201).json({
+    success: true,
+    message: 'Placement Drive  Create successfully'
+  })
+})
+
+// GET ALL DRIVES  --admin/student
+exports.getAllDrive = catchAsyncError(async (req, res, next) => {
+  const drives = await PlacementDrive.find()
+
+  res.status(200).json({
+    success: true,
+    message: 'All Drives loaded',
+    count: Drives.length,
+    drives
+  })
+})
+
+// GET SINGLE DRIVE DETAILS
+exports.getDrive = catchAsyncError(async (req, res, next) => {
+  const drive = await PlacementDrive.findById(req.params.id)
+
+  if (!drive) {
+    next(new ErrorHandler("Drive doesn't exist ", 400))
+  }
+  res.status(200).json({
+    success: true,
+    message: 'Drive details loaded',
+    drive
+  })
+})
+
+// UPDATE DRIVE --admin
+exports.updateJobPosting = catchAsyncError(async (req, res, next) => {
+  const drive = await PlacementDrive.findById(req.params.id)
+
+  if (!drive) {
+    next(new ErrorHandler("Drive doesn't exist ", 400))
+  }
+  await JobPosting.findByIdAndUpdate(req.params.id, req.body)
+  res.status(201).json({
+    success: true,
+    message: 'Job updated successfully'
+  })
+})
+
+// DELETE DRIVE --admin
+exports.deleteJobPosting = catchAsyncError(async (req, res, next) => {
+  const drive = await PlacementDrive.findById(req.params.id)
+
+  if (!drive) {
+    next(new ErrorHandler("Job doesn't exist ", 400))
+  }
+  await JobPosting.findByIdAndDelete(req.params.id)
+  res.status(201).json({
+    success: true,
+    message: 'Job deleted successfully'
   })
 })
