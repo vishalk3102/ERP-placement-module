@@ -191,6 +191,7 @@ export const AdminPlacementReducer = createReducer(
     },
     getAllDriveSuccess: (state, action) => {
       state.loading = false
+      state.count = action.payload.count
       state.drives = action.payload.drives
     },
     getAllDriveFail: (state, action) => {

@@ -408,7 +408,7 @@ exports.getAllDrive = catchAsyncError(async (req, res, next) => {
   res.status(200).json({
     success: true,
     message: 'All Drives loaded',
-    count: Drives.length,
+    count: drives.length,
     drives
   })
 })
