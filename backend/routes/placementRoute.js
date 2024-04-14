@@ -24,13 +24,12 @@ const {
   GetAllCompanyApplication,
   getAllDrive,
   createDrive,
-  getDrive
-} = require('../controllers/placementController')
-const { isAuthenticated, authorizeAdmin } = require('../middlewares/auth')
-const {
+  getDrive,
   updateDrive,
   deleteDrive
-} = require('../../frontend/src/Redux/Actions/placementAction')
+} = require('../controllers/placementController')
+const { isAuthenticated, authorizeAdmin } = require('../middlewares/auth')
+
 const router = express.Router()
 
 // ADMIN PLACEMENT ROUTES

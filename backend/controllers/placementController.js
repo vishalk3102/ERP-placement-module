@@ -428,7 +428,7 @@ exports.getDrive = catchAsyncError(async (req, res, next) => {
 })
 
 // UPDATE DRIVE --admin
-exports.updateJobPosting = catchAsyncError(async (req, res, next) => {
+exports.updateDrive = catchAsyncError(async (req, res, next) => {
   const drive = await PlacementDrive.findById(req.params.id)
 
   if (!drive) {
@@ -442,7 +442,7 @@ exports.updateJobPosting = catchAsyncError(async (req, res, next) => {
 })
 
 // DELETE DRIVE --admin
-exports.deleteJobPosting = catchAsyncError(async (req, res, next) => {
+exports.deleteDrive = catchAsyncError(async (req, res, next) => {
   const drive = await PlacementDrive.findById(req.params.id)
 
   if (!drive) {
