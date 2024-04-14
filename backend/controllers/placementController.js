@@ -390,7 +390,7 @@ exports.getApplicationsByCompany = catchAsyncError(async (req, res, next) => {
 exports.createDrive = catchAsyncError(async (req, res, next) => {
   const { companyName, location, date } = req.body
 
-  const newDrive = await JobPosting.create({
+  const newDrive = await PlacementDrive.create({
     companyName,
     location,
     date
