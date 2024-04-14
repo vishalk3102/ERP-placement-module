@@ -434,7 +434,7 @@ exports.updateDrive = catchAsyncError(async (req, res, next) => {
   if (!drive) {
     next(new ErrorHandler("Drive doesn't exist ", 400))
   }
-  await JobPosting.findByIdAndUpdate(req.params.id, req.body)
+  await PlacementDrive.findByIdAndUpdate(req.params.id, req.body)
   res.status(201).json({
     success: true,
     message: 'Job updated successfully'
@@ -448,7 +448,7 @@ exports.deleteDrive = catchAsyncError(async (req, res, next) => {
   if (!drive) {
     next(new ErrorHandler("Job doesn't exist ", 400))
   }
-  await JobPosting.findByIdAndDelete(req.params.id)
+  await PlacementDrive.findByIdAndDelete(req.params.id)
   res.status(201).json({
     success: true,
     message: 'Job deleted successfully'
