@@ -26,13 +26,21 @@ const {
   createDrive,
   getDrive,
   updateDrive,
-  deleteDrive
+  deleteDrive,
+  getAllPlacedStudentDetails,
+  insertPlacedStudentDetails,
+  updatePlacedStudentDetails,
+  getAdminDashboardStats
 } = require('../controllers/placementController')
 const { isAuthenticated, authorizeAdmin } = require('../middlewares/auth')
 
 const router = express.Router()
 
 // ADMIN PLACEMENT ROUTES
+
+//--> DASHBOARD
+router.get('/admin/placement/dashboard', getAdminDashboardStats)
+
 // --> STUDENT
 router.get('/admin/placement/students', getAllStudent)
 router.get('/admin/placement/student/view/:id', getStudent)
@@ -63,6 +71,11 @@ router.post('/admin/placement/drive/add', createDrive)
 router.get('/admin/placement/drive/:id', getDrive)
 router.put('/admin/placement/drive/:id', updateDrive)
 router.delete('/admin/placement/drive/:id', deleteDrive)
+
+//--> PLACED STUDENT
+router.get('/admin/placement/placedstudents', getAllPlacedStudentDetails)
+router.post('/admin/placement/placedstudent/add', insertPlacedStudentDetails)
+router.put('/admin/placement/placedstudent/:id', updatePlacedStudentDetails)
 
 // STUDENT
 router.post('/student/placement/register', registerPlacementProfile)

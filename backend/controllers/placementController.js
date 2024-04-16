@@ -7,6 +7,8 @@ const Placement = require('../models/placementModel')
 const Application = require('../models/Placement/applicationModel')
 const JobPosting = require('../models/Placement/jobPostingModel')
 const PlacementDrive = require('../models/Placement/driveModel')
+const PlacedStudent = require('../models/Placement/placedStudentModel')
+const { authorizeAdmin } = require('../middlewares/auth')
 
 // STUDENT
 // REGISTER FOR PLACEMENT PROFILE --student
@@ -451,5 +453,118 @@ exports.deleteDrive = catchAsyncError(async (req, res, next) => {
   res.status(201).json({
     success: true,
     message: 'Job deleted successfully'
+  })
+})
+
+//PLACED STUDENT
+exports.insertPlacedStudentDetails = catchAsyncError(async (req, res, next) => {
+  const { fullName, email, phoneNumber, offers } = req.body
+
+  const offersArray = offers.map(offer => ({
+    companyName: offer.companyName,
+    salaryPackage: offer.salaryPackage
+  }))
+
+  const student = await PlacedStudent.create({
+    fullName,
+    email,
+    phoneNumber,
+    offers: offersArray
+  })
+
+  res.status(201).json({
+    success: true,
+    message: 'Placed Student Details Inserted Successfully',
+    student
+  })
+})
+
+exports.updatePlacedStudentDetails = catchAsyncError(async (req, res, next) => {
+  const student = await PlacedStudent.findById(req.params.id)
+
+  if (!student) {
+    next(new ErrorHandler('Student Data Not Found', 400))
+  }
+
+  student.set(req.body)
+  await student.save()
+  res.status(201).json({
+    success: true,
+    message: 'Placed Student Details Updated Successfully',
+    student
+  })
+})
+
+exports.getAllPlacedStudentDetails = catchAsyncError(async (req, res, next) => {
+  const students = await PlacedStudent.find()
+
+  res.status(200).json({
+    success: true,
+    students
+  })
+})
+
+// GET DASHBOARD STATS --admin
+exports.getAdminDashboardStats = catchAsyncError(async (req, res, next) => {
+  // calculating number of students
+  const totalStudents = await Placement.countDocuments()
+
+  // calculating number of placed students
+  const totalPlacedStudents = await PlacedStudent.countDocuments()
+
+  // calculating number of unplaced students
+  const totalUnplacedStudents = totalStudents - totalPlacedStudents
+
+  // calculating Total offers
+  const totalOffers = await PlacedStudent.aggregate([
+    {
+      $unwind: '$offers'
+    },
+    {
+      $group: {
+        _id: null,
+        totalOffers: { $sum: 1 }
+      }
+    }
+  ])
+
+  let count = 0
+  if (totalOffers.length > 0) {
+    count = totalOffers[0].totalOffers
+  }
+
+  // calculating placement percentage
+  let placementPercentage = 0
+  if (totalStudents > 0) {
+    placementPercentage = (totalPlacedStudents / totalStudents) * 100
+  }
+
+  // calculating average package
+  const totalPackages = await PlacedStudent.aggregate([
+    {
+      $unwind: '$offers'
+    },
+    {
+      $group: {
+        _id: null,
+        totalPackages: { $sum: { $toDouble: '$offers.salaryPackage' } } // Sum the salaryPackage values
+      }
+    }
+  ])
+
+  let averagePackage = 0
+  if (totalPackages.length > 0) {
+    const totalSum = totalPackages[0].totalPackages
+    averagePackage = totalSum / count
+  }
+
+  res.status(200).json({
+    success: true,
+    totalStudents,
+    totalPlacedStudents,
+    totalUnplacedStudents,
+    totalOffers: count,
+    placementPercentage,
+    averagePackage
   })
 })
