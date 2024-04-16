@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit'
 
 export const studentPlacementReducer = createReducer(
-  { eligibleCompanies: [], companies: [] },
+  { eligibleCompanies: [], companies: [], drives: [] },
   {
     registerStudentForPlacementRequest: state => {
       state.loading = true
@@ -91,6 +91,18 @@ export const studentPlacementReducer = createReducer(
       state.applications = action.payload.applications
     },
     getAllAppliedApplicationFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    getAllDriveRequest: state => {
+      state.loading = true
+    },
+    getAllDriveSuccess: (state, action) => {
+      state.loading = false
+      state.count = action.payload.count
+      state.drives = action.payload.drives
+    },
+    getAllDriveFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },

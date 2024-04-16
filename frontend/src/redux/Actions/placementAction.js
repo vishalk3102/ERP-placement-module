@@ -560,7 +560,7 @@ export const getDrive = id => async dispatch => {
       type: 'getDriveRequest'
     })
 
-    const { data } = await axios.get(`${server}/admin/placement/student/${id}`)
+    const { data } = await axios.get(`${server}/admin/placement/drive/${id}`)
     dispatch({
       type: 'getDriveSuccess',
       payload: data
@@ -622,9 +622,7 @@ export const deleteDrive = id => async dispatch => {
       type: 'deleteDriveRequest'
     })
 
-    const { data } = await axios.delete(
-      `${server}/admin/placement/student/${id}`
-    )
+    const { data } = await axios.delete(`${server}/admin/placement/drive/${id}`)
     dispatch({
       type: 'deleteDriveSuccess',
       payload: data

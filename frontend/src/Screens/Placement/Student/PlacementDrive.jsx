@@ -1,11 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-hot-toast'
 import Box from '@mui/material/Box'
 import SideNavbar from './SideNavbar'
 import PastDrive from './PastDrive'
 import UpcomingDrive from './UpcomingDrive'
+import { getAllDrive } from '../../../Redux/Actions/placementAction'
 
 const PlacementDrive = () => {
   const [selectedMenu, setSelectedMenu] = useState('past')
+
+  const dispatch = useDispatch()
+
+  const { loading, drives, error, message } = useSelector(
+    state => state.studentPlacement
+  )
+
+  useEffect(() => {
+    if (message) {
+      toast.success(message)
+      dispatch({ type: 'clearMessage' })
+    }
+    if (error) {
+      toast.error(error)
+      dispatch({ type: 'clearError' })
+    }
+    dispatch(getAllDrive())
+  }, [dispatch, message, error])
 
   return (
     <>

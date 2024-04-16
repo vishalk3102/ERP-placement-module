@@ -17,14 +17,17 @@ const CreateJobPost = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  const formatDate = date => {
+    const formattedDate = new Date(date).toISOString().split('T')[0]
+    return formattedDate
+  }
   const handleSubmit = e => {
     e.preventDefault()
-    console.log()
-
+    const formattedDate = formatDate(date)
     const formData = {
       companyName,
       location,
-      Date
+      date: formattedDate
     }
 
     dispatch(createDrive(formData))

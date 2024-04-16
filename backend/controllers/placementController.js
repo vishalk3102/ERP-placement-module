@@ -404,7 +404,6 @@ exports.createDrive = catchAsyncError(async (req, res, next) => {
 // GET ALL DRIVES  --admin/student
 exports.getAllDrive = catchAsyncError(async (req, res, next) => {
   const drives = await PlacementDrive.find()
-
   res.status(200).json({
     success: true,
     message: 'All Drives loaded',
