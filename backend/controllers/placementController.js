@@ -515,6 +515,9 @@ exports.getAdminDashboardStats = catchAsyncError(async (req, res, next) => {
   // calculating number of unplaced students
   const totalUnplacedStudents = totalStudents - totalPlacedStudents
 
+  // calculating Total Company Visited
+  const totalCompanyVisited = await JobPosting.countDocuments()
+
   // calculating Total offers
   const totalOffers = await PlacedStudent.aggregate([
     {
@@ -565,6 +568,7 @@ exports.getAdminDashboardStats = catchAsyncError(async (req, res, next) => {
     totalUnplacedStudents,
     totalOffers: count,
     placementPercentage,
-    averagePackage
+    averagePackage,
+    totalCompanyVisited
   })
 })

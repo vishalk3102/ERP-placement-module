@@ -634,3 +634,23 @@ export const deleteDrive = id => async dispatch => {
     })
   }
 }
+
+//ADMIN DASHBOARD STATS
+export const getAdminDashboardStats = () => async dispatch => {
+  try {
+    dispatch({
+      type: 'getAdminDashboardStatsRequest'
+    })
+
+    const { data } = await axios.get(`${server}/admin/placement/dashboard`)
+    dispatch({
+      type: 'getAdminDashboardStatsSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getAdminDashboardStatsFail',
+      payload: error.response.data.message
+    })
+  }
+}

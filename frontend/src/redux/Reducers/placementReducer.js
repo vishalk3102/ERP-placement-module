@@ -118,6 +118,23 @@ export const studentPlacementReducer = createReducer(
 export const AdminPlacementReducer = createReducer(
   { students: [] },
   {
+    getAdminDashboardStatsRequest: state => {
+      state.loading = true
+    },
+    getAdminDashboardStatsSuccess: (state, action) => {
+      state.loading = false
+      state.totalStudents = action.payload.totalStudents
+      state.totalPlacedStudents = action.payload.totalPlacedStudents
+      state.totalUnplacedStudents = action.payload.totalUnplacedStudents
+      state.totalOffers = action.payload.totalOffers
+      state.placementPercentage = action.payload.placementPercentage
+      state.averagePackage = action.payload.averagePackage
+      state.totalCompanyVisited = action.payload.totalCompanyVisited
+    },
+    getAdminDashboardStatsFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
     getAllStudentRequest: state => {
       state.loading = true
     },
