@@ -17,11 +17,11 @@ const { isAuthenticated, authorizeAdmin } = require('../middlewares/auth')
 const router = express.Router()
 
 // ADMIN
-router.get('/admin', isAuthenticated, authorizeAdmin, getAllAdmin)
-router.get('/admin/:id', isAuthenticated, authorizeAdmin, getAdmin)
-router.post('/admin/register', isAuthenticated, authorizeAdmin, registerAdmin)
-router.put('/admin/update/:id', isAuthenticated, authorizeAdmin, updateAdmin)
-router.delete('/admin/delete/:id', isAuthenticated, authorizeAdmin, deleteAdmin)
+router.post('/admin/register', registerAdmin)
+router.get('/admin', getAllAdmin)
+router.get('/admin/:id', getStudent)
+router.put('/admin/:id', updateAdmin)
+router.delete('/admin/:id', deleteAdmin)
 
 // BRANCH
 router.post('/admin/branch/add', isAuthenticated, authorizeAdmin, addBranch)

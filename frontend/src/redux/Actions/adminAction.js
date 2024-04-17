@@ -1,52 +1,43 @@
 import axios from 'axios'
 import { server } from '../Store'
 
-// ADMIN CREDENTIALS ACTION
-export const registerAdmin = () => async dispatch => {
+// ADMIN
+export const addAdmin = formData => async dispatch => {
   try {
     dispatch({
-      type: 'registerAdminRequest'
+      type: 'addAdminRequest'
     })
 
-    const { data } = await axios.get(`${server}/admin/register`)
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const { data } = await axios.post(
+      `${server}/admin/register`,
+      formData,
+      config
+    )
     dispatch({
-      type: 'registerAdminSuccess',
+      type: 'addAdminSuccess',
       payload: data.message
     })
   } catch (error) {
     dispatch({
-      type: 'registerAdminFail',
+      type: 'addAdminFail',
       payload: error.response.data.message
     })
   }
 }
 
-export const loginAdmin = () => async dispatch => {
-  try {
-    dispatch({
-      type: 'loginAdminRequest'
-    })
-
-    const { data } = await axios.get(`${server}/admin/auth/login`)
-    dispatch({
-      type: 'loginAdminSuccess',
-      payload: data.message
-    })
-  } catch (error) {
-    dispatch({
-      type: 'loginAdminFail',
-      payload: error.response.data.message
-    })
-  }
-}
-
-export const updateAdmin = id => async dispatch => {
+export const updateAdmin = (formData, id) => async dispatch => {
   try {
     dispatch({
       type: 'updateAdminRequest'
     })
 
-    const { data } = await axios.get(`${server}/admin/update/${id}`)
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const { data } = await axios.put(`${server}/admin/${id}`, formData, config)
     dispatch({
       type: 'updateAdminSuccess',
       payload: data.message
@@ -65,7 +56,7 @@ export const deleteAdmin = id => async dispatch => {
       type: 'deleteAdminRequest'
     })
 
-    const { data } = await axios.get(`${server}/admin/auth/delete/${id}`)
+    const { data } = await axios.delete(`${server}/admin/${id}`)
     dispatch({
       type: 'deleteAdminSuccess',
       payload: data.message
@@ -78,78 +69,149 @@ export const deleteAdmin = id => async dispatch => {
   }
 }
 
-// ADMIN DETAILS ACTION
-export const getDetails = () => async dispatch => {
+export const getAdmin = id => async dispatch => {
   try {
     dispatch({
-      type: 'getDetailsAdminRequest'
+      type: 'getAdminRequest'
     })
 
-    const { data } = await axios.get(`${server}/admin/details/register`)
+    const { data } = await axios.get(`${server}/admin/${id}`)
     dispatch({
-      type: 'getDetailsAdminSuccess',
-      payload: data.message
+      type: 'getAdminSuccess',
+      payload: data
     })
   } catch (error) {
     dispatch({
-      type: 'getDetailsAdminFail',
+      type: 'getAdminFail',
       payload: error.response.data.message
     })
   }
 }
 
-export const addDetails = () => async dispatch => {
+export const getAllAdmin = () => async dispatch => {
   try {
     dispatch({
-      type: 'addDetailsAdminRequest'
+      type: 'getAllAdminRequest'
     })
 
-    const { data } = await axios.post(`${server}/admin/details/login`)
+    const { data } = await axios.get(`${server}/admin`)
     dispatch({
-      type: 'addDetailsAdminSuccess',
-      payload: data.message
+      type: 'getAllAdminSuccess',
+      payload: data
     })
   } catch (error) {
     dispatch({
-      type: 'addDetailsAdminFail',
+      type: 'getAllAdminFail',
       payload: error.response.data.message
     })
   }
 }
 
-export const updateDetails = id => async dispatch => {
+// STUDENT
+export const addStudent = formData => async dispatch => {
   try {
     dispatch({
-      type: 'updateDetailsAdminRequest'
+      type: 'addStudentRequest'
     })
 
-    const { data } = await axios.post(`${server}/admin/details/update/${id}`)
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const { data } = await axios.post(
+      `${server}/admin/student/register`,
+      formData,
+      config
+    )
     dispatch({
-      type: 'updateDetailsAdminSuccess',
+      type: 'addStudentSuccess',
       payload: data.message
     })
   } catch (error) {
     dispatch({
-      type: 'updateDetailsAdminFail',
+      type: 'addStudentFail',
       payload: error.response.data.message
     })
   }
 }
 
-export const deleteDetails = id => async dispatch => {
+export const updateStudent = (formData, id) => async dispatch => {
   try {
     dispatch({
-      type: 'deleteDetailsAdminRequest'
+      type: 'updateStudentRequest'
     })
 
-    const { data } = await axios.delete(`${server}/admin/details/delete/${id}`)
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const { data } = await axios.put(
+      `${server}/admin/student/${id}`,
+      formData,
+      config
+    )
     dispatch({
-      type: 'deleteDetailsAdminSuccess',
+      type: 'updateStudentSuccess',
       payload: data.message
     })
   } catch (error) {
     dispatch({
-      type: 'deleteDetailsAdminFail',
+      type: 'updateStudentFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
+export const deleteStudent = id => async dispatch => {
+  try {
+    dispatch({
+      type: 'deleteStudentRequest'
+    })
+
+    const { data } = await axios.delete(`${server}/admin/student/${id}`)
+    dispatch({
+      type: 'deleteStudentSuccess',
+      payload: data.message
+    })
+  } catch (error) {
+    dispatch({
+      type: 'deleteStudentFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
+export const getStudent = id => async dispatch => {
+  try {
+    dispatch({
+      type: 'getStudentRequest'
+    })
+
+    const { data } = await axios.get(`${server}/admin/student/${id}`)
+    dispatch({
+      type: 'getStudentSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getStudentFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
+export const getAllStudent = () => async dispatch => {
+  try {
+    dispatch({
+      type: 'getAllStudentRequest'
+    })
+
+    const { data } = await axios.get(`${server}/admin/student`)
+    dispatch({
+      type: 'getAllStudentSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getAllStudentFail',
       payload: error.response.data.message
     })
   }

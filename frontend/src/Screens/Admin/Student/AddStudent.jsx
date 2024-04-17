@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import toast from 'react-hot-toast'
-import axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-hot-toast'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { storage } from '../../../firebase/config'
-import { baseApiURL } from '../../../baseUrl'
 import { FiUpload } from 'react-icons/fi'
 
 const AddStudent = () => {
@@ -140,7 +140,30 @@ const AddStudent = () => {
   //       toast.error(error.response.data.message)
   //     })
   // }
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
+  const handleSubmit = e => {
+    e.preventDefault()
+    console.log()
+
+    const formData = {
+      enrollmentNo,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      gender,
+      course,
+      branch,
+      semester,
+      universityRollNo,
+      section
+    }
+
+    dispatch(createJobPosting(formData))
+    navigate('/admin/placement/jobposting')
+  }
   return (
     <form
       // onSubmit={addStudentProfile}

@@ -3,17 +3,6 @@ import { createReducer } from '@reduxjs/toolkit'
 export const facultyReducer = createReducer(
   {},
   {
-    registerFacultyRequest: state => {
-      state.loading = true
-    },
-    registerFacultySuccess: (state, action) => {
-      state.loading = false
-      state.message = action.payload.message
-    },
-    registerFacultyFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
     loginFacultyRequest: state => {
       state.loading = true
     },
@@ -25,28 +14,7 @@ export const facultyReducer = createReducer(
       state.loading = false
       state.error = action.payload
     },
-    updateFacultyRequest: state => {
-      state.loading = true
-    },
-    updateFacultySuccess: (state, action) => {
-      state.loading = false
-      state.message = action.payload.message
-    },
-    updateFacultyFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
-    deleteFacultyRequest: state => {
-      state.loading = true
-    },
-    deleteFacultySuccess: (state, action) => {
-      state.loading = false
-      state.message = action.payload.message
-    },
-    deleteFacultyFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
+
     clearError: state => {
       state.error = null
     },

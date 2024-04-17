@@ -3,25 +3,92 @@ import { createReducer } from '@reduxjs/toolkit'
 export const adminReducer = createReducer(
   {},
   {
-    registerAdminRequest: state => {
+    getStudentRequest: state => {
       state.loading = true
     },
-    registerAdminSuccess: (state, action) => {
+    getStudentSuccess: (state, action) => {
       state.loading = false
-      state.message = action.payload.message
+      state.student = action.payload.admin
     },
-    registerAdminFail: (state, action) => {
+    getStudentFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },
-    loginAdminRequest: state => {
+    getAllStudentRequest: state => {
       state.loading = true
     },
-    loginAdminSuccess: (state, action) => {
+    getAllStudentSuccess: (state, action) => {
+      state.loading = false
+      state.students = action.payload.admins
+    },
+    getAllStudentFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    addStudentRequest: state => {
+      state.loading = true
+    },
+    addStudentSuccess: (state, action) => {
       state.loading = false
       state.message = action.payload.message
     },
-    loginAdminFail: (state, action) => {
+    addStudentFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    updateStudentRequest: state => {
+      state.loading = true
+    },
+    updateStudentSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    updateStudentFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    deleteStudentRequest: state => {
+      state.loading = true
+    },
+    deleteStudentSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    deleteStudentFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+
+    getAdminRequest: state => {
+      state.loading = true
+    },
+    getAdminSuccess: (state, action) => {
+      state.loading = false
+      state.admin = action.payload.admin
+    },
+    getAdminFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    getAllAdminRequest: state => {
+      state.loading = true
+    },
+    getAllAdminSuccess: (state, action) => {
+      state.loading = false
+      state.admins = action.payload.admins
+    },
+    getAllAdminFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    addAdminRequest: state => {
+      state.loading = true
+    },
+    addAdminSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    addAdminFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },
@@ -44,6 +111,62 @@ export const adminReducer = createReducer(
       state.message = action.payload.message
     },
     deleteAdminFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+
+    getFacultyRequest: state => {
+      state.loading = true
+    },
+    getFacultySuccess: (state, action) => {
+      state.loading = false
+      state.faculty = action.payload.faculty
+    },
+    getFacultyFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    getAllFacultyRequest: state => {
+      state.loading = true
+    },
+    getAllFacultySuccess: (state, action) => {
+      state.loading = false
+      state.faculties = action.payload.faculties
+    },
+    getAllFacultyFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    addFacultyRequest: state => {
+      state.loading = true
+    },
+    addFacultySuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    addFacultyFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    updateFacultyRequest: state => {
+      state.loading = true
+    },
+    updateFacultySuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    updateFacultyFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    deleteFacultyRequest: state => {
+      state.loading = true
+    },
+    deleteFacultySuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    deleteFacultyFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },

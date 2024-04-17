@@ -3,39 +3,6 @@ import { createReducer } from '@reduxjs/toolkit'
 export const studentReducer = createReducer(
   {},
   {
-    registerStudentRequest: state => {
-      state.loading = true
-    },
-    registerStudentSuccess: (state, action) => {
-      state.loading = false
-      state.message = action.payload.message
-    },
-    registerStudentFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
-    updateStudentRequest: state => {
-      state.loading = true
-    },
-    updateStudentSuccess: (state, action) => {
-      state.loading = false
-      state.message = action.payload.message
-    },
-    updateStudentFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
-    deleteStudentRequest: state => {
-      state.loading = true
-    },
-    deleteStudentSuccess: (state, action) => {
-      state.loading = false
-      state.message = action.payload.message
-    },
-    deleteStudentFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
     clearError: state => {
       state.error = null
     },
