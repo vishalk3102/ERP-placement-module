@@ -16,7 +16,7 @@ const { isAuthenticated, authorizeAdmin } = require('../middlewares/auth')
 const router = express.Router()
 
 // BRANCH
-router.get('/branch/getbranch', isAuthenticated, getBranch)
+// router.get('/branch/getbranch', isAuthenticated, getBranch)
 
 //SUBJECT
 router.get('/subject/getsubject', isAuthenticated, getSubject)

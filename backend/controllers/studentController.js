@@ -8,6 +8,7 @@ const Subject = require('../models/SubjectModel')
 const Material = require('../models/MaterialModel')
 const Timetable = require('../models/TimetableModel')
 const Marks = require('../models/MarksModel')
+const { default: mongoose } = require('mongoose')
 
 // REGISTER STUDENT
 exports.registerStudent = catchAsyncError(async (req, res, next) => {
@@ -56,11 +57,13 @@ exports.getAllStudent = catchAsyncError(async (req, res, next) => {
   })
 })
 
-//GET STUDENT
+// GET STUDENT
 exports.getStudent = catchAsyncError(async (req, res, next) => {
-  const { id } = req.params
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    return next(new ErrorHandler('Invalid Student ID', 400))
+  }
 
-  let student = await User.findById(id)
+  let student = await User.findById(req.params.id)
   if (!student) {
     return next(new ErrorHandler('No Student Exists', 400))
   }
@@ -106,18 +109,18 @@ exports.deleteStudent = catchAsyncError(async (req, res, next) => {
   })
 })
 
-// GET BRANCH
-exports.getBranch = catchAsyncError(async (req, res, next) => {
-  let branches = await Branch.find()
-  if (!branches) {
-    return next(new ErrorHandler('No Branche Available', 400))
-  }
-  res.status(200).json({
-    success: true,
-    message: 'All Branches Loaded!',
-    branches
-  })
-})
+// // GET BRANCH
+// exports.getBranch = catchAsyncError(async (req, res, next) => {
+//   let branches = await Branch.find()
+//   if (!branches) {
+//     return next(new ErrorHandler('No Branch Available', 400))
+//   }
+//   res.status(200).json({
+//     success: true,
+//     message: 'All Branches Loaded!',
+//     branches
+//   })
+// })
 
 // GET NOTICE
 exports.getNotice = catchAsyncError(async (req, res, next) => {

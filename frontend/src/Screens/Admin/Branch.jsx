@@ -28,9 +28,9 @@ const Branch = () => {
     dispatch(addBranch(branch))
   }
 
-  const deleteBranchHandler = id => {
+  /*  const deleteBranchHandler = id => {
     dispatch(deleteBranch(id))
-  }
+  } */
 
   return (
     <div className='w-[85%] mx-auto mt-10 flex justify-center items-start flex-col mb-10'>
@@ -71,7 +71,7 @@ const Branch = () => {
           </div>
           <button
             className='mt-6 bg-blue-500 px-6 py-3 text-white'
-            // onClick={addBranchHandler}
+            onClick={addBranchHandler}
           >
             Add Branch
           </button>

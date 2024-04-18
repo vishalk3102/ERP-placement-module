@@ -36,6 +36,11 @@ const {
 } = require('../controllers/studentController')
 const router = express.Router()
 
+// BRANCH
+router.get('/admin/branch', getAllBranch)
+router.post('/admin/branch/add', addBranch)
+router.delete('/admin/branch/:id', deleteBranch)
+
 // STUDENT
 router.get('/admin/student', getAllStudent)
 router.post('/admin/student/register', registerStudent)
@@ -56,11 +61,6 @@ router.get('/admin', getAllAdmin)
 router.get('/admin/:id', getStudent)
 router.put('/admin/:id', updateAdmin)
 router.delete('/admin/:id', deleteAdmin)
-
-// BRANCH
-router.get('/admin/branch', getAllBranch)
-router.post('/admin/branch/add', addBranch)
-router.delete('/admin/branch/:id', deleteBranch)
 
 // NOTICE
 router.get('/admin/branch', getAllNotice)

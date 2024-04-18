@@ -44,7 +44,6 @@ exports.getAllAdmin = catchAsyncError(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    message: 'All Faculties Loaded',
     admins
   })
 })
@@ -99,9 +98,10 @@ exports.deleteAdmin = catchAsyncError(async (req, res, next) => {
   })
 })
 
-// GET ALL  BRANCH
+// GET ALL BRANCH
+
 exports.getAllBranch = catchAsyncError(async (req, res, next) => {
-  const branches = Branch.find({})
+  let branches = await Branch.find()
 
   res.status(200).json({
     success: true,
@@ -123,7 +123,8 @@ exports.addBranch = catchAsyncError(async (req, res, next) => {
   })
   res.status(200).json({
     success: true,
-    message: 'Branch Added!'
+    message: 'Branch Added!',
+    branch
   })
 })
 
@@ -141,7 +142,7 @@ exports.deleteBranch = catchAsyncError(async (req, res, next) => {
 
 // GET ALL NOTICE
 exports.getAllNotice = catchAsyncError(async (req, res, next) => {
-  const notices = Notice.find({})
+  const notices = await Notice.find({})
 
   res.status(200).json({
     success: true,
@@ -201,7 +202,7 @@ exports.deleteNotice = catchAsyncError(async (req, res, next) => {
 
 // GET ALL  SUBJECT
 exports.getAllSubject = catchAsyncError(async (req, res, next) => {
-  const subjects = Subject.find({})
+  const subjects = await Subject.find({})
 
   res.status(200).json({
     success: true,
