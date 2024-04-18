@@ -4,33 +4,33 @@ import { toast } from 'react-hot-toast'
 import Heading from '../../components/Heading'
 import { MdOutlineDelete } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
-// import {
-//   getBranch,
-//   addBranch,
-//   deleteBranch
-// } from '../../Redux/Actions/otherAction'
+import {
+  addBranch,
+  deleteBranch,
+  getAllBranch
+} from '../../Redux/Actions/adminAction'
 
 const Branch = () => {
-  const [selected, setSelected] = useState('add')
+  const [selected, setSelected] = useState('view')
   const [branch, setBranch] = useState('')
-  // const dispatch = useDispatch()
-  // const { loading, branches, error } = useSelector(state => state.branch)
+  const dispatch = useDispatch()
+  const { loading, branches, error } = useSelector(state => state.admin)
 
-  // useEffect(() => {
-  //   if (error) {
-  //     toast.error(error)
-  //     dispatch({ type: 'clearError' })
-  //   }
-  //   dispatch(getBranch())
-  // }, [dispatch, error])
+  useEffect(() => {
+    if (error) {
+      toast.error(error)
+      dispatch({ type: 'clearError' })
+    }
+    dispatch(getAllBranch())
+  }, [dispatch, error])
 
-  // const addBranchHandler = () => {
-  //   dispatch(addBranch(branch))
-  // }
+  const addBranchHandler = () => {
+    dispatch(addBranch(branch))
+  }
 
-  // const deleteBranchHandler = id => {
-  //   dispatch(deleteBranch(id))
-  // }
+  const deleteBranchHandler = id => {
+    dispatch(deleteBranch(id))
+  }
 
   return (
     <div className='w-[85%] mx-auto mt-10 flex justify-center items-start flex-col mb-10'>

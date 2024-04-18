@@ -99,11 +99,21 @@ exports.deleteAdmin = catchAsyncError(async (req, res, next) => {
   })
 })
 
+// GET ALL  BRANCH
+exports.getAllBranch = catchAsyncError(async (req, res, next) => {
+  const branches = Branch.find({})
+
+  res.status(200).json({
+    success: true,
+    branches
+  })
+})
+
 // ADD BRANCH
 exports.addBranch = catchAsyncError(async (req, res, next) => {
   let { name } = req.body
   let branch = await Branch.findOne({ name })
-  console.log(branch)
+
   if (branch) {
     return next(new ErrorHandler('Already Exists', 400))
   }
@@ -126,6 +136,16 @@ exports.deleteBranch = catchAsyncError(async (req, res, next) => {
   res.status(200).json({
     success: true,
     message: 'Branch Deleted!'
+  })
+})
+
+// GET ALL NOTICE
+exports.getAllNotice = catchAsyncError(async (req, res, next) => {
+  const notices = Notice.find({})
+
+  res.status(200).json({
+    success: true,
+    notices
   })
 })
 
@@ -176,6 +196,16 @@ exports.deleteNotice = catchAsyncError(async (req, res, next) => {
     success: true,
     message: 'Notice Deleted Successfully',
     Notice
+  })
+})
+
+// GET ALL  SUBJECT
+exports.getAllSubject = catchAsyncError(async (req, res, next) => {
+  const subjects = Subject.find({})
+
+  res.status(200).json({
+    success: true,
+    subjects
   })
 })
 

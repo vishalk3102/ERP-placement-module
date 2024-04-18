@@ -4,39 +4,6 @@ import { createReducer } from '@reduxjs/toolkit'
 export const branchReducer = createReducer(
   {},
   {
-    getBranchRequest: state => {
-      state.loading = true
-    },
-    getBranchSuccess: (state, action) => {
-      state.loading = false
-      state.branches = action.payload
-    },
-    getBranchFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
-    addBranchRequest: state => {
-      state.loading = true
-    },
-    addBranchSuccess: (state, action) => {
-      state.loading = false
-      state.message = action.payload.message
-    },
-    addBranchFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
-    deleteBranchRequest: state => {
-      state.loading = true
-    },
-    deleteBranchSuccess: (state, action) => {
-      state.loading = false
-      state.message = action.payload.message
-    },
-    deleteBranchFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
     clearError: state => {
       state.error = null
     },
@@ -155,6 +122,18 @@ export const materialsReducer = createReducer(
 export const noticeReducer = createReducer(
   {},
   {
+    getAllNoticeRequest: state => {
+      state.loading = true
+    },
+    getAllNoticeSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+      state.notices = action.payload.notice
+    },
+    getAllNoticeFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
     getNoticeRequest: state => {
       state.loading = true
     },

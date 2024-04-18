@@ -24,9 +24,7 @@ const store = configureStore({
   reducer: {
     auth: authReducer,
     admin: adminReducer,
-    adminDetail: adminDetailsReducer,
     faculty: facultyReducer,
-    facultyDetail: facultyDetailsReducer,
     branch: branchReducer,
     marks: marksReducer,
     materials: materialsReducer,

@@ -5,6 +5,7 @@ import { toast } from 'react-hot-toast'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { storage } from '../../../firebase/config'
 import { FiUpload } from 'react-icons/fi'
+import { addAdmin, addStudent } from '../../../Redux/Actions/adminAction'
 
 const AddStudent = () => {
   const [enrollmentNo, setEnrollmentNo] = useState('')
@@ -21,18 +22,7 @@ const AddStudent = () => {
 
   // const [file, setFile] = useState()
   // const [branch, setBranch] = useState()
-  // const [data, setData] = useState({
-  //   enrollmentNo: '',
-  //   firstName: '',
-  //   middleName: '',
-  //   lastName: '',
-  //   email: '',
-  //   phoneNumber: '',
-  //   semester: '',
-  //   branch: '',
-  //   gender: '',
-  //   profile: ''
-  // })
+
   // const getBranchData = () => {
   //   const headers = {
   //     'Content-Type': 'application/json'
@@ -143,7 +133,7 @@ const AddStudent = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const handleSubmit = e => {
+  const addStudentProfile = e => {
     e.preventDefault()
     console.log()
 
@@ -161,12 +151,12 @@ const AddStudent = () => {
       section
     }
 
-    dispatch(createJobPosting(formData))
-    navigate('/admin/placement/jobposting')
+    dispatch(addStudent(formData))
+    navigate('/admin/student')
   }
   return (
     <form
-      // onSubmit={addStudentProfile}
+      onSubmit={addStudentProfile}
       className='w-[70%] flex justify-center items-center flex-wrap gap-6 mx-auto mt-10'
     >
       <div className='w-[40%]'>

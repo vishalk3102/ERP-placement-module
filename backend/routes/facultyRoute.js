@@ -19,21 +19,6 @@ const {
 } = require('../middlewares/auth')
 const router = express.Router()
 
-// FACULTY ROUTE
-router.get('/admin/faculty', isAuthenticated, authorizeAdmin, getAllFaculty)
-
-router.post(
-  '/admin/faculty/register',
-  isAuthenticated,
-  authorizeAdmin,
-  registerFaculty
-)
-router
-  .route('/admin/faculty/:id')
-  .get(isAuthenticated, authorizeAdmin, getFaculty)
-  .put(isAuthenticated, authorizeAdmin, updateFaculty)
-  .delete(isAuthenticated, authorizeAdmin, deleteFaculty)
-
 // MATERIAL ROUTE
 router.post(
   '/admin/material/addmaterial',

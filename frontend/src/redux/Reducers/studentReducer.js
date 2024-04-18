@@ -3,73 +3,63 @@ import { createReducer } from '@reduxjs/toolkit'
 export const studentReducer = createReducer(
   {},
   {
-    clearError: state => {
-      state.error = null
+    // TIMETABLE
+    getTimetabletRequest: state => {
+      state.loading = true
     },
-    clearMessage: state => {
-      state.message = null
-    }
-  }
-)
+    getTimetabletSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+      state.subjets = action.payload.subjets
+    },
+    getTimetabletFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
 
-export const StudentDetailsReducer = createReducer(
-  {},
-  {
-    getDetailsStudentRequest: state => {
+    // MARKS
+    getMarksRequest: state => {
       state.loading = true
     },
-    getDetailsStudentSuccess: (state, action) => {
-      state.loading = false
-      state.user = action.payload
-    },
-    getDetailsStudentFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
-    addDetailsStudentRequest: state => {
-      state.loading = true
-    },
-    addDetailsStudentSuccess: (state, action) => {
-      state.loading = false
-      state.user = action.payload
-    },
-    addDetailsStudentFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
-    updateDetailsStudentRequest: state => {
-      state.loading = true
-    },
-    updateDetailsStudentSuccess: (state, action) => {
+    getMarksSuccess: (state, action) => {
       state.loading = false
       state.message = action.payload.message
+      state.mark = action.payload.mark
     },
-    updateDetailsStudentFail: (state, action) => {
+    getMarksFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },
-    deleteDetailsStudentRequest: state => {
+
+    // MATERIAL
+    getMaterialsRequest: state => {
       state.loading = true
     },
-    deleteDetailsStudentSuccess: (state, action) => {
+    getMaterialsSuccess: (state, action) => {
       state.loading = false
       state.message = action.payload.message
+      state.material = action.payload.materials
     },
-    deleteDetailsStudentFail: (state, action) => {
+    getMaterialsFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },
-    getcountRequest: state => {
+
+    // NOTICE
+    getNoticeRequest: state => {
       state.loading = true
     },
-    getcountSuccess: (state, action) => {
+    getNoticeSuccess: (state, action) => {
       state.loading = false
-      state.user = action.payload
+      state.message = action.payload.message
+      state.notice = action.payload.notice
     },
-    getcountFail: (state, action) => {
+    getNoticeFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },
+
+    // ERROR
     clearError: state => {
       state.error = null
     },

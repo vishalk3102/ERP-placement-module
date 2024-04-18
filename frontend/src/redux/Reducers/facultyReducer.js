@@ -3,85 +3,186 @@ import { createReducer } from '@reduxjs/toolkit'
 export const facultyReducer = createReducer(
   {},
   {
-    loginFacultyRequest: state => {
+    // STUDENT INFO
+    getStudentRequest: state => {
       state.loading = true
     },
-    loginFacultySuccess: (state, action) => {
+    getStudentSuccess: (state, action) => {
       state.loading = false
-      state.message = action.payload.message
+      state.student = action.payload.admin
     },
-    loginFacultyFail: (state, action) => {
+    getStudentFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },
 
-    clearError: state => {
-      state.error = null
+    // MARKS
+    getMarksRequest: state => {
+      state.loading = true
     },
-    clearMessage: state => {
-      state.message = null
-    }
-  }
-)
+    getMarksSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+      state.mark = action.payload.mark
+    },
+    getMarksFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    addMarksRequest: state => {
+      state.loading = true
+    },
+    addMarksSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    addMarksFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    deleteMarksRequest: state => {
+      state.loading = true
+    },
+    deleteMarksSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    deleteMarksFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
 
-export const facultyDetailsReducer = createReducer(
-  {},
-  {
-    getDetailsFacultyRequest: state => {
+    // TIMETABLE
+    getTimetabletRequest: state => {
       state.loading = true
     },
-    getDetailsFacultySuccess: (state, action) => {
+    getTimetabletSuccess: (state, action) => {
       state.loading = false
-      state.user = action.payload
+      state.message = action.payload.message
+      state.subjets = action.payload.subjets
     },
-    getDetailsFacultyFail: (state, action) => {
+    getTimetabletFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },
-    addDetailsFacultyRequest: state => {
+    addTimetabletRequest: state => {
       state.loading = true
     },
-    addDetailsFacultySuccess: (state, action) => {
-      state.loading = false
-      state.user = action.payload
-    },
-    addDetailsFacultyFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
-    updateDetailsFacultyRequest: state => {
-      state.loading = true
-    },
-    updateDetailsFacultySuccess: (state, action) => {
+    addTimetableSuccess: (state, action) => {
       state.loading = false
       state.message = action.payload.message
     },
-    updateDetailsFacultyFail: (state, action) => {
+    addTimetabletFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },
-    deleteDetailsFacultyRequest: state => {
+    deleteTimetabletRequest: state => {
       state.loading = true
     },
-    deleteDetailsFacultySuccess: (state, action) => {
+    deleteTimetabletSuccess: (state, action) => {
       state.loading = false
       state.message = action.payload.message
     },
-    deleteDetailsFacultyFail: (state, action) => {
+    deleteTimetabletFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },
-    getcountRequest: state => {
+
+    // NOTICE
+    getNoticeRequest: state => {
       state.loading = true
     },
-    getcountSuccess: (state, action) => {
+    getNoticeSuccess: (state, action) => {
       state.loading = false
-      state.user = action.payload
+      state.message = action.payload.message
+      state.notice = action.payload.notice
     },
-    getcountFail: (state, action) => {
+    getNoticeFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },
+    addNoticeRequest: state => {
+      state.loading = true
+    },
+    addNoticeSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    addNoticeFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    updateNoticeSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    updateNoticeFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    updateNoticeRequest: state => {
+      state.loading = true
+    },
+    deleteNoticeRequest: state => {
+      state.loading = true
+    },
+    deleteNoticeSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    deleteNoticeFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+
+    // MATERIALS
+    getMaterialsRequest: state => {
+      state.loading = true
+    },
+    getMaterialsSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+      state.material = action.payload.materials
+    },
+    getMaterialsFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    addMaterialsRequest: state => {
+      state.loading = true
+    },
+    addMaterialsSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    addMaterialsFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    updateMaterialsSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    updateMaterialsFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    updateMaterialsRequest: state => {
+      state.loading = true
+    },
+    deleteMaterialsRequest: state => {
+      state.loading = true
+    },
+    deleteMaterialsSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    deleteMaterialsFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+
+    // ERROR
     clearError: state => {
       state.error = null
     },

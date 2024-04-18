@@ -6,20 +6,11 @@ import { storage } from '../../../firebase/config'
 import { baseApiURL } from '../../../baseUrl'
 import { FiUpload } from 'react-icons/fi'
 import { useDispatch } from 'react-redux'
-import { registerAdmin } from '../../../Redux/Actions/adminAction'
+import { addAdmin, registerAdmin } from '../../../Redux/Actions/adminAction'
 import profile from '../../Placement/Student/profile.jpg'
 
 const AddAdmin = () => {
   // const [file, setFile] = useState()
-  /*  const [data, setData] = useState({
-    employeeId: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-    gender: ''
-  }) */
-
   // useEffect(() => {
   //   const uploadFileToStorage = async file => {
   //     toast.loading('Upload Photo To Storage')
@@ -116,7 +107,7 @@ const AddAdmin = () => {
   const addAdminProfile = e => {
     e.preventDefault()
     dispatch(
-      registerAdmin({
+      addAdmin({
         employeeId,
         firstName,
         lastName,

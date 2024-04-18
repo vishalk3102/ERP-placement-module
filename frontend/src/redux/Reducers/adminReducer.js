@@ -3,6 +3,7 @@ import { createReducer } from '@reduxjs/toolkit'
 export const adminReducer = createReducer(
   {},
   {
+    // STUDENT
     getStudentRequest: state => {
       state.loading = true
     },
@@ -59,6 +60,7 @@ export const adminReducer = createReducer(
       state.error = action.payload
     },
 
+    // ADMIN
     getAdminRequest: state => {
       state.loading = true
     },
@@ -115,6 +117,7 @@ export const adminReducer = createReducer(
       state.error = action.payload
     },
 
+    // FACULTY
     getFacultyRequest: state => {
       state.loading = true
     },
@@ -170,62 +173,161 @@ export const adminReducer = createReducer(
       state.loading = false
       state.error = action.payload
     },
-    clearError: state => {
-      state.error = null
-    },
-    clearMessage: state => {
-      state.message = null
-    }
-  }
-)
 
-export const adminDetailsReducer = createReducer(
-  {},
-  {
-    getDetailsAdminRequest: state => {
+    // BRANCH
+    geAllBranchRequest: state => {
       state.loading = true
     },
-    getDetailsAdminSuccess: (state, action) => {
+    getAllBranchSuccess: (state, action) => {
       state.loading = false
-      state.user = action.payload
+      state.branches = action.payload
     },
-    getDetailsAdminFail: (state, action) => {
+    getAllBranchFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },
-    addDetailsAdminRequest: state => {
+    getBranchRequest: state => {
       state.loading = true
     },
-    addDetailsAdminSuccess: (state, action) => {
+    getBranchSuccess: (state, action) => {
       state.loading = false
-      state.user = action.payload
+      state.branch = action.payload
     },
-    addDetailsAdminFail: (state, action) => {
+    getBranchFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },
-    updateDetailsAdminRequest: state => {
+    addBranchRequest: state => {
       state.loading = true
     },
-    updateDetailsAdminSuccess: (state, action) => {
+    addBranchSuccess: (state, action) => {
       state.loading = false
       state.message = action.payload.message
     },
-    updateDetailsAdminFail: (state, action) => {
+    addBranchFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },
-    deleteDetailsAdminRequest: state => {
+    deleteBranchRequest: state => {
       state.loading = true
     },
-    deleteDetailsAdminSuccess: (state, action) => {
+    deleteBranchSuccess: (state, action) => {
       state.loading = false
       state.message = action.payload.message
     },
-    deleteDetailsAdminFail: (state, action) => {
+    deleteBranchFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },
+
+    // NOTICE
+    getAllNoticeRequest: state => {
+      state.loading = true
+    },
+    getAllNoticeSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+      state.notices = action.payload.notice
+    },
+    getAllNoticeFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    getNoticeRequest: state => {
+      state.loading = true
+    },
+    getNoticeSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+      state.notice = action.payload.notice
+    },
+    getNoticeFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    addNoticeRequest: state => {
+      state.loading = true
+    },
+    addNoticeSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    addNoticeFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    updateNoticeSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    updateNoticeFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    updateNoticeRequest: state => {
+      state.loading = true
+    },
+    deleteNoticeRequest: state => {
+      state.loading = true
+    },
+    deleteNoticeSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    deleteNoticeFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+
+    // SUBJECT
+    getAllSubjectRequest: state => {
+      state.loading = true
+    },
+    getAllSubjectSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+      state.subjects = action.payload.subjects
+    },
+    getAllSubjectFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    getSubjectRequest: state => {
+      state.loading = true
+    },
+    getSubjectSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+      state.subject = action.payload.subject
+    },
+    getSubjectFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    addSubjectRequest: state => {
+      state.loading = true
+    },
+    addSubjectSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    addSubjectFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    eleteSubjectRequest: state => {
+      state.loading = true
+    },
+    deleteSubjectSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    deleteSubjectFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+
+    // ERROR
     clearError: state => {
       state.error = null
     },

@@ -2,64 +2,6 @@ import axios from 'axios'
 import { server } from '../Store'
 
 // BRANCH ACTION
-export const getBranch = () => async dispatch => {
-  try {
-    dispatch({
-      type: 'getBranchRequest'
-    })
-
-    const { data } = await axios.get(`${server}/branch/getbranch`)
-    dispatch({
-      type: 'getBranchSuccess',
-      payload: data.branches
-    })
-  } catch (error) {
-    dispatch({
-      type: 'getBranchFail',
-      payload: error.response.data.message
-    })
-  }
-}
-
-export const addBranch = name => async dispatch => {
-  try {
-    dispatch({
-      type: 'addBranchRequest'
-    })
-
-    const { data } = await axios.post(`${server}/admin/branch/add`, { name })
-
-    dispatch({
-      type: 'addBranchSuccess',
-      payload: data.message
-    })
-  } catch (error) {
-    dispatch({
-      type: 'addBranchFail',
-      payload: error.response.data.message
-    })
-  }
-}
-
-export const deleteBranch = id => async dispatch => {
-  try {
-    dispatch({
-      type: 'deleteBranchRequest'
-    })
-
-    const { data } = await axios.delete(`${server}/admin/branch/delete/${id}`)
-
-    dispatch({
-      type: 'deleteBranchSuccess',
-      payload: data.message
-    })
-  } catch (error) {
-    dispatch({
-      type: 'deleteBranchFail',
-      payload: error.response.data.message
-    })
-  }
-}
 
 // MARKS ACTION
 export const getMarks = () => async dispatch => {
