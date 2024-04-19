@@ -372,7 +372,7 @@ export const getAllSubject = () => async dispatch => {
   }
 }
 
-export const addSubject = (name, code) => async dispatch => {
+export const addSubject = subjectData => async dispatch => {
   try {
     dispatch({
       type: 'addSubjectRequest'
@@ -383,10 +383,7 @@ export const addSubject = (name, code) => async dispatch => {
     }
     const { data } = await axios.post(
       `${server}/admin/subject/add`,
-      {
-        name,
-        code
-      },
+      subjectData,
       config
     )
     dispatch({

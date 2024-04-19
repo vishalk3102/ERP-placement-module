@@ -1,21 +1,14 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import Heading from '../../components/Heading'
 import { MdOutlineDelete } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  addStudent,
   addSubject,
   deleteSubject,
   getAllSubject
 } from '../../Redux/Actions/adminAction'
 import Loader from '../../components/Loader'
-// import {
-//   getSubject,
-//   addSubject,
-//   deleteSubject
-// } from '../../Redux/Actions/otherAction'
 
 const Subjects = () => {
   const [name, setName] = useState('')
@@ -30,15 +23,37 @@ const Subjects = () => {
       dispatch({ type: 'clearError' })
     }
     dispatch(getAllSubject())
-  }, [dispatch, error])
+  }, [dispatch, error, selected])
 
   const addSubjectHandler = () => {
-    dispatch(addSubject({ name, code }))
+    const subjectData = {
+      name,
+      code
+    }
+
+    dispatch(addSubject(subjectData))
+      .then(() => {
+        setName('')
+        setCode('')
+        dispatch(getAllSubject())
+      })
+      .catch(error => {
+        console.error('Error adding subject:', error)
+      })
+
+    setSelected('view')
   }
 
   const deleteSubjectHandler = id => {
     dispatch(deleteSubject(id))
+      .then(() => {
+        dispatch(getAllSubject())
+      })
+      .catch(error => {
+        console.error('Error deleting subject:', error)
+      })
   }
+
   return (
     <div className='w-[85%] mx-auto mt-10 flex justify-center items-start flex-col mb-10'>
       <div className='flex justify-between items-center w-full'>
@@ -81,7 +96,7 @@ const Subjects = () => {
               Enter Subject Name
             </label>
             <input
-              type='name'
+              type='text'
               id='name'
               value={name}
               onChange={e => setName(e.target.value)}
