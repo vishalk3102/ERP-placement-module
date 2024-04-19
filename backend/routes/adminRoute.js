@@ -41,27 +41,6 @@ router.get('/admin/branch', getAllBranch)
 router.post('/admin/branch/add', addBranch)
 router.delete('/admin/branch/:id', deleteBranch)
 
-// STUDENT
-router.get('/admin/student', getAllStudent)
-router.post('/admin/student/register', registerStudent)
-router.get('/admin/student/:id', getStudent)
-router.put('/admin/student/:id', updateStudent)
-router.delete('/admin/student/:id', deleteStudent)
-
-// FACULTY
-router.get('/admin/faculty', getAllFaculty)
-router.post('/admin/faculty/register', registerFaculty)
-router.get('/admin/faculty/:id', getFaculty)
-router.put('/admin/faculty/:id', updateFaculty)
-router.delete('/admin/faculty/:id', deleteFaculty)
-
-// ADMIN
-router.post('/admin/register', registerAdmin)
-router.get('/admin', getAllAdmin)
-router.get('/admin/:id', getStudent)
-router.put('/admin/:id', updateAdmin)
-router.delete('/admin/:id', deleteAdmin)
-
 // NOTICE
 router.get('/admin/branch', getAllNotice)
 router.post('/admin/branch/add', addNotice)
@@ -86,4 +65,25 @@ router.delete(
   authorizeAdmin,
   deleteTimetable
 )
+
+// STUDENT
+router.get('/admin/student', getAllStudent)
+router.post('/admin/student/register', registerStudent)
+router.get('/admin/student/:id', getStudent)
+router.put('/admin/student/:id', updateStudent)
+router.delete('/admin/student/:id', deleteStudent)
+
+// FACULTY
+router.get('/admin/faculty', getAllFaculty)
+router.post('/admin/faculty/register', registerFaculty)
+router.get('/admin/faculty/:id', getFaculty)
+router.put('/admin/faculty/:id', updateFaculty)
+router.delete('/admin/faculty/:id', deleteFaculty)
+
+// ADMIN
+router.post('/admin/register', registerAdmin)
+router.get('/admin', getAllAdmin)
+router.get('/admin/:id', getStudent)
+router.put('/admin/:id', updateAdmin)
+router.delete('/admin/:id', deleteAdmin)
 module.exports = router

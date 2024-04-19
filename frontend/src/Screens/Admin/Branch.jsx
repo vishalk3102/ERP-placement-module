@@ -9,6 +9,7 @@ import {
   deleteBranch,
   getAllBranch
 } from '../../Redux/Actions/adminAction'
+import Loader from '../../components/Loader'
 
 const Branch = () => {
   const [selected, setSelected] = useState('view')
@@ -28,9 +29,9 @@ const Branch = () => {
     dispatch(addBranch(branch))
   }
 
-  /*  const deleteBranchHandler = id => {
+  const deleteBranchHandler = id => {
     dispatch(deleteBranch(id))
-  } */
+  }
 
   return (
     <div className='w-[85%] mx-auto mt-10 flex justify-center items-start flex-col mb-10'>
@@ -79,25 +80,29 @@ const Branch = () => {
       )}
       {selected === 'view' && (
         <div className='mt-8 w-full'>
-          <ul>
-            {/* {branches &&
-              branches.map((item, index) => {
-                return ( */}
-            <li
-              // key={index}
-              className='bg-blue-100 py-3 px-6 mb-3 flex justify-between items-center w-[70%]'
-            >
-              <div>CSE</div>
-              <button
-                className='text-2xl hover:text-red-500'
-                // onClick={() => deleteBranchHandler(item._id)}
-              >
-                <MdOutlineDelete />
-              </button>
-            </li>
-            {/* )
-              })} */}
-          </ul>
+          {loading === false ? (
+            <ul>
+              {branches &&
+                branches.map(item => {
+                  return (
+                    <li
+                      key={item._id}
+                      className='bg-blue-100 py-3 px-6 mb-3 flex justify-between items-center w-[70%]'
+                    >
+                      <div>{item.name}</div>
+                      <button
+                        className='text-2xl hover:text-red-500'
+                        onClick={() => deleteBranchHandler(item._id)}
+                      >
+                        <MdOutlineDelete />
+                      </button>
+                    </li>
+                  )
+                })}
+            </ul>
+          ) : (
+            <Loader />
+          )}
         </div>
       )}
     </div>

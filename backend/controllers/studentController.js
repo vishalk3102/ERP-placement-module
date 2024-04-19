@@ -59,10 +59,6 @@ exports.getAllStudent = catchAsyncError(async (req, res, next) => {
 
 // GET STUDENT
 exports.getStudent = catchAsyncError(async (req, res, next) => {
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    return next(new ErrorHandler('Invalid Student ID', 400))
-  }
-
   let student = await User.findById(req.params.id)
   if (!student) {
     return next(new ErrorHandler('No Student Exists', 400))
