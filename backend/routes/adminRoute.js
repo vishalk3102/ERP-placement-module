@@ -48,9 +48,9 @@ router.put('/admin/branch/:id', updateNotice)
 router.delete('/admin/branch/:id', deleteNotice)
 
 // SUBJECT
+router.delete('/admin/subject/:id', deleteSubject)
 router.get('/admin/subject', getAllSubject)
 router.post('/admin/subject/add', addSubject)
-router.delete('/admin/subject/:id', deleteSubject)
 
 // TIMETABLE
 router.post(

@@ -6,6 +6,7 @@ import { MdOutlineDelete } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   addStudent,
+  addSubject,
   deleteSubject,
   getAllSubject
 } from '../../Redux/Actions/adminAction'
@@ -32,7 +33,7 @@ const Subjects = () => {
   }, [dispatch, error])
 
   const addSubjectHandler = () => {
-    dispatch(addStudent({ name, code }))
+    dispatch(addSubject({ name, code }))
   }
 
   const deleteSubjectHandler = id => {
@@ -99,23 +100,25 @@ const Subjects = () => {
         <div className='mt-8 w-full'>
           {loading === false ? (
             <ul>
-              {/* {subjects &&
-              subjects.map(item => {
-                return ( */}
-              <li
-                // key={item.code}
-                className='bg-blue-100 py-3 px-6 mb-3 flex justify-between items-center w-[70%]'
-              >
-                <div>101 - Computer Science</div>
-                <button
-                  className='text-2xl hover:text-red-500'
-                  // onClick={() => deleteSubjectHandler(item._id)}
-                >
-                  <MdOutlineDelete />
-                </button>
-              </li>
-              {/* )
-              })} */}
+              {subjects &&
+                subjects.map(item => {
+                  return (
+                    <li
+                      // key={item.code}
+                      className='bg-blue-100 py-3 px-6 mb-3 flex justify-between items-center w-[70%]'
+                    >
+                      <div>
+                        {item.code}-{item.name}
+                      </div>
+                      <button
+                        className='text-2xl hover:text-red-500'
+                        onClick={() => deleteSubjectHandler(item._id)}
+                      >
+                        <MdOutlineDelete />
+                      </button>
+                    </li>
+                  )
+                })}
             </ul>
           ) : (
             <Loader />

@@ -362,7 +362,7 @@ export const getAllSubject = () => async dispatch => {
     const { data } = await axios.get(`${server}/admin/subject`)
     dispatch({
       type: 'getAllSubjectSuccess',
-      payload: data.subjects
+      payload: data
     })
   } catch (error) {
     dispatch({
@@ -372,29 +372,34 @@ export const getAllSubject = () => async dispatch => {
   }
 }
 
-export const addSubject =
-  ({ name, code }) =>
-  async dispatch => {
-    try {
-      dispatch({
-        type: 'addSubjectRequest'
-      })
+export const addSubject = (name, code) => async dispatch => {
+  try {
+    dispatch({
+      type: 'addSubjectRequest'
+    })
 
-      const { data } = await axios.post(`${server}/admin/subject/add`, {
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const { data } = await axios.post(
+      `${server}/admin/subject/add`,
+      {
         name,
         code
-      })
-      dispatch({
-        type: 'addSubjectSuccess',
-        payload: data.message
-      })
-    } catch (error) {
-      dispatch({
-        type: 'addSubjectFail',
-        payload: error.response.data.message
-      })
-    }
+      },
+      config
+    )
+    dispatch({
+      type: 'addSubjectSuccess',
+      payload: data.message
+    })
+  } catch (error) {
+    dispatch({
+      type: 'addSubjectFail',
+      payload: error.response.data.message
+    })
   }
+}
 
 export const deleteSubject = id => async dispatch => {
   try {
