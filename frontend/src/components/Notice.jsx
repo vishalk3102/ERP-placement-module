@@ -4,217 +4,290 @@ import Heading from './Heading'
 import axios from 'axios'
 import { IoMdLink } from 'react-icons/io'
 import { HiOutlineCalendar } from 'react-icons/hi'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { IoAddOutline } from 'react-icons/io5'
 import { MdDeleteOutline, MdEditNote } from 'react-icons/md'
 import { BiArrowBack } from 'react-icons/bi'
 import toast from 'react-hot-toast'
 import { baseApiURL } from '../baseUrl'
-const Notice = () => {
-  const router = useLocation()
-  const [notice, setNotice] = useState('')
-  const [open, setOpen] = useState(false)
-  const [edit, setEdit] = useState(false)
-  const [id, setId] = useState('')
-  const [data, setData] = useState({
-    title: '',
-    description: '',
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  addNotice,
+  deleteNotice,
+  getAllNotice,
+  getNotice,
+  updateNotice
+} from '../Redux/Actions/adminAction'
+
+const noticeData = [
+  {
+    _id: '1',
+    title: 'Notice 1',
+    description: 'Description for Notice 1',
     type: 'student',
-    link: ''
-  })
-
-  const getNoticeHandler = () => {
-    let data = {}
-    if (router.pathname.replace('/', '') === 'student') {
-      data = {
-        type: ['student', 'both']
-      }
-    } else {
-      data = {
-        type: ['student', 'both', 'faculty']
-      }
-    }
-    const headers = {
-      'Content-Type': 'application/json'
-    }
-    axios
-      .post(`${baseApiURL()}/notice/getNotice`, data, {
-        headers: headers
-      })
-      .then(response => {
-        if (response.data.success) {
-          setNotice(response.data.notice)
-        } else {
-          toast.error(response.data.message)
-        }
-      })
-      .catch(error => {
-        toast.dismiss()
-        toast.error(error.response.data.message)
-      })
+    link: '',
+    createdAt: '2024-04-20T10:00:00.000Z'
+  },
+  {
+    _id: '2',
+    title: 'Notice 2',
+    description: 'Description for Notice 2',
+    type: 'faculty',
+    link: 'https://example.com',
+    createdAt: '2024-04-19T10:00:00.000Z'
   }
+]
+const Notice = () => {
+  const [open, setOpen] = useState(false)
+  const [edit, setEdit] = useState(true)
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [type, setType] = useState('student')
+  const [link, setLink] = useState('')
 
-  useEffect(() => {
-    let data = {}
-    if (router.pathname.replace('/', '') === 'student') {
-      data = {
-        type: ['student', 'both']
-      }
-    } else {
-      data = {
-        type: ['student', 'both', 'faculty']
-      }
-    }
-    const headers = {
-      'Content-Type': 'application/json'
-    }
-    axios
-      .post(`${baseApiURL()}/notice/getNotice`, data, {
-        headers: headers
-      })
-      .then(response => {
-        if (response.data.success) {
-          setNotice(response.data.notice)
-        } else {
-          toast.error(response.data.message)
-        }
-      })
-      .catch(error => {
-        toast.dismiss()
-        toast.error(error.response.data.message)
-      })
-  }, [router.pathname])
+  // const getNoticeHandler = () => {
+  //   let data = {}
+  //   if (router.pathname.replace('/', '') === 'student') {
+  //     data = {
+  //       type: ['student', 'both']
+  //     }
+  //   } else {
+  //     data = {
+  //       type: ['student', 'both', 'faculty']
+  //     }
+  //   }
+  //   const headers = {
+  //     'Content-Type': 'application/json'
+  //   }
+  //   axios
+  //     .post(`${baseApiURL()}/notice/getNotice`, data, {
+  //       headers: headers
+  //     })
+  //     .then(response => {
+  //       if (response.data.success) {
+  //         setNotice(response.data.notice)
+  //       } else {
+  //         toast.error(response.data.message)
+  //       }
+  //     })
+  //     .catch(error => {
+  //       toast.dismiss()
+  //       toast.error(error.response.data.message)
+  //     })
+  // }
 
-  const addNoticehandler = e => {
-    e.preventDefault()
-    toast.loading('Adding Notice')
-    const headers = {
-      'Content-Type': 'application/json'
-    }
-    axios
-      .post(`${baseApiURL()}/notice/addNotice`, data, {
-        headers: headers
-      })
-      .then(response => {
-        toast.dismiss()
-        if (response.data.success) {
-          toast.success(response.data.message)
-          getNoticeHandler()
-          setOpen(!open)
-        } else {
-          toast.error(response.data.message)
-        }
-      })
-      .catch(error => {
-        toast.dismiss()
-        toast.error(error.response.data.message)
-      })
-  }
+  // useEffect(() => {
+  //   let data = {}
+  //   if (router.pathname.replace('/', '') === 'student') {
+  //     data = {
+  //       type: ['student', 'both']
+  //     }
+  //   } else {
+  //     data = {
+  //       type: ['student', 'both', 'faculty']
+  //     }
+  //   }
+  //   const headers = {
+  //     'Content-Type': 'application/json'
+  //   }
+  //   axios
+  //     .post(`${baseApiURL()}/notice/getNotice`, data, {
+  //       headers: headers
+  //     })
+  //     .then(response => {
+  //       if (response.data.success) {
+  //         setNotice(response.data.notice)
+  //       } else {
+  //         toast.error(response.data.message)
+  //       }
+  //     })
+  //     .catch(error => {
+  //       toast.dismiss()
+  //       toast.error(error.response.data.message)
+  //     })
+  // }, [router.pathname])
 
-  const deleteNoticehandler = id => {
-    toast.loading('Deleting Notice')
-    const headers = {
-      'Content-Type': 'application/json'
-    }
-    axios
-      .delete(`${baseApiURL()}/notice/deleteNotice/${id}`, {
-        headers: headers
-      })
-      .then(response => {
-        toast.dismiss()
-        if (response.data.success) {
-          toast.success(response.data.message)
-          getNoticeHandler()
-        } else {
-          toast.error(response.data.message)
-        }
-      })
-      .catch(error => {
-        toast.dismiss()
-        toast.error(error.response.data.message)
-      })
-  }
+  // const addNoticehandler = e => {
+  //   e.preventDefault()
+  //   toast.loading('Adding Notice')
+  //   const headers = {
+  //     'Content-Type': 'application/json'
+  //   }
+  //   axios
+  //     .post(`${baseApiURL()}/notice/addNotice`, data, {
+  //       headers: headers
+  //     })
+  //     .then(response => {
+  //       toast.dismiss()
+  //       if (response.data.success) {
+  //         toast.success(response.data.message)
+  //         getNoticeHandler()
+  //         setOpen(!open)
+  //       } else {
+  //         toast.error(response.data.message)
+  //       }
+  //     })
+  //     .catch(error => {
+  //       toast.dismiss()
+  //       toast.error(error.response.data.message)
+  //     })
+  // }
 
-  const updateNoticehandler = e => {
-    e.preventDefault()
-    const headers = {
-      'Content-Type': 'application/json'
-    }
-    axios
-      .post(`${baseApiURL()}/notice/updateNotice/${id}`, data, {
-        headers: headers
-      })
-      .then(response => {
-        toast.dismiss()
-        if (response.data.success) {
-          toast.success(response.data.message)
-          getNoticeHandler()
-          setOpen(!open)
-        } else {
-          toast.error(response.data.message)
-        }
-      })
-      .catch(error => {
-        toast.dismiss()
-        toast.error(error.response.data.message)
-      })
-  }
+  // const deleteNoticehandler = id => {
+  //   toast.loading('Deleting Notice')
+  //   const headers = {
+  //     'Content-Type': 'application/json'
+  //   }
+  //   axios
+  //     .delete(`${baseApiURL()}/notice/deleteNotice/${id}`, {
+  //       headers: headers
+  //     })
+  //     .then(response => {
+  //       toast.dismiss()
+  //       if (response.data.success) {
+  //         toast.success(response.data.message)
+  //         getNoticeHandler()
+  //       } else {
+  //         toast.error(response.data.message)
+  //       }
+  //     })
+  //     .catch(error => {
+  //       toast.dismiss()
+  //       toast.error(error.response.data.message)
+  //     })
+  // }
 
-  const setOpenEditSectionHandler = index => {
-    setEdit(true)
-    setOpen(!open)
-    setData({
-      title: notice[index].title,
-      description: notice[index].description,
-      type: notice[index].type,
-      link: notice[index].link
-    })
-    setId(notice[index]._id)
-  }
+  // const updateNoticehandler = e => {
+  //   e.preventDefault()
+  //   const headers = {
+  //     'Content-Type': 'application/json'
+  //   }
+  //   axios
+  //     .post(`${baseApiURL()}/notice/updateNotice/${id}`, data, {
+  //       headers: headers
+  //     })
+  //     .then(response => {
+  //       toast.dismiss()
+  //       if (response.data.success) {
+  //         toast.success(response.data.message)
+  //         getNoticeHandler()
+  //         setOpen(!open)
+  //       } else {
+  //         toast.error(response.data.message)
+  //       }
+  //     })
+  //     .catch(error => {
+  //       toast.dismiss()
+  //       toast.error(error.response.data.message)
+  //     })
+  // }
+
+  // const setOpenEditSectionHandler = index => {
+  //   setEdit(true)
+  //   setOpen(!open)
+  //   setData({
+  //     title: notice[index].title,
+  //     description: notice[index].description,
+  //     type: notice[index].type,
+  //     link: notice[index].link
+  //   })
+  //   setId(notice[index]._id)
+  // }
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const { loading, notices, notice } = useSelector(state => state.admin)
+
+  // useEffect(() => {
+  //   if (open === false) {
+  //     dispatch(getAllNotice())
+  //   }
+  // })
 
   const openHandler = () => {
     setOpen(!open)
     setEdit(false)
-    setData({ title: '', description: '', type: 'student', link: '' })
+    setTitle('')
+    setDescription('')
+    setType('student')
+    setLink('')
+  }
+
+  const EditNoticeHandler = id => {
+    dispatch(getNotice(id))
+    setEdit(true)
+    setOpen(!open)
+    setTitle(notice.title)
+    setDescription(notice.description)
+    setType(notice.type)
+    setLink(notice.link)
+  }
+
+  const addNoticeHandler = e => {
+    e.preventDefault()
+
+    const formData = {
+      title,
+      description,
+      type,
+      link
+    }
+    dispatch(addNotice(formData))
+  }
+
+  const updateNoticeHandler = e => {
+    e.preventDefault()
+
+    const formData = {
+      title,
+      description,
+      type,
+      link
+    }
+    dispatch(updateNotice(formData))
+  }
+
+  const deleteNoticeHandler = id => {
+    dispatch(deleteNotice(id))
   }
 
   return (
     <div className='w-[85%] mx-auto flex justify-center items-start flex-col my-10'>
       <div className='relative flex justify-between items-center w-full'>
         <Heading title='Notices' />
-        {(router.pathname === '/faculty' || router.pathname === '/admin') &&
-          (open ? (
-            <button
-              className='absolute right-2 flex justify-center items-center border-2 border-red-500 px-3 py-2 rounded text-red-500'
-              onClick={openHandler}
-            >
-              <span className='mr-2'>
-                <BiArrowBack className='text-red-500' />
-              </span>
-              Close
-            </button>
-          ) : (
-            <button
-              className='absolute right-2 flex justify-center items-center border-2 border-red-500 px-3 py-2 rounded text-red-500'
-              onClick={openHandler}
-            >
-              Add Notice
-              <span className='ml-2'>
-                <IoAddOutline className='text-red-500 text-xl' />
-              </span>
-            </button>
-          ))}
+        {open ? (
+          <button
+            className='absolute right-2 flex justify-center items-center border-2 border-red-500 px-3 py-2 rounded text-red-500'
+            onClick={openHandler}
+          >
+            <span className='mr-2'>
+              <BiArrowBack className='text-red-500' />
+            </span>
+            Close
+          </button>
+        ) : (
+          <button
+            className='absolute right-2 flex justify-center items-center border-2 border-red-500 px-3 py-2 rounded text-red-500'
+            onClick={openHandler}
+          >
+            Add Notice
+            <span className='ml-2'>
+              <IoAddOutline className='text-red-500 text-xl' />
+            </span>
+          </button>
+        )}
       </div>
       {!open && (
         <div className='mt-8 w-full'>
-          {notice &&
-            notice.map((item, index) => {
+          {noticeData &&
+            noticeData.map((item, index) => {
               return (
                 <div
                   key={item._id}
                   className='border-blue-500 border-2 w-full rounded-md shadow-sm py-4 px-6 mb-4 relative'
                 >
-                  {(router.pathname === '/faculty' ||
+                  {/*  {(router.pathname === '/faculty' ||
                     router.pathname === '/admin') && (
                     <div className='absolute flex justify-center items-center right-4 bottom-3'>
                       <span className='text-sm bg-blue-500 px-4 py-1 text-white rounded-full'>
@@ -222,18 +295,35 @@ const Notice = () => {
                       </span>
                       <span
                         className='text-2xl group-hover:text-blue-500 ml-2 cursor-pointer hover:text-red-500'
-                        onClick={() => deleteNoticehandler(item._id)}
+                        // onClick={() => deleteNoticehandler(item._id)}
                       >
                         <MdDeleteOutline />
                       </span>
                       <span
                         className='text-2xl group-hover:text-blue-500 ml-2 cursor-pointer hover:text-blue-500'
-                        onClick={() => setOpenEditSectionHandler(index)}
+                        // onClick={() => setOpenEditSectionHandler(index)}
                       >
                         <MdEditNote />
                       </span>
                     </div>
-                  )}
+                  )} */}
+                  <div className='absolute flex justify-center items-center right-4 bottom-3'>
+                    <span className='text-sm bg-blue-500 px-4 py-1 text-white rounded-full'>
+                      {item.type}
+                    </span>
+                    <span
+                      className='text-2xl group-hover:text-blue-500 ml-2 cursor-pointer hover:text-red-500'
+                      onClick={() => deleteNoticeHandler(item._id)}
+                    >
+                      <MdDeleteOutline />
+                    </span>
+                    <span
+                      className='text-2xl group-hover:text-blue-500 ml-2 cursor-pointer hover:text-blue-500'
+                      onClick={() => EditNoticeHandler(item._id)}
+                    >
+                      <MdEditNote />
+                    </span>
+                  </div>
                   <p
                     className={`text-xl font-medium flex justify-start items-center ${
                       item.link && 'cursor-pointer'
@@ -275,8 +365,8 @@ const Notice = () => {
               type='text'
               id='title'
               className='bg-blue-50 py-2 px-4 w-full mt-1'
-              value={data.title}
-              onChange={e => setData({ ...data, title: e.target.value })}
+              value={title}
+              onChange={e => setTitle(e.target.value)}
             />
           </div>
           <div className='w-[40%] mt-4'>
@@ -286,8 +376,8 @@ const Notice = () => {
               cols='30'
               rows='4'
               className='bg-blue-50 py-2 px-4 w-full mt-1 resize-none'
-              value={data.description}
-              onChange={e => setData({ ...data, description: e.target.value })}
+              value={description}
+              onChange={e => setDescription(e.target.value)}
             ></textarea>
           </div>
           <div className='w-[40%] mt-4'>
@@ -295,9 +385,9 @@ const Notice = () => {
             <input
               type='text'
               id='link'
-              value={data.link}
               className='bg-blue-50 py-2 px-4 w-full mt-1'
-              onChange={e => setData({ ...data, link: e.target.value })}
+              value={link}
+              onChange={e => setLink(e.target.value)}
             />
           </div>
           <div className='w-[40%] mt-4'>
@@ -305,8 +395,8 @@ const Notice = () => {
             <select
               id='type'
               className='px-2 bg-blue-50 py-3 rounded-sm text-base w-[80%] accent-blue-700 mt-4'
-              value={data.type}
-              onChange={e => setData({ ...data, type: e.target.value })}
+              value={type}
+              onChange={e => setType(e.target.value)}
             >
               <option value='student'>Student</option>
               <option value='faculty'>Faculty</option>
@@ -315,7 +405,7 @@ const Notice = () => {
           </div>
           {edit && (
             <button
-              onClick={updateNoticehandler}
+              onClick={updateNoticeHandler()}
               className='bg-blue-500 text-white mt-6 px-6 rounded text-lg py-2 hover:bg-blue-600'
             >
               Update Notice
@@ -323,7 +413,7 @@ const Notice = () => {
           )}
           {!edit && (
             <button
-              onClick={addNoticehandler}
+              onClick={addNoticeHandler}
               className='bg-blue-500 text-white mt-6 px-6 rounded text-lg py-2 hover:bg-blue-600'
             >
               Add Notice

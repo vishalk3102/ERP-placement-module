@@ -386,16 +386,34 @@ export const deleteBranch = id => async dispatch => {
 }
 
 // NOTICE
+export const getNotice = id => async dispatch => {
+  try {
+    dispatch({
+      type: 'getNoticeRequest'
+    })
+
+    const { data } = await axios.get(`${server}/admin/notice/${id}`)
+    dispatch({
+      type: 'getNoticeSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getNoticeFail',
+      payload: error.response.data.message
+    })
+  }
+}
 export const getAllNotice = () => async dispatch => {
   try {
     dispatch({
       type: 'getAllNoticeRequest'
     })
 
-    const { data } = await axios.get(`${server}/admin/auth/register`)
+    const { data } = await axios.get(`${server}/admin/notice`)
     dispatch({
       type: 'getAllNoticeSuccess',
-      payload: data.notice
+      payload: data
     })
   } catch (error) {
     dispatch({
@@ -405,13 +423,20 @@ export const getAllNotice = () => async dispatch => {
   }
 }
 
-export const addNotice = () => async dispatch => {
+export const addNotice = formData => async dispatch => {
   try {
     dispatch({
       type: 'addNoticeRequest'
     })
 
-    const { data } = await axios.post(`${server}/admin/auth/register`)
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const { data } = await axios.post(
+      `${server}/admin/notice/add`,
+      formData,
+      config
+    )
     dispatch({
       type: 'addNoticeSuccess',
       payload: data.message
@@ -424,13 +449,13 @@ export const addNotice = () => async dispatch => {
   }
 }
 
-export const updateNotice = () => async dispatch => {
+export const updateNotice = id => async dispatch => {
   try {
     dispatch({
       type: 'updateNoticeRequest'
     })
 
-    const { data } = await axios.post(`${server}/admin/auth/register`)
+    const { data } = await axios.post(`${server}/admin/notice/${id}`)
     dispatch({
       type: 'updateNoticeSuccess',
       payload: data.message
@@ -443,13 +468,13 @@ export const updateNotice = () => async dispatch => {
   }
 }
 
-export const deleteNotice = () => async dispatch => {
+export const deleteNotice = id => async dispatch => {
   try {
     dispatch({
       type: 'deleteNoticeRequest'
     })
 
-    const { data } = await axios.delete(`${server}/admin/auth/register`)
+    const { data } = await axios.delete(`${server}/admin/notice/${id}`)
     dispatch({
       type: 'deleteNoticeSuccess',
       payload: data.message

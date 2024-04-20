@@ -28,6 +28,7 @@ const {
   updateStudent,
   deleteStudent
 } = require('../controllers/adminController')
+const { getNotice } = require('../controllers/studentController')
 
 const { isAuthenticated, authorizeAdmin } = require('../middlewares/auth')
 const router = express.Router()
@@ -38,10 +39,11 @@ router.post('/admin/branch/add', addBranch)
 router.delete('/admin/branch/:id', deleteBranch)
 
 // NOTICE
-router.get('/admin/branch', getAllNotice)
-router.post('/admin/branch/add', addNotice)
-router.put('/admin/branch/:id', updateNotice)
-router.delete('/admin/branch/:id', deleteNotice)
+router.get('/admin/notice', getAllNotice)
+router.post('/admin/notice/add', addNotice)
+router.get('/admin/notice/:id', getNotice)
+router.put('/admin/notice/:id', updateNotice)
+router.delete('/admin/notice/:id', deleteNotice)
 
 // SUBJECT
 router.delete('/admin/subject/:id', deleteSubject)

@@ -227,7 +227,7 @@ export const adminReducer = createReducer(
     getAllNoticeSuccess: (state, action) => {
       state.loading = false
       state.message = action.payload.message
-      state.notices = action.payload.notice
+      state.notices = action.payload.notices
     },
     getAllNoticeFail: (state, action) => {
       state.loading = false
