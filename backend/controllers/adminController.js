@@ -147,7 +147,7 @@ exports.registerFaculty = catchAsyncError(async (req, res, next) => {
   })
   res.status(201).json({
     success: true,
-    message: 'Admin Added Successfully',
+    message: 'Faculty Added Successfully',
     faculty
   })
 })

@@ -16,7 +16,7 @@ const AddFaculty = () => {
   const [email, setEmail] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
   const [gender, setGender] = useState('')
-  const [branch, setBranch] = useState('')
+  const [department, setDepartment] = useState('')
   const [post, setPost] = useState('')
   const [experience, setExperience] = useState('')
 
@@ -36,13 +36,13 @@ const AddFaculty = () => {
   const addFacultyProfile = e => {
     e.preventDefault()
     const formData = {
+      employeeId,
       firstName,
       lastName,
-      employeeId,
       email,
       phoneNumber,
       gender,
-      branch,
+      department,
       post,
       experience
     }
@@ -139,8 +139,8 @@ const AddFaculty = () => {
         <select
           id='branch'
           className='px-2 bg-blue-50 py-3 rounded-sm text-base w-full accent-blue-700 mt-1'
-          value={branch}
-          onChange={e => setBranch(e.target.value)}
+          value={department}
+          onChange={e => setDepartment(e.target.value)}
         >
           <option defaultValue>-- Select --</option>
           {branches &&
@@ -177,7 +177,7 @@ const AddFaculty = () => {
           className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
         />
       </div>
-      <div className='w-[40%]'>
+      {/* <div className='w-[40%]'>
         <label htmlFor='file' className='leading-7 text-sm '>
           Select Profile
         </label>
@@ -191,7 +191,7 @@ const AddFaculty = () => {
           </span>
         </label>
         <input hidden type='file' id='file' accept='image/*' />
-      </div>
+      </div> */}
       {/*  {data.profile && (
         <div className="w-full flex justify-center items-center">
           <img src={data.profile} alt="student" className="h-36" />
