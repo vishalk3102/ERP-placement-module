@@ -1,25 +1,39 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import axios from 'axios'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { storage } from '../../../firebase/config'
 import { baseApiURL } from '../../../baseUrl'
 import { FiUpload } from 'react-icons/fi'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { addFaculty, getAllBranch } from '../../../Redux/Actions/adminAction'
 
 const AddFaculty = () => {
+  const [employeeId, setEmployeeId] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-  const [employeeId, setEmployeeId] = useState('')
   const [email, setEmail] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
   const [gender, setGender] = useState('')
+  const [branch, setBranch] = useState('')
+  const [post, setPost] = useState('')
+  const [experience, setExperience] = useState('')
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const addAdminProfile = e => {
+  const { loading, branches, error } = useSelector(state => state.admin)
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error)
+      dispatch({ type: 'clearError' })
+    }
+    dispatch(getAllBranch())
+  }, [dispatch, error])
+
+  const addFacultyProfile = e => {
     e.preventDefault()
     const formData = {
       firstName,
@@ -27,15 +41,19 @@ const AddFaculty = () => {
       employeeId,
       email,
       phoneNumber,
-      gender
+      gender,
+      branch,
+      post,
+      experience
     }
 
-    dispatch(addF(formData))
+    dispatch(addFaculty(formData))
     navigate('/admin/home')
   }
+
   return (
     <form
-      // onSubmit={addFacultyProfile}
+      onSubmit={addFacultyProfile}
       className='w-[70%] flex justify-center items-center flex-wrap gap-6 mx-auto mt-10'
     >
       <div className='w-[40%]'>
@@ -125,13 +143,14 @@ const AddFaculty = () => {
           onChange={e => setBranch(e.target.value)}
         >
           <option defaultValue>-- Select --</option>
-          {/* {branch?.map(branch => {
+          {branches &&
+            branches.map(i => {
               return (
-                <option value={branch.name} key={branch.name}>
-                  {branch.name}
+                <option value={i.name} key={i.name}>
+                  {i.name}
                 </option>
               )
-            })} */}
+            })}
         </select>
       </div>
       <div className='w-[40%]'>

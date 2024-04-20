@@ -217,6 +217,116 @@ export const getAllStudent = () => async dispatch => {
   }
 }
 
+// FACULTY
+export const addFaculty = formData => async dispatch => {
+  try {
+    dispatch({
+      type: 'addFacultyRequest'
+    })
+
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const { data } = await axios.post(
+      `${server}/admin/faculty/register`,
+      formData,
+      config
+    )
+    dispatch({
+      type: 'addFacultySuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'addFacultyFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
+export const updateFaculty = (formData, id) => async dispatch => {
+  try {
+    dispatch({
+      type: 'updateFacultyRequest'
+    })
+
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const { data } = await axios.put(
+      `${server}/admin/faculty/${id}`,
+      formData,
+      config
+    )
+    dispatch({
+      type: 'updateFacultySuccess',
+      payload: data.message
+    })
+  } catch (error) {
+    dispatch({
+      type: 'updateFacultyFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
+export const deleteFaculty = id => async dispatch => {
+  try {
+    dispatch({
+      type: 'deleteFacultyRequest'
+    })
+
+    const { data } = await axios.delete(`${server}/admin/faculty/${id}`)
+    dispatch({
+      type: 'deleteFacultySuccess',
+      payload: data.message
+    })
+  } catch (error) {
+    dispatch({
+      type: 'deleteFacultyFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
+export const getFaculty = id => async dispatch => {
+  try {
+    dispatch({
+      type: 'getFacultyRequest'
+    })
+
+    const { data } = await axios.get(`${server}/admin/faculty/${id}`)
+    dispatch({
+      type: 'getFacultySuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getFacultyFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
+export const getAllFaculty = () => async dispatch => {
+  try {
+    dispatch({
+      type: 'getAllFacultyRequest'
+    })
+
+    const { data } = await axios.get(`${server}/admin/faculty`)
+    dispatch({
+      type: 'getAllFacultySuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getAllFacultyFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
 // BRANCH
 export const getAllBranch = () => async dispatch => {
   try {
