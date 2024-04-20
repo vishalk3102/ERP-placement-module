@@ -23,6 +23,7 @@ exports.registerStudent = catchAsyncError(async (req, res, next) => {
     universityRollNo,
     section
   } = req.body
+  console.log('Received Form Data:', req.body)
 
   let student = await User.findOne({ enrollmentNo })
   if (student) {

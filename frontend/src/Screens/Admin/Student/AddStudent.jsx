@@ -26,9 +26,7 @@ const AddStudent = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { loading, student, branches, error } = useSelector(
-    state => state.admin
-  )
+  const { loading, branches, error } = useSelector(state => state.admin)
 
   useEffect(() => {
     if (error) {
@@ -218,7 +216,7 @@ const AddStudent = () => {
           className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
         />
       </div>
-      <div className='w-[40%]'>
+      {/* <div className='w-[40%]'>
         <label htmlFor='file' className='leading-7 text-sm '>
           Select Profile
         </label>
@@ -238,7 +236,7 @@ const AddStudent = () => {
           accept='image/*'
           // onChange={e => setFile(e.target.files[0])}
         />
-      </div>
+      </div> */}
       {/*  {data.profile && (
         <div className='w-full flex justify-center items-center'>
           <img src={data.profile} alt='student' className='h-36' />

@@ -113,7 +113,7 @@ export const addStudent = formData => async dispatch => {
     dispatch({
       type: 'addStudentRequest'
     })
-
+    console.log('Form Data:', formData)
     const config = {
       headers: { 'Content-Type': 'application/json' }
     }
