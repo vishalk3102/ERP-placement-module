@@ -220,7 +220,7 @@ const Notice = () => {
     setLink('')
   }
 
-  const EditNoticeHandler = id => {
+  const EditNoticeHandler = i => {
     // dispatch(getNotice(id))
     //   .then(() => {
     //     setTitle(notice.title)
@@ -234,8 +234,9 @@ const Notice = () => {
     //     console.error('Error adding subject:', error)
     //   })
     setSelected('edit')
-    setEdit(true)
+    // setEdit(true)
     setOpen(!open)
+    setId(i)
   }
 
   const deleteNoticeHandler = id => {

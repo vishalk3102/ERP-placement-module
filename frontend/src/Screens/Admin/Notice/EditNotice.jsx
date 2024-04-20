@@ -14,15 +14,14 @@ const EditNotice = ({ setOpen, id }) => {
   const [description, setDescription] = useState('')
   const [type, setType] = useState('student')
   const [link, setLink] = useState('')
-  const [noticeId, setNoticeId] = useState(id)
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+  console.log(id)
 
   const { loading, notice } = useSelector(state => state.admin)
 
-  //   useEffect(() => {
-  dispatch(getNotice(noticeId))
-  //   }, [dispatch, noticeId])
+  useEffect(() => {
+    dispatch(getNotice(id))
+  }, [dispatch])
 
   useEffect(() => {
     if (notice) {
