@@ -403,11 +403,11 @@ exports.getAllNotice = catchAsyncError(async (req, res, next) => {
 // ADD NOTICE
 exports.addNotice = catchAsyncError(async (req, res, next) => {
   let { link, description, title, type } = req.body
-  let notice = await Notice.findOne({ link, description, title, type })
-  if (!notice) {
-    return next(new ErrorHandler('Notice Already Exists!', 400))
-  }
-  await Notice.create({
+  // let notice = await Notice.findOne({ link, description, title, type })
+  // if (!notice) {
+  //   return next(new ErrorHandler('Notice Already Exists!', 400))
+  // }
+  const notice = await Notice.create({
     link,
     description,
     title,
@@ -415,7 +415,8 @@ exports.addNotice = catchAsyncError(async (req, res, next) => {
   })
   res.status(200).json({
     success: true,
-    message: 'Notice Added Successfully'
+    message: 'Notice Added Successfully',
+    notice
   })
 })
 
