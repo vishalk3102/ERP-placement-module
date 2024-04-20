@@ -5,7 +5,11 @@ import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { storage } from '../../../firebase/config'
 import { baseApiURL } from '../../../baseUrl'
 import { FiSearch, FiUpload, FiX } from 'react-icons/fi'
-import { getFaculty, updateFaculty } from '../../../Redux/Actions/adminAction'
+import {
+  getAllBranch,
+  getFaculty,
+  updateFaculty
+} from '../../../Redux/Actions/adminAction'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Loader from '../../../components/Loader'
@@ -21,13 +25,23 @@ const EditFaculty = () => {
   const [email, setEmail] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
   const [gender, setGender] = useState('')
-  const [branch, setBranch] = useState('')
+  const [department, setDepartment] = useState('')
   const [post, setPost] = useState('')
   const [experience, setExperience] = useState('')
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { loading, faculty, error } = useSelector(state => state.admin)
+  const { loading, faculty, branches, error } = useSelector(
+    state => state.admin
+  )
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error)
+      dispatch({ type: 'clearError' })
+    }
+    dispatch(getAllBranch())
+  }, [dispatch, error])
 
   useEffect(() => {
     if (faculty) {
@@ -39,7 +53,7 @@ const EditFaculty = () => {
       setGender(faculty.gender)
       setExperience(faculty.experience)
       setPost(faculty.post)
-      setBranch(faculty.branch)
+      setDepartment(faculty.department)
     }
   }, [faculty])
 
@@ -57,7 +71,7 @@ const EditFaculty = () => {
     setEmail('')
     setPhoneNumber('')
     setGender('')
-    setBranch('')
+    setDepartment('')
     setPost('')
     setExperience('')
   }
@@ -73,7 +87,7 @@ const EditFaculty = () => {
       gender,
       experience,
       post,
-      branch
+      department
     }
     setId(faculty._id)
     console.log(id)
@@ -198,6 +212,27 @@ const EditFaculty = () => {
               >
                 <option value='Male'>Male</option>
                 <option value='Female'>Female</option>
+              </select>
+            </div>
+            <div className='w-[40%]'>
+              <label htmlFor='branch' className='leading-7 text-sm '>
+                Select Department
+              </label>
+              <select
+                id='branch'
+                className='px-2 bg-blue-50 py-3 rounded-sm text-base w-full accent-blue-700 mt-1'
+                value={department}
+                onChange={e => setDepartment(e.target.value)}
+              >
+                <option defaultValue>-- Select --</option>
+                {branches &&
+                  branches.map(i => {
+                    return (
+                      <option value={i.name} key={i.name}>
+                        {i.name}
+                      </option>
+                    )
+                  })}
               </select>
             </div>
             <div className='w-[40%]'>

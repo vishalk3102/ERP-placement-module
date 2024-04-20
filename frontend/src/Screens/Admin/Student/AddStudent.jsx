@@ -5,7 +5,11 @@ import { toast } from 'react-hot-toast'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { storage } from '../../../firebase/config'
 import { FiUpload } from 'react-icons/fi'
-import { addAdmin, addStudent } from '../../../Redux/Actions/adminAction'
+import {
+  addAdmin,
+  addStudent,
+  getAllBranch
+} from '../../../Redux/Actions/adminAction'
 
 const AddStudent = () => {
   const [enrollmentNo, setEnrollmentNo] = useState('')
@@ -20,123 +24,22 @@ const AddStudent = () => {
   const [universityRollNo, setUniversityRollNo] = useState('')
   const [section, setSection] = useState('')
 
-  // const [file, setFile] = useState()
-  // const [branch, setBranch] = useState()
-
-  // const getBranchData = () => {
-  //   const headers = {
-  //     'Content-Type': 'application/json'
-  //   }
-  //   axios
-  //     .get(`${baseApiURL()}/branch/getBranch`, { headers })
-  //     .then(response => {
-  //       if (response.data.success) {
-  //         setBranch(response.data.branches)
-  //       } else {
-  //         toast.error(response.data.message)
-  //       }
-  //     })
-  //     .catch(error => {
-  //       console.error(error)
-  //     })
-  // }
-
-  // useEffect(() => {
-  //   const uploadFileToStorage = async file => {
-  //     toast.loading('Upload Photo To Storage')
-  //     const storageRef = ref(
-  //       storage,
-  //       `Student Profile/${data.branch}/${data.semester} Semester/${data.enrollmentNo}`
-  //     )
-  //     const uploadTask = uploadBytesResumable(storageRef, file)
-  //     uploadTask.on(
-  //       'state_changed',
-  //       snapshot => {},
-  //       error => {
-  //         console.error(error)
-  //         toast.dismiss()
-  //         toast.error('Something Went Wrong!')
-  //       },
-  //       () => {
-  //         getDownloadURL(uploadTask.snapshot.ref).then(downloadURL => {
-  //           toast.dismiss()
-  //           setFile()
-  //           toast.success('Profile Uploaded To Storage')
-  //           setData({ ...data, profile: downloadURL })
-  //         })
-  //       }
-  //     )
-  //   }
-  //   file && uploadFileToStorage(file)
-  // }, [data, file])
-
-  // useEffect(() => {
-  //   getBranchData()
-  // }, [])
-
-  // const addStudentProfile = e => {
-  //   e.preventDefault()
-  //   toast.loading('Adding Student')
-  //   const headers = {
-  //     'Content-Type': 'application/json'
-  //   }
-  //   axios
-  //     .post(`${baseApiURL()}/student/details/addDetails`, data, {
-  //       headers: headers
-  //     })
-  //     .then(response => {
-  //       toast.dismiss()
-  //       if (response.data.success) {
-  //         toast.success(response.data.message)
-  //         axios
-  //           .post(
-  //             `${baseApiURL()}/student/auth/register`,
-  //             { loginid: data.enrollmentNo, password: 112233 },
-  //             {
-  //               headers: headers
-  //             }
-  //           )
-  //           .then(response => {
-  //             toast.dismiss()
-  //             if (response.data.success) {
-  //               toast.success(response.data.message)
-  //               setFile()
-  //               setData({
-  //                 enrollmentNo: '',
-  //                 firstName: '',
-  //                 middleName: '',
-  //                 lastName: '',
-  //                 email: '',
-  //                 phoneNumber: '',
-  //                 semester: '',
-  //                 branch: '',
-  //                 gender: '',
-  //                 profile: ''
-  //               })
-  //             } else {
-  //               toast.error(response.data.message)
-  //             }
-  //           })
-  //           .catch(error => {
-  //             toast.dismiss()
-  //             toast.error(error.response.data.message)
-  //           })
-  //       } else {
-  //         toast.error(response.data.message)
-  //       }
-  //     })
-  //     .catch(error => {
-  //       toast.dismiss()
-  //       toast.error(error.response.data.message)
-  //     })
-  // }
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { loading, student, branches, error } = useSelector(
+    state => state.admin
+  )
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error)
+      dispatch({ type: 'clearError' })
+    }
+    dispatch(getAllBranch())
+  }, [dispatch, error])
 
   const addStudentProfile = e => {
     e.preventDefault()
-    console.log()
-
     const formData = {
       enrollmentNo,
       firstName,
@@ -152,8 +55,9 @@ const AddStudent = () => {
     }
 
     dispatch(addStudent(formData))
-    navigate('/admin/student')
+    navigate('/admin/home')
   }
+
   return (
     <form
       onSubmit={addStudentProfile}
@@ -188,7 +92,7 @@ const AddStudent = () => {
           Enter Enrollment No
         </label>
         <input
-          type='number'
+          type='text'
           id='enrollmentNo'
           value={enrollmentNo}
           onChange={e => setEnrollmentNo(e.target.value)}
@@ -259,13 +163,14 @@ const AddStudent = () => {
           onChange={e => setBranch(e.target.value)}
         >
           <option defaultValue>-- Select --</option>
-          {/*  {branch?.map(branch => {
-            return (
-              <option value={branch.name} key={branch.name}>
-                {branch.name}
-              </option>
-            )
-          })} */}
+          {branches &&
+            branches.map(i => {
+              return (
+                <option value={i.name} key={i.name}>
+                  {i.name}
+                </option>
+              )
+            })}
         </select>
       </div>
       <div className='w-[40%]'>

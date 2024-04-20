@@ -9,7 +9,7 @@ export const adminReducer = createReducer(
     },
     getStudentSuccess: (state, action) => {
       state.loading = false
-      state.student = action.payload.admin
+      state.student = action.payload.student
     },
     getStudentFail: (state, action) => {
       state.loading = false

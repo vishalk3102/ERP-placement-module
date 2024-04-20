@@ -31,7 +31,7 @@ exports.registerStudent = catchAsyncError(async (req, res, next) => {
     )
   }
 
-  faculty = await User.create({
+  student = await User.create({
     userType: 'student',
     enrollmentNo,
     firstName,
