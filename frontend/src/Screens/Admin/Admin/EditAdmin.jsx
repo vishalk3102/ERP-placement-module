@@ -12,10 +12,13 @@ import {
   updateAdmin
 } from '../../../Redux/Actions/adminAction'
 
+import Loader from '../../../components/Loader'
+import { useNavigate, useParams } from 'react-router-dom'
+
 const EditAdmin = () => {
   const [searchActive, setSearchActive] = useState(false)
-  const [id, setId] = useState()
   const [search, setSearch] = useState()
+  const [id, setId] = useState()
 
   const [employeeId, setEmployeeId] = useState('')
   const [firstName, setFirstName] = useState('')
@@ -25,16 +28,28 @@ const EditAdmin = () => {
   const [gender, setGender] = useState('')
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const { loading, admin, error } = useSelector(state => state.admin)
+
+  useEffect(() => {
+    if (admin) {
+      setFirstName(admin.firstName)
+      setLastName(admin.lastName)
+      setEmployeeId(admin.employeeId)
+      setEmail(admin.email)
+      setPhoneNumber(admin.phoneNumber)
+      setGender(admin.gender)
+    }
+  }, [admin])
 
   const searchAdminHandler = e => {
     e.preventDefault()
     dispatch(getAdmin(search))
+    setSearchActive(!searchActive)
   }
   const clearSearchHandler = () => {
     setSearchActive(false)
     setSearch('')
-    setId('')
     setEmployeeId('')
     setFirstName('')
     setLastName('')
@@ -45,16 +60,18 @@ const EditAdmin = () => {
 
   const updateAdminProfile = e => {
     e.preventDefault()
-    dispatch(
-      updateAdmin({
-        employeeId,
-        firstName,
-        lastName,
-        email,
-        phoneNumber,
-        gender
-      })
-    )
+    const formData = {
+      employeeId,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      gender
+    }
+    setId(admin._id)
+    console.log(id)
+    dispatch(updateAdmin(formData, id))
+    navigate('/admin/home')
   }
 
   // useEffect(() => {
@@ -156,87 +173,102 @@ const EditAdmin = () => {
           </button>
         )}
       </form>
-      {search && id && (
-        <form
-          onSubmit={updateAdminProfile}
-          className='w-[70%] flex justify-center items-center flex-wrap gap-6 mx-auto mt-10'
-        >
-          <div className='w-[40%]'>
-            <label htmlFor='firstname' className='leading-7 text-sm '>
-              Enter First Name
-            </label>
-            <input
-              type='text'
-              id='firstname'
-              value={firstName}
-              onChange={e => setFirstName(e.target.value)}
-              className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
-            />
-          </div>
-          <div className='w-[40%]'>
-            <label htmlFor='lastname' className='leading-7 text-sm '>
-              Enter Last Name
-            </label>
-            <input
-              type='text'
-              id='lastname'
-              value={lastName}
-              onChange={e => setLastName(e.target.value)}
-              className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
-            />
-          </div>
-          <div className='w-[40%]'>
-            <label htmlFor='employeeId' className='leading-7 text-sm '>
-              Enter Employee Id
-            </label>
-            <input
-              type='number'
-              id='employeeId'
-              value={employeeId}
-              onChange={e => setEmployeeId(e.target.value)}
-              className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
-            />
-          </div>
-          <div className='w-[40%]'>
-            <label htmlFor='email' className='leading-7 text-sm '>
-              Enter Email Address
-            </label>
-            <input
-              type='email'
-              id='email'
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
-            />
-          </div>
-          <div className='w-[40%]'>
-            <label htmlFor='phoneNumber' className='leading-7 text-sm '>
-              Enter Phone Number
-            </label>
-            <input
-              type='number'
-              id='phoneNumber'
-              value={phoneNumber}
-              onChange={e => setPhoneNumber(e.target.value)}
-              className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
-            />
-          </div>
 
-          <div className='w-[40%]'>
-            <label htmlFor='gender' className='leading-7 text-sm '>
-              Select Gender
-            </label>
-            <select
-              id='gender'
-              className='px-2 bg-blue-50 py-3 rounded-sm text-base w-full accent-blue-700 mt-1'
-              value={gender}
-              onChange={e => setGender(e.target.value)}
-            >
-              <option value='Male'>Male</option>
-              <option value='Female'>Female</option>
-            </select>
-          </div>
-          {/* <div className='w-[40%]'>
+      {loading === false ? (
+        searchActive &&
+        admin && (
+          <form
+            onSubmit={updateAdminProfile}
+            className='w-[70%] flex justify-center items-center flex-wrap gap-6 mx-auto mt-10'
+          >
+            <div className='w-[40%] hidden '>
+              <label htmlFor='id' className='leading-7 text-sm '>
+                Id
+              </label>
+              <input
+                type='text'
+                id='id'
+                value={id}
+                onChange={e => setId(e.target.value)}
+                className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+              />
+            </div>
+            <div className='w-[40%]'>
+              <label htmlFor='firstname' className='leading-7 text-sm '>
+                Enter First Name
+              </label>
+              <input
+                type='text'
+                id='firstname'
+                value={firstName}
+                onChange={e => setFirstName(e.target.value)}
+                className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+              />
+            </div>
+            <div className='w-[40%]'>
+              <label htmlFor='lastname' className='leading-7 text-sm '>
+                Enter Last Name
+              </label>
+              <input
+                type='text'
+                id='lastname'
+                value={lastName}
+                onChange={e => setLastName(e.target.value)}
+                className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+              />
+            </div>
+            <div className='w-[40%]'>
+              <label htmlFor='employeeId' className='leading-7 text-sm '>
+                Enter Employee Id
+              </label>
+              <input
+                type='number'
+                id='employeeId'
+                value={employeeId}
+                onChange={e => setEmployeeId(e.target.value)}
+                className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+              />
+            </div>
+            <div className='w-[40%]'>
+              <label htmlFor='email' className='leading-7 text-sm '>
+                Enter Email Address
+              </label>
+              <input
+                type='email'
+                id='email'
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+              />
+            </div>
+            <div className='w-[40%]'>
+              <label htmlFor='phoneNumber' className='leading-7 text-sm '>
+                Enter Phone Number
+              </label>
+              <input
+                type='number'
+                id='phoneNumber'
+                value={phoneNumber}
+                onChange={e => setPhoneNumber(e.target.value)}
+                className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+              />
+            </div>
+
+            <div className='w-[40%]'>
+              <label htmlFor='gender' className='leading-7 text-sm '>
+                Select Gender
+              </label>
+              <select
+                id='gender'
+                className='px-2 bg-blue-50 py-3 rounded-sm text-base w-full accent-blue-700 mt-1'
+                value={gender}
+                onChange={e => setGender(e.target.value)}
+              >
+                <option value='Male'>Male</option>
+                <option value='Female'>Female</option>
+              </select>
+            </div>
+            {/* <div className='w-[40%]'>
             <label htmlFor='file' className='leading-7 text-sm '>
               Select Profile
             </label>
@@ -257,18 +289,21 @@ const EditAdmin = () => {
               onChange={e => setFile(e.target.files[0])}
             />
           </div> */}
-          {/* {data.profile && (
+            {/* {data.profile && (
             <div className="w-full flex justify-center items-center">
               <img src={data.profile} alt="student" className="h-36" />
             </div>
           )} */}
-          <button
-            type='submit'
-            className='bg-blue-500 px-6 py-3 rounded-sm mb-6 text-white'
-          >
-            Update Admin
-          </button>
-        </form>
+            <button
+              type='submit'
+              className='bg-blue-500 px-6 py-3 rounded-sm mb-6 text-white'
+            >
+              Update Admin
+            </button>
+          </form>
+        )
+      ) : (
+        <Loader />
       )}
     </div>
   )

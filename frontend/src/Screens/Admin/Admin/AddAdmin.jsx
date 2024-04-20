@@ -53,8 +53,6 @@ const AddAdmin = () => {
 
   const addAdminProfile = e => {
     e.preventDefault()
-    console.log()
-
     const formData = {
       firstName,
       lastName,
@@ -204,7 +202,7 @@ const AddAdmin = () => {
           <option value='Female'>Female</option>
         </select>
       </div>
-      <div className='w-[80%]'>
+      {/* <div className='w-[80%]'>
         <label htmlFor='file' className='leading-7 text-sm '>
           Select Profile
         </label>
@@ -218,7 +216,7 @@ const AddAdmin = () => {
           </span>
         </label>
         <input hidden type='file' id='file' accept='image/*' />
-      </div>
+      </div> */}
       {/* {data.profile && (
       <div className='w-full flex justify-center items-center'>
         <img src={profile} alt='student' className='h-36' />

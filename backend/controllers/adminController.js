@@ -11,12 +11,12 @@ const Timetable = require('../models/TimetableModel')
 exports.registerAdmin = catchAsyncError(async (req, res, next) => {
   let { employeeId, firstName, lastName, email, phoneNumber, gender } = req.body
 
-  let user = await User.findOne({ employeeId })
-  if (user) {
+  let admin = await User.findOne({ employeeId })
+  if (admin) {
     return next(new ErrorHandler('Admin With this LoginId Already Exists', 400))
   }
 
-  user = await User.create({
+  admin = await User.create({
     userType: 'admin',
     employeeId,
     firstName,
@@ -26,7 +26,64 @@ exports.registerAdmin = catchAsyncError(async (req, res, next) => {
     gender
   })
 
-  sendToken(user, 201, res)
+  res.status(201).json({
+    success: true,
+    message: 'Admin Added Successfully',
+    admin
+  })
+})
+
+exports.registerPlacementProfile = catchAsyncError(async (req, res, next) => {
+  const {
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    dateOfBirth,
+    gender,
+    academics: {
+      university,
+      enrollmentNo,
+      universityRollNo,
+      course,
+      branch,
+      semester,
+      CGPA,
+      graduationYear,
+      percentageHighSchool,
+      yearOfCompletionHighSchool,
+      percentageIntermediate,
+      yearOfCompletionIntermediate
+    }
+  } = req.body
+
+  const user = await Placement.create({
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    dateOfBirth,
+    gender,
+    academics: {
+      university,
+      enrollmentNo,
+      universityRollNo,
+      course,
+      branch,
+      semester,
+      CGPA,
+      graduationYear,
+      percentageHighSchool,
+      yearOfCompletionHighSchool,
+      percentageIntermediate,
+      yearOfCompletionIntermediate
+    }
+  })
+  res.status(201).json({
+    success: true,
+    message: 'Successfully Registered',
+    user
+  })
 })
 
 //GET ALL  ADMIN  --admin

@@ -66,7 +66,7 @@ export const adminReducer = createReducer(
     },
     getAdminSuccess: (state, action) => {
       state.loading = false
-      state.admin = action.payload
+      state.admin = action.payload.admin
     },
     getAdminFail: (state, action) => {
       state.loading = false
