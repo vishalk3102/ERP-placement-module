@@ -25,7 +25,7 @@ const { default: mongoose } = require('mongoose')
 
 // GET NOTICE
 exports.getNotice = catchAsyncError(async (req, res, next) => {
-  let notice = await Notice.find(req.body)
+  let notice = await Notice.findById(req.params.id)
   if (!notice) {
     return next(new ErrorHandler('No Notice Available!', 400))
   }

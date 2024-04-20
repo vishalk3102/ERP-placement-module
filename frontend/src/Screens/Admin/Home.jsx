@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import Navbar from '../../components/Navbar'
 import { toast, Toaster } from 'react-hot-toast'
 import axios from 'axios'
-import Notice from '../../components/Notice'
 import Student from './Student/Student'
 import Faculty from './Faculty/Faculty'
 import Subjects from './Subject'
@@ -12,6 +11,7 @@ import { baseApiURL } from '../../baseUrl'
 import Admin from './Admin/Admin'
 import Profile from './Profile'
 import Branch from './Branch'
+import Notice from './Notice/Notice'
 
 const Home = () => {
   const router = useLocation()

@@ -3,7 +3,6 @@ import Navbar from '../../components/Navbar'
 import Profile from './Profile'
 import Timetable from './Timetable'
 import Marks from './Marks'
-import Notice from '../../components/Notice'
 import Material from './Material'
 import { Toaster } from 'react-hot-toast'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -92,7 +91,7 @@ const Home = () => {
           {selectedMenu === 'Timetable' && <Timetable />}
           {selectedMenu === 'Marks' && <Marks />}
           {selectedMenu === 'Material' && <Material />}
-          {selectedMenu === 'Notice' && <Notice />}
+          {/* {selectedMenu === 'Notice' && <Notice />} */}
           {selectedMenu === 'My Profile' && <Profile />}
         </>
       </>
