@@ -66,6 +66,15 @@ const userSchema = new mongoose.Schema({
   branch: {
     type: String
   },
+  course: {
+    type: String
+  },
+  universityRollNo: {
+    type: String
+  },
+  section: {
+    type: String
+  },
   createdAt: {
     type: Date,
     default: Date.now()

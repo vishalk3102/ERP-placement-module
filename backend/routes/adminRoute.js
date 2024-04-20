@@ -16,24 +16,20 @@ const {
   getAllNotice,
   deleteNotice,
   updateNotice,
-  addNotice
-} = require('../controllers/adminController')
-
-const { isAuthenticated, authorizeAdmin } = require('../middlewares/auth')
-const {
+  addNotice,
   getAllFaculty,
   registerFaculty,
   getFaculty,
   updateFaculty,
-  deleteFaculty
-} = require('../controllers/facultyController')
-const {
+  deleteFaculty,
   getAllStudent,
   registerStudent,
   getStudent,
   updateStudent,
   deleteStudent
-} = require('../controllers/studentController')
+} = require('../controllers/adminController')
+
+const { isAuthenticated, authorizeAdmin } = require('../middlewares/auth')
 const router = express.Router()
 
 // BRANCH

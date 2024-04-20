@@ -11,36 +11,6 @@ import { addAdmin, registerAdmin } from '../../../Redux/Actions/adminAction'
 import profile from '../../Placement/Student/profile.jpg'
 
 const AddAdmin = () => {
-  // const [file, setFile] = useState()
-  // useEffect(() => {
-  //   const uploadFileToStorage = async file => {
-  //     toast.loading('Upload Photo To Storage')
-  //     const storageRef = ref(
-  //       storage,
-  //       `Admin Profile/${data.department}/${data.employeeId}`
-  //     )
-  //     const uploadTask = uploadBytesResumable(storageRef, file)
-  //     uploadTask.on(
-  //       'state_changed',
-  //       snapshot => {},
-  //       error => {
-  //         console.error(error)
-  //         toast.dismiss()
-  //         toast.error('Something Went Wrong!')
-  //       },
-  //       () => {
-  //         getDownloadURL(uploadTask.snapshot.ref).then(downloadURL => {
-  //           toast.dismiss()
-  //           setFile()
-  //           toast.success('Profile Uploaded To Admin')
-  //           setData({ ...data, profile: downloadURL })
-  //         })
-  //       }
-  //     )
-  //   }
-  //   file && uploadFileToStorage(file)
-  // }, [data, file])
-
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [employeeId, setEmployeeId] = useState('')

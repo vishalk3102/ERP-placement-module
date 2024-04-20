@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import axios from 'axios'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
@@ -7,140 +9,30 @@ import { baseApiURL } from '../../../baseUrl'
 import { FiUpload } from 'react-icons/fi'
 
 const AddFaculty = () => {
-  const [employeeId, setEmployeeId] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
+  const [employeeId, setEmployeeId] = useState('')
   const [email, setEmail] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
   const [gender, setGender] = useState('')
-  const [branch, setBranch] = useState('')
-  const [post, setPost] = useState('')
-  const [experience, setExperience] = useState('')
 
-  /* const [file, setFile] = useState();
-  const [branch, setBranch] = useState();
-  const [data, setData] = useState({
-    employeeId: "",
-    firstName: "",
-    middleName: "",
-    lastName: "",
-    email: "",
-    phoneNumber: "",
-    department: "",
-    gender: "",
-    experience: "",
-    post: "",
-    profile: "",
-  });
-  const getBranchData = () => {
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    axios
-      .get(`${baseApiURL()}/branch/getBranch`, { headers })
-      .then((response) => {
-        if (response.data.success) {
-          setBranch(response.data.branches);
-        } else {
-          toast.error(response.data.message);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  useEffect(() => {
-    const uploadFileToStorage = async (file) => {
-      toast.loading("Upload Photo To Storage");
-      const storageRef = ref(
-        storage,
-        `Faculty Profile/${data.department}/${data.employeeId}`
-      );
-      const uploadTask = uploadBytesResumable(storageRef, file);
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {},
-        (error) => {
-          console.error(error);
-          toast.dismiss();
-          toast.error("Something Went Wrong!");
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            toast.dismiss();
-            setFile();
-            toast.success("Profile Uploaded To Faculty");
-            setData({ ...data, profile: downloadURL });
-          });
-        }
-      );
-    };
-    file && uploadFileToStorage(file);
-  }, [data, file]);
+  const addAdminProfile = e => {
+    e.preventDefault()
+    const formData = {
+      firstName,
+      lastName,
+      employeeId,
+      email,
+      phoneNumber,
+      gender
+    }
 
-  useEffect(() => {
-    getBranchData();
-  }, []);
-
-  const addFacultyProfile = (e) => {
-    e.preventDefault();
-    toast.loading("Adding Faculty");
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    axios
-      .post(`${baseApiURL()}/faculty/details/addDetails`, data, {
-        headers: headers,
-      })
-      .then((response) => {
-        toast.dismiss();
-        if (response.data.success) {
-          toast.success(response.data.message);
-          axios
-            .post(
-              `${baseApiURL()}/faculty/auth/register`,
-              { loginid: data.employeeId, password: 112233 },
-              {
-                headers: headers,
-              }
-            )
-            .then((response) => {
-              toast.dismiss();
-              if (response.data.success) {
-                toast.success(response.data.message);
-                setFile();
-                setData({
-                  employeeId: "",
-                  firstName: "",
-                  middleName: "",
-                  lastName: "",
-                  email: "",
-                  phoneNumber: "",
-                  department: "",
-                  gender: "",
-                  experience: "",
-                  post: "",
-                  profile: "",
-                });
-              } else {
-                toast.error(response.data.message);
-              }
-            })
-            .catch((error) => {
-              toast.dismiss();
-              toast.error(error.response.data.message);
-            });
-        } else {
-          toast.error(response.data.message);
-        }
-      })
-      .catch((error) => {
-        toast.dismiss();
-        toast.error(error.response.data.message);
-      });
-  }; */
-
+    dispatch(addF(formData))
+    navigate('/admin/home')
+  }
   return (
     <form
       // onSubmit={addFacultyProfile}

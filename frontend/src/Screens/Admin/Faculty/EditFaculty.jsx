@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import toast from "react-hot-toast";
-import axios from "axios";
+import React, { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
+import axios from 'axios'
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../../firebase/config";
 import { baseApiURL } from "../../../baseUrl";
@@ -153,6 +153,67 @@ const EditFaculty = () => {
       profile: "",
     });
   };
+
+
+
+  *******************************
+  const [searchActive, setSearchActive] = useState(false)
+  const [search, setSearch] = useState()
+  const [id, setId] = useState()
+
+  const [employeeId, setEmployeeId] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [phoneNumber, setPhoneNumber] = useState('')
+  const [gender, setGender] = useState('')
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { loading, admin, error } = useSelector(state => state.admin)
+
+  useEffect(() => {
+    if (admin) {
+      setFirstName(admin.firstName)
+      setLastName(admin.lastName)
+      setEmployeeId(admin.employeeId)
+      setEmail(admin.email)
+      setPhoneNumber(admin.phoneNumber)
+      setGender(admin.gender)
+    }
+  }, [admin])
+
+  const searchAdminHandler = e => {
+    e.preventDefault()
+    dispatch(getAdmin(search))
+    setSearchActive(!searchActive)
+  }
+  const clearSearchHandler = () => {
+    setSearchActive(false)
+    setSearch('')
+    setEmployeeId('')
+    setFirstName('')
+    setLastName('')
+    setEmail('')
+    setPhoneNumber('')
+    setGender('')
+  }
+
+  const updateAdminProfile = e => {
+    e.preventDefault()
+    const formData = {
+      employeeId,
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      gender
+    }
+    setId(admin._id)
+    console.log(id)
+    dispatch(updateAdmin(formData, id))
+    navigate('/admin/home')
+  }
   return (
     <div className="my-6 mx-auto w-full">
       <form

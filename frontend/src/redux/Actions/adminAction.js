@@ -18,7 +18,7 @@ export const addAdmin = formData => async dispatch => {
     )
     dispatch({
       type: 'addAdminSuccess',
-      payload: data.message
+      payload: data
     })
   } catch (error) {
     dispatch({

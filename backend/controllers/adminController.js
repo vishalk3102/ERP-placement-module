@@ -7,6 +7,210 @@ const Branch = require('../models/BranchModel')
 const Subject = require('../models/SubjectModel')
 const Timetable = require('../models/TimetableModel')
 
+//STUDENT
+// REGISTER STUDENT
+exports.registerStudent = catchAsyncError(async (req, res, next) => {
+  let {
+    enrollmentNo,
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    gender,
+    semester,
+    course,
+    branch,
+    universityRollNo,
+    section
+  } = req.body
+
+  let student = await User.findOne({ enrollmentNo })
+  if (student) {
+    return next(
+      new ErrorHandler('Student With this LoginId Already Exists', 400)
+    )
+  }
+
+  faculty = await User.create({
+    userType: 'student',
+    enrollmentNo,
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    gender,
+    semester,
+    course,
+    branch,
+    universityRollNo,
+    section
+  })
+  res.status(201).json({
+    success: true,
+    message: 'Student Added Successfully',
+    student
+  })
+})
+
+//GET ALL  STUDENT
+exports.getAllStudent = catchAsyncError(async (req, res, next) => {
+  let students = await User.find({ userType: 'student' })
+
+  res.status(200).json({
+    success: true,
+    message: 'All Students Loaded',
+    students
+  })
+})
+
+// GET STUDENT
+exports.getStudent = catchAsyncError(async (req, res, next) => {
+  let student = await User.findById(req.params.id)
+  if (!student) {
+    return next(new ErrorHandler('No Student Exists', 400))
+  }
+
+  res.status(200).json({
+    success: true,
+    message: 'Student Details Loaded',
+    student
+  })
+})
+
+// UPDATE STUDENT
+exports.updateStudent = catchAsyncError(async (req, res, next) => {
+  const { id } = req.params
+
+  let student = await User.findById(id)
+  if (!student) {
+    return next(new ErrorHandler('No Student Exists', 400))
+  }
+
+  await User.findByIdAndUpdate(id, req.body)
+
+  res.status(200).json({
+    success: true,
+    message: 'Successfully Updated'
+  })
+})
+
+// DELETE STUDENT
+exports.deleteStudent = catchAsyncError(async (req, res, next) => {
+  const { id } = req.params
+
+  let student = await User.findById(id)
+  if (!student) {
+    return next(new ErrorHandler('No Student Exists', 400))
+  }
+
+  await User.findByIdAndDelete(id, req.body)
+
+  res.status(200).json({
+    success: true,
+    message: 'Successfully Updated'
+  })
+})
+
+//FACULTY
+// REGISTER FACULTY
+exports.registerFaculty = catchAsyncError(async (req, res, next) => {
+  let {
+    employeeId,
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    gender,
+    department,
+    post,
+    experience
+  } = req.body
+
+  let faculty = await User.findOne({ employeeId })
+  if (faculty) {
+    return next(
+      new ErrorHandler('Faculty With this LoginId Already Exists', 400)
+    )
+  }
+
+  faculty = await User.create({
+    userType: 'faculty',
+    employeeId,
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    gender,
+    department,
+    post,
+    experience
+  })
+  res.status(201).json({
+    success: true,
+    message: 'Admin Added Successfully',
+    faculty
+  })
+})
+
+//GET ALL  FACULTY  --admin
+exports.getAllFaculty = catchAsyncError(async (req, res, next) => {
+  let faculties = await User.find({ userType: 'faculty' })
+
+  res.status(200).json({
+    success: true,
+    message: 'All Faculties Loaded',
+    faculties
+  })
+})
+
+// GET FACULTY
+exports.getFaculty = catchAsyncError(async (req, res, next) => {
+  let faculty = await User.findById(req.params.id)
+  if (!faculty) {
+    return next(new ErrorHandler('No Faculty Exists', 400))
+  }
+
+  res.status(200).json({
+    success: true,
+    message: 'Faculty Details Loaded',
+    faculty
+  })
+})
+
+// UPDATE FACULTY
+exports.updateFaculty = catchAsyncError(async (req, res, next) => {
+  const { id } = req.params
+
+  let faculty = await User.findById(id)
+  if (!faculty) {
+    return next(new ErrorHandler('No Faculty Exists', 400))
+  }
+
+  await User.findByIdAndUpdate(id, req.body)
+
+  res.status(200).json({
+    success: true,
+    message: 'Successfully Updated'
+  })
+})
+
+// DELETE FACULTY
+exports.deleteFaculty = catchAsyncError(async (req, res, next) => {
+  const { id } = req.params
+
+  let faculty = await User.findById(id)
+  if (!faculty) {
+    return next(new ErrorHandler('No Faculty Exists', 400))
+  }
+
+  await User.findByIdAndDelete(id, req.body)
+
+  res.status(200).json({
+    success: true,
+    message: 'Successfully Updated'
+  })
+})
+
 // REGISTER ADMIN
 exports.registerAdmin = catchAsyncError(async (req, res, next) => {
   let { employeeId, firstName, lastName, email, phoneNumber, gender } = req.body
@@ -145,7 +349,6 @@ exports.deleteAdmin = catchAsyncError(async (req, res, next) => {
 })
 
 // GET ALL BRANCH
-
 exports.getAllBranch = catchAsyncError(async (req, res, next) => {
   let branches = await Branch.find()
 
