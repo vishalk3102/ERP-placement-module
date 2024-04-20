@@ -9,15 +9,7 @@ const Timetable = require('../models/TimetableModel')
 
 // REGISTER ADMIN
 exports.registerAdmin = catchAsyncError(async (req, res, next) => {
-  let {
-    employeeId,
-    firstName,
-    lastName,
-    email,
-    password,
-    phoneNumber,
-    gender
-  } = req.body
+  let { employeeId, firstName, lastName, email, phoneNumber, gender } = req.body
 
   let user = await User.findOne({ employeeId })
   if (user) {
@@ -30,7 +22,6 @@ exports.registerAdmin = catchAsyncError(async (req, res, next) => {
     firstName,
     lastName,
     email,
-    password,
     phoneNumber,
     gender
   })

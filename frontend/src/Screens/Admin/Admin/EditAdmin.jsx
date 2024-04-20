@@ -5,8 +5,8 @@ import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { storage } from '../../../firebase/config'
 import { baseApiURL } from '../../../baseUrl'
 import { FiSearch, FiUpload, FiX } from 'react-icons/fi'
-import { useDispatch } from 'react-redux'
-import { updateAdmin } from '../../../Redux/Actions/adminAction'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAdmin, updateAdmin } from '../../../Redux/Actions/adminAction'
 
 const EditAdmin = () => {
   const [file, setFile] = useState()
@@ -32,6 +32,7 @@ const EditAdmin = () => {
   const [gender, setGender] = useState('')
 
   const dispatch = useDispatch()
+  const { loading, admin, error } = useSelector(state => state.admin)
 
   // useEffect(() => {
   //   const uploadFileToStorage = async (file) => {
@@ -77,47 +78,53 @@ const EditAdmin = () => {
   }
 
   const searchAdminHandler = e => {
-    setSearchActive(true)
     e.preventDefault()
-    toast.loading('Getting Admin')
-    const headers = {
-      'Content-Type': 'application/json'
-    }
-    axios
-      .post(
-        `${baseApiURL()}/admin/details/getDetails`,
-        { employeeId: search },
-        { headers }
-      )
-      .then(response => {
-        toast.dismiss()
-        if (response.data.success) {
-          if (response.data.user.length !== 0) {
-            toast.success(response.data.message)
-            setId(response.data.user[0]._id)
-            setData({
-              employeeId: response.data.user[0].employeeId,
-              firstName: response.data.user[0].firstName,
-              middleName: response.data.user[0].middleName,
-              lastName: response.data.user[0].lastName,
-              email: response.data.user[0].email,
-              phoneNumber: response.data.user[0].phoneNumber,
-              gender: response.data.user[0].gender,
-              profile: response.data.user[0].profile
-            })
-          } else {
-            toast.dismiss()
-            toast.error('No Admin Found With ID')
-          }
-        } else {
-          toast.error(response.data.message)
-        }
-      })
-      .catch(error => {
-        toast.error(error.response.data.message)
-        console.error(error)
-      })
+    dispatch(getAdmin(search))
   }
+
+  // const searchAdminHandler = e => {
+  //   setSearchActive(true)
+  //   e.preventDefault()
+  //   toast.loading('Getting Admin')
+  //   const headers = {
+  //     'Content-Type': 'application/json'
+  //   }
+  //   axios
+  //     .post(
+  //       `${baseApiURL()}/admin/details/getDetails`,
+  //       { employeeId: search },
+  //       { headers }
+  //     )
+  //     .then(response => {
+  //       toast.dismiss()
+  //       if (response.data.success) {
+  //         if (response.data.user.length !== 0) {
+  //           toast.success(response.data.message)
+  //           setId(response.data.user[0]._id)
+  //           setData({
+  //             employeeId: response.data.user[0].employeeId,
+  //             firstName: response.data.user[0].firstName,
+  //             middleName: response.data.user[0].middleName,
+  //             lastName: response.data.user[0].lastName,
+  //             email: response.data.user[0].email,
+  //             phoneNumber: response.data.user[0].phoneNumber,
+  //             gender: response.data.user[0].gender,
+  //             profile: response.data.user[0].profile
+  //           })
+  //         } else {
+  //           toast.dismiss()
+  //           toast.error('No Admin Found With ID')
+  //         }
+  //       } else {
+  //         toast.error(response.data.message)
+  //       }
+  //     })
+  //     .catch(error => {
+  //       toast.error(error.response.data.message)
+  //       console.error(error)
+  //     })
+  // }
+
   const clearSearchHandler = () => {
     setSearchActive(false)
     setSearch('')
