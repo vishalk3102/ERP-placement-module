@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import toast from 'react-hot-toast'
 import axios from 'axios'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { storage } from '../../../firebase/config'
 import { baseApiURL } from '../../../baseUrl'
 import { FiUpload } from 'react-icons/fi'
-import { useDispatch } from 'react-redux'
 import { addAdmin, registerAdmin } from '../../../Redux/Actions/adminAction'
 import profile from '../../Placement/Student/profile.jpg'
 
@@ -40,14 +41,32 @@ const AddAdmin = () => {
   //   file && uploadFileToStorage(file)
   // }, [data, file])
 
-  const [employeeId, setEmployeeId] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
+  const [employeeId, setEmployeeId] = useState('')
   const [email, setEmail] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
   const [gender, setGender] = useState('')
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const addAdminProfile = e => {
+    e.preventDefault()
+    console.log()
+
+    const formData = {
+      firstName,
+      lastName,
+      employeeId,
+      email,
+      phoneNumber,
+      gender
+    }
+
+    dispatch(addAdmin(formData))
+    navigate('/admin/home')
+  }
 
   // const addAdminProfile = e => {
   //   e.preventDefault()
@@ -103,20 +122,6 @@ const AddAdmin = () => {
   //       toast.error(error.response.data.message)
   //     })
   // }
-
-  const addAdminProfile = e => {
-    e.preventDefault()
-    dispatch(
-      addAdmin({
-        employeeId,
-        firstName,
-        lastName,
-        email,
-        phoneNumber,
-        gender
-      })
-    )
-  }
 
   return (
     <form
