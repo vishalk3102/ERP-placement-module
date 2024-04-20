@@ -6,21 +6,14 @@ import { storage } from '../../../firebase/config'
 import { baseApiURL } from '../../../baseUrl'
 import { FiSearch, FiUpload, FiX } from 'react-icons/fi'
 import { useDispatch, useSelector } from 'react-redux'
-import { getAdmin, updateAdmin } from '../../../Redux/Actions/adminAction'
+import {
+  getAdmin,
+  getAllAdmin,
+  updateAdmin
+} from '../../../Redux/Actions/adminAction'
 
 const EditAdmin = () => {
-  const [file, setFile] = useState()
   const [searchActive, setSearchActive] = useState(false)
-  const [data, setData] = useState({
-    employeeId: '',
-    firstName: '',
-    middleName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-    gender: '',
-    profile: ''
-  })
   const [id, setId] = useState()
   const [search, setSearch] = useState()
 
@@ -33,6 +26,36 @@ const EditAdmin = () => {
 
   const dispatch = useDispatch()
   const { loading, admin, error } = useSelector(state => state.admin)
+
+  const searchAdminHandler = e => {
+    e.preventDefault()
+    dispatch(getAdmin(search))
+  }
+  const clearSearchHandler = () => {
+    setSearchActive(false)
+    setSearch('')
+    setId('')
+    setEmployeeId('')
+    setFirstName('')
+    setLastName('')
+    setEmail('')
+    setPhoneNumber('')
+    setGender('')
+  }
+
+  const updateAdminProfile = e => {
+    e.preventDefault()
+    dispatch(
+      updateAdmin({
+        employeeId,
+        firstName,
+        lastName,
+        email,
+        phoneNumber,
+        gender
+      })
+    )
+  }
 
   // useEffect(() => {
   //   const uploadFileToStorage = async (file) => {
@@ -62,25 +85,6 @@ const EditAdmin = () => {
   //   };
   //   file && uploadFileToStorage(file);
   // }, [data, file]);
-
-  const updateAdminProfile = e => {
-    e.preventDefault()
-    dispatch(
-      updateAdmin({
-        employeeId,
-        firstName,
-        lastName,
-        email,
-        phoneNumber,
-        gender
-      })
-    )
-  }
-
-  const searchAdminHandler = e => {
-    e.preventDefault()
-    dispatch(getAdmin(search))
-  }
 
   // const searchAdminHandler = e => {
   //   setSearchActive(true)
@@ -124,22 +128,6 @@ const EditAdmin = () => {
   //       console.error(error)
   //     })
   // }
-
-  const clearSearchHandler = () => {
-    setSearchActive(false)
-    setSearch('')
-    setId('')
-    setData({
-      employeeId: '',
-      firstName: '',
-      middleName: '',
-      lastName: '',
-      email: '',
-      phoneNumber: '',
-      gender: '',
-      profile: ''
-    })
-  }
 
   return (
     <div className='my-6 mx-auto w-full'>

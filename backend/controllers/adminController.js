@@ -41,9 +41,7 @@ exports.getAllAdmin = catchAsyncError(async (req, res, next) => {
 
 // GET ADMIN
 exports.getAdmin = catchAsyncError(async (req, res, next) => {
-  const { id } = req.params
-
-  let admin = await User.findById(id)
+  let admin = await User.findById(req.params.id)
   if (!admin) {
     return next(new ErrorHandler('No Admin Exists', 400))
   }

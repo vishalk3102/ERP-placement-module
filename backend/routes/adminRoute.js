@@ -66,6 +66,13 @@ router.delete(
   deleteTimetable
 )
 
+// ADMIN
+router.post('/admin/register', registerAdmin)
+router.get('/admin', getAllAdmin)
+router.get('/admin/:id', getAdmin)
+router.put('/admin/:id', updateAdmin)
+router.delete('/admin/:id', deleteAdmin)
+
 // STUDENT
 router.get('/admin/student', getAllStudent)
 router.post('/admin/student/register', registerStudent)
@@ -80,10 +87,4 @@ router.get('/admin/faculty/:id', getFaculty)
 router.put('/admin/faculty/:id', updateFaculty)
 router.delete('/admin/faculty/:id', deleteFaculty)
 
-// ADMIN
-router.post('/admin/register', registerAdmin)
-router.get('/admin', getAllAdmin)
-router.get('/admin/:id', getStudent)
-router.put('/admin/:id', updateAdmin)
-router.delete('/admin/:id', deleteAdmin)
 module.exports = router
