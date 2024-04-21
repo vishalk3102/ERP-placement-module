@@ -7,7 +7,7 @@ import { Toaster } from 'react-hot-toast'
 import Material from './Material'
 import Marks from './Marks'
 import Notice from './Notice'
-// import Student from './Student'
+import Student from './StudentInfo'
 const Home = () => {
   const router = useLocation()
   const navigate = useNavigate()
@@ -41,7 +41,7 @@ const Home = () => {
                 ? 'border-b-2 pb-2 border-blue-500 bg-blue-100 rounded-sm'
                 : 'bg-blue-500 text-white hover:bg-blue-600 border-b-2 border-blue-500'
             }`}
-            onClick={() => setSelectedMenu('Student Info')}
+            onClick={() => setSelectedMenu('student')}
           >
             Student Info
           </li>
@@ -92,6 +92,7 @@ const Home = () => {
           {selectedMenu === 'Material' && <Material />}
           {selectedMenu === 'Notice' && <Notice />}
           {selectedMenu === 'My Profile' && <Profile />}
+          {selectedMenu === 'student' && <Student />}
         </>
       </>
       <Toaster position='bottom-center' />
