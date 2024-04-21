@@ -3,6 +3,8 @@ import { HiOutlineCalendar } from 'react-icons/hi'
 import { IoMdLink } from 'react-icons/io'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllNotice } from '../../Redux/Actions/studentAction'
+import { MdDeleteOutline, MdEditNote } from 'react-icons/md'
+import { IoEye } from 'react-icons/io5'
 
 const notices = [
   {
@@ -33,11 +35,15 @@ const Notice = () => {
 
   const { notices, loading } = useSelector(state => state.student)
 
+  const filteredNotices = notices.filter(
+    notice => notice.type === 'student' || notice.type === 'both'
+  )
+
   return (
     <div className='w-[85%] mx-auto flex justify-center items-start flex-col my-10'>
       <div className='mt-8 w-full'>
-        {notices &&
-          notices.map((item, index) => {
+        {filteredNotices &&
+          filteredNotices.map((item, index) => {
             return (
               <div
                 key={item._id}

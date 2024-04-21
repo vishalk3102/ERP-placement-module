@@ -34,12 +34,16 @@ const Notice = () => {
 
   const { notices, loading } = useSelector(state => state.faculty)
 
+  const filteredNotices = notices.filter(
+    notice => notice.type === 'faculty' || notice.type === 'both'
+  )
+
   return (
     <div className='w-[85%] mx-auto flex justify-center items-start flex-col my-10'>
       {loading === false ? (
         <div className='mt-8 w-full'>
-          {noticess &&
-            noticess.map((item, index) => {
+          {filteredNotices &&
+            filteredNotices.map((item, index) => {
               return (
                 <div
                   key={item._id}
