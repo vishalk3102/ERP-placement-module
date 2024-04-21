@@ -34,6 +34,6 @@ router.get('/marks/getmarks', isAuthenticated, getMarks)
 
 // NOTICE
 router.get('/student/notice', getAllNotice)
-router.get('/admin/notice/:id', getNotice)
+router.get('/student/notice/:id', getNotice)
 
 module.exports = router

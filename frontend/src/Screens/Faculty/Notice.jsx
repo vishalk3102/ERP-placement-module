@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { HiOutlineCalendar } from 'react-icons/hi'
 import { IoMdLink } from 'react-icons/io'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getAllNotice } from '../../Redux/Actions/adminAction'
 import Loader from '../../components/Loader'
 
@@ -32,7 +32,7 @@ const Notice = () => {
     dispatch(getAllNotice())
   }, [dispatch])
 
-  const { notices, loading } = useState(state => state.admin)
+  const { notices, loading } = useSelector(state => state.faculty)
 
   return (
     <div className='w-[85%] mx-auto flex justify-center items-start flex-col my-10'>

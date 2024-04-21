@@ -89,6 +89,20 @@ export const facultyReducer = createReducer(
     },
 
     // NOTICE
+    // NOTICE
+    getAllNoticeRequest: state => {
+      state.loading = true
+    },
+    getAllNoticeSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+      state.notices = action.payload.notices
+    },
+    getAllNoticeFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+
     getNoticeRequest: state => {
       state.loading = true
     },
@@ -98,39 +112,6 @@ export const facultyReducer = createReducer(
       state.notice = action.payload.notice
     },
     getNoticeFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
-    addNoticeRequest: state => {
-      state.loading = true
-    },
-    addNoticeSuccess: (state, action) => {
-      state.loading = false
-      state.message = action.payload.message
-    },
-    addNoticeFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
-    updateNoticeSuccess: (state, action) => {
-      state.loading = false
-      state.message = action.payload.message
-    },
-    updateNoticeFail: (state, action) => {
-      state.loading = false
-      state.error = action.payload
-    },
-    updateNoticeRequest: state => {
-      state.loading = true
-    },
-    deleteNoticeRequest: state => {
-      state.loading = true
-    },
-    deleteNoticeSuccess: (state, action) => {
-      state.loading = false
-      state.message = action.payload.message
-    },
-    deleteNoticeFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },

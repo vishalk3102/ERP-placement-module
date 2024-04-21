@@ -1,16 +1,15 @@
 const express = require('express')
 const {
-  updateFaculty,
-  deleteFaculty,
-  registerFaculty,
-  getFaculty,
-  getAllFaculty,
   addMaterial,
   updateMaterial,
   deleteMaterial,
   addMarks,
   deleteMarks
 } = require('../controllers/facultyController')
+
+const { getNotice } = require('../controllers/studentController')
+
+const { getAllNotice } = require('../controllers/adminController')
 
 const {
   isAuthenticated,
@@ -52,5 +51,9 @@ router.delete(
   authorizeAdmin,
   deleteMarks
 )
+
+// NOTICE
+router.get('/faculty/notice', getAllNotice)
+router.get('/faculty/notice/:id', getNotice)
 
 module.exports = router
