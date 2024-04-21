@@ -1,141 +1,6 @@
 import axios from 'axios'
 import { server } from '../Store'
 
-// STUDENT CREDENTIALS ACTION
-export const registerStudent = () => async dispatch => {
-  try {
-    dispatch({
-      type: 'registerStudentRequest'
-    })
-
-    const { data } = await axios.get(`${server}/admin/auth/register`)
-    dispatch({
-      type: 'registerStudentSuccess',
-      payload: data.message
-    })
-  } catch (error) {
-    dispatch({
-      type: 'registerStudentFail',
-      payload: error.response.data.message
-    })
-  }
-}
-
-export const updateStudent = id => async dispatch => {
-  try {
-    dispatch({
-      type: 'updateStudentRequest'
-    })
-
-    const { data } = await axios.get(`${server}/admin/auth/update/${id}`)
-    dispatch({
-      type: 'updateStudentSuccess',
-      payload: data.message
-    })
-  } catch (error) {
-    dispatch({
-      type: 'updateStudentFail',
-      payload: error.response.data.message
-    })
-  }
-}
-
-export const deleteStudent = id => async dispatch => {
-  try {
-    dispatch({
-      type: 'deleteStudentRequest'
-    })
-
-    const { data } = await axios.get(`${server}/admin/auth/delete/${id}`)
-    dispatch({
-      type: 'deleteStudentSuccess',
-      payload: data.message
-    })
-  } catch (error) {
-    dispatch({
-      type: 'deleteStudentFail',
-      payload: error.response.data.message
-    })
-  }
-}
-
-// STUDENT DETAILS ACTION
-export const getDetails = () => async dispatch => {
-  try {
-    dispatch({
-      type: 'getDetailsStudentRequest'
-    })
-
-    const { data } = await axios.get(`${server}/admin/details/register`)
-    dispatch({
-      type: 'getDetailsStudentSuccess',
-      payload: data.message
-    })
-  } catch (error) {
-    dispatch({
-      type: 'getDetailsStudentFail',
-      payload: error.response.data.message
-    })
-  }
-}
-
-export const addDetails = () => async dispatch => {
-  try {
-    dispatch({
-      type: 'addDetailsStudentRequest'
-    })
-
-    const { data } = await axios.post(`${server}/admin/details/login`)
-    dispatch({
-      type: 'addDetailsStudentSuccess',
-      payload: data.message
-    })
-  } catch (error) {
-    dispatch({
-      type: 'addDetailsStudentFail',
-      payload: error.response.data.message
-    })
-  }
-}
-
-export const updateDetails = id => async dispatch => {
-  try {
-    dispatch({
-      type: 'updateDetailsStudentRequest'
-    })
-
-    const { data } = await axios.post(`${server}/admin/details/update/${id}`)
-    dispatch({
-      type: 'updateDetailsStudentSuccess',
-      payload: data.message
-    })
-  } catch (error) {
-    dispatch({
-      type: 'updateDetailsStudentFail',
-      payload: error.response.data.message
-    })
-  }
-}
-
-export const deleteDetails = id => async dispatch => {
-  try {
-    dispatch({
-      type: 'deleteDetailsStudentRequest'
-    })
-
-    const { data } = await axios.delete(`${server}/admin/details/delete/${id}`)
-    dispatch({
-      type: 'deleteDetailsStudentSuccess',
-      payload: data.message
-    })
-  } catch (error) {
-    dispatch({
-      type: 'deleteDetailsStudentFail',
-      payload: error.response.data.message
-    })
-  }
-}
-
 export const count = () => async dispatch => {
   try {
     dispatch({
@@ -150,6 +15,85 @@ export const count = () => async dispatch => {
   } catch (error) {
     dispatch({
       type: 'getcountFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
+// NOTICE
+// NOTICE
+export const getNotice = id => async dispatch => {
+  try {
+    dispatch({
+      type: 'getNoticeRequest'
+    })
+
+    const { data } = await axios.get(`${server}/student/notice/${id}`)
+    dispatch({
+      type: 'getNoticeSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getNoticeFail',
+      payload: error.response.data.message
+    })
+  }
+}
+export const getAllNotice = () => async dispatch => {
+  try {
+    dispatch({
+      type: 'getAllNoticeRequest'
+    })
+
+    const { data } = await axios.get(`${server}/student/notice`)
+    dispatch({
+      type: 'getAllNoticeSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getAllNoticeFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
+// MARKS
+export const getMarks = () => async dispatch => {
+  try {
+    dispatch({
+      type: 'getMarksRequest'
+    })
+
+    const { data } = await axios.get(`${server}/admin/auth/register`)
+    dispatch({
+      type: 'getMarksSuccess',
+      payload: data.mark
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getMarksFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
+// MATERIALS
+export const getMaterials = () => async dispatch => {
+  try {
+    dispatch({
+      type: 'getMaterialsRequest'
+    })
+
+    const { data } = await axios.get(`${server}/material/getmaterial`)
+    dispatch({
+      type: 'getMaterialsSuccess',
+      payload: data.material
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getMaterialsFail',
       payload: error.response.data.message
     })
   }

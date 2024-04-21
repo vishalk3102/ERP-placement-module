@@ -6,6 +6,7 @@ import Timetable from './Timetable'
 import { Toaster } from 'react-hot-toast'
 import Material from './Material'
 import Marks from './Marks'
+import Notice from './Notice'
 // import Student from './Student'
 const Home = () => {
   const router = useLocation()
@@ -89,7 +90,7 @@ const Home = () => {
           {selectedMenu === 'Timetable' && <Timetable />}
           {selectedMenu === 'Upload Marks' && <Marks />}
           {selectedMenu === 'Material' && <Material />}
-          {/* {selectedMenu === 'Notice' && <Notice />} */}
+          {selectedMenu === 'Notice' && <Notice />}
           {selectedMenu === 'My Profile' && <Profile />}
         </>
       </>

@@ -9,10 +9,12 @@ const {
   getSubject,
   getMaterial,
   getTimetable,
-  getMarks
+  getMarks,
+  getNotice
 } = require('../controllers/studentController')
 
 const { isAuthenticated, authorizeAdmin } = require('../middlewares/auth')
+const { getAllNotice } = require('../controllers/adminController')
 const router = express.Router()
 
 // BRANCH
@@ -29,5 +31,9 @@ router.get('/timetable/gettimetable', isAuthenticated, getTimetable)
 
 // MARKS
 router.get('/marks/getmarks', isAuthenticated, getMarks)
+
+// NOTICE
+router.get('/student/notice', getAllNotice)
+router.get('/admin/notice/:id', getNotice)
 
 module.exports = router

@@ -19,12 +19,14 @@ import {
   CompanyReducer
 } from './Reducers/placementReducer'
 import { authReducer } from './Reducers/authReducer'
+import { studentReducer } from './Reducers/studentReducer'
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
     admin: adminReducer,
     faculty: facultyReducer,
+    student: studentReducer,
     branch: branchReducer,
     marks: marksReducer,
     materials: materialsReducer,

@@ -46,6 +46,19 @@ export const studentReducer = createReducer(
     },
 
     // NOTICE
+    getAllNoticeRequest: state => {
+      state.loading = true
+    },
+    getAllNoticeSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+      state.notices = action.payload.notices
+    },
+    getAllNoticeFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+
     getNoticeRequest: state => {
       state.loading = true
     },

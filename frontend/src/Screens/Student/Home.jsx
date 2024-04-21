@@ -6,6 +6,8 @@ import Marks from './Marks'
 import Material from './Material'
 import { Toaster } from 'react-hot-toast'
 import { useLocation, useNavigate } from 'react-router-dom'
+import Notice from './Notice'
+
 const Home = () => {
   const [selectedMenu, setSelectedMenu] = useState('My Profile')
   const router = useLocation()
@@ -91,7 +93,7 @@ const Home = () => {
           {selectedMenu === 'Timetable' && <Timetable />}
           {selectedMenu === 'Marks' && <Marks />}
           {selectedMenu === 'Material' && <Material />}
-          {/* {selectedMenu === 'Notice' && <Notice />} */}
+          {selectedMenu === 'Notice' && <Notice />}
           {selectedMenu === 'My Profile' && <Profile />}
         </>
       </>
