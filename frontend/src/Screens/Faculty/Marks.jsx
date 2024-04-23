@@ -214,9 +214,16 @@ const Marks = () => {
                           handleSubjectChange(index, e.target.value)
                         }
                       >
-                        <option defaultValue>-- Select Exam Type --</option>
-                        <option value='mid'>Mid Term</option>
-                        <option value='end'>End Term</option>
+                        <option value=''>-- Select Subject --</option>
+                        {subjects &&
+                          subjects.map(subject => (
+                            <option
+                              value={`${subject.name}${subject.code}`}
+                              key={subject._id}
+                            >
+                              {subject.name} {subject.code}
+                            </option>
+                          ))}
                       </select>
                     </div>
                     <div className='w-full'>
