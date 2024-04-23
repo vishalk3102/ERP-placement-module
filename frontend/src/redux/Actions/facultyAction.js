@@ -20,6 +20,7 @@ export const getNotice = id => async dispatch => {
     })
   }
 }
+
 export const getAllNotice = () => async dispatch => {
   try {
     dispatch({
@@ -38,3 +39,35 @@ export const getAllNotice = () => async dispatch => {
     })
   }
 }
+
+// MARKS
+export const addStudentMarks =
+  (enrollmentNo, marksList, semester, branch, examType) => async dispatch => {
+    try {
+      dispatch({
+        type: 'addMarksRequest'
+      })
+
+      const config = {
+        headers: { 'Content-Type': 'application/json' }
+      }
+      const { data } = await axios.post(
+        `${server}/faculty/marks/add`,
+        enrollmentNo,
+        marksList,
+        semester,
+        branch,
+        examType,
+        config
+      )
+      dispatch({
+        type: 'addMarksSuccess',
+        payload: data
+      })
+    } catch (error) {
+      dispatch({
+        type: 'addMarksFail',
+        payload: error.response.data.message
+      })
+    }
+  }

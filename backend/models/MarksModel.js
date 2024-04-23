@@ -6,11 +6,21 @@ const markSchema = new mongoose.Schema(
       type: Number,
       required: true
     },
-    internal: {
-      type: Map
+    branch: {
+      type: String,
+      required: true
     },
-    external: {
-      type: Map
+    semester: {
+      type: Number,
+      required: true
+    },
+    midTerm: {
+      type: Map,
+      of: Number
+    },
+    endTerm: {
+      type: Map,
+      of: Number
     }
   },
   { timestamps: true }

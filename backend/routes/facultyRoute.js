@@ -3,8 +3,8 @@ const {
   addMaterial,
   updateMaterial,
   deleteMaterial,
-  addMarks,
-  deleteMarks
+  deleteMarks,
+  addStudentMarks
 } = require('../controllers/facultyController')
 
 const { getNotice } = require('../controllers/studentController')
@@ -39,12 +39,7 @@ router.delete(
 )
 
 // MARKS
-router.post(
-  '/faculty/marks/addmarks',
-  isAuthenticated,
-  authorizeFaculty,
-  addMarks
-)
+router.post('/faculty/marks/add', addStudentMarks)
 router.delete(
   '/faculty/marks/deletemarks/:id',
   isAuthenticated,

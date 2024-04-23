@@ -23,95 +23,6 @@ const NewMarks = () => {
   const [search, setSearch] = useState()
   const [marksList, setMarksList] = useState([{ subject: '', mark: '' }])
 
-  const [subject, setSubject] = useState()
-  const [mark, setMark] = useState()
-
-  //   const submitMarksHandler = () => {
-  //     let container = document.getElementById('markContainer')
-  //     container.childNodes.forEach(enroll => {
-  //       setStudentMarksHandler(
-  //         enroll.id,
-  //         document.getElementById(enroll.id + 'marks').value
-  //       )
-  //     })
-  //   }
-
-  //   const setStudentMarksHandler = (enrollment, value) => {
-  //     const headers = {
-  //       'Content-Type': 'application/json'
-  //     }
-  //     axios
-  //       .post(
-  //         `${baseApiURL()}/marks/addMarks`,
-  //         {
-  //           enrollmentNo: enrollment,
-  //           [selected.examType]: {
-  //             [selected.subject]: value
-  //           }
-  //         },
-  //         { headers }
-  //       )
-  //       .then(response => {
-  //         if (response.data.success) {
-  //           toast.dismiss()
-  //           toast.success(response.data.message)
-  //         } else {
-  //           toast.dismiss()
-  //           toast.error(response.data.message)
-  //         }
-  //       })
-  //       .catch(error => {
-  //         console.error(error)
-  //         toast.error(error.message)
-  //       })
-  //   }
-
-  //   const getBranchData = () => {
-  //     const headers = {
-  //       'Content-Type': 'application/json'
-  //     }
-  //     axios
-  //       .get(`${baseApiURL()}/branch/getBranch`, { headers })
-  //       .then(response => {
-  //         if (response.data.success) {
-  //           setBranch(response.data.branches)
-  //         } else {
-  //           toast.error(response.data.message)
-  //         }
-  //       })
-  //       .catch(error => {
-  //         console.error(error)
-  //         toast.error(error.message)
-  //       })
-  //   }
-
-  //   const getSubjectData = () => {
-  //     toast.loading('Loading Subjects')
-  //     axios
-  //       .get(`${baseApiURL()}/subject/getSubject`)
-  //       .then(response => {
-  //         toast.dismiss()
-  //         if (response.data.success) {
-  //           setSubject(response.data.subject)
-  //         } else {
-  //           toast.error(response.data.message)
-  //         }
-  //       })
-  //       .catch(error => {
-  //         toast.dismiss()
-  //         toast.error(error.message)
-  //       })
-  //   }
-
-  //   useEffect(() => {
-  //     getBranchData()
-  //     getSubjectData()
-  //   }, [])
-
-  //   const resetValueHandler = () => {
-  //     setStudentData()
-  //   }
-
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { loading, student, error } = useSelector(state => state.faculty)
@@ -120,6 +31,10 @@ const NewMarks = () => {
   useEffect(() => {
     dispatch(getAllSubject())
   }, [dispatch])
+
+  const uploadMarks = () => {
+    dispatch()
+  }
 
   const searchStudentHandler = e => {
     e.preventDefault()
@@ -154,39 +69,41 @@ const NewMarks = () => {
   }
 
   return (
-    <div className='w-[85%] mx-auto flex justify-center items-start flex-col my-10'>
-      <div className='flex justify-between items-center w-full'>
-        <Heading title='Marks' />
-      </div>
-      <div className='my-6 mx-auto w-full'>
-        <form
-          onSubmit={searchStudentHandler}
-          className='flex justify-center items-center border-2 border-blue-500 rounded w-[40%] mx-auto'
-        >
-          <input
-            type='text'
-            className='px-6 py-3 w-full outline-none'
-            placeholder='Enrollment No.'
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-          />
-          {!searchActive && (
-            <button className='px-4 text-2xl hover:text-blue-500' type='submit'>
-              <FiSearch />
-            </button>
-          )}
-          {searchActive && (
-            <button
-              className='px-4 text-2xl hover:text-blue-500'
-              onClick={clearSearchHandler}
-            >
-              <FiX />
-            </button>
-          )}
-        </form>
-        {loading === false ? (
-          searchActive &&
-          student && (
+    <>
+      <div className='w-[85%] mx-auto flex justify-center items-start flex-col my-10'>
+        <div className='flex justify-between items-center w-full'>
+          <Heading title='Marks' />
+        </div>
+        <div className='my-6 mx-auto w-full'>
+          <form
+            onSubmit={searchStudentHandler}
+            className='flex justify-center items-center border-2 border-blue-500 rounded w-[40%] mx-auto'
+          >
+            <input
+              type='text'
+              className='px-6 py-3 w-full outline-none'
+              placeholder='Enrollment No.'
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+            />
+            {!searchActive && (
+              <button
+                className='px-4 text-2xl hover:text-blue-500'
+                type='submit'
+              >
+                <FiSearch />
+              </button>
+            )}
+            {searchActive && (
+              <button
+                className='px-4 text-2xl hover:text-blue-500'
+                onClick={clearSearchHandler}
+              >
+                <FiX />
+              </button>
+            )}
+          </form>
+          {searchActive && student && (
             <div className='mx-auto w-full bg-blue-50 mt-10  p-10 rounded-md shadow-md'>
               <div className='flex justify-between items-center'>
                 <div>
@@ -300,19 +217,16 @@ const NewMarks = () => {
                   {' '}
                   <button
                     className='bg-blue-500 px-6 py-3 mt-8 mx-auto rounded text-white'
-                    // onClick={submitMarksHandler}
+                    onClick={uploadMarks}
                   >
                     Upload Student Marks
                   </button>
                 </div>
               </div>
             </div>
-          )
-        ) : (
-          <Loader />
-        )}
-      </div>
-      {/* {!studentData && (
+          )}
+        </div>
+        {/* {!studentData && (
         <>
           <div className='mt-10 w-full flex justify-evenly items-center gap-x-6'>
             <div className='w-full'>
@@ -448,7 +362,8 @@ const NewMarks = () => {
           </button>
         </>
       )} */}
-    </div>
+      </div>
+    </>
   )
 }
 
