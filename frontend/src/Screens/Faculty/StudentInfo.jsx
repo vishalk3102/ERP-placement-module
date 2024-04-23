@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import Heading from '../../components/Heading'
 import axios from 'axios'
 import { baseApiURL } from '../../baseUrl'
 import { FiSearch, FiUpload, FiX } from 'react-icons/fi'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import { getStudent } from '../../Redux/Actions/adminAction'
 import Loader from '../../components/Loader'
 
