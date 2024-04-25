@@ -10,7 +10,8 @@ const {
   getMaterial,
   getTimetable,
   getMarks,
-  getNotice
+  getNotice,
+  getMarksByEnrollmentNo
 } = require('../controllers/studentController')
 
 const { isAuthenticated, authorizeAdmin } = require('../middlewares/auth')
@@ -30,7 +31,7 @@ router.get('/material/getmaterial', isAuthenticated, getMaterial)
 router.get('/timetable/gettimetable', isAuthenticated, getTimetable)
 
 // MARKS
-router.get('/marks/getmarks', isAuthenticated, getMarks)
+router.get('/student/marks/:enrollmentNo', getMarksByEnrollmentNo)
 
 // NOTICE
 router.get('/student/notice', getAllNotice)

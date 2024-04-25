@@ -21,7 +21,6 @@ export const count = () => async dispatch => {
 }
 
 // NOTICE
-// NOTICE
 export const getNotice = id => async dispatch => {
   try {
     dispatch({
@@ -60,16 +59,16 @@ export const getAllNotice = () => async dispatch => {
 }
 
 // MARKS
-export const getMarks = () => async dispatch => {
+export const getMarksByEnrollmentNo = enrollmentNo => async dispatch => {
   try {
     dispatch({
       type: 'getMarksRequest'
     })
 
-    const { data } = await axios.get(`${server}/admin/auth/register`)
+    const { data } = await axios.get(`${server}/student/marks/${enrollmentNo}`)
     dispatch({
       type: 'getMarksSuccess',
-      payload: data.mark
+      payload: data
     })
   } catch (error) {
     dispatch({

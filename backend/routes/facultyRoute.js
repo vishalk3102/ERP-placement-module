@@ -40,12 +40,6 @@ router.delete(
 
 // MARKS
 router.post('/faculty/marks/add', addStudentMarks)
-router.delete(
-  '/faculty/marks/deletemarks/:id',
-  isAuthenticated,
-  authorizeAdmin,
-  deleteMarks
-)
 
 // NOTICE
 router.get('/faculty/notice', getAllNotice)

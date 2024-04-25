@@ -18,15 +18,15 @@ export const studentReducer = createReducer(
     },
 
     // MARKS
-    getMarksRequest: state => {
+    getMarksByEnrollmentNoRequest: state => {
       state.loading = true
     },
-    getMarksSuccess: (state, action) => {
+    getMarksByEnrollmentNoSuccess: (state, action) => {
       state.loading = false
       state.message = action.payload.message
-      state.mark = action.payload.mark
+      state.mark = action.payload.Mark
     },
-    getMarksFail: (state, action) => {
+    getMarksByEnrollmentNoFail: (state, action) => {
       state.loading = false
       state.error = action.payload
     },
