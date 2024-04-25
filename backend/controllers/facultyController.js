@@ -67,13 +67,8 @@ exports.addStudentMarks = catchAsyncError(async (req, res, next) => {
   marks.forEach(semesterMarks => {
     const { semester, midTerm, endTerm } = semesterMarks
 
-    if (!semester || !midTerm || !endTerm) {
-      return next(
-        new ErrorHandler(
-          'Semester, midTerm, and endTerm are required for each mark entry',
-          400
-        )
-      )
+    if (!semester) {
+      return next(new ErrorHandler('Semester each mark entry', 400))
     }
 
     const semesterKey = `marks.${semester - 1}`
