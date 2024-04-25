@@ -54,36 +54,46 @@ exports.deleteMaterial = catchAsyncError(async (req, res, next) => {
 
 // ADD MARKS
 exports.addStudentMarks = catchAsyncError(async (req, res, next) => {
-  const { enrollmentNo, marksList, branch, semester, examType } = req.body
+  const { enrollmentNo, branch, marks } = req.body
 
-  if (!enrollmentNo || !marksList || !Array.isArray(marksList)) {
-    return next(new ErrorHandler('Enrollment number,marks are required', 400))
+  if (!enrollmentNo || !branch || !marks || !Array.isArray(marks)) {
+    return next(
+      new ErrorHandler('Enrollment number, branch, and marks are required', 400)
+    )
   }
 
-  const marksToUpdate = {}
+  const updatedMarks = {}
 
-  if (examType === 'mid') {
-    marksList.forEach(item => {
-      marksToUpdate[`midTerm.${item.subject}`] = item.mark
-    })
-  } else if (examType === 'end') {
-    marksList.forEach(item => {
-      marksToUpdate[`endTerm.${item.subject}`] = item.mark
-    })
-  } else {
-    return next(new ErrorHandler('Invalid exam type', 400))
-  }
+  marks.forEach(semesterMarks => {
+    const { semester, midTerm, endTerm } = semesterMarks
 
-  const marks = await Marks.findOneAndUpdate(
-    { enrollmentNo, branch, semester },
-    { $set: marksToUpdate },
+    if (!semester || !midTerm || !endTerm) {
+      return next(
+        new ErrorHandler(
+          'Semester, midTerm, and endTerm are required for each mark entry',
+          400
+        )
+      )
+    }
+
+    const semesterKey = `marks.${semester - 1}`
+    updatedMarks[semesterKey] = {
+      semester,
+      midTerm,
+      endTerm
+    }
+  })
+
+  const result = await Marks.findOneAndUpdate(
+    { enrollmentNo, branch },
+    { $set: updatedMarks },
     { new: true, upsert: true }
   )
 
   res.status(200).json({
     success: true,
-    message: 'Marks added succesfully',
-    marks
+    message: 'Marks added successfully',
+    marks: result
   })
 })
 

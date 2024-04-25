@@ -42,7 +42,7 @@ export const getAllNotice = () => async dispatch => {
 
 // MARKS
 export const addStudentMarks =
-  (enrollmentNo, marksList, semester, branch, examType) => async dispatch => {
+  (enrollmentNo, branch, semester, examType, marksList) => async dispatch => {
     try {
       dispatch({
         type: 'addMarksRequest'
@@ -51,15 +51,21 @@ export const addStudentMarks =
       const config = {
         headers: { 'Content-Type': 'application/json' }
       }
+
+      const requestData = {
+        enrollmentNo,
+        branch,
+        marks: marksList,
+        semester,
+        examType
+      }
+
       const { data } = await axios.post(
         `${server}/faculty/marks/add`,
-        enrollmentNo,
-        marksList,
-        semester,
-        branch,
-        examType,
+        requestData,
         config
       )
+
       dispatch({
         type: 'addMarksSuccess',
         payload: data
