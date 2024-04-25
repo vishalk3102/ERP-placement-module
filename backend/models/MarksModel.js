@@ -10,18 +10,22 @@ const markSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    semester: {
-      type: Number,
-      required: true
-    },
-    midTerm: {
-      type: Map,
-      of: Number
-    },
-    endTerm: {
-      type: Map,
-      of: Number
-    }
+    marks: [
+      {
+        semester: {
+          type: Number,
+          required: true
+        },
+        midTerm: {
+          type: Map,
+          of: Number
+        },
+        endTerm: {
+          type: Map,
+          of: Number
+        }
+      }
+    ]
   },
   { timestamps: true }
 )

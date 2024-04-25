@@ -62,17 +62,17 @@ export const getAllNotice = () => async dispatch => {
 export const getMarksByEnrollmentNo = enrollmentNo => async dispatch => {
   try {
     dispatch({
-      type: 'getMarksRequest'
+      type: 'getMarksByEnrollmentNoRequest'
     })
 
     const { data } = await axios.get(`${server}/student/marks/${enrollmentNo}`)
     dispatch({
-      type: 'getMarksSuccess',
+      type: 'getMarksByEnrollmentNoSuccess',
       payload: data
     })
   } catch (error) {
     dispatch({
-      type: 'getMarksFail',
+      type: 'getMarksByEnrollmentNoFail',
       payload: error.response.data.message
     })
   }

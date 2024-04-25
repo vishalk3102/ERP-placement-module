@@ -90,13 +90,16 @@ exports.getMarks = catchAsyncError(async (req, res, next) => {
 
 exports.getMarksByEnrollmentNo = catchAsyncError(async (req, res, next) => {
   const enrollmentNo = req.params.enrollmentNo
-  let Mark = await Marks.findOne({ enrollmentNo })
-  if (!Mark) {
+
+  const mark = await Marks.findOne({ enrollmentNo })
+
+  if (!mark) {
     return next(new ErrorHandler('Marks Not Available', 400))
   }
+
   res.status(200).json({
     success: true,
     message: 'Marks loaded ',
-    Mark
+    marks: mark.marks
   })
 })

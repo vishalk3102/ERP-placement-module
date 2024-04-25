@@ -24,7 +24,7 @@ export const studentReducer = createReducer(
     getMarksByEnrollmentNoSuccess: (state, action) => {
       state.loading = false
       state.message = action.payload.message
-      state.mark = action.payload.Mark
+      state.marks = action.payload.marks
     },
     getMarksByEnrollmentNoFail: (state, action) => {
       state.loading = false

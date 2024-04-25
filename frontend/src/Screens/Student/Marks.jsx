@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom'
 import { getMarksByEnrollmentNo } from '../../Redux/Actions/studentAction'
 import { loadUser } from '../../Redux/Actions/authAction'
 
+import Loader from '../../components/Loader'
+
 const Marks = () => {
   const [semester, setSemester] = useState()
   const [examType, setExamType] = useState()
@@ -18,7 +20,10 @@ const Marks = () => {
   const navigate = useNavigate()
 
   const { user } = useSelector(state => state.auth)
-  const { loading, mark } = useSelector(state => state.student)
+  const {
+    loading,
+    Mark: { midTerm, endTerm }
+  } = useSelector(state => state.student)
 
   // useEffect(() => {
   //   dispatch(loadUser())
@@ -80,133 +85,115 @@ const Marks = () => {
           </button>
         </div>
       </div>
-      <div className='mt-14 w-full flex flex-col gap-20'>
-        <div className='shadow-md p-4'>
-          <p className='border-b-2 border-red-500 text-2xl font-semibold pb-2'>
-            Mid Term Marks (Out of 25)
-          </p>
-          {/* {mark.midTerm ? (
-            <>
-              {mark.midTerm.map((i, index) => {
-                return (
-                  <div className='overflow-auto mt-8'>
-                    <table className='border-solid border-2 border-blue-900 border-collapse rounded mx-auto my-5'>
-                      <thead>
-                        <tr className='w-[100%] border-solid border-2 border-blue-400'>
-                          <th className=' text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400  border border-blue-900 py-3 px-8 uppercase text-center'>
-                            Subject Name
-                          </th>
-                          <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400 border border-blue-900 py-3 px-8  uppercase text-center'>
-                            Maximum Marks
-                          </th>
-                          <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400 border border-blue-900 py-3 px-8  uppercase text-center'>
-                            Obtained Marks
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr className='border border-slate-900 '>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                            TCS301
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                            25
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                            22
-                          </td>
-                        </tr>
-                        <tr className='border border-slate-900 '>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                            TCS301
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                            25
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                            22
-                          </td>
-                        </tr>
-                        <tr className='border border-slate-900 '>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                            TCS301
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                            25
-                          </td>
-                          <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                            22
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                )
-              })}
-            </>
-          ) : (
-            <p>No Marks Available At The Moment!</p>
-          )} */}
-        </div>
-        <div className='shadow-md p-4'>
-          <p className='border-b-2 border-red-500 text-2xl font-semibold pb-2'>
-            End Term Marks (Out of 50 )
-          </p>
-          <div className='overflow-auto mt-8'>
-            <table className='border-solid border-2 border-blue-900 border-collapse rounded mx-auto my-5'>
-              <thead>
-                <tr className='w-[100%] border-solid border-2 border-blue-400'>
-                  <th className=' text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400  border border-blue-900 py-3 px-8 uppercase text-center'>
-                    Subject Name
-                  </th>
-                  <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400 border border-blue-900 py-3 px-8  uppercase text-center'>
-                    Maximum Marks
-                  </th>
-                  <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400 border border-blue-900 py-3 px-8  uppercase text-center'>
-                    Obtained Marks
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className='border border-slate-900 '>
-                  <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                    TCS301
-                  </td>
-                  <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                    25
-                  </td>
-                  <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                    22
-                  </td>
-                </tr>
-                <tr className='border border-slate-900 '>
-                  <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                    TCS301
-                  </td>
-                  <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                    25
-                  </td>
-                  <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                    22
-                  </td>
-                </tr>
-                <tr className='border border-slate-900 '>
-                  <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                    TCS301
-                  </td>
-                  <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                    25
-                  </td>
-                  <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                    22
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+      {loading === false ? (
+        <>
+          <div className='mt-14 w-full flex flex-col gap-20'>
+            <div className='shadow-md p-4'>
+              <p className='border-b-2 border-red-500 text-2xl font-semibold pb-2'>
+                Mid Term Marks (Out of 25)
+              </p>
+              {midTerm ? (
+                <div className='overflow-auto mt-8'>
+                  <table className='border-solid border-2 border-blue-900 border-collapse rounded mx-auto my-5'>
+                    <thead>
+                      <tr className='w-[100%] border-solid border-2 border-blue-400'>
+                        <th className=' text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400  border border-blue-900 py-3 px-8 uppercase text-center'>
+                          Subject Name
+                        </th>
+                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400 border border-blue-900 py-3 px-8  uppercase text-center'>
+                          Maximum Marks
+                        </th>
+                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400 border border-blue-900 py-3 px-8  uppercase text-center'>
+                          Obtained Marks
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {midTerm.map(i => {
+                        return (
+                          <tr className='border border-slate-900 '>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
+                              TCS301
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
+                              25
+                            </td>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
+                              22
+                            </td>
+                          </tr>
+                        )
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                ''
+              )}
+            </div>
+            <div className='shadow-md p-4'>
+              <p className='border-b-2 border-red-500 text-2xl font-semibold pb-2'>
+                End Term Marks (Out of 50 )
+              </p>
+              <div className='overflow-auto mt-8'>
+                <table className='border-solid border-2 border-blue-900 border-collapse rounded mx-auto my-5'>
+                  <thead>
+                    <tr className='w-[100%] border-solid border-2 border-blue-400'>
+                      <th className=' text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400  border border-blue-900 py-3 px-8 uppercase text-center'>
+                        Subject Name
+                      </th>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400 border border-blue-900 py-3 px-8  uppercase text-center'>
+                        Maximum Marks
+                      </th>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400 border border-blue-900 py-3 px-8  uppercase text-center'>
+                        Obtained Marks
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className='border border-slate-900 '>
+                      <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
+                        TCS301
+                      </td>
+                      <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
+                        25
+                      </td>
+                      <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
+                        22
+                      </td>
+                    </tr>
+                    <tr className='border border-slate-900 '>
+                      <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
+                        TCS301
+                      </td>
+                      <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
+                        25
+                      </td>
+                      <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
+                        22
+                      </td>
+                    </tr>
+                    <tr className='border border-slate-900 '>
+                      <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
+                        TCS301
+                      </td>
+                      <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
+                        25
+                      </td>
+                      <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
+                        22
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            {/* {!mid && !end && <p>No Marks Available At The Moment!</p>} */}
           </div>
-        </div>
-        {/* {!mid && !end && <p>No Marks Available At The Moment!</p>} */}
-      </div>
+        </>
+      ) : (
+        <Loader />
+      )}
     </div>
   )
 }
