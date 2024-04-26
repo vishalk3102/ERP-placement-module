@@ -9,7 +9,7 @@ import toast, { Toaster } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadUser } from './Redux/Actions/authAction'
 import { useEffect } from 'react'
-import { ProtectedRoute } from 'protected-route-react'
+import ProtectedRoute from './ProtectedRoute'
 
 // Student Placement
 import StudentDashboard from './Screens/Placement/Student/Dashboard'
@@ -50,6 +50,7 @@ import ViewStudent from './Screens/Placement/Admin/Student/ViewStudent'
 import Apply from './Screens/Placement/Student/Apply'
 import ViewStudentCompany from './Screens/Placement/Student/ViewCompany'
 import ViewStudentJobPost from './Screens/Placement/Student/ViewJobPost'
+import PrivateRoute from './ProtectedRoute'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -78,145 +79,211 @@ const App = () => {
       <Router>
         <Routes>
           <Route exact path='/' element={<Login />} />
-          <Route exact path='/student/home' element={<StudentHome />} />
-          <Route exact path='/faculty/home' element={<FacultyHome />} />
-          <Route exact path='/admin/home' element={<AdminHome />} />
+          {/* <Route exact path='/student/home' element={<StudentHome />} /> */}
+          {/* <Route exact path='/faculty/home' element={<FacultyHome />} /> */}
+          {/* <Route exact path='/admin/home' element={<AdminHome />} /> */}
+
+          <Route
+            path='/student/home'
+            element={
+              <ProtectedRoute
+                isAuthenticated={isAuthenticated}
+                studentRoute={true}
+                isStudent={user && user.userType === 'student'}
+              >
+                <StudentHome />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/faculty/home'
+            element={
+              <ProtectedRoute
+                isAuthenticated={isAuthenticated}
+                facultyRoute={true}
+                isFaculty={user && user.userType === 'faculty'}
+              >
+                <FacultyHome />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/admin/home'
+            element={
+              <ProtectedRoute
+                isAuthenticated={isAuthenticated}
+                adminRoute={true}
+                isAdmin={user && user.userType === 'admin'}
+              >
+                <AdminHome />
+              </ProtectedRoute>
+            }
+          />
 
           {/* ADMIN PLACEMENT DASHBOARD ROUTE  */}
           <Route
-            exact
-            path='/admin/placement/dashboard'
-            element={<AdminDashboard />}
-          />
-          <Route exact path='/admin/placement/students' element={<Student />} />
-          <Route
-            exact
-            path='/admin/placement/student/edit/:id'
-            element={<EditStudent />}
-          />
-          <Route
-            exact
-            path='/admin/placement/student/view/:id'
-            element={<ViewStudent />}
-          />
-          <Route
-            exact
-            path='/admin/placement/companies'
-            element={<Company />}
-          />
-          <Route
-            exact
-            path='/admin/placement/company/add'
-            element={<AddCompany />}
-          />
-          <Route
-            exact
-            path='/admin/placement/company/edit/:id'
-            element={<EditCompany />}
-          />
-          <Route
-            exact
-            path='/admin/placement/company/view/:id'
-            element={<ViewCompany />}
-          />
-          <Route
-            exact
-            path='/admin/placement/jobpostings'
-            element={<JobPosting />}
-          />
-          <Route
-            exact
-            path='/admin/placement/jobposting/create'
-            element={<CreateJobPost />}
-          />
-          <Route
-            exact
-            path='/admin/placement/jobposting/edit/:id'
-            element={<EditJobPost />}
-          />
-          <Route
-            exact
-            path='/admin/placement/jobposting/view/:id'
-            element={<ViewJobPost />}
-          />
-          <Route
-            exact
-            path='/admin/placement/application'
-            element={<Application />}
-          />
-          <Route
-            exact
-            path='/admin/placement/application/:id'
-            element={<CompanyWiseStudentList />}
-          />
-          <Route
-            exact
-            path='/admin/placement/drive'
-            element={<PlacementDrive />}
-          />
-          <Route
-            exact
-            path='/admin/placement/drive/add'
-            element={<AddDrive />}
-          />
-          <Route
-            exact
-            path='/admin/placement/drive/:id'
-            element={<EditDrive />}
-          />
+            element={
+              <ProtectedRoute
+                isAuthenticated={isAuthenticated}
+                adminRoute={true}
+                isAdmin={user && user.userType === 'admin'}
+              />
+            }
+          >
+            {' '}
+            <Route
+              exact
+              path='/admin/placement/dashboard'
+              element={<AdminDashboard />}
+            />
+            <Route
+              exact
+              path='/admin/placement/students'
+              element={<Student />}
+            />
+            <Route
+              exact
+              path='/admin/placement/student/edit/:id'
+              element={<EditStudent />}
+            />
+            <Route
+              exact
+              path='/admin/placement/student/view/:id'
+              element={<ViewStudent />}
+            />
+            <Route
+              exact
+              path='/admin/placement/companies'
+              element={<Company />}
+            />
+            <Route
+              exact
+              path='/admin/placement/company/add'
+              element={<AddCompany />}
+            />
+            <Route
+              exact
+              path='/admin/placement/company/edit/:id'
+              element={<EditCompany />}
+            />
+            <Route
+              exact
+              path='/admin/placement/company/view/:id'
+              element={<ViewCompany />}
+            />
+            <Route
+              exact
+              path='/admin/placement/jobpostings'
+              element={<JobPosting />}
+            />
+            <Route
+              exact
+              path='/admin/placement/jobposting/create'
+              element={<CreateJobPost />}
+            />
+            <Route
+              exact
+              path='/admin/placement/jobposting/edit/:id'
+              element={<EditJobPost />}
+            />
+            <Route
+              exact
+              path='/admin/placement/jobposting/view/:id'
+              element={<ViewJobPost />}
+            />
+            <Route
+              exact
+              path='/admin/placement/application'
+              element={<Application />}
+            />
+            <Route
+              exact
+              path='/admin/placement/application/:id'
+              element={<CompanyWiseStudentList />}
+            />
+            <Route
+              exact
+              path='/admin/placement/drive'
+              element={<PlacementDrive />}
+            />
+            <Route
+              exact
+              path='/admin/placement/drive/add'
+              element={<AddDrive />}
+            />
+            <Route
+              exact
+              path='/admin/placement/drive/:id'
+              element={<EditDrive />}
+            />
+          </Route>
 
           {/* STUDENT PLACEMENT DASHBOARD ROUTES */}
           <Route
-            exact
-            path='/student/placement/dashboard'
-            element={<StudentDashboard />}
-          />
-          <Route
-            exact
-            path='/student/placement/profile/:id'
-            element={<StudentProfile />}
-          />
-          <Route
-            exact
-            path='/student/placement/register'
-            element={<Registration />}
-          />
-          <Route
-            exact
-            path='/student/placement/companies'
-            element={<StudentCompany />}
-          />
-          <Route
-            exact
-            path='/student/placement/company/view/:id'
-            element={<ViewStudentCompany />}
-          />
-          <Route
-            exact
-            path='/student/placement/eligiblejobs'
-            element={<StudentEligibleJobs />}
-          />
-          <Route
-            exact
-            path='/student/placement/eligiblejob/view/:id'
-            element={<ViewStudentJobPost />}
-          />
-          <Route
-            exact
-            path='/student/placement/eligiblejob/apply/:id'
-            element={<Apply />}
-          />
-          <Route
-            exact
-            path='/student/placement/application'
-            element={<StudentApplications />}
-          />
-          <Route
-            exact
-            path='/student/placement/drive'
-            element={<StudentPlacementDrive />}
-          />
-          <Route exact path='/student/placement/notice' element={<Notice />} />
+            element={
+              <ProtectedRoute
+                isAuthenticated={isAuthenticated}
+                studentRoute={true}
+                isStudent={user && user.userType === 'student'}
+              />
+            }
+          >
+            <Route
+              exact
+              path='/student/placement/dashboard'
+              element={<StudentDashboard />}
+            />
+            <Route
+              exact
+              path='/student/placement/profile/:id'
+              element={<StudentProfile />}
+            />
+            <Route
+              exact
+              path='/student/placement/register'
+              element={<Registration />}
+            />
+            <Route
+              exact
+              path='/student/placement/companies'
+              element={<StudentCompany />}
+            />
+            <Route
+              exact
+              path='/student/placement/company/view/:id'
+              element={<ViewStudentCompany />}
+            />
+            <Route
+              exact
+              path='/student/placement/eligiblejobs'
+              element={<StudentEligibleJobs />}
+            />
+            <Route
+              exact
+              path='/student/placement/eligiblejob/view/:id'
+              element={<ViewStudentJobPost />}
+            />
+            <Route
+              exact
+              path='/student/placement/eligiblejob/apply/:id'
+              element={<Apply />}
+            />
+            <Route
+              exact
+              path='/student/placement/application'
+              element={<StudentApplications />}
+            />
+            <Route
+              exact
+              path='/student/placement/drive'
+              element={<StudentPlacementDrive />}
+            />
+            <Route
+              exact
+              path='/student/placement/notice'
+              element={<Notice />}
+            />
+          </Route>
         </Routes>
         <Toaster />
       </Router>

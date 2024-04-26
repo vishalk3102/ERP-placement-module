@@ -1,31 +1,41 @@
 import axios from 'axios'
 import { server } from '../Store'
+import { useNavigate } from 'react-router-dom'
 
-export const loginUser = (userId, password, selected) => async dispatch => {
-  try {
-    dispatch({
-      type: 'loginRequest'
-    })
+export const loginUser =
+  (userId, password, selected, navigate) => async dispatch => {
+    try {
+      dispatch({
+        type: 'loginRequest'
+      })
 
-    const config = { headers: { 'Content-Type': 'application/json' } }
+      const config = { headers: { 'Content-Type': 'application/json' } }
 
-    const { data } = await axios.post(
-      `${server}/login`,
-      { userId, password, selected },
-      config
-    )
+      const { data } = await axios.post(
+        `${server}/login`,
+        { userId, password, userType: selected },
+        config
+      )
 
-    dispatch({
-      type: 'loginSuccess',
-      payload: data.user
-    })
-  } catch (error) {
-    dispatch({
-      type: 'loginFail',
-      payload: error.response.data.message
-    })
+      dispatch({
+        type: 'loginSuccess',
+        payload: data
+      })
+
+      if (selected === 'admin') {
+        navigate('/admin/home')
+      } else if (selected === 'facultu') {
+        navigate('/faculty/home')
+      } else {
+        navigate('/student/home')
+      }
+    } catch (error) {
+      dispatch({
+        type: 'loginFail',
+        payload: error.response.data.message
+      })
+    }
   }
-}
 
 export const loadUser = () => async dispatch => {
   try {
@@ -37,7 +47,7 @@ export const loadUser = () => async dispatch => {
 
     dispatch({
       type: 'loadUserSuccess',
-      payload: data.user
+      payload: data
     })
   } catch (error) {
     dispatch({

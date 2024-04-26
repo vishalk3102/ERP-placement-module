@@ -10,9 +10,9 @@ const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  // const { loading, error, message, isAuthenticated } = useSelector(
-  //   state => state.user
-  // )
+  const { loading, error, message, isAuthenticated } = useSelector(
+    state => state.auth
+  )
 
   const [selected, setSelected] = useState('Student')
   const [userId, setUserId] = useState('')
@@ -20,8 +20,7 @@ const Login = () => {
 
   const handleLoginSubmit = e => {
     e.preventDefault()
-    dispatch(loginUser(userId, password, selected.toLowerCase()))
-    navigate('/student')
+    dispatch(loginUser(userId, password, selected.toLowerCase(), navigate))
   }
 
   // useEffect(() => {

@@ -9,7 +9,7 @@ export const authReducer = createReducer(
     loginSuccess: (state, action) => {
       state.loading = false
       state.isAuthenticated = true
-      state.user = action.payload
+      state.user = action.payload.user
     },
     loginFail: (state, action) => {
       state.loading = false
@@ -22,7 +22,7 @@ export const authReducer = createReducer(
     loadUserSuccess: (state, action) => {
       state.loading = false
       state.isAuthenticated = true
-      state.user = action.payload
+      state.user = action.payload.user
     },
     loadUserFail: (state, action) => {
       state.loading = false
