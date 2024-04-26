@@ -7,26 +7,28 @@ const User = require('../models/userModel')
 // LOGIN USER FUNCTION
 exports.login = catchAsyncError(async (req, res, next) => {
   let { userId, password, userType } = req.body
+  console.log(userId)
+  console.log(password)
+  console.log(userType)
+  if (!userId || !password || !userType) {
+    return next(new ErrorHandler('Please Enter userId and Password'))
+  }
 
-  // if (!userId || !password) {
-  //   return next(new ErrorHandler('Please Enter userId and Password'))
-  // }
+  let user = null
+  if (userType === 'admin' || userType === 'faculty') {
+    let employeeId = userId
+    user = await User.findOne({ employeeId }).select('+password')
+  } else {
+    let enrollmentNo = userId
+    user = await User.findOne({ enrollmentNo }).select('+password')
+  }
 
-  // let user = null
-  // if (userType === 'admin' || userType === 'faculty') {
-  //   let employeeId = userId
-  //   user = await User.findOne({ employeeId }).select('+password')
-  // } else {
-  //   let enrollmentNo = userId
-  //   user = await User.findOne({ enrollmentNo }).select('+password')
-  // }
-
-  let employeeId = userId
-  let user = await User.findOne({ employeeId }).select('+password')
+  // let employeeId = userId
+  // let user = await User.findOne({ employeeId }).select('+password')
   if (!user) {
     return next(new ErrorHandler('Invalid Credentials', 401))
   }
-
+  console.log(user)
   const isPasswordMatched = await user.comparePassword(password)
 
   if (!isPasswordMatched) {

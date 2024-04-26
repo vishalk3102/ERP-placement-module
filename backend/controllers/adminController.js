@@ -32,12 +32,14 @@ exports.registerStudent = catchAsyncError(async (req, res, next) => {
     )
   }
 
+  const password = 'student@1234'
   student = await User.create({
     userType: 'student',
     enrollmentNo,
     firstName,
     lastName,
     email,
+    password,
     phoneNumber,
     gender,
     semester,
@@ -134,12 +136,14 @@ exports.registerFaculty = catchAsyncError(async (req, res, next) => {
     )
   }
 
+  const password = 'faculty@1234'
   faculty = await User.create({
     userType: 'faculty',
     employeeId,
     firstName,
     lastName,
     email,
+    password,
     phoneNumber,
     gender,
     department,
@@ -221,12 +225,14 @@ exports.registerAdmin = catchAsyncError(async (req, res, next) => {
     return next(new ErrorHandler('Admin With this LoginId Already Exists', 400))
   }
 
+  const password = 'admin@1234'
   admin = await User.create({
     userType: 'admin',
     employeeId,
     firstName,
     lastName,
     email,
+    password,
     phoneNumber,
     gender
   })

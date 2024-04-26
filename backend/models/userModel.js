@@ -26,7 +26,8 @@ const userSchema = new mongoose.Schema({
     validate: [validator.isEmail, 'Please provide a valid email']
   },
   password: {
-    type: String
+    type: String,
+    required: true
   },
   phoneNumber: {
     type: Number,
@@ -83,13 +84,13 @@ const userSchema = new mongoose.Schema({
   resetPasswordExpire: Date
 })
 
-// userSchema.pre('save', async function (next) {
-//   if (!this.isModified('password')) {
-//     return next()
-//   }
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) {
+    return next()
+  }
 
-//   this.password = await bcrypt.hash(this.password, 10)
-// })
+  this.password = await bcrypt.hash(this.password, 10)
+})
 
 // JWT TOKEN
 userSchema.methods.getJWTToken = function () {
