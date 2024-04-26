@@ -33,6 +33,7 @@ import { IoIosNotifications } from 'react-icons/io'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useNavigate } from 'react-router-dom'
+import { logout } from '../../../Redux/Actions/authAction'
 // import { logout } from '../../Redux/Actions/userAction'
 
 const drawerWidth = 240
@@ -107,6 +108,7 @@ const SideNavbar = () => {
   const [open, setOpen] = useState(false)
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const { user } = useSelector(state => state.studentPlacement)
 
   const id = user ? user._id : ''
@@ -120,8 +122,8 @@ const SideNavbar = () => {
   }
 
   const logoutHandler = () => {
-    navigate('/logout')
-    // dispatch(logout());
+    // navigate('/logout')
+    dispatch(logout(navigate))
   }
 
   return (

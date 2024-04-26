@@ -1,11 +1,17 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { FiLogOut } from 'react-icons/fi'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { RxDashboard } from 'react-icons/rx'
+import { logout } from '../Redux/Actions/authAction'
 
 const Navbar = () => {
-  const router = useLocation()
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const logoutHandler = () => {
+    dispatch(logout(navigate))
+  }
   return (
     <div className='shadow-md px-6 py-4 flex justify-between items-center'>
       <p
@@ -15,11 +21,11 @@ const Navbar = () => {
         <span className='mr-2'>
           <RxDashboard />
         </span>{' '}
-        {router.state && router.state.type} College-ERP
+        College-ERP
       </p>
       <button
         className='flex justify-center items-center text-red-500 px-3 py-2 font-semibold rounded-sm'
-        onClick={() => navigate('/')}
+        onClick={logoutHandler}
       >
         Logout
         <span className='ml-2'>
