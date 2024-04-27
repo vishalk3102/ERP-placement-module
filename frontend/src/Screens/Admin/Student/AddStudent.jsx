@@ -20,6 +20,8 @@ const AddStudent = () => {
   const [semester, setSemester] = useState('')
   const [universityRollNo, setUniversityRollNo] = useState('')
   const [section, setSection] = useState('')
+  const [file, setFile] = useState()
+  const [previewImage, setPreviewImage] = useState('')
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -33,21 +35,30 @@ const AddStudent = () => {
     dispatch(getAllBranch())
   }, [dispatch, error])
 
+  const handleFileChange = e => {
+    const selectedFile = e.target.files[0]
+    setFile(selectedFile)
+    const imageUrl = URL.createObjectURL(selectedFile)
+    setPreviewImage(imageUrl)
+  }
+
   const addStudentProfile = e => {
     e.preventDefault()
-    const formData = {
-      firstName,
-      lastName,
-      enrollmentNo,
-      email,
-      phoneNumber,
-      gender,
-      course,
-      branch,
-      semester,
-      universityRollNo,
-      section
-    }
+    const formData = new FormData()
+
+    formData.append('enrollmentNo', enrollmentNo)
+    formData.append('firstName', firstName)
+    formData.append('lastName', lastName)
+    formData.append('email', email)
+    formData.append('phoneNumber', phoneNumber)
+    formData.append('gender', gender)
+    formData.append('semester', semester)
+    formData.append('course', course)
+    formData.append('branch', branch)
+    formData.append('universityRollNo', universityRollNo)
+    formData.append('section', section)
+    formData.append('profile', file)
+
     console.log(formData)
     dispatch(addStudent(formData))
     navigate('/admin/home')
@@ -215,32 +226,32 @@ const AddStudent = () => {
               className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
             />
           </div>
-          {/* <div className='w-[40%]'>
-        <label htmlFor='file' className='leading-7 text-sm '>
-          Select Profile
-        </label>
-        <label
-          htmlFor='file'
-          className='px-2 bg-blue-50 py-3 rounded-sm text-base w-full flex justify-center items-center cursor-pointer'
-        >
-          Upload
-          <span className='ml-2'>
-            <FiUpload />
-          </span>
-        </label>
-        <input
-          hidden
-          type='file'
-          id='file'
-          accept='image/*'
-          // onChange={e => setFile(e.target.files[0])}
-        />
-      </div> */}
-          {/*  {data.profile && (
-        <div className='w-full flex justify-center items-center'>
-          <img src={data.profile} alt='student' className='h-36' />
-        </div>
-      )} */}
+          <div className='w-[40%]'>
+            <label htmlFor='file' className='leading-7 text-sm '>
+              Select Profile
+            </label>
+            <label
+              htmlFor='file'
+              className='px-2 bg-blue-50 py-3 rounded-sm text-base w-full flex justify-center items-center cursor-pointer'
+            >
+              Upload
+              <span className='ml-2'>
+                <FiUpload />
+              </span>
+            </label>
+            <input
+              hidden
+              type='file'
+              id='file'
+              accept='image/*'
+              onChange={handleFileChange}
+            />
+          </div>
+          {previewImage && (
+            <div className='w-full flex justify-center items-center'>
+              <img src={previewImage} alt='student' className='h-36' />
+            </div>
+          )}
           <button
             type='submit'
             className='bg-blue-500 px-6 py-3 rounded-sm mb-6 text-white'
