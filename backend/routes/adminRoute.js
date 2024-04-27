@@ -31,6 +31,7 @@ const {
 const { getNotice } = require('../controllers/studentController')
 
 const { isAuthenticated, authorizeAdmin } = require('../middlewares/auth')
+const singleUpload = require('../middlewares/multer')
 const router = express.Router()
 
 // BRANCH
@@ -73,7 +74,7 @@ router.delete('/admin/:id', deleteAdmin)
 
 // STUDENT
 router.get('/admin/student', getAllStudent)
-router.post('/admin/student/register', registerStudent)
+router.post('/admin/student/register', singleUpload, registerStudent)
 router.get('/admin/student/:id', getStudent)
 router.put('/admin/student/:id', updateStudent)
 router.delete('/admin/student/:id', deleteStudent)

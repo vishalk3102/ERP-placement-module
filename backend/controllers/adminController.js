@@ -6,6 +6,8 @@ const Notice = require('../models/NoticeModel')
 const Branch = require('../models/BranchModel')
 const Subject = require('../models/SubjectModel')
 const Timetable = require('../models/TimetableModel')
+const cloudinary = require('cloudinary')
+const getDataUri = require('../utils/dataUri')
 
 //STUDENT
 // REGISTER STUDENT
@@ -23,7 +25,7 @@ exports.registerStudent = catchAsyncError(async (req, res, next) => {
     universityRollNo,
     section
   } = req.body
-  console.log('Received Form Data:', req.body)
+  // console.log('Received Form Data:', req.body)
 
   let student = await User.findOne({ enrollmentNo })
   if (student) {
@@ -32,22 +34,52 @@ exports.registerStudent = catchAsyncError(async (req, res, next) => {
     )
   }
 
+  const file = req.file
+  console.log(file)
+  const fileUri = getDataUri(file)
+  // console.log(fileUri)
+  console.log('fileuri:' + fileUri)
+  // console.log('content:' + fileUri.content)
+  if (fileUri && fileUri.content) {
+    console.log('content:', fileUri.content)
+    try {
+      const myCloud = await cloudinary.v2.uploader.upload(fileUri.content)
+      console.log('Cloudinary upload result:', myCloud)
+      // Proceed with creating the student...
+    } catch (error) {
+      console.error('Error uploading file to Cloudinary:', error)
+      // Handle the error appropriately, e.g., return an error response to the client.
+      return next(new ErrorHandler('Error uploading file to Cloudinary', 500))
+    }
+  } else {
+    console.error('Failed to generate data URI for file:', file.originalname)
+    // Handle the error appropriately, e.g., return an error response to the client.
+    return next(new ErrorHandler('Failed to generate data URI for file', 500))
+  }
+
+  // const myCloud = await cloudinary.v2.uploader.upload(fileUri.content)
+  // console.log(myCloud.public_id)
+  // console.log(myCloud.secure_url)
   const password = 'student@1234'
-  student = await User.create({
-    userType: 'student',
-    enrollmentNo,
-    firstName,
-    lastName,
-    email,
-    password,
-    phoneNumber,
-    gender,
-    semester,
-    course,
-    branch,
-    universityRollNo,
-    section
-  })
+  // student = await User.create({
+  //   userType: 'student',
+  //   enrollmentNo,
+  //   firstName,
+  //   lastName,
+  //   email,
+  //   password,
+  //   phoneNumber,
+  //   gender,
+  //   semester,
+  //   course,
+  //   branch,
+  //   universityRollNo,
+  //   section,
+  //   profile: {
+  //     public_id: myCloud.public_id,
+  //     url: myCloud.secure_url
+  //   }
+  // })
   res.status(201).json({
     success: true,
     message: 'Student Added Successfully',

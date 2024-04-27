@@ -38,7 +38,14 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   profile: {
-    type: String
+    public_id: {
+      type: String,
+      required: true
+    },
+    url: {
+      type: String,
+      required: true
+    }
   },
 
   // COMMON FIELD FOR ADMIN  AND EMPLOYEE
