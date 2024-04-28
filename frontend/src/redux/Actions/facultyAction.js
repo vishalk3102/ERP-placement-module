@@ -79,7 +79,8 @@ export const addStudentMarks =
   }
 
 //TIMETABLE
-export const addTimetable = (branch, semester, timetable) => async dispatch => {
+export const addTimetable = formData => async dispatch => {
+  console.log(formData)
   try {
     dispatch({
       type: 'addTimetabletRequest'
@@ -89,15 +90,9 @@ export const addTimetable = (branch, semester, timetable) => async dispatch => {
       headers: { 'Content-Type': 'application/json' }
     }
 
-    const requestData = {
-      branch,
-      semester,
-      timetable
-    }
-
     const { data } = await axios.post(
       `${server}/faculty/timetable/add`,
-      requestData,
+      formData,
       config
     )
 

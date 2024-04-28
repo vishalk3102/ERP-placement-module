@@ -111,6 +111,7 @@ exports.deleteMarks = catchAsyncError(async (req, res, next) => {
 //ADD TIMETABLE
 exports.addTimetable = catchAsyncError(async (req, res, next) => {
   let { timetable, semester, branch } = req.body
+  console.log(req.body)
   const existingTimetabble = await Timetable.findOne({ semester, branch })
 
   if (existingTimetabble) {

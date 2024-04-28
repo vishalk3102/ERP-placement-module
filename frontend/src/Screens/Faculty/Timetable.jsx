@@ -41,7 +41,13 @@ const Timetable = () => {
 
   const addTimetableHandler = e => {
     e.preventDefault()
-    dispatch(addTimetable({ branch, semester, timetable }))
+    const formData = {
+      branch,
+      semester,
+      timetable
+    }
+    console.log('FormData :' + formData)
+    dispatch(addTimetable(formData))
   }
 
   // useEffect(() => {
