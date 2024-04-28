@@ -14,14 +14,16 @@ const Timetable = () => {
   const [semester, setSemester] = useState()
   const [timetable, setTimetable] = useState()
   const [selected, setSelected] = useState()
-
-  const { branches } = useSelector(state => state.admin)
-
   const dispatch = useDispatch()
+  const { loading, branches, error } = useSelector(state => state.admin)
 
   useEffect(() => {
+    if (error) {
+      toast.error(error)
+      dispatch({ type: 'clearError' })
+    }
     dispatch(getAllBranch())
-  })
+  }, [dispatch, error])
 
   const handleImage = e => {
     const file = e.target.files[0]
@@ -161,7 +163,7 @@ const Timetable = () => {
             <option value='7'>7th Semester</option>
             <option value='8'>8th Semester</option>
           </select>
-          {!selected && (
+          {/* {!selected && (
             <label
               htmlFor='upload'
               className='px-2 bg-blue-50 py-3 rounded-sm text-base w-[80%] mt-4 flex justify-center items-center cursor-pointer'
@@ -190,7 +192,39 @@ const Timetable = () => {
             id='file'
             name='timetable'
             accept='image/*'
-          />
+          /> */}
+          <div className='w-[80%] mt-2'>
+            <label htmlFor='file' className='leading-7 text-sm '>
+              select Timetable
+            </label>
+            <label
+              htmlFor='file'
+              className='px-2 bg-blue-50 py-3 rounded-sm text-base w-full flex justify-center items-center cursor-pointer'
+            >
+              Upload
+              <span className='ml-2'>
+                <FiUpload />
+              </span>
+            </label>
+            <input
+              hidden
+              onChange={handleImage}
+              type='file'
+              id='file'
+              name='timetable'
+              accept='image/*'
+            />
+          </div>
+          {timetable && (
+            <div className='w-full flex justify-center items-center my-4'>
+              <img
+                src={timetable}
+                alt='timetable'
+                className='h-36'
+                name='timetable'
+              />
+            </div>
+          )}
           <button
             className='bg-blue-500 text-white mt-8 px-4 py-2 rounded-sm'
             onClick={addTimetableHandler}

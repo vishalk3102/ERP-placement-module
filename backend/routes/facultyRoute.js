@@ -48,7 +48,7 @@ router.get('/faculty/notice', getAllNotice)
 router.get('/faculty/notice/:id', getNotice)
 
 // TIMETABLE
-router.post('/admin/timetable/add', addTimetable)
-router.delete('/admin/timetable/delete/:id', deleteTimetable)
+router.post('/faculty/timetable/add', addTimetable)
+router.delete('/faculty/timetable/delete/:id', deleteTimetable)
 
 module.exports = router

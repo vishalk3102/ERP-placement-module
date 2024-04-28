@@ -211,7 +211,7 @@ const AddFaculty = () => {
           onChange={handleImage}
           type='file'
           id='file'
-          name='image'
+          name='profile'
           accept='image/*'
         />
       </div>
