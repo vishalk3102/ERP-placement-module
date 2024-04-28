@@ -79,8 +79,7 @@ export const getMarksByEnrollmentNo = enrollmentNo => async dispatch => {
 }
 
 //TIMETABLE
-export const getTimetable = (branch, semester) => async dispatch => {
-  console.log(branch, semester)
+export const getTimetable = formData => async dispatch => {
   try {
     dispatch({
       type: 'getTimetabletRequest'
@@ -91,10 +90,7 @@ export const getTimetable = (branch, semester) => async dispatch => {
     }
     const { data } = await axios.post(
       `${server}/student/timetable`,
-      {
-        branch,
-        semester
-      },
+      formData,
       config
     )
     dispatch({

@@ -65,7 +65,6 @@ exports.getMaterial = catchAsyncError(async (req, res, next) => {
 //GET TIMETABLE
 exports.getTimetable = catchAsyncError(async (req, res, next) => {
   const { semester, branch } = req.body
-  console.log(req.body)
 
   let timetable = await Timetable.findOne({ semester, branch })
   if (!timetable || timetable.length === 0) {
