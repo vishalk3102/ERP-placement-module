@@ -112,10 +112,10 @@ export const getMaterials = () => async dispatch => {
       type: 'getMaterialsRequest'
     })
 
-    const { data } = await axios.get(`${server}/material/getmaterial`)
+    const { data } = await axios.get(`${server}/student/materials`)
     dispatch({
       type: 'getMaterialsSuccess',
-      payload: data.material
+      payload: data
     })
   } catch (error) {
     dispatch({

@@ -51,14 +51,14 @@ exports.getSubject = catchAsyncError(async (req, res, next) => {
 
 //GET MATERIALS
 exports.getMaterial = catchAsyncError(async (req, res, next) => {
-  let material = await Material.find(req.body)
-  if (!material) {
+  let materials = await Material.find()
+  if (!materials) {
     return next(new ErrorHandler('No Material Available!', 400))
   }
   res.status(200).json({
     success: true,
     message: 'Material Found!',
-    material
+    materials
   })
 })
 

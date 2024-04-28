@@ -25,7 +25,7 @@ const router = express.Router()
 router.get('/subject/getsubject', isAuthenticated, getSubject)
 
 // MATERIAL ROUTE
-router.get('/material/getmaterial', isAuthenticated, getMaterial)
+router.get('/student/materials', getMaterial)
 
 // TIMETABLE
 router.post('/student/timetable', getTimetable)

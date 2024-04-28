@@ -38,7 +38,7 @@ export const studentReducer = createReducer(
     getMaterialsSuccess: (state, action) => {
       state.loading = false
       state.message = action.payload.message
-      state.material = action.payload.materials
+      state.materials = action.payload.materials
     },
     getMaterialsFail: (state, action) => {
       state.loading = false
