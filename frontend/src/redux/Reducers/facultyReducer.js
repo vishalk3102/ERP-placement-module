@@ -98,6 +98,7 @@ export const facultyReducer = createReducer(
     addTimetableSuccess: (state, action) => {
       state.loading = false
       state.message = action.payload.message
+      state.timetable = action.payload.timetablee
     },
     addTimetabletFail: (state, action) => {
       state.loading = false

@@ -51,20 +51,6 @@ router.delete('/admin/subject/:id', deleteSubject)
 router.get('/admin/subject', getAllSubject)
 router.post('/admin/subject/add', addSubject)
 
-// TIMETABLE
-router.post(
-  '/admin/timetable/add',
-  isAuthenticated,
-  authorizeAdmin,
-  addTimetable
-)
-router.delete(
-  '/admin/timetable/delete/:id',
-  isAuthenticated,
-  authorizeAdmin,
-  deleteTimetable
-)
-
 // ADMIN
 router.post('/admin/register', registerAdmin)
 router.get('/admin', getAllAdmin)

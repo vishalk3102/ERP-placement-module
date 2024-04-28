@@ -77,3 +77,38 @@ export const addStudentMarks =
       })
     }
   }
+
+//TIMETABLE
+export const addTimetable = (branch, semester, timetable) => async dispatch => {
+  try {
+    dispatch({
+      type: 'addTimetabletRequest'
+    })
+
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+
+    const requestData = {
+      branch,
+      semester,
+      timetable
+    }
+
+    const { data } = await axios.post(
+      `${server}/faculty/timetable/add`,
+      requestData,
+      config
+    )
+
+    dispatch({
+      type: 'addTimetableSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'addTimetabletFail',
+      payload: error.response.data.message
+    })
+  }
+}

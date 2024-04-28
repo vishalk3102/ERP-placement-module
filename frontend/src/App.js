@@ -80,7 +80,7 @@ const App = () => {
         <Routes>
           <Route exact path='/' element={<Login />} />
           {/* <Route exact path='/student/home' element={<StudentHome />} /> */}
-          {/* <Route exact path='/faculty/home' element={<FacultyHome />} /> */}
+          <Route exact path='/faculty/home' element={<FacultyHome />} />
           {/* <Route exact path='/admin/home' element={<AdminHome />} /> */}
 
           <Route
@@ -95,7 +95,7 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-          <Route
+          {/* <Route
             path='/faculty/home'
             element={
               <ProtectedRoute
@@ -106,7 +106,7 @@ const App = () => {
                 <FacultyHome />
               </ProtectedRoute>
             }
-          />
+          /> */}
           <Route
             path='/admin/home'
             element={

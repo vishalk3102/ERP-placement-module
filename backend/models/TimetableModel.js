@@ -1,11 +1,7 @@
 const mongoose = require('mongoose')
 
-const TimeTable = new mongoose.Schema(
+const timeTableSchema = new mongoose.Schema(
   {
-    link: {
-      type: String,
-      required: true
-    },
     branch: {
       type: String,
       required: true
@@ -13,9 +9,19 @@ const TimeTable = new mongoose.Schema(
     semester: {
       type: Number,
       required: true
+    },
+    timetable: {
+      public_id: {
+        type: String,
+        required: true
+      },
+      url: {
+        type: String,
+        required: true
+      }
     }
   },
   { timestamps: true }
 )
 
-module.exports = mongoose.model('Timetable', TimeTable)
+module.exports = mongoose.model('Timetable', timeTableSchema)

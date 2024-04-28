@@ -4,7 +4,9 @@ const {
   updateMaterial,
   deleteMaterial,
   deleteMarks,
-  addStudentMarks
+  addStudentMarks,
+  addTimetable,
+  deleteTimetable
 } = require('../controllers/facultyController')
 
 const { getNotice } = require('../controllers/studentController')
@@ -44,5 +46,9 @@ router.post('/faculty/marks/add', addStudentMarks)
 // NOTICE
 router.get('/faculty/notice', getAllNotice)
 router.get('/faculty/notice/:id', getNotice)
+
+// TIMETABLE
+router.post('/admin/timetable/add', addTimetable)
+router.delete('/admin/timetable/delete/:id', deleteTimetable)
 
 module.exports = router

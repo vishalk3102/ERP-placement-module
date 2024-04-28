@@ -4,6 +4,7 @@ const sendToken = require('../utils/jwtToken')
 const User = require('../models/userModel')
 const Material = require('../models/MaterialModel')
 const Marks = require('../models/MarksModel')
+const Timetable = require('../models/TimetableModel')
 
 // ADD MATERIAL
 exports.addMaterial = catchAsyncError(async (req, res, next) => {
@@ -103,5 +104,45 @@ exports.deleteMarks = catchAsyncError(async (req, res, next) => {
   res.status(200).json({
     success: true,
     message: 'Marks Deleted!'
+  })
+})
+
+//ADD TIMETABLE
+exports.addTimetable = catchAsyncError(async (req, res, next) => {
+  let { timetable, semester, branch } = req.body
+  const existingTimetabble = await Timetable.findOne({ semester, branch })
+
+  if (existingTimetabble) {
+    await existingTimetabble.remove()
+  }
+  const myCloud = await cloudinary.v2.uploader.upload(timetable, {
+    folder: 'timetable'
+  })
+
+  const newTimetable = await Timetable.create({
+    branch,
+    semester,
+    timetable: {
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url
+    }
+  })
+
+  res.status(200).json({
+    success: true,
+    message: 'Timetable Added!',
+    newTimetable
+  })
+})
+
+//DELETE TIMETABLE
+exports.deleteTimetable = catchAsyncError(async (req, res, next) => {
+  let timetable = await Timetable.findByIdAndDelete(req.params.id)
+  if (!timetable) {
+    return next(new ErrorHandler('No Timetable Data Exists!', 400))
+  }
+  res.status(200).json({
+    success: true,
+    message: 'Timetable Deleted!'
   })
 })

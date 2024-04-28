@@ -46,7 +46,7 @@ const Home = () => {
           >
             Student Info
           </li>
-          <li
+          {/*  <li
             className={`text-center rounded-sm px-4 py-2 w-1/5 cursor-pointer ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all ${
               selectedMenu === 'new'
                 ? 'border-b-2 pb-2 border-blue-500 bg-blue-100 rounded-sm'
@@ -55,7 +55,7 @@ const Home = () => {
             onClick={() => setSelectedMenu('new')}
           >
             New Marks
-          </li>
+          </li> */}
           <li
             className={`text-center rounded-sm px-4 py-2 w-1/5 cursor-pointer ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all ${
               selectedMenu === 'Upload Marks'
@@ -104,7 +104,6 @@ const Home = () => {
           {selectedMenu === 'Notice' && <Notice />}
           {selectedMenu === 'My Profile' && <Profile />}
           {selectedMenu === 'student' && <Student />}
-          {selectedMenu === 'new' && <NewMarks />}
         </>
       </>
       <Toaster position='bottom-center' />

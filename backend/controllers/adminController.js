@@ -517,29 +517,3 @@ exports.deleteSubject = catchAsyncError(async (req, res, next) => {
     message: 'Subject Deleted!'
   })
 })
-
-//ADD TIMETABLE
-exports.addTimetable = catchAsyncError(async (req, res, next) => {
-  let { link, semester, branch } = req.body
-  let timetable = await Timetable.findOne({ semester, branch })
-  if (!timetable) {
-    return next(new ErrorHandler('Already Exists', 400))
-  }
-  await Timetable.findByIdAndUpdate(timetable._id, req.body)
-  res.status(200).json({
-    success: true,
-    message: 'Timetable Added!'
-  })
-})
-
-//DELETE TIMETABLE
-exports.deleteTimetable = catchAsyncError(async (req, res, next) => {
-  let timetable = await Timetable.findByIdAndDelete(req.params.id)
-  if (!timetable) {
-    return next(new ErrorHandler('No Timetable Data Exists!', 400))
-  }
-  res.status(200).json({
-    success: true,
-    message: 'Timetable Deleted!'
-  })
-})
