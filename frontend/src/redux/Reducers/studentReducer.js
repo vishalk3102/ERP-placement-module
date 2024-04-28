@@ -10,7 +10,7 @@ export const studentReducer = createReducer(
     getTimetabletSuccess: (state, action) => {
       state.loading = false
       state.message = action.payload.message
-      state.subjets = action.payload.subjets
+      state.timetable = action.payload.timetable
     },
     getTimetabletFail: (state, action) => {
       state.loading = false

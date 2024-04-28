@@ -78,6 +78,36 @@ export const getMarksByEnrollmentNo = enrollmentNo => async dispatch => {
   }
 }
 
+//TIMETABLE
+export const getTimetable = (branch, semester) => async dispatch => {
+  try {
+    dispatch({
+      type: 'getTimetabletRequest'
+    })
+
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const { data } = await axios.post(
+      `${server}/student/timetable`,
+      {
+        branch,
+        semester
+      },
+      config
+    )
+    dispatch({
+      type: 'getTimetabletSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getTimetabletFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
 // MATERIALS
 export const getMaterials = () => async dispatch => {
   try {
