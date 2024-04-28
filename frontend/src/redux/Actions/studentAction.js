@@ -80,6 +80,7 @@ export const getMarksByEnrollmentNo = enrollmentNo => async dispatch => {
 
 //TIMETABLE
 export const getTimetable = (branch, semester) => async dispatch => {
+  console.log(branch, semester)
   try {
     dispatch({
       type: 'getTimetabletRequest'
