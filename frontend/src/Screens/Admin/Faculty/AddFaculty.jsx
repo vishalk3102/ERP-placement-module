@@ -20,7 +20,6 @@ const AddFaculty = () => {
   const [post, setPost] = useState('')
   const [experience, setExperience] = useState('')
   const [profile, setProfile] = useState()
-  const [previewImage, setPreviewImage] = useState('')
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -218,7 +217,7 @@ const AddFaculty = () => {
       </div>
       {profile && (
         <div className='w-full flex justify-center items-center'>
-          <img src={profile} alt='student' className='h-36' />
+          <img src={profile} alt='student' className='h-36' name='profile' />
         </div>
       )}
       <button
