@@ -22,6 +22,7 @@ exports.addMaterial = catchAsyncError(async (req, res, next) => {
     resource_type: 'raw'
   })
 
+  console.log(subject)
   let material = await Material.create({
     title,
     subject,
@@ -30,7 +31,7 @@ exports.addMaterial = catchAsyncError(async (req, res, next) => {
       url: myCloud.secure_url
     }
   })
-
+  console.log(material)
   res.status(200).json({
     success: true,
     message: 'Material Added!',

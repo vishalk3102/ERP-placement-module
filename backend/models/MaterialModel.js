@@ -6,6 +6,10 @@ const materialSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    subject: {
+      type: String,
+      required: true
+    },
     file: {
       public_id: {
         type: String,
