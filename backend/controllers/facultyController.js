@@ -5,6 +5,7 @@ const User = require('../models/userModel')
 const Material = require('../models/MaterialModel')
 const Marks = require('../models/MarksModel')
 const Timetable = require('../models/TimetableModel')
+const cloudinary = require('cloudinary')
 
 // ADD MATERIAL
 exports.addMaterial = catchAsyncError(async (req, res, next) => {
