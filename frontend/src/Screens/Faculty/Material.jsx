@@ -4,6 +4,7 @@ import Heading from '../../components/Heading'
 import { useDispatch, useSelector } from 'react-redux'
 import { addMaterials } from '../../Redux/Actions/facultyAction'
 import { getAllSubject } from '../../Redux/Actions/adminAction'
+import toast from 'react-hot-toast'
 
 const Material = () => {
   const [title, setTitle] = useState()
@@ -17,6 +18,17 @@ const Material = () => {
     dispatch(getAllSubject())
   }, [dispatch])
 
+  const handleFileChange = e => {
+    const selectedFile = e.target.files[0]
+    if (selectedFile && selectedFile.size <= 10485760) {
+      setFile(selectedFile)
+      toast.success('File selected successfully!')
+    } else {
+      setFile(null)
+      toast.error('File size must be less than 10MB')
+    }
+  }
+
   const addMaterialHandler = () => {
     const formData = {
       title,
@@ -25,6 +37,14 @@ const Material = () => {
     }
     console.log(formData)
     dispatch(addMaterials(formData))
+      .then(() => {
+        setTitle('')
+        setSubject('')
+        setFile(null)
+      })
+      .catch(error => {
+        toast.error('Error adding material')
+      })
   }
   return (
     <div className='w-[85%] mx-auto mt-10 flex justify-center items-start flex-col mb-10'>
@@ -82,7 +102,7 @@ const Material = () => {
               name='file'
               id='file'
               hidden
-              onChange={e => setFile(e.target.files[0])}
+              onChange={handleFileChange}
             />
           </div>
 
