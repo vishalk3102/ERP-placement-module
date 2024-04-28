@@ -107,3 +107,30 @@ export const addTimetable = formData => async dispatch => {
     })
   }
 }
+
+//MATERIAL
+export const addMaterials = formData => async dispatch => {
+  try {
+    dispatch({
+      type: 'addMaterialsRequest'
+    })
+
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const { data } = await axios.post(
+      `${server}/faculty/material/add`,
+      formData,
+      config
+    )
+    dispatch({
+      type: 'addMaterialsSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'addMaterialsFail',
+      payload: error.response.data.message
+    })
+  }
+}

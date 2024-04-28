@@ -51,4 +51,7 @@ router.get('/faculty/notice/:id', getNotice)
 router.post('/faculty/timetable/add', addTimetable)
 router.delete('/faculty/timetable/delete/:id', deleteTimetable)
 
+// MATERIALS
+router.post('/faculty/material/add', singleUpload, addMaterial)
+
 module.exports = router

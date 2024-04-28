@@ -6,6 +6,8 @@ import profile from '../Placement/Student/profile.jpg'
 
 const Profile = () => {
   const [showPass, setShowPass] = useState(false)
+
+  const { loading, user } = useSelector(state => state.auth)
   // const router = useLocation()
   // const [data, setData] = useState()
   /* const [password, setPassword] = useState({
@@ -99,24 +101,29 @@ const Profile = () => {
   //     })
   // }
 
-  const loading = false
   return (
     <div className='w-[85%] mx-auto my-8 flex justify-between items-start'>
       {loading === false ? (
         <>
           <div>
-            <p className='text-2xl font-semibold'>Hello Vishal Kumar 👋</p>
+            <p className='text-2xl font-semibold'>
+              Hello {user.firstName} {user.lastName} 👋
+            </p>
             <div className='mt-3'>
               <p className='text-lg font-normal mb-2'>
-                Enrollment No: GE2020021657
-              </p>
-              <p className='text-lg font-normal mb-2'>Branch: B-Tech(CSE)</p>
-              <p className='text-lg font-normal mb-2'>Semester: 8th</p>
-              <p className='text-lg font-normal mb-2'>
-                Phone Number: +91 8459126643
+                Enrollment No: {user.enrollmentNo}
               </p>
               <p className='text-lg font-normal mb-2'>
-                Email Address: vishal.k3102@gmail.com
+                Branch: {user.enrollmentNo}
+              </p>
+              <p className='text-lg font-normal mb-2'>
+                Semester: {user.enrollmentNo}th
+              </p>
+              <p className='text-lg font-normal mb-2'>
+                Phone Number: {user.phoneNumber}
+              </p>
+              <p className='text-lg font-normal mb-2'>
+                Email Address: {user.email}
               </p>
             </div>
             <button
