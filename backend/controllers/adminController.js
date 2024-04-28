@@ -23,8 +23,7 @@ exports.registerStudent = catchAsyncError(async (req, res, next) => {
     course,
     branch,
     universityRollNo,
-    section,
-    profile
+    section
   } = req.body
   console.log('Received Form Data:', req.body)
 
@@ -35,32 +34,8 @@ exports.registerStudent = catchAsyncError(async (req, res, next) => {
     )
   }
 
-  // const file = req.file
-  // console.log(file)
-  // const fileUri = getDataUri(file)
-  // // console.log(fileUri)
-  // console.log('fileuri:' + fileUri)
-  // // console.log('content:' + fileUri.content)
-  // if (fileUri && fileUri.content) {
-  //   console.log('content:', fileUri.content)
-  //   try {
-  //     const myCloud = await cloudinary.v2.uploader.upload(fileUri.content)
-  //     console.log('Cloudinary upload result:', myCloud)
-  //     // Proceed with creating the student...
-  //   } catch (error) {
-  //     console.error('Error uploading file to Cloudinary:', error)
-  //     // Handle the error appropriately, e.g., return an error response to the client.
-  //     return next(new ErrorHandler('Error uploading file to Cloudinary', 500))
-  //   }
-  // } else {
-  //   console.error('Failed to generate data URI for file:', file.originalname)
-  //   // Handle the error appropriately, e.g., return an error response to the client.
-  //   return next(new ErrorHandler('Failed to generate data URI for file', 500))
-  // }
-
-  const myCloud = await cloudinary.v2.uploader.upload(profile)
-  console.log(myCloud)
   const password = 'student@1234'
+
   student = await User.create({
     userType: 'student',
     enrollmentNo,
@@ -158,7 +133,8 @@ exports.registerFaculty = catchAsyncError(async (req, res, next) => {
     gender,
     department,
     post,
-    experience
+    experience,
+    profile
   } = req.body
 
   let faculty = await User.findOne({ employeeId })
@@ -168,7 +144,12 @@ exports.registerFaculty = catchAsyncError(async (req, res, next) => {
     )
   }
 
+  const myCloud = await cloudinary.v2.uploader.upload(profile, {
+    folder: 'profile'
+  })
+
   const password = 'faculty@1234'
+
   faculty = await User.create({
     userType: 'faculty',
     employeeId,
@@ -180,7 +161,11 @@ exports.registerFaculty = catchAsyncError(async (req, res, next) => {
     gender,
     department,
     post,
-    experience
+    experience,
+    profile: {
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url
+    }
   })
   res.status(201).json({
     success: true,

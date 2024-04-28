@@ -42,7 +42,7 @@ const AddStudent = () => {
     setPreviewImage(imageUrl)
   }
 
-  const addStudentProfile = e => {
+  /* const addStudentProfile = e => {
     e.preventDefault()
     const formData = new FormData()
 
@@ -58,6 +58,28 @@ const AddStudent = () => {
     formData.append('universityRollNo', universityRollNo)
     formData.append('section', section)
     formData.append('profile', file)
+
+    console.log(formData)
+    dispatch(addStudent(formData))
+    navigate('/admin/home')
+  } */
+
+  const addStudentProfile = e => {
+    e.preventDefault()
+    const formData = {
+      firstName,
+      lastName,
+      enrollmentNo,
+      email,
+      phoneNumber,
+      gender,
+      course,
+      branch,
+      semester,
+      universityRollNo,
+      section,
+      file
+    }
 
     console.log(formData)
     dispatch(addStudent(formData))

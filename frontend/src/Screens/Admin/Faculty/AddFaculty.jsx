@@ -19,6 +19,8 @@ const AddFaculty = () => {
   const [department, setDepartment] = useState('')
   const [post, setPost] = useState('')
   const [experience, setExperience] = useState('')
+  const [profile, setProfile] = useState()
+  const [previewImage, setPreviewImage] = useState('')
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -33,6 +35,20 @@ const AddFaculty = () => {
     dispatch(getAllBranch())
   }, [dispatch, error])
 
+  const handleImage = e => {
+    const file = e.target.files[0]
+    setFileToBase(file)
+    console.log(file)
+  }
+
+  const setFileToBase = file => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onloadend = () => {
+      setProfile(reader.result)
+    }
+  }
+
   const addFacultyProfile = e => {
     e.preventDefault()
     const formData = {
@@ -44,7 +60,8 @@ const AddFaculty = () => {
       gender,
       department,
       post,
-      experience
+      experience,
+      profile
     }
 
     dispatch(addFaculty(formData))
@@ -177,7 +194,7 @@ const AddFaculty = () => {
           className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
         />
       </div>
-      {/* <div className='w-[40%]'>
+      <div className='w-[40%]'>
         <label htmlFor='file' className='leading-7 text-sm '>
           Select Profile
         </label>
@@ -190,13 +207,20 @@ const AddFaculty = () => {
             <FiUpload />
           </span>
         </label>
-        <input hidden type='file' id='file' accept='image/*' />
-      </div> */}
-      {/*  {data.profile && (
-        <div className="w-full flex justify-center items-center">
-          <img src={data.profile} alt="student" className="h-36" />
+        <input
+          hidden
+          onChange={handleImage}
+          type='file'
+          id='file'
+          name='image'
+          accept='image/*'
+        />
+      </div>
+      {profile && (
+        <div className='w-full flex justify-center items-center'>
+          <img src={profile} alt='student' className='h-36' />
         </div>
-      )} */}
+      )}
       <button
         type='submit'
         className='bg-blue-500 px-6 py-3 rounded-sm my-6 text-white'
