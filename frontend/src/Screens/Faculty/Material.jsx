@@ -3,7 +3,8 @@ import { FiUpload } from 'react-icons/fi'
 import Heading from '../../components/Heading'
 import { useDispatch, useSelector } from 'react-redux'
 import { addMaterials } from '../../Redux/Actions/facultyAction'
-import { getAllStudent, getAllSubject } from '../../Redux/Actions/adminAction'
+import { getAllSubject } from '../../Redux/Actions/adminAction'
+
 const Material = () => {
   const [title, setTitle] = useState()
   const [subject, setSubject] = useState()
@@ -22,6 +23,7 @@ const Material = () => {
       subject,
       file
     }
+    console.log(formData)
     dispatch(addMaterials(formData))
   }
   return (
@@ -62,28 +64,6 @@ const Material = () => {
                 ))}
             </select>
           </div>
-          {/*        {!selected.link && (
-            <label
-              htmlFor='upload'
-              className='px-2 bg-blue-50 py-3 rounded-sm text-base w-[80%] mt-4 flex justify-center items-center cursor-pointer'
-            >
-              Upload Material
-              <span className='ml-2'>
-                <FiUpload />
-              </span>
-            </label>
-          )}
-          {selected.link && (
-            <p
-              className='px-2 border-2 border-blue-500 py-2 rounded text-base w-[80%] mt-4 flex justify-center items-center cursor-pointer'
-              onClick={() => setSelected({ ...selected, link: '' })}
-            >
-              Remove Selected Material
-              <span className='ml-2'>
-                <AiOutlineClose />
-              </span>
-            </p>
-          )} */}
           <div className='w-[80%] mt-2'>
             <label htmlFor='file' className='leading-7 text-sm '>
               select File

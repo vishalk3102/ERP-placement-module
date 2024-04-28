@@ -110,13 +110,14 @@ export const addTimetable = formData => async dispatch => {
 
 //MATERIAL
 export const addMaterials = formData => async dispatch => {
+  console.log(formData)
   try {
     dispatch({
       type: 'addMaterialsRequest'
     })
 
     const config = {
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'multipart/form-data' }
     }
     const { data } = await axios.post(
       `${server}/faculty/material/add`,

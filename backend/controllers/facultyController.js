@@ -15,9 +15,11 @@ exports.addMaterial = catchAsyncError(async (req, res, next) => {
 
   const file = req.file
   const fileUri = getDataUri(file)
+  console.log(file)
 
   const myCloud = await cloudinary.v2.uploader.upload(fileUri.content, {
-    folder: 'materials'
+    folder: 'materials',
+    resource_type: 'raw'
   })
 
   let material = await Material.create({
