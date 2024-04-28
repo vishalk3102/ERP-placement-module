@@ -6,19 +6,21 @@ const Material = require('../models/MaterialModel')
 const Marks = require('../models/MarksModel')
 const Timetable = require('../models/TimetableModel')
 const cloudinary = require('cloudinary')
-const { default: getDataUri } = require('../utils/dataUri')
+const getDataUri = require('../utils/dataUri')
 
 // ADD MATERIAL
 exports.addMaterial = catchAsyncError(async (req, res, next) => {
-  let { title, subject, file } = req.body
+  let { title, subject } = req.body
+  console.log(req.body)
 
+  const file = req.file
   const fileUri = getDataUri(file)
 
   const myCloud = await cloudinary.v2.uploader.upload(fileUri.content, {
     folder: 'materials'
   })
 
-  let Material = await Material.create({
+  let material = await Material.create({
     title,
     subject,
     file: {
@@ -30,7 +32,7 @@ exports.addMaterial = catchAsyncError(async (req, res, next) => {
   res.status(200).json({
     success: true,
     message: 'Material Added!',
-    file
+    material
   })
 })
 
