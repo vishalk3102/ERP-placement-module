@@ -1,14 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { addAdmin } from '../../../Redux/Actions/adminAction'
 import toast from 'react-hot-toast'
-import axios from 'axios'
-import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
-import { storage } from '../../../firebase/config'
-import { baseApiURL } from '../../../baseUrl'
 import { FiUpload } from 'react-icons/fi'
-import { addAdmin, registerAdmin } from '../../../Redux/Actions/adminAction'
-import profile from '../../Placement/Student/profile.jpg'
 
 const AddAdmin = () => {
   const [firstName, setFirstName] = useState('')
@@ -17,9 +11,23 @@ const AddAdmin = () => {
   const [email, setEmail] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
   const [gender, setGender] = useState('')
+  const [profile, setProfile] = useState()
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+
+  const handleImage = e => {
+    const file = e.target.files[0]
+    setFileToBase(file)
+    console.log(file)
+  }
+
+  const setFileToBase = file => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onloadend = () => {
+      setProfile(reader.result)
+    }
+  }
 
   const addAdminProfile = e => {
     e.preventDefault()
@@ -29,67 +37,24 @@ const AddAdmin = () => {
       employeeId,
       email,
       phoneNumber,
-      gender
+      gender,
+      profile
     }
 
     dispatch(addAdmin(formData))
-    navigate('/admin/home')
+      .then(() => {
+        setEmployeeId('')
+        setFirstName('')
+        setLastName('')
+        setEmail('')
+        setPhoneNumber('')
+        setGender('')
+        setProfile('')
+      })
+      .catch(error => {
+        toast.error('Error adding Admin')
+      })
   }
-
-  // const addAdminProfile = e => {
-  //   e.preventDefault()
-  //   toast.loading('Adding Admin')
-  //   const headers = {
-  //     'Content-Type': 'application/json'
-  //   }
-  //   axios
-  //     .post(`${baseApiURL()}/admin/details/addDetails`, data, {
-  //       headers: headers
-  //     })
-  //     .then(response => {
-  //       toast.dismiss()
-  //       if (response.data.success) {
-  //         toast.success(response.data.message)
-  //         axios
-  //           .post(
-  //             `${baseApiURL()}/Admin/auth/register`,
-  //             { loginid: data.employeeId, password: 112233 },
-  //             {
-  //               headers: headers
-  //             }
-  //           )
-  //           .then(response => {
-  //             toast.dismiss()
-  //             if (response.data.success) {
-  //               toast.success(response.data.message)
-  //               setFile()
-  //               setData({
-  //                 employeeId: '',
-  //                 firstName: '',
-  //                 middleName: '',
-  //                 lastName: '',
-  //                 email: '',
-  //                 phoneNumber: '',
-  //                 gender: '',
-  //                 profile: ''
-  //               })
-  //             } else {
-  //               toast.error(response.data.message)
-  //             }
-  //           })
-  //           .catch(error => {
-  //             toast.dismiss()
-  //             toast.error(error.response.data.message)
-  //           })
-  //       } else {
-  //         toast.error(response.data.message)
-  //       }
-  //     })
-  //     .catch(error => {
-  //       toast.dismiss()
-  //       toast.error(error.response.data.message)
-  //     })
-  // }
 
   return (
     <form
@@ -172,7 +137,7 @@ const AddAdmin = () => {
           <option value='Female'>Female</option>
         </select>
       </div>
-      {/* <div className='w-[80%]'>
+      <div className='w-[80%]'>
         <label htmlFor='file' className='leading-7 text-sm '>
           Select Profile
         </label>
@@ -185,13 +150,20 @@ const AddAdmin = () => {
             <FiUpload />
           </span>
         </label>
-        <input hidden type='file' id='file' accept='image/*' />
-      </div> */}
-      {/* {data.profile && (
-      <div className='w-full flex justify-center items-center'>
-        <img src={profile} alt='student' className='h-36' />
+        <input
+          hidden
+          onChange={handleImage}
+          type='file'
+          id='file'
+          name='profile'
+          accept='image/*'
+        />
       </div>
-      )} */}
+      {profile && (
+        <div className='w-full flex justify-center items-center'>
+          <img src={profile} alt='admin' className='h-36' name='profile' />
+        </div>
+      )}
       <button
         type='submit'
         className='bg-blue-500 px-6 py-3 rounded-sm my-6 text-white'

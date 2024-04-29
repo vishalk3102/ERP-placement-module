@@ -1,19 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import toast from 'react-hot-toast'
-import axios from 'axios'
-import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
-import { storage } from '../../../firebase/config'
-import { baseApiURL } from '../../../baseUrl'
 import { FiSearch, FiUpload, FiX } from 'react-icons/fi'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  getAdmin,
-  getAllAdmin,
-  updateAdmin
-} from '../../../Redux/Actions/adminAction'
+import { getAdmin, updateAdmin } from '../../../Redux/Actions/adminAction'
 
 import Loader from '../../../components/Loader'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 const EditAdmin = () => {
   const [searchActive, setSearchActive] = useState(false)
@@ -26,9 +18,9 @@ const EditAdmin = () => {
   const [email, setEmail] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
   const [gender, setGender] = useState('')
+  const [profile, setProfile] = useState()
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const { loading, admin, error } = useSelector(state => state.admin)
 
   useEffect(() => {
@@ -58,6 +50,20 @@ const EditAdmin = () => {
     setGender('')
   }
 
+  const handleImage = e => {
+    const file = e.target.files[0]
+    setFileToBase(file)
+    console.log(file)
+  }
+
+  const setFileToBase = file => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onloadend = () => {
+      setProfile(reader.result)
+    }
+  }
+
   const updateAdminProfile = e => {
     e.preventDefault()
     const formData = {
@@ -66,85 +72,24 @@ const EditAdmin = () => {
       lastName,
       email,
       phoneNumber,
-      gender
+      gender,
+      profile
     }
     setId(admin._id)
-    console.log(id)
     dispatch(updateAdmin(formData, id))
-    navigate('/admin/home')
+      .then(() => {
+        setEmployeeId('')
+        setFirstName('')
+        setLastName('')
+        setEmail('')
+        setPhoneNumber('')
+        setGender('')
+        setProfile('')
+      })
+      .catch(error => {
+        toast.error('Error adding Admin')
+      })
   }
-
-  // useEffect(() => {
-  //   const uploadFileToStorage = async (file) => {
-  //     toast.loading("Upload Photo To Storage");
-  //     const storageRef = ref(
-  //       storage,
-  //       `Admin Profile/${data.department}/${data.employeeId}`
-  //     );
-  //     const uploadTask = uploadBytesResumable(storageRef, file);
-  //     uploadTask.on(
-  //       "state_changed",
-  //       (snapshot) => {},
-  //       (error) => {
-  //         console.error(error);
-  //         toast.dismiss();
-  //         toast.error("Something Went Wrong!");
-  //       },
-  //       () => {
-  //         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-  //           toast.dismiss();
-  //           setFile();
-  //           toast.success("Profile Uploaded To Admin");
-  //           setData({ ...data, profile: downloadURL });
-  //         });
-  //       }
-  //     );
-  //   };
-  //   file && uploadFileToStorage(file);
-  // }, [data, file]);
-
-  // const searchAdminHandler = e => {
-  //   setSearchActive(true)
-  //   e.preventDefault()
-  //   toast.loading('Getting Admin')
-  //   const headers = {
-  //     'Content-Type': 'application/json'
-  //   }
-  //   axios
-  //     .post(
-  //       `${baseApiURL()}/admin/details/getDetails`,
-  //       { employeeId: search },
-  //       { headers }
-  //     )
-  //     .then(response => {
-  //       toast.dismiss()
-  //       if (response.data.success) {
-  //         if (response.data.user.length !== 0) {
-  //           toast.success(response.data.message)
-  //           setId(response.data.user[0]._id)
-  //           setData({
-  //             employeeId: response.data.user[0].employeeId,
-  //             firstName: response.data.user[0].firstName,
-  //             middleName: response.data.user[0].middleName,
-  //             lastName: response.data.user[0].lastName,
-  //             email: response.data.user[0].email,
-  //             phoneNumber: response.data.user[0].phoneNumber,
-  //             gender: response.data.user[0].gender,
-  //             profile: response.data.user[0].profile
-  //           })
-  //         } else {
-  //           toast.dismiss()
-  //           toast.error('No Admin Found With ID')
-  //         }
-  //       } else {
-  //         toast.error(response.data.message)
-  //       }
-  //     })
-  //     .catch(error => {
-  //       toast.error(error.response.data.message)
-  //       console.error(error)
-  //     })
-  // }
 
   return (
     <div className='my-6 mx-auto w-full'>
@@ -268,32 +213,38 @@ const EditAdmin = () => {
                 <option value='Female'>Female</option>
               </select>
             </div>
-            {/* <div className='w-[40%]'>
-            <label htmlFor='file' className='leading-7 text-sm '>
-              Select Profile
-            </label>
-            <label
-              htmlFor='file'
-              className='px-2 bg-blue-50 py-3 rounded-sm text-base w-full flex justify-center items-center cursor-pointer'
-            >
-              Upload
-              <span className='ml-2'>
-                <FiUpload />
-              </span>
-            </label>
-            <input
-              hidden
-              type='file'
-              id='file'
-              accept='image/*'
-              onChange={e => setFile(e.target.files[0])}
-            />
-          </div> */}
-            {/* {data.profile && (
-            <div className="w-full flex justify-center items-center">
-              <img src={data.profile} alt="student" className="h-36" />
+            <div className='w-[40%]'>
+              <label htmlFor='file' className='leading-7 text-sm '>
+                Select Profile
+              </label>
+              <label
+                htmlFor='file'
+                className='px-2 bg-blue-50 py-3 rounded-sm text-base w-full flex justify-center items-center cursor-pointer'
+              >
+                Upload
+                <span className='ml-2'>
+                  <FiUpload />
+                </span>
+              </label>
+              <input
+                hidden
+                onChange={handleImage}
+                type='file'
+                id='file'
+                name='profile'
+                accept='image/*'
+              />
             </div>
-          )} */}
+            {profile && (
+              <div className='w-full flex justify-center items-center'>
+                <img
+                  src={profile}
+                  alt='faculty'
+                  className='h-36'
+                  name='profile'
+                />
+              </div>
+            )}
             <button
               type='submit'
               className='bg-blue-500 px-6 py-3 rounded-sm mb-6 text-white'

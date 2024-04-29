@@ -28,7 +28,7 @@ router.get('/subject/getsubject', isAuthenticated, getSubject)
 router.get('/student/materials', getMaterial)
 
 // TIMETABLE
-router.post('/student/timetable', getTimetable)
+router.get('/student/timetable', getTimetable)
 
 // MARKS
 router.get('/student/marks/:enrollmentNo', getMarksByEnrollmentNo)

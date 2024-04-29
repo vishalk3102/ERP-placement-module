@@ -79,11 +79,11 @@ const App = () => {
       <Router>
         <Routes>
           <Route exact path='/' element={<Login />} />
-          {/* <Route exact path='/student/home' element={<StudentHome />} /> */}
+          <Route exact path='/student/home' element={<StudentHome />} />
           <Route exact path='/faculty/home' element={<FacultyHome />} />
-          {/* <Route exact path='/admin/home' element={<AdminHome />} /> */}
+          <Route exact path='/admin/home' element={<AdminHome />} />
 
-          <Route
+          {/* <Route
             path='/student/home'
             element={
               <ProtectedRoute
@@ -94,7 +94,7 @@ const App = () => {
                 <StudentHome />
               </ProtectedRoute>
             }
-          />
+          /> */}
           {/* <Route
             path='/faculty/home'
             element={
@@ -107,7 +107,7 @@ const App = () => {
               </ProtectedRoute>
             }
           /> */}
-          <Route
+          {/*  <Route
             path='/admin/home'
             element={
               <ProtectedRoute
@@ -118,7 +118,7 @@ const App = () => {
                 <AdminHome />
               </ProtectedRoute>
             }
-          />
+          /> */}
 
           {/* ADMIN PLACEMENT DASHBOARD ROUTE  */}
           <Route

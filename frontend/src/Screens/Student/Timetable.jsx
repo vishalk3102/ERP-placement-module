@@ -1,11 +1,7 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { FiDownload } from 'react-icons/fi'
 import Heading from '../../components/Heading'
 import { useDispatch, useSelector } from 'react-redux'
-import { toast } from 'react-hot-toast'
-import { baseApiURL } from '../../baseUrl'
-import timetable1 from './timetable.png'
 import { getTimetable } from '../../Redux/Actions/studentAction'
 import Loader from '../../components/Loader'
 

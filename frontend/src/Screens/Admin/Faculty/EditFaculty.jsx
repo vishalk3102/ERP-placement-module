@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import axios from 'axios'
-import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
-import { storage } from '../../../firebase/config'
-import { baseApiURL } from '../../../baseUrl'
 import { FiSearch, FiUpload, FiX } from 'react-icons/fi'
 import {
   getAllBranch,
@@ -11,7 +7,6 @@ import {
   updateFaculty
 } from '../../../Redux/Actions/adminAction'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import Loader from '../../../components/Loader'
 
 const EditFaculty = () => {
@@ -28,9 +23,9 @@ const EditFaculty = () => {
   const [department, setDepartment] = useState('')
   const [post, setPost] = useState('')
   const [experience, setExperience] = useState('')
+  const [profile, setProfile] = useState()
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const { loading, faculty, branches, error } = useSelector(
     state => state.admin
   )
@@ -54,6 +49,7 @@ const EditFaculty = () => {
       setExperience(faculty.experience)
       setPost(faculty.post)
       setDepartment(faculty.department)
+      setDepartment(faculty.profile)
     }
   }, [faculty])
 
@@ -74,6 +70,21 @@ const EditFaculty = () => {
     setDepartment('')
     setPost('')
     setExperience('')
+    setProfile('')
+  }
+
+  const handleImage = e => {
+    const file = e.target.files[0]
+    setFileToBase(file)
+    console.log(file)
+  }
+
+  const setFileToBase = file => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onloadend = () => {
+      setProfile(reader.result)
+    }
   }
 
   const updateFacultyProfile = e => {
@@ -87,12 +98,27 @@ const EditFaculty = () => {
       gender,
       experience,
       post,
-      department
+      department,
+      profile
     }
     setId(faculty._id)
     console.log(id)
     dispatch(updateFaculty(formData, id))
-    navigate('/admin/home')
+      .then(() => {
+        setEmployeeId('')
+        setFirstName('')
+        setLastName('')
+        setEmail('')
+        setPhoneNumber('')
+        setGender('')
+        setDepartment('')
+        setPost('')
+        setExperience('')
+        setProfile('')
+      })
+      .catch(error => {
+        toast.error('Error adding Faculty')
+      })
   }
   return (
     <div className='my-6 mx-auto w-full'>
@@ -259,32 +285,38 @@ const EditFaculty = () => {
                 className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
               />
             </div>
-            {/* <div className="w-[40%]">
-            <label htmlFor="file" className="leading-7 text-sm ">
-              Select New Profile
-            </label>
-            <label
-              htmlFor="file"
-              className="px-2 bg-blue-50 py-3 rounded-sm text-base w-full flex justify-center items-center cursor-pointer"
-            >
-              Upload
-              <span className="ml-2">
-                <FiUpload />
-              </span>
-            </label>
-            <input
-              hidden
-              type="file"
-              id="file"
-              accept="image/*"
-              onChange={(e) => setFile(e.target.files[0])}
-            />
-          </div>
-          {data.profile && (
-            <div className="w-full flex justify-center items-center">
-              <img src={data.profile} alt="student" className="h-36" />
+            <div className='w-[40%]'>
+              <label htmlFor='file' className='leading-7 text-sm '>
+                Select Profile
+              </label>
+              <label
+                htmlFor='file'
+                className='px-2 bg-blue-50 py-3 rounded-sm text-base w-full flex justify-center items-center cursor-pointer'
+              >
+                Upload
+                <span className='ml-2'>
+                  <FiUpload />
+                </span>
+              </label>
+              <input
+                hidden
+                onChange={handleImage}
+                type='file'
+                id='file'
+                name='profile'
+                accept='image/*'
+              />
             </div>
-          )} */}
+            {profile && (
+              <div className='w-full flex justify-center items-center'>
+                <img
+                  src={profile}
+                  alt='faculty'
+                  className='h-36'
+                  name='profile'
+                />
+              </div>
+            )}
             <button
               type='submit'
               className='bg-blue-500 px-6 py-3 rounded-sm mb-6 text-white'

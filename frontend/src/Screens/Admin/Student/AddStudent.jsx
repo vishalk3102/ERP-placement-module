@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-hot-toast'
-import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
-import { storage } from '../../../firebase/config'
 import { FiUpload } from 'react-icons/fi'
 import { addStudent, getAllBranch } from '../../../Redux/Actions/adminAction'
 import Loader from '../../../components/Loader'
@@ -20,11 +17,9 @@ const AddStudent = () => {
   const [semester, setSemester] = useState('')
   const [universityRollNo, setUniversityRollNo] = useState('')
   const [section, setSection] = useState('')
-  const [file, setFile] = useState()
-  const [previewImage, setPreviewImage] = useState('')
+  const [profile, setProfile] = useState()
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const { loading, branches, error } = useSelector(state => state.admin)
 
   useEffect(() => {
@@ -35,34 +30,19 @@ const AddStudent = () => {
     dispatch(getAllBranch())
   }, [dispatch, error])
 
-  const handleFileChange = e => {
-    const selectedFile = e.target.files[0]
-    setFile(selectedFile)
-    const imageUrl = URL.createObjectURL(selectedFile)
-    setPreviewImage(imageUrl)
+  const handleImage = e => {
+    const file = e.target.files[0]
+    setFileToBase(file)
+    console.log(file)
   }
 
-  /* const addStudentProfile = e => {
-    e.preventDefault()
-    const formData = new FormData()
-
-    formData.append('enrollmentNo', enrollmentNo)
-    formData.append('firstName', firstName)
-    formData.append('lastName', lastName)
-    formData.append('email', email)
-    formData.append('phoneNumber', phoneNumber)
-    formData.append('gender', gender)
-    formData.append('semester', semester)
-    formData.append('course', course)
-    formData.append('branch', branch)
-    formData.append('universityRollNo', universityRollNo)
-    formData.append('section', section)
-    formData.append('profile', file)
-
-    console.log(formData)
-    dispatch(addStudent(formData))
-    navigate('/admin/home')
-  } */
+  const setFileToBase = file => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onloadend = () => {
+      setProfile(reader.result)
+    }
+  }
 
   const addStudentProfile = e => {
     e.preventDefault()
@@ -78,12 +58,28 @@ const AddStudent = () => {
       semester,
       universityRollNo,
       section,
-      file
+      profile
     }
 
     console.log(formData)
     dispatch(addStudent(formData))
-    navigate('/admin/home')
+      .then(() => {
+        setEnrollmentNo('')
+        setFirstName('')
+        setLastName('')
+        setEmail('')
+        setPhoneNumber('')
+        setGender('')
+        setCourse('')
+        setBranch('')
+        setSemester('')
+        setUniversityRollNo('')
+        setSection('')
+        setProfile('')
+      })
+      .catch(error => {
+        toast.error('Error adding Faculty')
+      })
   }
 
   return (
@@ -263,15 +259,21 @@ const AddStudent = () => {
             </label>
             <input
               hidden
+              onChange={handleImage}
               type='file'
               id='file'
+              name='profile'
               accept='image/*'
-              onChange={handleFileChange}
             />
           </div>
-          {previewImage && (
+          {profile && (
             <div className='w-full flex justify-center items-center'>
-              <img src={previewImage} alt='student' className='h-36' />
+              <img
+                src={profile}
+                alt='faculty'
+                className='h-36'
+                name='profile'
+              />
             </div>
           )}
           <button

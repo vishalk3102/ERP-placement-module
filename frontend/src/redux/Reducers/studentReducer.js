@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit'
 
 export const studentReducer = createReducer(
-  {},
+  { notices: [], marks: [], material: [], timetable: '' },
   {
     // TIMETABLE
     getTimetabletRequest: state => {
