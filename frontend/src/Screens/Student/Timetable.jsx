@@ -21,7 +21,7 @@ const Timetable = () => {
       branch,
       semester
     }
-    dispatch(getTimetable(formData))
+    dispatch(getTimetable(formData)).then(console.log)
   }, [branch, dispatch, semester])
 
   return (

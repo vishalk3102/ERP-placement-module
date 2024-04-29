@@ -84,15 +84,14 @@ export const getTimetable = formData => async dispatch => {
     dispatch({
       type: 'getTimetabletRequest'
     })
+    const { semester, branch } = formData
 
-    const config = {
-      headers: { 'Content-Type': 'application/json' }
-    }
-    const { data } = await axios.post(
-      `${server}/student/timetable`,
-      formData,
-      config
-    )
+    const { data } = await axios.get(`${server}/student/timetable`, {
+      params: {
+        semester,
+        branch
+      }
+    })
     dispatch({
       type: 'getTimetabletSuccess',
       payload: data
