@@ -15,13 +15,12 @@ const Marks = () => {
   const [marksList, setMarksList] = useState([{ subject: '', mark: '' }])
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+
+  const {
+    user: { enrollmentNo }
+  } = useSelector(state => state.auth)
 
   const { loading, marks } = useSelector(state => state.student)
-
-  /*  useEffect(() => {
-    dispatch(loadUser())
-  }, [dispatch]) */
 
   const getMarks = () => {
     const enrollmentNo = 2017132 // Hardcoded for testing, replace with dynamic value
@@ -79,106 +78,105 @@ const Marks = () => {
           </button>
         </div>
       </div>
-      {loading === false ? (
-        <div className='mt-14 w-full flex flex-col gap-20'>
-          {marks &&
-            marks[0][semester - 1] &&
-            examType === 'mid' &&
-            marks[0][semester - 1].midTerm && (
-              <div className='shadow-md p-4'>
-                <p className='border-b-2 border-red-500 text-2xl font-semibold pb-2'>
-                  Mid Term Marks (Out of 25)
-                </p>
-                <div className='overflow-auto mt-8'>
-                  <table className='border-solid border-2 border-blue-900 border-collapse rounded mx-auto my-5'>
-                    <thead>
-                      <tr className='w-[100%] border-solid border-2 border-blue-400'>
-                        <th className=' text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400  border border-blue-900 py-3 px-8 uppercase text-center'>
-                          Subject Name
-                        </th>
-                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400 border border-blue-900 py-3 px-8  uppercase text-center'>
-                          Maximum Marks
-                        </th>
-                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400 border border-blue-900 py-3 px-8  uppercase text-center'>
-                          Obtained Marks
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {Object.entries(marks[0][semester - 1].midTerm).map(
-                        ([subject, mark]) => (
-                          <tr key={subject} className='border border-slate-900'>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                              {subject}
-                            </td>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                              25
-                            </td>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                              {mark}
-                            </td>
-                          </tr>
-                        )
-                      )}
-                    </tbody>
-                  </table>
-                </div>
+      <div className='mt-14 w-full flex flex-col gap-20'>
+        {marks &&
+          marks[0] &&
+          marks[0][semester - 1] &&
+          examType === 'mid' &&
+          marks[0][semester - 1].midTerm && (
+            <div className='shadow-md p-4'>
+              <p className='border-b-2 border-red-500 text-2xl font-semibold pb-2'>
+                Mid Term Marks (Out of 25)
+              </p>
+              <div className='overflow-auto mt-8'>
+                <table className='border-solid border-2 border-blue-900 border-collapse rounded mx-auto my-5'>
+                  <thead>
+                    <tr className='w-[100%] border-solid border-2 border-blue-400'>
+                      <th className=' text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400  border border-blue-900 py-3 px-8 uppercase text-center'>
+                        Subject Name
+                      </th>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400 border border-blue-900 py-3 px-8  uppercase text-center'>
+                        Maximum Marks
+                      </th>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400 border border-blue-900 py-3 px-8  uppercase text-center'>
+                        Obtained Marks
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.entries(marks[0][semester - 1].midTerm).map(
+                      ([subject, mark]) => (
+                        <tr key={subject} className='border border-slate-900'>
+                          <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
+                            {subject}
+                          </td>
+                          <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
+                            25
+                          </td>
+                          <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
+                            {mark}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
               </div>
-            )}
-          {marks &&
-            marks[0][semester - 1] &&
-            examType === 'end' &&
-            marks[0][semester - 1].endTerm && (
-              <div className='shadow-md p-4'>
-                <p className='border-b-2 border-red-500 text-2xl font-semibold pb-2'>
-                  End Term Marks (Out of 50 )
-                </p>
-                <div className='overflow-auto mt-8'>
-                  <table className='border-solid border-2 border-blue-900 border-collapse rounded mx-auto my-5'>
-                    <thead>
-                      <tr className='w-[100%] border-solid border-2 border-blue-400'>
-                        <th className=' text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400  border border-blue-900 py-3 px-8 uppercase text-center'>
-                          Subject Name
-                        </th>
-                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400 border border-blue-900 py-3 px-8  uppercase text-center'>
-                          Maximum Marks
-                        </th>
-                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400 border border-blue-900 py-3 px-8  uppercase text-center'>
-                          Obtained Marks
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {Object.entries(marks[0][semester - 1].endTerm).map(
-                        ([subject, mark]) => (
-                          <tr key={subject} className='border border-slate-900'>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                              {subject}
-                            </td>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                              25
-                            </td>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
-                              {mark}
-                            </td>
-                          </tr>
-                        )
-                      )}
-                    </tbody>
-                  </table>
-                </div>
+            </div>
+          )}
+        {marks &&
+          marks[0] &&
+          marks[0][semester - 1] &&
+          examType === 'end' &&
+          marks[0][semester - 1].endTerm && (
+            <div className='shadow-md p-4'>
+              <p className='border-b-2 border-red-500 text-2xl font-semibold pb-2'>
+                End Term Marks (Out of 50 )
+              </p>
+              <div className='overflow-auto mt-8'>
+                <table className='border-solid border-2 border-blue-900 border-collapse rounded mx-auto my-5'>
+                  <thead>
+                    <tr className='w-[100%] border-solid border-2 border-blue-400'>
+                      <th className=' text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400  border border-blue-900 py-3 px-8 uppercase text-center'>
+                        Subject Name
+                      </th>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400 border border-blue-900 py-3 px-8  uppercase text-center'>
+                        Maximum Marks
+                      </th>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-400 border border-blue-900 py-3 px-8  uppercase text-center'>
+                        Obtained Marks
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.entries(marks[0][semester - 1].endTerm).map(
+                      ([subject, mark]) => (
+                        <tr key={subject} className='border border-slate-900'>
+                          <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
+                            {subject}
+                          </td>
+                          <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
+                            25
+                          </td>
+                          <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50  border border-blue-900 p-1 capitalize text-center'>
+                            {mark}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
               </div>
-            )}
-        </div>
-      ) : (
-        ''
-      )}
-
-      {!marks && !marks[0][semester - 1] ? (
+            </div>
+          )}
+      </div>
+      {!marks ||
+      !marks[0] ||
+      !marks[0][semester - 1] ||
+      !marks[0][semester - 1].endTerm ||
+      !marks[0][semester - 1].midTerm ? (
         <p className='text-center'>No Marks Available!</p>
-      ) : (
-        ''
-      )}
+      ) : null}
     </div>
   )
 }

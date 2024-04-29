@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { FiDownload } from 'react-icons/fi'
 import Heading from '../../components/Heading'
 import { useDispatch, useSelector } from 'react-redux'
@@ -21,7 +21,7 @@ const Timetable = () => {
       branch,
       semester
     }
-    dispatch(getTimetable(formData)).then(console.log)
+    dispatch(getTimetable(formData))
   }, [branch, dispatch, semester])
 
   return (
