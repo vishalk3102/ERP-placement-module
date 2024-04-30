@@ -57,7 +57,7 @@ export const loadUser = () => async dispatch => {
   }
 }
 
-export const logout = navigate => async dispatch => {
+export const logout = () => async dispatch => {
   try {
     dispatch({
       type: 'logoutRequest'
@@ -69,7 +69,6 @@ export const logout = navigate => async dispatch => {
 
     dispatch({ type: 'logoutSuccess', payload: data.message })
     if (data.success) {
-      navigate('/')
     }
   } catch (error) {
     dispatch({ type: 'logoutFail', payload: error.reponse.data.message })

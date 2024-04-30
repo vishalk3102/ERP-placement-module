@@ -4,6 +4,7 @@ import { FiLogOut } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import { RxDashboard } from 'react-icons/rx'
 import { logout } from '../Redux/Actions/authAction'
+import toast from 'react-hot-toast'
 
 const Navbar = () => {
   const navigate = useNavigate()
@@ -11,6 +12,12 @@ const Navbar = () => {
 
   const logoutHandler = () => {
     dispatch(logout(navigate))
+      .then(() => {
+        navigate('/')
+      })
+      .catch(error => {
+        toast.error('Error Logging Out')
+      })
   }
   return (
     <div className='shadow-md px-6 py-4 flex justify-between items-center'>

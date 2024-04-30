@@ -1,9 +1,39 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../../components/Loader'
+import { updatePassword } from '../../Redux/Actions/authAction'
+import toast from 'react-hot-toast'
 
 const Profile = () => {
+  const [showPass, setShowPass] = useState(false)
+
   const { loading, user } = useSelector(state => state.auth)
+  const [oldPassword, setOldPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+
+  const dispatch = useDispatch()
+
+  if (loading || !user) {
+    return <Loader />
+  }
+
+  const checkPasswordHandler = e => {
+    e.preventDefault()
+    const formData = {
+      oldPassword,
+      newPassword,
+      userType: user.userType,
+      userId: user.enrollmentNo
+    }
+    dispatch(updatePassword(formData))
+      .then(() => {
+        setOldPassword('')
+        setNewPassword('')
+      })
+      .catch(error => {
+        toast.error('Error adding material')
+      })
+  }
 
   return (
     <>
@@ -25,46 +55,43 @@ const Profile = () => {
                   Email Address: {user.email}
                 </p>
               </div>
-              {/* <button
-              className={`${
-                showPass ? "bg-red-100 text-red-600" : "bg-blue-600 text-white"
-              }  px-3 py-1 rounded mt-4`}
-              onClick={() => setShowPass(!showPass)}
-            >
-              {!showPass ? "Change Password" : "Close Change Password"}
-            </button>
-            {showPass && (
-              <form
-                className="mt-4 border-t-2 border-blue-500 flex flex-col justify-center items-start"
-                onSubmit={checkPasswordHandler}
+              <button
+                className={`${
+                  showPass
+                    ? 'bg-red-100 text-red-600'
+                    : 'bg-blue-600 text-white'
+                }  px-3 py-1 rounded mt-4`}
+                onClick={() => setShowPass(!showPass)}
               >
-                <input
-                  type="password"
-                  value={password.current}
-                  onChange={(e) =>
-                    setPassword({ ...password, current: e.target.value })
-                  }
-                  placeholder="Current Password"
-                  className="px-3 py-1 border-2 border-blue-500 outline-none rounded mt-4"
-                />
-                <input
-                  type="password"
-                  value={password.new}
-                  onChange={(e) =>
-                    setPassword({ ...password, new: e.target.value })
-                  }
-                  placeholder="New Password"
-                  className="px-3 py-1 border-2 border-blue-500 outline-none rounded mt-4"
-                />
-                <button
-                  className="mt-4 hover:border-b-2 hover:border-blue-500"
-                  onClick={checkPasswordHandler}
-                  type="submit"
+                {!showPass ? 'Change Password' : 'Close Change Password'}
+              </button>
+              {showPass && (
+                <form
+                  className='mt-4 border-t-2 border-blue-500 flex flex-col justify-center items-start'
+                  onSubmit={checkPasswordHandler}
                 >
-                  Change Password
-                </button>
-              </form>
-            )} */}
+                  <input
+                    type='password'
+                    placeholder='Current Password'
+                    className='px-3 py-1 border-2 border-blue-500 outline-none rounded mt-4'
+                    value={oldPassword}
+                    onChange={e => setOldPassword(e.target.value)}
+                  />
+                  <input
+                    type='password'
+                    placeholder='New Password'
+                    className='px-3 py-1 border-2 border-blue-500 outline-none rounded mt-4'
+                    value={newPassword}
+                    onChange={e => setNewPassword(e.target.value)}
+                  />
+                  <button
+                    className='mt-4 hover:border-b-2 hover:border-blue-500'
+                    type='submit'
+                  >
+                    Change Password
+                  </button>
+                </form>
+              )}
             </div>
 
             {/* <img

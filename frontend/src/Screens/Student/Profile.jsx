@@ -13,6 +13,10 @@ const Profile = () => {
 
   const dispatch = useDispatch()
 
+  if (loading || !user) {
+    return <Loader />
+  }
+
   const checkPasswordHandler = e => {
     e.preventDefault()
     const formData = {
@@ -46,7 +50,7 @@ const Profile = () => {
                 Branch: {user.enrollmentNo}
               </p>
               <p className='text-lg font-normal mb-2'>
-                Semester: {user.enrollmentNo}th
+                Semester: {user.semester}th
               </p>
               <p className='text-lg font-normal mb-2'>
                 Phone Number: {user.phoneNumber}
@@ -72,11 +76,15 @@ const Profile = () => {
                   type='password'
                   placeholder='Current Password'
                   className='px-3 py-1 border-2 border-blue-500 outline-none rounded mt-4'
+                  value={oldPassword}
+                  onChange={e => setOldPassword(e.target.value)}
                 />
                 <input
                   type='password'
                   placeholder='New Password'
                   className='px-3 py-1 border-2 border-blue-500 outline-none rounded mt-4'
+                  value={newPassword}
+                  onChange={e => setNewPassword(e.target.value)}
                 />
                 <button
                   className='mt-4 hover:border-b-2 hover:border-blue-500'
