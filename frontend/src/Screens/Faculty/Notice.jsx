@@ -5,26 +5,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllNotice } from '../../Redux/Actions/adminAction'
 import Loader from '../../components/Loader'
 
-const noticess = [
-  {
-    _id: '1',
-    title: 'Notice 1',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse eaque doloremque iure reiciendis ea nisi saepe quae excepturi laboriosam rem non blanditiis recusandae sit deserunt at veritatis laudantium, sed dolorum ad exercitationem ducimus aperiam assumenda officia vel. Maiores quidem, facere ad fuga, placeat distinctio numquam mollitia velit culpa sapiente neque?',
-    type: 'student',
-    link: '',
-    createdAt: '2024-04-20T10:00:00.000Z'
-  },
-  {
-    _id: '2',
-    title: 'Notice 2',
-    description: 'Description for Notice 2',
-    type: 'faculty',
-    link: 'https://example.com',
-    createdAt: '2024-04-19T10:00:00.000Z'
-  }
-]
-
 const Notice = () => {
   const dispatch = useDispatch()
 
@@ -34,9 +14,12 @@ const Notice = () => {
 
   const { notices, loading } = useSelector(state => state.faculty)
 
-  const filteredNotices = notices.filter(
-    notice => notice.type === 'faculty' || notice.type === 'both'
-  )
+  let filteredNotices = null
+  if (notices) {
+    filteredNotices = notices.filter(
+      notice => notice.type === 'faculty' || notice.type === 'both'
+    )
+  }
 
   return (
     <div className='w-[85%] mx-auto flex justify-center items-start flex-col my-10'>

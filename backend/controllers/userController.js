@@ -7,9 +7,7 @@ const User = require('../models/userModel')
 // LOGIN USER FUNCTION
 exports.login = catchAsyncError(async (req, res, next) => {
   let { userId, password, userType } = req.body
-  console.log(userId)
-  console.log(password)
-  console.log(userType)
+
   if (!userId || !password || !userType) {
     return next(new ErrorHandler('Please Enter userId and Password'))
   }
@@ -65,6 +63,31 @@ exports.getMyProfile = catchAsyncError(async (req, res, next) => {
     success: true,
     user
   })
+})
+
+// UPDATE PASSWORD --user
+exports.updateMyPassword = catchAsyncError(async (req, res, next) => {
+  let { userId, oldPassword, newPassword, userType } = req.body
+  let user = null
+  if (userType === 'admin' || userType === 'faculty') {
+    let employeeId = userId
+    user = await User.findOne({ employeeId }).select('+password')
+  } else {
+    let enrollmentNo = userId
+    user = await User.findOne({ enrollmentNo }).select('+password')
+  }
+
+  const isPasswordMatched = await user.comparePassword(oldPassword)
+
+  if (!isPasswordMatched) {
+    return next(new ErrorHander('Old password is incorrect', 400))
+  }
+
+  user.password = newPassword
+
+  await user.save()
+
+  sendToken(user, 200, res)
 })
 
 // UPDATE MY PROFILE

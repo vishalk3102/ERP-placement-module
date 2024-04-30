@@ -1,15 +1,15 @@
 import React from 'react'
-import Login from './components/Login'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import toast, { Toaster } from 'react-hot-toast'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import ProtectedRoute from './ProtectedRoute'
+
+// GENERAL
+import Login from './components/Login'
 import StudentHome from './Screens/Student/Home'
 import FacultyHome from './Screens/Faculty/Home'
 import AdminHome from './Screens/Admin/Home'
-
-import toast, { Toaster } from 'react-hot-toast'
-import { useDispatch, useSelector } from 'react-redux'
-import { loadUser } from './Redux/Actions/authAction'
-import { useEffect } from 'react'
-import ProtectedRoute from './ProtectedRoute'
 
 // Student Placement
 import StudentDashboard from './Screens/Placement/Student/Dashboard'
@@ -50,7 +50,6 @@ import ViewStudent from './Screens/Placement/Admin/Student/ViewStudent'
 import Apply from './Screens/Placement/Student/Apply'
 import ViewStudentCompany from './Screens/Placement/Student/ViewCompany'
 import ViewStudentJobPost from './Screens/Placement/Student/ViewJobPost'
-import PrivateRoute from './ProtectedRoute'
 
 const App = () => {
   const dispatch = useDispatch()

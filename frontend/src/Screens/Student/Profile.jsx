@@ -8,14 +8,8 @@ const Profile = () => {
   const [showPass, setShowPass] = useState(false)
 
   const { loading, user } = useSelector(state => state.auth)
-  // const router = useLocation()
-  // const [data, setData] = useState()
-  /* const [password, setPassword] = useState({
-    new: '',
-    current: ''
-  }) */
-
-  // const { loading, user } = useSelector(state => state.auth)
+  const [oldPassword, setOldPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
 
   // useEffect(() => {
   //   const headers = {
@@ -101,10 +95,18 @@ const Profile = () => {
   //     })
   // }
 
+  const checkPasswordHandler = e => {
+    e.preventDefault()
+    const formData = {
+      oldPassword,
+      newPassword
+    }
+    console.log('submited')
+  }
   return (
-    <div className='w-[85%] mx-auto my-8 flex justify-between items-start'>
+    <>
       {loading === false ? (
-        <>
+        <div className='w-[85%] mx-auto my-8 flex justify-between items-start'>
           <div>
             <p className='text-2xl font-semibold'>
               Hello {user.firstName} {user.lastName} 👋
@@ -137,7 +139,7 @@ const Profile = () => {
             {showPass && (
               <form
                 className='mt-4 border-t-2 border-blue-500 flex flex-col justify-center items-start'
-                // onSubmit={checkPasswordHandler}
+                onSubmit={checkPasswordHandler}
               >
                 <input
                   type='password'
@@ -151,7 +153,6 @@ const Profile = () => {
                 />
                 <button
                   className='mt-4 hover:border-b-2 hover:border-blue-500'
-                  // onClick={checkPasswordHandler}
                   type='submit'
                 >
                   Change Password
@@ -160,16 +161,16 @@ const Profile = () => {
             )}
           </div>
 
-          <img
-            src={profile}
+          {/*   <img
+            src={user.profile.url}
             alt='student profile'
             className='h-[200px] w-[200px] object-cover rounded-lg shadow-md'
-          />
-        </>
+          /> */}
+        </div>
       ) : (
         <Loader />
       )}
-    </div>
+    </>
   )
 }
 
