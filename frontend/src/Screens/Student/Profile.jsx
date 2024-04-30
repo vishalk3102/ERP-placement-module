@@ -1,8 +1,8 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../../components/Loader'
-import profile from '../Placement/Student/profile.jpg'
+import { updatePassword } from '../../Redux/Actions/authAction'
+import toast from 'react-hot-toast'
 
 const Profile = () => {
   const [showPass, setShowPass] = useState(false)
@@ -11,97 +11,24 @@ const Profile = () => {
   const [oldPassword, setOldPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
 
-  // useEffect(() => {
-  //   const headers = {
-  //     'Content-Type': 'application/json'
-  //   }
-  //   axios
-  //     .post(
-  //       `${baseApiURL()}/${router.state.type}/details/getDetails`,
-  //       { enrollmentNo: router.state.loginid },
-  //       {
-  //         headers: headers
-  //       }
-  //     )
-  //     .then(response => {
-  //       if (response.data.success) {
-  //         setData(response.data.user[0])
-  //         dispatch(
-  //           setUserData({
-  //             fullname: `${response.data.user[0].firstName} ${response.data.user[0].middleName} ${response.data.user[0].lastName}`,
-  //             semester: response.data.user[0].semester,
-  //             enrollmentNo: response.data.user[0].enrollmentNo,
-  //             branch: response.data.user[0].branch
-  //           })
-  //         )
-  //       } else {
-  //         toast.error(response.data.message)
-  //       }
-  //     })
-  //     .catch(error => {
-  //       console.error(error)
-  //     })
-  // }, [dispatch, router.state.loginid, router.state.type])
-
-  // const checkPasswordHandler = e => {
-  //   e.preventDefault()
-  //   const headers = {
-  //     'Content-Type': 'application/json'
-  //   }
-  //   axios
-  //     .post(
-  //       `${baseApiURL()}/student/auth/login`,
-  //       { loginid: router.state.loginid, password: password.current },
-  //       {
-  //         headers: headers
-  //       }
-  //     )
-  //     .then(response => {
-  //       if (response.data.success) {
-  //         changePasswordHandler(response.data.id)
-  //       } else {
-  //         toast.error(response.data.message)
-  //       }
-  //     })
-  //     .catch(error => {
-  //       toast.error(error.response.data.message)
-  //       console.error(error)
-  //     })
-  // }
-
-  // const changePasswordHandler = id => {
-  //   const headers = {
-  //     'Content-Type': 'application/json'
-  //   }
-  //   axios
-  //     .post(
-  //       `${baseApiURL()}/student/auth/update/${id}`,
-  //       { loginid: router.state.loginid, password: password.new },
-  //       {
-  //         headers: headers
-  //       }
-  //     )
-  //     .then(response => {
-  //       if (response.data.success) {
-  //         toast.success(response.data.message)
-  //         setPassword({ new: '', current: '' })
-  //       } else {
-  //         toast.error(response.data.message)
-  //       }
-  //     })
-  //     .catch(error => {
-  //       toast.error(error.response.data.message)
-  //       console.error(error)
-  //     })
-  // }
+  const dispatch = useDispatch()
 
   const checkPasswordHandler = e => {
     e.preventDefault()
     const formData = {
       oldPassword,
-      newPassword
+      newPassword,
+      userType: user.userType,
+      userId: user.enrollmentNo
     }
-    console.log('submited')
+    dispatch(updatePassword(formData))
+      .then(() => {
+        setOldPassword('')
+        setNewPassword('')
+      })
+      .catch(error => {
+        toast.error('Error adding material')
+      })
   }
   return (
     <>

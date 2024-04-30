@@ -44,6 +44,17 @@ export const authReducer = createReducer(
       state.isAuthenticated = true
       state.error = action.payload
     },
+    updatePasswordRequest: state => {
+      state.loading = true
+    },
+    updatePasswordSuccess: (state, action) => {
+      state.loading = false
+      state.isAuthenticated = true
+      state.user = action.payload.user
+    },
+    updatePasswordFail: (state, action) => {
+      state.loading = false
+    },
     clearError: state => {
       state.error = null
     },

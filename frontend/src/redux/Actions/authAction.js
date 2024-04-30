@@ -75,3 +75,28 @@ export const logout = navigate => async dispatch => {
     dispatch({ type: 'logoutFail', payload: error.reponse.data.message })
   }
 }
+
+export const updatePassword = formData => async dispatch => {
+  console.log(formData)
+  try {
+    dispatch({
+      type: 'updatePasswordRequest'
+    })
+
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const { data } = await axios.put(
+      `${server}/password/update`,
+      formData,
+      config
+    )
+
+    dispatch({ type: 'updatePasswordSuccess', payload: data })
+  } catch (error) {
+    dispatch({
+      type: 'updatePasswordFail',
+      payload: error.reponse.data.message
+    })
+  }
+}
