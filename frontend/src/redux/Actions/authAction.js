@@ -24,7 +24,7 @@ export const loginUser =
 
       if (selected === 'admin') {
         navigate('/admin/home')
-      } else if (selected === 'facultu') {
+      } else if (selected === 'faculty') {
         navigate('/faculty/home')
       } else {
         navigate('/student/home')

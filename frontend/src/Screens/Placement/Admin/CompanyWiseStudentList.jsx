@@ -41,7 +41,7 @@ const CompanyWiseStudentList = () => {
               >
                 {companyName} Registered Students List
               </h2>{' '}
-              {applications.length > 0 ? (
+              {count > 0 ? (
                 <div className='flex justify-end mt-8 w-[80%] mx-auto'>
                   <button className='text-[#fff] text-[14px] font-semibold flex justify-center items-center bg-blue-500  rounded p-3 hover:bg-blue-700 ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all'>
                     {' '}

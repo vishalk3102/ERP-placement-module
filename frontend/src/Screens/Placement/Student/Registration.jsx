@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Box from '@mui/material/Box'
 import SideNavbar from './SideNavbar'
 import { registerPlacementProfile } from '../../../Redux/Actions/placementAction'
+import toast from 'react-hot-toast'
 
 const Registration = () => {
   const [enrollmentNo, setEnrollmentNo] = useState('')
@@ -28,31 +29,42 @@ const Registration = () => {
     useState('')
   const [graduationYear, setGraduationYear] = useState('')
 
+  const [profile, setProfile] = useState(null)
+  const [resumeFile, setResumeFile] = useState(null)
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  const handleImageChange = e => {
+    const file = e.target.files[0]
+    setFileToBase(file)
+  }
+
+  const handleFileChange = e => {
+    const selectedFile = e.target.files[0]
+    if (selectedFile && selectedFile.size <= 10485760) {
+      setResumeFile(selectedFile)
+      toast.success('File selected successfully!')
+    } else {
+      setResumeFile(null)
+      toast.error('File size must be less than 10MB')
+    }
+  }
+
+  const setFileToBase = file => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onloadend = () => {
+      setProfile(reader.result)
+    }
+  }
+
   const handleSubmit = e => {
     e.preventDefault()
-    const formData = {
-      // enrollmentNo,
-      // universityRollNo,
-      // firstName,
-      // lastName,
-      // email,
-      // phoneNumber,
-      // gender,
-      // dateOfBirth,
-      // university,
-      // course,
-      // branch,
-      // semester,
-      // percentageHighSchool,
-      // percentageIntermediate,
-      // CGPA,
-      // yearOfCompletionHighSchool,
-      // yearOfCompletionIntermediate,
-      // graduationYear
+    console.log('profile:' + profile)
+    console.log('resumeFile' + resumeFile)
 
+    const formData = {
       firstName,
       lastName,
       email,
@@ -357,7 +369,7 @@ const Registration = () => {
                   className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                 />
               </div>
-              {/*  <div className='w-[40%]'>
+              <div className='w-[40%]'>
                 <label htmlFor='file' className='leading-7 text-sm '>
                   Upload Profile Photo
                 </label>
@@ -372,10 +384,11 @@ const Registration = () => {
                 </label>
                 <input
                   hidden
+                  onChange={handleImageChange}
                   type='file'
-                  id='file'
+                  id='profile'
+                  name='profile'
                   accept='image/*'
-                  // onChange={e => setFile(e.target.files[0])}
                 />
               </div>
               <div className='w-[40%]'>
@@ -392,18 +405,26 @@ const Registration = () => {
                   </span>
                 </label>
                 <input
-                  hidden
                   type='file'
+                  name='file'
                   id='file'
-                  accept='image/*'
-                  // onChange={e => setFile(e.target.files[0])}
+                  hidden
+                  onChange={handleFileChange}
                 />
-              </div> */}
-              {/*  {data.profile && (
-            <div className='w-full flex justify-center items-center'>
-              <img src={data.profile} alt='student' className='h-36' />
-            </div>
-          )} */}
+                {resumeFile && (
+                  <p className='text-sm mt-2'>{resumeFile.name}</p>
+                )}
+              </div>
+              {profile && (
+                <div className='w-full flex justify-center items-center'>
+                  <img
+                    src={profile}
+                    alt='student'
+                    className='h-36'
+                    name='profile'
+                  />
+                </div>
+              )}
               <div className='w-[40%] flex justify-center items-center'>
                 <button
                   type='submit'
