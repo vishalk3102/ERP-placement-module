@@ -1,25 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Navbar from '../../components/Navbar'
 import Profile from './Profile'
 import Timetable from './Timetable'
 import Marks from './Marks'
 import Material from './Material'
-import { Toaster } from 'react-hot-toast'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Notice from './Notice'
+import MetaData from '../../components/MetaData'
 
 const Home = () => {
   const [selectedMenu, setSelectedMenu] = useState('My Profile')
-  const router = useLocation()
   const navigate = useNavigate()
-  const [load, setLoad] = useState(false)
-  /* useEffect(() => {
-    if (router.state === null) {
-      navigate('/')
-    }
-    setLoad(true)
-  }, [navigate, router.state]) */
 
+  // FUNCTION TO HANDLE PLACEMENT BUTTON CLICK
   const handlePlacementClick = () => {
     navigate('/student/placement/dashboard')
   }
@@ -27,6 +20,7 @@ const Home = () => {
     <section>
       <>
         <Navbar />
+        <MetaData title='Home' />
         <ul className='flex justify-evenly items-center gap-10 w-[85%] mx-auto my-8'>
           <li
             className={`text-center rounded-sm px-4 py-2 w-1/5 cursor-pointer ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all ${
@@ -97,7 +91,6 @@ const Home = () => {
           {selectedMenu === 'My Profile' && <Profile />}
         </>
       </>
-      <Toaster position='bottom-center' />
     </section>
   )
 }

@@ -4,6 +4,7 @@ import Heading from '../../components/Heading'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTimetable } from '../../Redux/Actions/studentAction'
 import Loader from '../../components/Loader'
+import MetaData from '../../components/MetaData'
 
 const Timetable = () => {
   const {
@@ -26,6 +27,7 @@ const Timetable = () => {
 
   return (
     <>
+      <MetaData title='Timetable' />
       {loading === false ? (
         <div className='w-[85%] mx-auto mt-10 flex justify-center items-start flex-col mb-10'>
           <div className='flex justify-between items-center w-full'>

@@ -12,7 +12,12 @@ const Navbar = () => {
 
   const logoutHandler = () => {
     dispatch(logout(navigate))
-      .then(() => {
+      .then(result => {
+        if (result.message) {
+          toast.success('Logout Successful')
+        } else {
+          toast.error('Failed to Login In')
+        }
         navigate('/')
       })
       .catch(error => {

@@ -1,26 +1,7 @@
 import axios from 'axios'
 import { server } from '../Store'
 
-export const count = () => async dispatch => {
-  try {
-    dispatch({
-      type: 'getcountRequest'
-    })
-
-    const { data } = await axios.get(`${server}/admin/details/delete}`)
-    dispatch({
-      type: 'getcountSuccess',
-      payload: data.counts
-    })
-  } catch (error) {
-    dispatch({
-      type: 'getcountFail',
-      payload: error.response.data.message
-    })
-  }
-}
-
-// NOTICE
+// GET NOTICE
 export const getNotice = id => async dispatch => {
   try {
     dispatch({
@@ -39,6 +20,8 @@ export const getNotice = id => async dispatch => {
     })
   }
 }
+
+// GET ALL NOTICE
 export const getAllNotice = () => async dispatch => {
   try {
     dispatch({
@@ -50,6 +33,7 @@ export const getAllNotice = () => async dispatch => {
       type: 'getAllNoticeSuccess',
       payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'getAllNoticeFail',
@@ -58,7 +42,7 @@ export const getAllNotice = () => async dispatch => {
   }
 }
 
-// MARKS
+// GET MARKS BY ENROLLMENT NO
 export const getMarksByEnrollmentNo = enrollmentNo => async dispatch => {
   try {
     dispatch({
@@ -70,6 +54,7 @@ export const getMarksByEnrollmentNo = enrollmentNo => async dispatch => {
       type: 'getMarksByEnrollmentNoSuccess',
       payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'getMarksByEnrollmentNoFail',
@@ -78,17 +63,14 @@ export const getMarksByEnrollmentNo = enrollmentNo => async dispatch => {
   }
 }
 
-//TIMETABLE
+//GET TIMETABLE
 export const getTimetable = formData => async dispatch => {
   try {
     dispatch({
       type: 'getTimetabletRequest'
     })
 
-    console.log(formData)
     const { semester, branch } = formData
-    console.log(semester, branch)
-
     const { data } = await axios.get(`${server}/student/timetable/`, {
       params: {
         semester,
@@ -99,6 +81,7 @@ export const getTimetable = formData => async dispatch => {
       type: 'getTimetabletSuccess',
       payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'getTimetabletFail',
@@ -107,7 +90,7 @@ export const getTimetable = formData => async dispatch => {
   }
 }
 
-// MATERIALS
+// GET MATERIALS
 export const getMaterials = () => async dispatch => {
   try {
     dispatch({
@@ -119,6 +102,7 @@ export const getMaterials = () => async dispatch => {
       type: 'getMaterialsSuccess',
       payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'getMaterialsFail',

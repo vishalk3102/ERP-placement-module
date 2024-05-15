@@ -1,18 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { FiLogIn } from 'react-icons/fi'
 import toast, { Toaster } from 'react-hot-toast'
 import collegeImg from '../assets/college.jpg'
 import { loginUser } from '../Redux/Actions/authAction'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
-  const { loading, error, message, isAuthenticated } = useSelector(
-    state => state.auth
-  )
 
   const [selected, setSelected] = useState('Student')
   const [userId, setUserId] = useState('')
@@ -21,29 +17,17 @@ const Login = () => {
   const handleLoginSubmit = e => {
     e.preventDefault()
     dispatch(loginUser(userId, password, selected.toLowerCase(), navigate))
+      .then(result => {
+        if (result.token) {
+          toast.success('Login Successful')
+        } else {
+          toast.error('Failed to Login')
+        }
+      })
+      .catch(err => {
+        toast.error('Failed to Login')
+      })
   }
-
-  // useEffect(() => {
-  //   if (error) {
-  //     toast.error(error)
-  //     dispatch({ type: 'clearError' })
-  //   }
-
-  //   if (isAuthenticated) {
-  //     navigate('/admin')
-  //   }
-  // }, [dispatch, error, isAuthenticated, navigate])
-
-  // useEffect(() => {
-  //   if (message) {
-  //     toast.success(message)
-  //     dispatch({ type: 'clearMessage' })
-  //   }
-  //   if (error) {
-  //     toast.error(error)
-  //     dispatch({ type: 'clearError' })
-  //   }
-  // }, [dispatch, message, error])
 
   return (
     <div className='bg-white h-[100vh] w-full flex justify-between items-center'>

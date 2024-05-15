@@ -1,16 +1,9 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Heading from '../../components/Heading'
 import toast from 'react-hot-toast'
-import { BiArrowBack } from 'react-icons/bi'
-import { baseApiURL } from '../../baseUrl'
-import {
-  getAllStudent,
-  getAllSubject,
-  getStudent
-} from '../../Redux/Actions/adminAction'
+import { getAllSubject, getStudent } from '../../Redux/Actions/adminAction'
 import { FiSearch, FiX } from 'react-icons/fi'
 import Loader from '../../components/Loader'
 import profile from '../../assets/profile.jpg'
@@ -18,6 +11,7 @@ import { IoAddOutline } from 'react-icons/io5'
 import Subjects from '../Admin/Subject'
 import { FaMinus } from 'react-icons/fa6'
 import { addStudentMarks } from '../../Redux/Actions/facultyAction'
+import MetaData from '../../components/MetaData'
 
 const Marks = () => {
   const [searchActive, setSearchActive] = useState(false)
@@ -25,8 +19,7 @@ const Marks = () => {
   const [examType, setExamType] = useState()
   const [marksList, setMarksList] = useState([{ subject: '', mark: '' }])
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const { loading, student, error } = useSelector(state => state.faculty)
+  const { loading, student } = useSelector(state => state.faculty)
   const { subjects } = useSelector(state => state.admin)
 
   useEffect(() => {
@@ -42,9 +35,13 @@ const Marks = () => {
     setSearchActive(false)
     setSearch('')
   }
+
+  // HANDLE ADD MARK BUTTON CLICK
   const addMarksRow = () => {
     setMarksList(prevMarks => [...prevMarks, { subject: '', mark: '' }])
   }
+
+  // HANDLE REMOVE MARK BUTTON CLICK
   const removeMarkRow = index => {
     setMarksList(prevMarks => {
       const updatedMarks = [...prevMarks]
@@ -53,18 +50,21 @@ const Marks = () => {
     })
   }
 
+  // HANDLE SUBJECT CHANGE
   const handleSubjectChange = (index, value) => {
     const newMarks = [...marksList]
     newMarks[index].subject = value
     setMarksList(newMarks)
   }
 
+  // HANDLE MARK CHANGE
   const handleMarkChange = (index, value) => {
     const newMarks = [...marksList]
     newMarks[index].mark = value
     setMarksList(newMarks)
   }
 
+  // FUNCTION TO HANDLE UPLOAD BUTTON CLICK
   const uploadMarks = () => {
     const enrollmentNo = student.enrollmentNo
     const branch = student.branch
@@ -76,6 +76,7 @@ const Marks = () => {
 
   return (
     <>
+      <MetaData title='Marks' />
       <div className='w-[85%] mx-auto flex justify-center items-start flex-col my-10'>
         <div className='flex justify-between items-center w-full'>
           <Heading title='Marks' />

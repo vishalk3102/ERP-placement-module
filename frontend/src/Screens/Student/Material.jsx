@@ -1,26 +1,33 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import Heading from '../../components/Heading'
 import { IoMdLink } from 'react-icons/io'
-import { HiOutlineCalendar, HiOutlineSearch } from 'react-icons/hi'
 import toast from 'react-hot-toast'
 import { useSelector, useDispatch } from 'react-redux'
 import { getMaterials } from '../../Redux/Actions/studentAction'
 import Loader from '../../components/Loader'
+import MetaData from '../../components/MetaData'
 
 const Material = () => {
   const { error, loading, materials } = useSelector(state => state.student)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (error) {
-      toast.error(error)
-      dispatch({ type: 'clearError' })
-    }
     dispatch(getMaterials())
+      .then(data => {
+        if (data.materials) {
+          toast.success('Material Loaded')
+        } else {
+          toast.error('Material Not found ')
+        }
+      })
+      .catch(err => {
+        toast.error('Material Not found ')
+      })
   }, [dispatch, error])
 
   return (
     <>
+      <MetaData title='Materials' />
       {loading === false ? (
         <div className='w-[85%] mx-auto mt-10 flex justify-center items-start flex-col mb-10'>
           <Heading title='Material' />

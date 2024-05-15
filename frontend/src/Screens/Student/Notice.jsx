@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { HiOutlineCalendar } from 'react-icons/hi'
 import { IoMdLink } from 'react-icons/io'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllNotice } from '../../Redux/Actions/studentAction'
-import { MdDeleteOutline, MdEditNote } from 'react-icons/md'
-import { IoEye } from 'react-icons/io5'
 import Loader from '../../components/Loader'
+import MetaData from '../../components/MetaData'
+import toast from 'react-hot-toast'
 
 const notices = [
   {
@@ -32,6 +32,15 @@ const Notice = () => {
 
   useEffect(() => {
     dispatch(getAllNotice())
+      .then(data => {
+        if (data.notices) {
+          toast.success('Notices Loaded')
+        }
+        return
+      })
+      .catch(err => {
+        toast.error('Error Loading Notices ')
+      })
   }, [dispatch])
 
   const { notices, loading } = useSelector(state => state.student)
@@ -42,6 +51,7 @@ const Notice = () => {
 
   return (
     <>
+      <MetaData title='Notices' />
       {loading === false ? (
         <div className='w-[85%] mx-auto flex justify-center items-start flex-col my-10'>
           <div className='mt-8 w-full'>
