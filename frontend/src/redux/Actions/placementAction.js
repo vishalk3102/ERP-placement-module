@@ -98,7 +98,7 @@ export const getJobPostStudent = id => async dispatch => {
     })
 
     const { data } = await axios.get(
-      `${server}/student/placement/jobposting/view/${id}`
+      `${server}/student/placement/eligiblejob/view/${id}`
     )
     dispatch({
       type: 'getJobPostingSuccess',

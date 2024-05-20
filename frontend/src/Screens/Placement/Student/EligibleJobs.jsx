@@ -8,6 +8,7 @@ import { IoEye } from 'react-icons/io5'
 import { getEligibleJobPostings } from '../../../Redux/Actions/placementAction'
 import Loader from '../../../components/Loader'
 import Heading from '../../../components/Heading'
+import MetaData from '../../../components/MetaData'
 
 const EligibleJobs = () => {
   const dispatch = useDispatch()
@@ -17,29 +18,22 @@ const EligibleJobs = () => {
   )
 
   useEffect(() => {
-    if (message) {
-      toast.success(message)
-      dispatch({ type: 'clearMessage' })
-    }
-    if (error) {
-      toast.error(error)
-      dispatch({ type: 'clearError' })
-    }
     dispatch(getEligibleJobPostings())
   }, [dispatch, message, error])
 
-  const handleApply = registrationLink => {
-    if (
-      !registrationLink.startsWith('http://') &&
-      !registrationLink.startsWith('https://')
-    ) {
-      registrationLink = 'http://' + registrationLink
-    }
-    window.location.href = registrationLink
-  }
+  // const handleApply = registrationLink => {
+  //   if (
+  //     !registrationLink.startsWith('http://') &&
+  //     !registrationLink.startsWith('https://')
+  //   ) {
+  //     registrationLink = 'http://' + registrationLink
+  //   }
+  //   window.location.href = registrationLink
+  // }
 
   return (
     <>
+      <MetaData title='Eligible Jobs' />
       <section id='eligibleJobs' className='w-full h-full  mt-20'>
         <Box sx={{ display: 'flex', marginTop: '5rem' }}>
           <SideNavbar />
@@ -131,7 +125,7 @@ const EligibleJobs = () => {
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50 border border-slate-900 p-1 capitalize text-center '>
                               <Link
-                                to={`/admin/placement/jobposting/view/${i._id}`}
+                                to={`/student/placement/eligiblejob/view/${i._id}`}
                                 className='flex justify-center items-center'
                               >
                                 <IoEye size={24} />

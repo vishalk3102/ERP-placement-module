@@ -42,7 +42,7 @@ export const studentPlacementReducer = createReducer(
     },
     getCompanySuccess: (state, action) => {
       state.loading = false
-      state.company = action.payload
+      state.company = action.payload.company
     },
     getCompanyFail: (state, action) => {
       state.loading = false

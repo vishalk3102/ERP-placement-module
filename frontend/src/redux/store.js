@@ -27,16 +27,16 @@ const store = configureStore({
     admin: adminReducer,
     faculty: facultyReducer,
     student: studentReducer,
-    branch: branchReducer,
-    marks: marksReducer,
-    materials: materialsReducer,
-    notice: noticeReducer,
-    subject: subjectReducer,
-    timetable: timetableReducer,
+    // branch: branchReducer,
+    // marks: marksReducer,
+    // materials: materialsReducer,
+    // notice: noticeReducer,
+    // subject: subjectReducer,
+    // timetable: timetableReducer,
     studentPlacement: studentPlacementReducer,
-    adminPlacement: AdminPlacementReducer,
-    jobs: jobPostingReducer,
-    company: CompanyReducer
+    adminPlacement: AdminPlacementReducer
+    // jobs: jobPostingReducer,
+    // company: CompanyReducer
   }
 })
 

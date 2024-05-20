@@ -6,6 +6,8 @@ import Box from '@mui/material/Box'
 import SideNavbar from './SideNavbar'
 import { registerPlacementProfile } from '../../../Redux/Actions/placementAction'
 import toast from 'react-hot-toast'
+import Heading from '../../../components/Heading'
+import MetaData from '../../../components/MetaData'
 
 const Registration = () => {
   const [enrollmentNo, setEnrollmentNo] = useState('')
@@ -91,16 +93,12 @@ const Registration = () => {
   }
   return (
     <>
-      <section id='Profile' className='w-full h-full'>
+      <MetaData title='Registration' />
+      <section id='registration' className='w-full h-full'>
         <Box sx={{ display: 'flex', marginTop: '5rem' }}>
           <SideNavbar />
           <div className='max-w-[1200px] w-[100%] mx-auto my-10'>
-            <h2
-              className='text-[#000] text-[2.5rem] font-bold
-              text-center uppercase p-2 mt-5'
-            >
-              Register for placement
-            </h2>
+            <Heading title={` PLACEMENT REGISTRATION`} />
             <form
               onSubmit={handleSubmit}
               className='w-[100%] flex justify-center items-center flex-wrap gap-6 mx-auto mt-10'

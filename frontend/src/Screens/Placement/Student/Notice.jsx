@@ -35,9 +35,9 @@ const Notice = () => {
             '
             >
               {notices.map((val, index) => (
-                <div className='bg-blue-50 rounded-lg shadow-md p-6 w-full my-3'>
+                <div className='bg-blue-200 rounded-lg shadow-md p-6 w-full my-3'>
                   <h3 className='text-lg font-semibold mb-2'>{val.title}</h3>
-                  <p className='text-gray-600 mb-2'>{val.content}</p>
+                  <p className='text-black mb-2'>{val.content}</p>
                 </div>
               ))}
             </div>

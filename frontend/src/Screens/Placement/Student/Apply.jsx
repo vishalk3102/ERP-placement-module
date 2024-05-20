@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import { FiUpload } from 'react-icons/fi'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import Box from '@mui/material/Box'
 import SideNavbar from '../Student/SideNavbar'
 import { applyForJob } from '../../../Redux/Actions/placementAction'
+import Heading from '../../../components/Heading'
+import MetaData from '../../../components/MetaData'
 
 const Apply = () => {
   const [enrollmentNo, setEnrollmentNo] = useState('')
@@ -43,23 +44,19 @@ const Apply = () => {
       course,
       branch
     }
-    console.log(formData)
     dispatch(applyForJob(formData, params.id))
     navigate('/student/placement/eligiblejobs')
   }
 
   return (
     <>
+      <MetaData title='Apply' />
       <section id='Profile' className='w-full h-full'>
         <Box sx={{ display: 'flex', marginTop: '5rem' }}>
           <SideNavbar />
           <div className='max-w-[1200px] w-[100%] mx-auto my-10'>
-            <h2
-              className='text-[#000] text-[2.5rem] font-bold
-              text-center uppercase p-2 mt-5'
-            >
-              Registration Form for Contata
-            </h2>
+            <Heading title={`REGISTRATION FORM `} />
+
             <form
               onSubmit={handleSubmit}
               className='w-[100%] flex justify-center items-center flex-wrap gap-6 mx-auto mt-10'
