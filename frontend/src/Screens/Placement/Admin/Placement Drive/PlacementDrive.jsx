@@ -37,7 +37,7 @@ const PlacementDrive = () => {
   }
   return (
     <>
-      <section id='Orders' className='w-full h-full  mt-20'>
+      <section id='placement-drive' className='w-full h-full  mt-20'>
         <Box sx={{ display: 'flex', marginTop: '5rem' }}>
           <SideNavbar />
           {loading === false ? (

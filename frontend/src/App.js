@@ -30,6 +30,10 @@ import CompanyWiseStudentList from './Screens/Placement/Admin/CompanyWiseStudent
 import PlacementDrive from './Screens/Placement/Admin/Placement Drive/PlacementDrive'
 import AddDrive from './Screens/Placement/Admin/Placement Drive/AddDrive'
 import EditDrive from './Screens/Placement/Admin/Placement Drive/EditDrive'
+// Placement Drive
+import PlacementNotice from './Screens/Placement/Admin/Notice/Notice'
+import AddPlacementNotice from './Screens/Placement/Admin/Notice/AddNotice'
+import EditPlacementNotice from './Screens/Placement/Admin/Notice/EditNotice'
 
 //Company
 import Company from './Screens/Placement/Admin/Company/Company'
@@ -78,11 +82,11 @@ const App = () => {
       <Router>
         <Routes>
           <Route exact path='/' element={<Login />} />
-          <Route exact path='/student/home' element={<StudentHome />} />
+          {/*  <Route exact path='/student/home' element={<StudentHome />} />
           <Route exact path='/faculty/home' element={<FacultyHome />} />
-          <Route exact path='/admin/home' element={<AdminHome />} />
+          <Route exact path='/admin/home' element={<AdminHome />} /> */}
 
-          {/* <Route
+          <Route
             path='/student/home'
             element={
               <ProtectedRoute
@@ -93,8 +97,8 @@ const App = () => {
                 <StudentHome />
               </ProtectedRoute>
             }
-          /> */}
-          {/* <Route
+          />
+          <Route
             path='/faculty/home'
             element={
               <ProtectedRoute
@@ -105,8 +109,8 @@ const App = () => {
                 <FacultyHome />
               </ProtectedRoute>
             }
-          /> */}
-          {/*  <Route
+          />
+          <Route
             path='/admin/home'
             element={
               <ProtectedRoute
@@ -117,7 +121,7 @@ const App = () => {
                 <AdminHome />
               </ProtectedRoute>
             }
-          /> */}
+          />
 
           {/* ADMIN PLACEMENT DASHBOARD ROUTE  */}
           <Route
@@ -215,6 +219,21 @@ const App = () => {
               path='/admin/placement/drive/:id'
               element={<EditDrive />}
             />
+            <Route
+              exact
+              path='/admin/placement/notice'
+              element={<PlacementNotice />}
+            />
+            {/*  <Route
+              exact
+              path='/admin/placement/notice/add'
+              element={<AddPlacementNotice />}
+            />
+            <Route
+              exact
+              path='/admin/placement/notice/:id'
+              element={<EditPlacementNotice />}
+            /> */}
           </Route>
 
           {/* STUDENT PLACEMENT DASHBOARD ROUTES */}

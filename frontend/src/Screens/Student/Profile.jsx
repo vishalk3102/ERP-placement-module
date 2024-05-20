@@ -4,20 +4,21 @@ import Loader from '../../components/Loader'
 import { updatePassword } from '../../Redux/Actions/authAction'
 import toast from 'react-hot-toast'
 import MetaData from '../../components/MetaData'
+import profile from '../../assets/profile.jpg'
 
 const Profile = () => {
   const [showPass, setShowPass] = useState(false)
-
-  const { loading, user } = useSelector(state => state.auth)
   const [oldPassword, setOldPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
 
+  const { loading, user } = useSelector(state => state.auth)
   const dispatch = useDispatch()
 
   if (loading || !user) {
     return <Loader />
   }
 
+  // FUNCTION TO CHECK  PASSWORD
   const checkPasswordHandler = e => {
     e.preventDefault()
     const formData = {
@@ -89,7 +90,7 @@ const Profile = () => {
                   onChange={e => setNewPassword(e.target.value)}
                 />
                 <button
-                  className='mt-4 hover:border-b-2 hover:border-blue-500'
+                  className='text-[14px] rounded-sm mt-4 hover:cursor-pointer hover:border-blue-500 px-2 py-2 hover:bg-blue-600 bg-blue-500 text-white '
                   type='submit'
                 >
                   Change Password
@@ -98,11 +99,12 @@ const Profile = () => {
             )}
           </div>
 
-          {/*   <img
-            src={user.profile.url}
+          <img
+            // src={user.profile.url}
+            src={profile}
             alt='student profile'
             className='h-[200px] w-[200px] object-cover rounded-lg shadow-md'
-          /> */}
+          />
         </div>
       ) : (
         <Loader />

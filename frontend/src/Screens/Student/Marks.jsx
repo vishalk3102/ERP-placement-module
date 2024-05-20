@@ -20,6 +20,7 @@ const Marks = () => {
 
   const { loading, marks } = useSelector(state => state.student)
 
+  // FUNCTION TO HANDLE GETMARKS CLICK
   const getMarks = () => {
     const enrollmentNo = 2017132
     dispatch(getMarksByEnrollmentNo(enrollmentNo))

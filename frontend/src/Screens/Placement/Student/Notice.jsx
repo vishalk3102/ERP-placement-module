@@ -1,6 +1,8 @@
 import React from 'react'
 import Box from '@mui/material/Box'
 import SideNavbar from './SideNavbar'
+import Heading from '../../../components/Heading'
+import MetaData from '../../../components/MetaData'
 
 const Notice = () => {
   // Sample notice data
@@ -20,27 +22,29 @@ const Notice = () => {
   ]
 
   return (
-    <section id='Orders' className='w-full h-full  mt-20'>
-      <Box sx={{ display: 'flex', marginTop: '5rem' }}>
-        <SideNavbar />
-        <div className='max-w-[1200px] w-[100%] mx-auto my-10'>
-          <h2
-            className='text-[#000] text-[2.5rem] font-bold
-              text-center uppercase p-2 mt-5'
-          >
-            Campus Placement Drive
-          </h2>
-          <div className=''>
-            {notices.map((val, index) => (
-              <div className='bg-white rounded-lg shadow-md p-6 w-full my-3'>
-                <h3 className='text-lg font-semibold mb-2'>{val.title}</h3>
-                <p className='text-gray-600 mb-2'>{val.content}</p>
-              </div>
-            ))}
+    <>
+      <MetaData title='Notice' />
+      <section id='notice' className='w-full h-full  mt-20'>
+        <Box sx={{ display: 'flex', marginTop: '5rem' }}>
+          <SideNavbar />
+          <div className='max-w-[1200px] w-[100%] mx-auto my-10'>
+            <Heading title={` NOTICES`} />
+
+            <div
+              className='mt-8
+            '
+            >
+              {notices.map((val, index) => (
+                <div className='bg-blue-50 rounded-lg shadow-md p-6 w-full my-3'>
+                  <h3 className='text-lg font-semibold mb-2'>{val.title}</h3>
+                  <p className='text-gray-600 mb-2'>{val.content}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </Box>
-    </section>
+        </Box>
+      </section>
+    </>
   )
 }
 

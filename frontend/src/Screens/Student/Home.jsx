@@ -84,11 +84,11 @@ const Home = () => {
           </li>
         </ul>
         <>
+          {selectedMenu === 'My Profile' && <Profile />}
           {selectedMenu === 'Timetable' && <Timetable />}
           {selectedMenu === 'Marks' && <Marks />}
           {selectedMenu === 'Material' && <Material />}
           {selectedMenu === 'Notice' && <Notice />}
-          {selectedMenu === 'My Profile' && <Profile />}
         </>
       </>
     </section>
