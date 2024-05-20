@@ -1,7 +1,5 @@
 const catchAsyncError = require('../middlewares/catchAsyncError')
 const ErrorHandler = require('../utils/ErrorHandler')
-const sendToken = require('../utils/jwtToken')
-const User = require('../models/userModel')
 const Company = require('../models/companyModel')
 const Placement = require('../models/placementModel')
 const Application = require('../models/Placement/applicationModel')
@@ -576,7 +574,17 @@ exports.getAdminDashboardStats = catchAsyncError(async (req, res, next) => {
 
 // GET DASHBOARD STATS --student
 exports.getStudentDashboardStats = catchAsyncError(async (req, res, next) => {
-  const studentId = req.body.enrollmentNo
+  const enrollmentNo = req.params.enrollmentNo
+
+  // Find the Placement document using the enrollmentNo
+  const placement = await Placement.findOne({
+    'academics.enrollmentNo': enrollmentNo
+  })
+  if (!placement) {
+    next(new ErrorHandler('Student Not Found ', 400))
+  }
+
+  const studentId = placement._id
 
   // calculating Total Company Visited
   const totalCompanyVisited = await JobPosting.countDocuments()
@@ -585,8 +593,9 @@ exports.getStudentDashboardStats = catchAsyncError(async (req, res, next) => {
   const totalEligibleJobs = await JobPosting.countDocuments()
 
   // calculating Total Applied Appliction
-  console.log(studentId)
-  const totalAppliedApplication = Application.find({ student: studentId })
+  const totalAppliedApplicationCount = await Application.countDocuments({
+    student: studentId
+  })
 
   // Calculating Average CGPA
   const studentProfiles = await Placement.find({}, { 'academics.CGPA': 1 })
@@ -610,7 +619,7 @@ exports.getStudentDashboardStats = catchAsyncError(async (req, res, next) => {
   res.status(200).json({
     success: true,
     averageCGPA,
-    totalAppliedApplication,
+    totalAppliedApplication: totalAppliedApplicationCount,
     totalEligibleJobs,
     totalCompanyVisited
   })

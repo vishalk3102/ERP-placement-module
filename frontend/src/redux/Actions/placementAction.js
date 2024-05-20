@@ -656,13 +656,15 @@ export const getAdminDashboardStats = () => async dispatch => {
 }
 
 //STUDENT DASHBOARD STATS
-export const getStudentDashboardStats = () => async dispatch => {
+export const getStudentDashboardStats = enrollmentNo => async dispatch => {
   try {
     dispatch({
       type: 'getStudentDashboardStatsRequest'
     })
 
-    const { data } = await axios.get(`${server}/student/placement/dashboard`)
+    const { data } = await axios.get(
+      `${server}/student/placement/dashboard/${enrollmentNo}`
+    )
     dispatch({
       type: 'getStudentDashboardStatsSuccess',
       payload: data
