@@ -56,7 +56,8 @@ exports.registerPlacementProfile = catchAsyncError(async (req, res, next) => {
       yearOfCompletionHighSchool,
       percentageIntermediate,
       yearOfCompletionIntermediate
-    }
+    },
+    isRegisteredForPlacement: true
   })
   res.status(201).json({
     success: true,

@@ -79,6 +79,7 @@ const studentPlacementSchema = new mongoose.Schema({
     required: true
   },
   academics: academicSchema,
+  isRegisteredForPlacement: { type: Boolean, default: false },
   createdAt: {
     type: Date,
     default: Date.now()
