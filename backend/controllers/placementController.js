@@ -573,3 +573,45 @@ exports.getAdminDashboardStats = catchAsyncError(async (req, res, next) => {
     totalCompanyVisited
   })
 })
+
+// GET DASHBOARD STATS --student
+exports.getStudentDashboardStats = catchAsyncError(async (req, res, next) => {
+  const studentId = req.body.enrollmentNo
+
+  // calculating Total Company Visited
+  const totalCompanyVisited = await JobPosting.countDocuments()
+
+  // calculating Total Eligible Jobs
+  const totalEligibleJobs = await JobPosting.countDocuments()
+
+  // calculating Total Applied Appliction
+  console.log(studentId)
+  const totalAppliedApplication = Application.find({ student: studentId })
+
+  // Calculating Average CGPA
+  const studentProfiles = await Placement.find({}, { 'academics.CGPA': 1 })
+  const cgpaValues = []
+  let totalCGPAObtained = 0
+  let totalSemesters = 0
+
+  for (const profile of studentProfiles) {
+    const cgpa = profile.academics.CGPA
+    if (cgpa !== undefined && cgpa !== null) {
+      cgpaValues.push(cgpa)
+      totalCGPAObtained += cgpa
+      totalSemesters++
+    }
+  }
+
+  let totalCGPA = totalSemesters * 10
+  const averageCGPA =
+    totalSemesters > 0 ? (totalCGPAObtained / totalCGPA).toFixed(2) : 0
+
+  res.status(200).json({
+    success: true,
+    averageCGPA,
+    totalAppliedApplication,
+    totalEligibleJobs,
+    totalCompanyVisited
+  })
+})

@@ -194,56 +194,67 @@ const SideNavbar = () => {
               <ListItemText primary='Home' sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
-          <ListItem
-            disablePadding
-            sx={{ display: 'block' }}
-            onClick={() => navigate('/student/placement/register')}
-          >
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? 'initial' : 'center',
-                px: 2.5
-              }}
+          {!user.isRegisteredForPlacement && (
+            <ListItem
+              disablePadding
+              sx={{ display: 'block' }}
+              onClick={() => navigate('/student/placement/register')}
             >
-              <ListItemIcon
+              <ListItemButton
                 sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : 'auto',
-                  justifyContent: 'center'
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5
                 }}
               >
-                <PersonIcon style={{ color: '#feb21a' }} />
-              </ListItemIcon>
-              <ListItemText primary='Register' sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
-          <ListItem
-            disablePadding
-            sx={{ display: 'block' }}
-            onClick={() =>
-              navigate(`/student/placement/profile/661a94388acf6d30ede671cd`)
-            }
-          >
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? 'initial' : 'center',
-                px: 2.5
-              }}
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center'
+                  }}
+                >
+                  <PersonIcon style={{ color: '#feb21a' }} />
+                </ListItemIcon>
+                <ListItemText
+                  primary='Register'
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
+          )}
+          {user.isRegisteredForPlacement && (
+            <ListItem
+              disablePadding
+              sx={{ display: 'block' }}
+              onClick={() =>
+                navigate(`/student/placement/profile/661a94388acf6d30ede671cd`)
+              }
             >
-              <ListItemIcon
+              <ListItemButton
                 sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : 'auto',
-                  justifyContent: 'center'
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5
                 }}
               >
-                <PersonIcon style={{ color: '#feb21a' }} />
-              </ListItemIcon>
-              <ListItemText primary='Profile' sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center'
+                  }}
+                >
+                  <PersonIcon style={{ color: '#feb21a' }} />
+                </ListItemIcon>
+                <ListItemText
+                  primary='Profile'
+                  sx={{ opacity: open ? 1 : 0 }}
+                />
+              </ListItemButton>
+            </ListItem>
+          )}
+
           <ListItem
             disablePadding
             sx={{ display: 'block' }}
