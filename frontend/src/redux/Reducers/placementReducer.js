@@ -3,6 +3,20 @@ import { createReducer } from '@reduxjs/toolkit'
 export const studentPlacementReducer = createReducer(
   { eligibleCompanies: [], companies: [], drives: [] },
   {
+    getStudentDashboardStatsRequest: state => {
+      state.loading = true
+    },
+    getStudentDashboardStatsSuccess: (state, action) => {
+      state.loading = false
+      state.averageCGPA = action.payload.averageCGPA
+      state.totalAppliedApplication = action.payload.totalAppliedApplication
+      state.totalEligibleJobs = action.payload.totalEligibleJobs
+      state.totalCompanyVisited = action.payload.totalCompanyVisited
+    },
+    getStudentDashboardStatsFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
     registerStudentForPlacementRequest: state => {
       state.loading = true
     },

@@ -654,3 +654,23 @@ export const getAdminDashboardStats = () => async dispatch => {
     })
   }
 }
+
+//STUDENT DASHBOARD STATS
+export const getStudentDashboardStats = () => async dispatch => {
+  try {
+    dispatch({
+      type: 'getStudentDashboardStatsRequest'
+    })
+
+    const { data } = await axios.get(`${server}/student/placement/dashboard`)
+    dispatch({
+      type: 'getStudentDashboardStatsSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getStudentDashboardStatsFail',
+      payload: error.response.data.message
+    })
+  }
+}

@@ -30,7 +30,8 @@ const {
   getAllPlacedStudentDetails,
   insertPlacedStudentDetails,
   updatePlacedStudentDetails,
-  getAdminDashboardStats
+  getAdminDashboardStats,
+  getStudentDashboardStats
 } = require('../controllers/placementController')
 const { isAuthenticated, authorizeAdmin } = require('../middlewares/auth')
 
@@ -78,6 +79,7 @@ router.post('/admin/placement/placedstudent/add', insertPlacedStudentDetails)
 router.put('/admin/placement/placedstudent/:id', updatePlacedStudentDetails)
 
 // STUDENT
+router.get('/student/placement/dashboard', getStudentDashboardStats)
 router.post('/student/placement/register', registerPlacementProfile)
 router.get('/student/placement/profile/:id', getPlacementProfile)
 router.get('/student/placement/companies', getAllCompanies)

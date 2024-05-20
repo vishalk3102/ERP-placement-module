@@ -105,6 +105,7 @@ const SideNavbar = () => {
   const { user } = useSelector(state => state.studentPlacement)
 
   const id = user ? user._id : ''
+  const isRegisteredForPlacement = user ? user.isRegisteredForPlacement : false
 
   const handleDrawerOpen = () => {
     setOpen(true)
@@ -194,7 +195,7 @@ const SideNavbar = () => {
               <ListItemText primary='Home' sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
-          {!user.isRegisteredForPlacement && (
+          {!isRegisteredForPlacement && (
             <ListItem
               disablePadding
               sx={{ display: 'block' }}
@@ -223,7 +224,7 @@ const SideNavbar = () => {
               </ListItemButton>
             </ListItem>
           )}
-          {user.isRegisteredForPlacement && (
+          {isRegisteredForPlacement && (
             <ListItem
               disablePadding
               sx={{ display: 'block' }}
