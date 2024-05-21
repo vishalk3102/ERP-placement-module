@@ -18,13 +18,10 @@ const Subjects = () => {
   const { loading, subjects, error } = useSelector(state => state.admin)
 
   useEffect(() => {
-    if (error) {
-      toast.error(error)
-      dispatch({ type: 'clearError' })
-    }
     dispatch(getAllSubject())
   }, [dispatch, error, selected])
 
+  // FUNCTION TO HANDLE ADD CLICK
   const addSubjectHandler = () => {
     const subjectData = {
       name,
@@ -44,6 +41,7 @@ const Subjects = () => {
     setSelected('view')
   }
 
+  // FUNCTION TO HANDLE DELETE CLICK
   const deleteSubjectHandler = id => {
     dispatch(deleteSubject(id))
       .then(() => {
@@ -116,10 +114,10 @@ const Subjects = () => {
           {loading === false ? (
             <ul>
               {subjects &&
-                subjects.map(item => {
+                subjects.map((item, index) => {
                   return (
                     <li
-                      // key={item.code}
+                      key={index}
                       className='bg-blue-100 py-3 px-6 mb-3 flex justify-between items-center w-[70%]'
                     >
                       <div>

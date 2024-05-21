@@ -24,10 +24,12 @@ const Branch = () => {
     dispatch(getAllBranch())
   }, [dispatch, error])
 
+  // FUNCTION TO HANDLE ADD BRANCH CLICK
   const addBranchHandler = () => {
     dispatch(addBranch(branch))
   }
 
+  // FUNCTION TO HANDLE DELETE BRANCH CLICK
   const deleteBranchHandler = id => {
     dispatch(deleteBranch(id))
   }

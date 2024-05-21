@@ -6,6 +6,8 @@ import Box from '@mui/material/Box'
 import SideNavbar from './SideNavbar'
 import { getApplications } from '../../../Redux/Actions/placementAction'
 import Loader from '../../../components/Loader'
+import Heading from '../../../components/Heading'
+import MetaData from '../../../components/MetaData'
 
 const Application = () => {
   const dispatch = useDispatch()
@@ -28,11 +30,13 @@ const Application = () => {
 
   return (
     <>
-      <section id='Orders' className='w-full h-full  mt-20'>
+      <MetaData title='Applications' />
+      <section id='applications' className='w-full h-full  mt-20'>
         <Box sx={{ display: 'flex', marginTop: '5rem' }}>
           <SideNavbar />
           {loading === false ? (
             <div className='max-w-[1200px] w-[100%] mx-auto my-10'>
+              <Heading title={` Company Wise Registered Student Application`} />
               <h2
                 className='text-[#000] text-[2.5rem] font-bold
           text-center uppercase p-2 mt-5'

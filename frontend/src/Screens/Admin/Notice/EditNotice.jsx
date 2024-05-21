@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getAllNotice,
@@ -15,13 +14,14 @@ const EditNotice = ({ setOpen, id }) => {
   const [type, setType] = useState('student')
   const [link, setLink] = useState('')
   const dispatch = useDispatch()
-  console.log(id)
 
   const { loading, notice } = useSelector(state => state.admin)
 
   useEffect(() => {
-    dispatch(getNotice(id))
-  }, [dispatch])
+    if (!notice || notice._id !== id) {
+      dispatch(getNotice(id))
+    }
+  }, [dispatch, id, notice])
 
   useEffect(() => {
     if (notice) {
@@ -41,12 +41,15 @@ const EditNotice = ({ setOpen, id }) => {
       type,
       link
     }
-    dispatch(updateNotice(formData))
-      .then(() => {
-        dispatch(getAllNotice())
+    dispatch(updateNotice(formData, id))
+      .then(data => {
+        if (data) {
+          dispatch(getAllNotice())
+        }
+        return
       })
       .catch(error => {
-        console.error('Error adding subject:', error)
+        console.error('Error Updating Notice:', error)
       })
     setOpen(false)
   }

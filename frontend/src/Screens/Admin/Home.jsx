@@ -1,9 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Navbar from '../../components/Navbar'
-import { toast, Toaster } from 'react-hot-toast'
-import axios from 'axios'
 import Student from './Student/Student'
 import Faculty from './Faculty/Faculty'
 import Subjects from './Subject'
@@ -13,71 +11,9 @@ import Branch from './Branch'
 import Notice from './Notice/Notice'
 
 const Home = () => {
-  const router = useLocation()
   const navigate = useNavigate()
-  const [load, setLoad] = useState(false)
   const [selectedMenu, setSelectedMenu] = useState('Profile')
-  const [dashboardData, setDashboardData] = useState({
-    studentCount: '',
-    facultyCount: ''
-  })
-  /* useEffect(() => {
-    if (router.state === null) {
-      navigate('/')
-    }
-    setLoad(true)
-  }, [navigate, router.state])
 
-  useEffect(() => {
-    getStudentCount()
-    getFacultyCount()
-  }, []) */
-
-  /*  const getStudentCount = () => {
-    const headers = {
-      'Content-Type': 'application/json'
-    }
-    axios
-      .get(`${baseApiURL()}/student/details/count`, {
-        headers: headers
-      })
-      .then(response => {
-        if (response.data.success) {
-          setDashboardData({
-            ...dashboardData,
-            studentCount: response.data.user
-          })
-        } else {
-          toast.error(response.data.message)
-        }
-      })
-      .catch(error => {
-        console.error(error)
-      })
-  }
-
-  const getFacultyCount = () => {
-    const headers = {
-      'Content-Type': 'application/json'
-    }
-    axios
-      .get(`${baseApiURL()}/faculty/details/count`, {
-        headers: headers
-      })
-      .then(response => {
-        if (response.data.success) {
-          setDashboardData({
-            ...dashboardData,
-            facultyCount: response.data.user
-          })
-        } else {
-          toast.error(response.data.message)
-        }
-      })
-      .catch(error => {
-        console.error(error)
-      })
-  } */
   const handlePlacementClick = () => {
     navigate('/admin/placement/dashboard')
   }
@@ -171,16 +107,15 @@ const Home = () => {
           </ul>
         </div>
         <>
-          {selectedMenu === 'Branch' && <Branch />}
-          {selectedMenu === 'Notice' && <Notice />}
+          {selectedMenu === 'Profile' && <Profile />}
           {selectedMenu === 'Student' && <Student />}
           {selectedMenu === 'Faculty' && <Faculty />}
-          {selectedMenu === 'Subjects' && <Subjects />}
           {selectedMenu === 'Admin' && <Admin />}
-          {selectedMenu === 'Profile' && <Profile />}
+          {selectedMenu === 'Branch' && <Branch />}
+          {selectedMenu === 'Subjects' && <Subjects />}
+          {selectedMenu === 'Notice' && <Notice />}
         </>
       </>
-      <Toaster position='bottom-center' />
     </>
   )
 }

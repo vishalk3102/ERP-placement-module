@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import axios from 'axios'
-import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
-import { FiSearch, FiUpload, FiX } from 'react-icons/fi'
+import { FiSearch, FiX } from 'react-icons/fi'
 import {
   getAllBranch,
   getStudent,

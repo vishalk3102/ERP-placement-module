@@ -11,6 +11,7 @@ const AddNotice = ({ setOpen }) => {
 
   const dispatch = useDispatch()
 
+  // FUNCTION TO HANDLE ADD NOTICE CLICK
   const addNoticeHandler = e => {
     e.preventDefault()
 
@@ -29,6 +30,7 @@ const AddNotice = ({ setOpen }) => {
       })
     setOpen(false)
   }
+
   return (
     <form className='mt-8 w-full'>
       <div className='w-[40%] mt-2'>

@@ -16,25 +16,20 @@ import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
-import MailIcon from '@mui/icons-material/Mail'
 import DashboardIcon from '@mui/icons-material/Dashboard'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
-import PeopleIcon from '@mui/icons-material/People'
-import Badge from '@mui/material/Badge'
 import LogoutIcon from '@mui/icons-material/Logout'
 import PersonIcon from '@mui/icons-material/Person'
 import HomeIcon from '@mui/icons-material/Home'
 import BusinessIcon from '@mui/icons-material/Business'
 import WorkIcon from '@mui/icons-material/Work'
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { useNavigate } from 'react-router-dom'
 import { SlCalender } from 'react-icons/sl'
 import { IoIosNotifications } from 'react-icons/io'
 import { logout } from '../../../Redux/Actions/authAction'
-// import { logout } from '../../Redux/Actions/userAction'
+import logo from '../../../assets/geulogo.png'
 
 const drawerWidth = 240
 
@@ -146,7 +141,10 @@ const SideNavbar = () => {
             component='div'
             className='font-extrabold  bg-gradient-to-r from-[#feb21a] from-[0%] via-[#fedb28] via-[50%] to-[#feb21a] to-[100%] text-transparent bg-clip-text'
           >
-            College ERP
+            <div className='flex  items-center  '>
+              <img src={logo} alt='logo' className='w-[100%] h-[70px] py-2 ' />
+              <span> | ERP Portal</span>
+            </div>
           </Typography>
         </Toolbar>
       </AppBar>

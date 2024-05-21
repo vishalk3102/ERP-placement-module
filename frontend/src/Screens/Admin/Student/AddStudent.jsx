@@ -61,7 +61,6 @@ const AddStudent = () => {
       profile
     }
 
-    console.log(formData)
     dispatch(addStudent(formData))
       .then(() => {
         setEnrollmentNo('')

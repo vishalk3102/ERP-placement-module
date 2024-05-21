@@ -1,207 +1,26 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import Heading from '../../../components/Heading'
-import axios from 'axios'
 import { IoMdLink } from 'react-icons/io'
 import { HiOutlineCalendar } from 'react-icons/hi'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { IoAddOutline } from 'react-icons/io5'
 import { MdDeleteOutline, MdEditNote } from 'react-icons/md'
 import { BiArrowBack } from 'react-icons/bi'
-import toast from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  addNotice,
-  deleteNotice,
-  getAllNotice,
-  getNotice,
-  updateNotice
-} from '../../../Redux/Actions/adminAction'
+import { deleteNotice, getAllNotice } from '../../../Redux/Actions/adminAction'
 import AddNotice from './AddNotice'
 import EditNotice from './EditNotice'
 import Loader from '../../../components/Loader'
 
-const noticeData = [
-  {
-    _id: '1',
-    title: 'Notice 1',
-    description: 'Description for Notice 1',
-    type: 'student',
-    link: '',
-    createdAt: '2024-04-20T10:00:00.000Z'
-  },
-  {
-    _id: '2',
-    title: 'Notice 2',
-    description: 'Description for Notice 2',
-    type: 'faculty',
-    link: 'https://example.com',
-    createdAt: '2024-04-19T10:00:00.000Z'
-  }
-]
 const Notice = () => {
   const [selected, setSelected] = useState('')
   const [open, setOpen] = useState(false)
   const [id, setId] = useState()
-  const [edit, setEdit] = useState(true)
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [type, setType] = useState('student')
-  const [link, setLink] = useState('')
-
-  // const getNoticeHandler = () => {
-  //   let data = {}
-  //   if (router.pathname.replace('/', '') === 'student') {
-  //     data = {
-  //       type: ['student', 'both']
-  //     }
-  //   } else {
-  //     data = {
-  //       type: ['student', 'both', 'faculty']
-  //     }
-  //   }
-  //   const headers = {
-  //     'Content-Type': 'application/json'
-  //   }
-  //   axios
-  //     .post(`${baseApiURL()}/notice/getNotice`, data, {
-  //       headers: headers
-  //     })
-  //     .then(response => {
-  //       if (response.data.success) {
-  //         setNotice(response.data.notice)
-  //       } else {
-  //         toast.error(response.data.message)
-  //       }
-  //     })
-  //     .catch(error => {
-  //       toast.dismiss()
-  //       toast.error(error.response.data.message)
-  //     })
-  // }
-
-  // useEffect(() => {
-  //   let data = {}
-  //   if (router.pathname.replace('/', '') === 'student') {
-  //     data = {
-  //       type: ['student', 'both']
-  //     }
-  //   } else {
-  //     data = {
-  //       type: ['student', 'both', 'faculty']
-  //     }
-  //   }
-  //   const headers = {
-  //     'Content-Type': 'application/json'
-  //   }
-  //   axios
-  //     .post(`${baseApiURL()}/notice/getNotice`, data, {
-  //       headers: headers
-  //     })
-  //     .then(response => {
-  //       if (response.data.success) {
-  //         setNotice(response.data.notice)
-  //       } else {
-  //         toast.error(response.data.message)
-  //       }
-  //     })
-  //     .catch(error => {
-  //       toast.dismiss()
-  //       toast.error(error.response.data.message)
-  //     })
-  // }, [router.pathname])
-
-  // const addNoticehandler = e => {
-  //   e.preventDefault()
-  //   toast.loading('Adding Notice')
-  //   const headers = {
-  //     'Content-Type': 'application/json'
-  //   }
-  //   axios
-  //     .post(`${baseApiURL()}/notice/addNotice`, data, {
-  //       headers: headers
-  //     })
-  //     .then(response => {
-  //       toast.dismiss()
-  //       if (response.data.success) {
-  //         toast.success(response.data.message)
-  //         getNoticeHandler()
-  //         setOpen(!open)
-  //       } else {
-  //         toast.error(response.data.message)
-  //       }
-  //     })
-  //     .catch(error => {
-  //       toast.dismiss()
-  //       toast.error(error.response.data.message)
-  //     })
-  // }
-
-  // const deleteNoticehandler = id => {
-  //   toast.loading('Deleting Notice')
-  //   const headers = {
-  //     'Content-Type': 'application/json'
-  //   }
-  //   axios
-  //     .delete(`${baseApiURL()}/notice/deleteNotice/${id}`, {
-  //       headers: headers
-  //     })
-  //     .then(response => {
-  //       toast.dismiss()
-  //       if (response.data.success) {
-  //         toast.success(response.data.message)
-  //         getNoticeHandler()
-  //       } else {
-  //         toast.error(response.data.message)
-  //       }
-  //     })
-  //     .catch(error => {
-  //       toast.dismiss()
-  //       toast.error(error.response.data.message)
-  //     })
-  // }
-
-  // const updateNoticehandler = e => {
-  //   e.preventDefault()
-  //   const headers = {
-  //     'Content-Type': 'application/json'
-  //   }
-  //   axios
-  //     .post(`${baseApiURL()}/notice/updateNotice/${id}`, data, {
-  //       headers: headers
-  //     })
-  //     .then(response => {
-  //       toast.dismiss()
-  //       if (response.data.success) {
-  //         toast.success(response.data.message)
-  //         getNoticeHandler()
-  //         setOpen(!open)
-  //       } else {
-  //         toast.error(response.data.message)
-  //       }
-  //     })
-  //     .catch(error => {
-  //       toast.dismiss()
-  //       toast.error(error.response.data.message)
-  //     })
-  // }
-
-  // const setOpenEditSectionHandler = index => {
-  //   setEdit(true)
-  //   setOpen(!open)
-  //   setData({
-  //     title: notice[index].title,
-  //     description: notice[index].description,
-  //     type: notice[index].type,
-  //     link: notice[index].link
-  //   })
-  //   setId(notice[index]._id)
-  // }
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
-  const { loading, notices, notice } = useSelector(state => state.admin)
+  const { loading, notices } = useSelector(state => state.admin)
 
   useEffect(() => {
     if (!open) {
@@ -210,34 +29,23 @@ const Notice = () => {
   }, [open, dispatch])
 
   const openHandler = () => {
-    setSelected('add')
+    if (open) {
+      setSelected('')
+      setId(null)
+    } else {
+      setSelected('add')
+    }
     setOpen(!open)
-    setEdit(false)
-    setTitle('')
-    setDescription('')
-    setType('student')
-    setLink('')
   }
 
-  const EditNoticeHandler = i => {
-    // dispatch(getNotice(id))
-    //   .then(() => {
-    //     setTitle(notice.title)
-    //     setDescription(notice.description)
-    //     setType(notice.type)
-    //     setLink(notice.link)
-    //     setId(notice._id)
-    //     dispatch(getAllNotice())
-    //   })
-    //   .catch(error => {
-    //     console.error('Error adding subject:', error)
-    //   })
+  // FUNCTION TO HANDLE EDIT BUTTON CLICK
+  const EditNoticeHandler = id => {
     setSelected('edit')
-    // setEdit(true)
     setOpen(!open)
-    setId(i)
+    setId(id)
   }
 
+  // FUNCTION TO HANDLE DELETE  BUTTON CLICK
   const deleteNoticeHandler = id => {
     dispatch(deleteNotice(id))
       .then(() => {

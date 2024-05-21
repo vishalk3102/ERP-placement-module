@@ -449,17 +449,25 @@ export const addNotice = formData => async dispatch => {
   }
 }
 
-export const updateNotice = id => async dispatch => {
+export const updateNotice = (formData, id) => async dispatch => {
   try {
     dispatch({
       type: 'updateNoticeRequest'
     })
 
-    const { data } = await axios.post(`${server}/admin/notice/${id}`)
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const { data } = await axios.put(
+      `${server}/admin/notice/${id}`,
+      formData,
+      config
+    )
     dispatch({
       type: 'updateNoticeSuccess',
       payload: data.message
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'updateNoticeFail',

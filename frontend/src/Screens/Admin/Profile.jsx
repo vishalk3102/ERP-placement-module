@@ -85,7 +85,7 @@ const Profile = () => {
                     onChange={e => setNewPassword(e.target.value)}
                   />
                   <button
-                    className='mt-4 hover:border-b-2 hover:border-blue-500'
+                    className='text-[14px] rounded-sm mt-4 hover:cursor-pointer hover:border-blue-500 px-2 py-2 hover:bg-blue-600 bg-blue-500 text-white '
                     type='submit'
                   >
                     Change Password
