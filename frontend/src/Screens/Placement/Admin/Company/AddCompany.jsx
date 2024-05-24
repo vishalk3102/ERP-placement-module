@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-hot-toast'
-import { FiUpload } from 'react-icons/fi'
 import Box from '@mui/material/Box'
 import SideNavbar from '../SideNavbar'
 import { registerCompany } from '../../../../Redux/Actions/placementAction'
@@ -20,7 +19,7 @@ const AddCompany = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { error, message } = useSelector(state => state.company)
+  const { error, message } = useSelector(state => state.adminPlacement)
 
   useEffect(() => {
     if (message) {
@@ -48,9 +47,15 @@ const AddCompany = () => {
       contactEmail
     }
 
-    console.log(formData)
     dispatch(registerCompany(formData))
-    navigate('/admin/placement/companies')
+      .then(data => {
+        if (data) {
+          navigate('/admin/placement/companies')
+        }
+      })
+      .catch(err => {
+        toast.error('Failed To Add Company')
+      })
   }
 
   return (

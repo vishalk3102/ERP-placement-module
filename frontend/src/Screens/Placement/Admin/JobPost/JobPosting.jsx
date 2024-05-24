@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { toast } from 'react-hot-toast'
 import Box from '@mui/material/Box'
 import SideNavbar from '../SideNavbar'
 import { IoIosAdd } from 'react-icons/io'
@@ -13,23 +12,17 @@ import {
   getAllJobPosting
 } from '../../../../Redux/Actions/placementAction'
 import Loader from '../../../../components/Loader'
+import Heading from '../../../../components/Heading'
+import MetaData from '../../../../components/MetaData'
 
 const JobPosting = () => {
   const dispatch = useDispatch()
 
-  const { loading, jobs, error, message } = useSelector(state => state.jobs)
+  const { loading, jobs } = useSelector(state => state.adminPlacement)
 
   useEffect(() => {
-    if (message) {
-      toast.success(message)
-      dispatch({ type: 'clearMessage' })
-    }
-    if (error) {
-      toast.error(error)
-      dispatch({ type: 'clearError' })
-    }
     dispatch(getAllJobPosting())
-  }, [dispatch, message, error])
+  }, [dispatch])
 
   const deleteHandler = id => {
     dispatch(deleteJobPosting(id))
@@ -37,18 +30,13 @@ const JobPosting = () => {
 
   return (
     <>
-      {/* <MetaData title='Orders' /> */}
-      <section id='Orders' className='w-full h-full  mt-20'>
+      <MetaData title='Job Post' />
+      <section id='Job-Post ' className='w-full h-full  mt-20'>
         <Box sx={{ display: 'flex', marginTop: '5rem' }}>
           <SideNavbar />
           {loading === false ? (
             <div className='max-w-[1200px] w-[100%] mx-auto my-10'>
-              <h2
-                className='text-[#000] text-[2.5rem] font-bold
-              text-center uppercase p-2 mt-5'
-              >
-                Job Posting List
-              </h2>
+              <Heading title={` Job post listing `} />
               <div className='flex justify-end mt-8'>
                 <Link to='/admin/placement/jobposting/create'>
                   <button className='text-[#fff] text-[14px] font-semibold flex justify-center items-center bg-blue-500  rounded p-3 hover:bg-blue-700 ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all'>
@@ -131,7 +119,7 @@ const JobPosting = () => {
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
                               {i.location}
                             </td>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1  text-center'>
                               {i.registrationLink}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>

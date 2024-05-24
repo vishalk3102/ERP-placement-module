@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   getAllNotice,
@@ -12,7 +11,7 @@ import Loader from '../../../../components/Loader'
 const EditNotice = ({ setOpen, id }) => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [type, setType] = useState('student')
+  const [type, setType] = useState('placement')
   const [link, setLink] = useState('')
   const dispatch = useDispatch()
   console.log(id)
@@ -20,8 +19,10 @@ const EditNotice = ({ setOpen, id }) => {
   const { loading, notice } = useSelector(state => state.admin)
 
   useEffect(() => {
-    dispatch(getNotice(id))
-  }, [dispatch])
+    if (!notice || notice._id !== id) {
+      dispatch(getNotice(id))
+    }
+  }, [dispatch, id, notice])
 
   useEffect(() => {
     if (notice) {
@@ -41,12 +42,15 @@ const EditNotice = ({ setOpen, id }) => {
       type,
       link
     }
-    dispatch(updateNotice(formData))
-      .then(() => {
-        dispatch(getAllNotice())
+    dispatch(updateNotice(formData, id))
+      .then(data => {
+        if (data) {
+          dispatch(getAllNotice())
+        }
+        return
       })
       .catch(error => {
-        console.error('Error adding subject:', error)
+        console.error('Error Updating Notice:', error)
       })
     setOpen(false)
   }
@@ -94,9 +98,7 @@ const EditNotice = ({ setOpen, id }) => {
               value={type}
               onChange={e => setType(e.target.value)}
             >
-              <option value='student'>Student</option>
-              <option value='faculty'>Faculty</option>
-              <option value='both'>Both</option>
+              <option value='placement'>Placement</option>
             </select>
           </div>
           <button

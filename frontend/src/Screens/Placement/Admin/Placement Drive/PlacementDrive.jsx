@@ -12,6 +12,8 @@ import {
   deleteDrive,
   getAllDrive
 } from '../../../../Redux/Actions/placementAction'
+import Heading from '../../../../components/Heading'
+import MetaData from '../../../../components/MetaData'
 
 const PlacementDrive = () => {
   const dispatch = useDispatch()
@@ -37,17 +39,13 @@ const PlacementDrive = () => {
   }
   return (
     <>
+      <MetaData title='Placement Drive' />
       <section id='placement-drive' className='w-full h-full  mt-20'>
         <Box sx={{ display: 'flex', marginTop: '5rem' }}>
           <SideNavbar />
           {loading === false ? (
             <div className='max-w-[1200px] w-[100%] mx-auto my-10'>
-              <h2
-                className='text-[#000] text-[2.5rem] font-bold
-              text-center uppercase p-2 mt-5'
-              >
-                Placement Drive
-              </h2>
+              <Heading title={` Placement Drive`} />
               <div className='flex justify-end mt-8'>
                 <Link to='/admin/placement/drive/add'>
                   <button className='text-[#fff] text-[14px] font-semibold flex justify-center items-center bg-blue-500  rounded p-3 hover:bg-blue-700 ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all'>
@@ -60,7 +58,7 @@ const PlacementDrive = () => {
                 </Link>
               </div>
               <div className='overflow-auto'>
-                <table className='table-auto border-solid border-2 border-black border-collapse rounded mx-auto my-5'>
+                <table className='table-[100%] border-solid border-2 border-black border-collapse rounded my-5 mx-auto'>
                   <thead>
                     <tr className='w-[100%] border-solid border-2 border-black'>
                       <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400  border border-slate-900 p-3 uppercase text-center'>

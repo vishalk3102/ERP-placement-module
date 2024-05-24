@@ -37,21 +37,15 @@ const Application = () => {
           {loading === false ? (
             <div className='max-w-[1200px] w-[100%] mx-auto my-10'>
               <Heading title={` Company Wise Registered Student Application`} />
-              <h2
-                className='text-[#000] text-[2.5rem] font-bold
-          text-center uppercase p-2 mt-5'
-              >
-                Company Wise Registered Student Application
-              </h2>
-              <div className='my-6 flex justify-evenly  items-center flex-wrap'>
+              <div className='my-6 flex justify-evenly  items-center flex-wrap mt-10'>
                 {companies &&
                   companies.map((i, index) => (
-                    <div className='text-[#fff] text-[18px] font-semibold flex justify-center items-center bg-blue-500  rounded m-4 py-4 px-8 hover:bg-blue-700 ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all capitalize'>
-                      {' '}
-                      <Link to={`/admin/placement/application/${i._id}`}>
+                    <Link to={`/admin/placement/application/${i._id}`}>
+                      <span className='text-[#fff] text-[18px] font-semibold flex justify-center items-center bg-blue-500  rounded m-1 py-4 px-8 hover:bg-blue-700 ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all capitalize'>
+                        {' '}
                         {i.companyName}
-                      </Link>
-                    </div>
+                      </span>
+                    </Link>
                   ))}
               </div>
             </div>

@@ -433,6 +433,7 @@ export const registerCompany = formData => async dispatch => {
       type: 'registerCompanyProfileSuccess',
       payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'registerCompanyProfileFail',

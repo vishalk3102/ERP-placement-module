@@ -20,7 +20,7 @@ const EditJobPost = () => {
     dispatch(getJobPosting(params.id))
   }, [dispatch, params.id])
 
-  const { loading, job } = useSelector(state => state.jobs)
+  const { loading, job } = useSelector(state => state.adminPlacement)
 
   const [companyName, setCompanyName] = useState('')
   const [title, setTitle] = useState('')

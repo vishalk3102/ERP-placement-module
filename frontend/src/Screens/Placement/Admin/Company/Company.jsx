@@ -10,28 +10,20 @@ import { MdDelete } from 'react-icons/md'
 import { IoEye } from 'react-icons/io5'
 import {
   deleteCompany,
-  getAllCompanyStudent
+  getAllCompany
 } from '../../../../Redux/Actions/placementAction'
 import Loader from '../../../../components/Loader'
+import Heading from '../../../../components/Heading'
+import MetaData from '../../../../components/MetaData'
 
 const Company = () => {
   const dispatch = useDispatch()
 
-  const { loading, companies, error, message } = useSelector(
-    state => state.company
-  )
+  const { loading, companies } = useSelector(state => state.adminPlacement)
 
   useEffect(() => {
-    if (message) {
-      toast.success(message)
-      dispatch({ type: 'clearMessage' })
-    }
-    if (error) {
-      toast.error(error)
-      dispatch({ type: 'clearError' })
-    }
-    dispatch(getAllCompanyStudent())
-  }, [dispatch, message, error])
+    dispatch(getAllCompany())
+  }, [dispatch])
 
   const deleteHandler = id => {
     dispatch(deleteCompany(id))
@@ -39,18 +31,13 @@ const Company = () => {
 
   return (
     <>
-      {/* <MetaData title='Orders' /> */}
-      <section id='Orders' className='w-full h-full  mt-20'>
+      <MetaData title='Company List' />
+      <section id='company-list' className='w-full h-full  mt-20'>
         <Box sx={{ display: 'flex', marginTop: '5rem' }}>
           <SideNavbar />
           {loading === false ? (
             <div className='max-w-[1200px] w-[100%] mx-auto my-10'>
-              <h2
-                className='text-[#000] text-[2.5rem] font-bold
-              text-center uppercase p-2 mt-5'
-              >
-                Company List
-              </h2>
+              <Heading title={` Company List`} />
               <div className='flex justify-end mt-8 '>
                 <Link to='/admin/placement/company/add'>
                   <button className='text-[#fff] text-[14px] font-semibold flex justify-center items-center bg-blue-500  rounded p-3 hover:bg-blue-700 ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all'>
@@ -135,7 +122,7 @@ const Company = () => {
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center '>
                               <Link
-                                to={`/student/placement/company/view/${i._id}`}
+                                to={`/admin/placement/company/view/${i._id}`}
                                 className='flex justify-center items-center'
                               >
                                 <IoEye size={24} />

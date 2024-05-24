@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { toast } from 'react-hot-toast'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import Box from '@mui/material/Box'
 import SideNavbar from '../SideNavbar'
-import {
-  createDrive,
-  createJobPosting
-} from '../../../../Redux/Actions/placementAction'
+import { createDrive } from '../../../../Redux/Actions/placementAction'
 
 const CreateJobPost = () => {
   const [companyName, setCompanyName] = useState('')

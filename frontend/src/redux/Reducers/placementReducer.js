@@ -130,7 +130,7 @@ export const studentPlacementReducer = createReducer(
 )
 
 export const AdminPlacementReducer = createReducer(
-  { students: [] },
+  { students: [], companies: [], jobs: [] },
   {
     getAdminDashboardStatsRequest: state => {
       state.loading = true
@@ -274,18 +274,6 @@ export const AdminPlacementReducer = createReducer(
       state.loading = false
       state.error = action.payload
     },
-    clearError: state => {
-      state.error = null
-    },
-    clearMessage: state => {
-      state.message = null
-    }
-  }
-)
-
-export const jobPostingReducer = createReducer(
-  { jobs: [] },
-  {
     createJobPostingRequest: state => {
       state.loading = true
     },
@@ -340,13 +328,7 @@ export const jobPostingReducer = createReducer(
     getAllJobPostingFail: (state, action) => {
       state.loading = false
       state.error = action.payload
-    }
-  }
-)
-
-export const CompanyReducer = createReducer(
-  { companies: [] },
-  {
+    },
     registerCompanyProfileRequest: state => {
       state.loading = true
     },

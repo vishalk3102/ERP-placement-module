@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import Heading from '../../../components/Heading'
 import { IoMdLink } from 'react-icons/io'
 import { HiOutlineCalendar } from 'react-icons/hi'
-import { useNavigate } from 'react-router-dom'
 import { IoAddOutline } from 'react-icons/io5'
 import { MdDeleteOutline, MdEditNote } from 'react-icons/md'
 import { BiArrowBack } from 'react-icons/bi'
@@ -12,6 +10,8 @@ import { deleteNotice, getAllNotice } from '../../../Redux/Actions/adminAction'
 import AddNotice from './AddNotice'
 import EditNotice from './EditNotice'
 import Loader from '../../../components/Loader'
+import Heading from '../../../components/Heading'
+import MetaData from '../../../components/MetaData'
 
 const Notice = () => {
   const [selected, setSelected] = useState('')
@@ -52,12 +52,13 @@ const Notice = () => {
         dispatch(getAllNotice())
       })
       .catch(error => {
-        console.error('Error adding subject:', error)
+        console.error('Error Deleting notice:', error)
       })
   }
 
   return (
     <>
+      <MetaData title='Notices' />
       {loading === false ? (
         <div className='w-[85%] mx-auto flex justify-center items-start flex-col my-10'>
           <div className='relative flex justify-between items-center w-full'>
@@ -91,7 +92,7 @@ const Notice = () => {
                   return (
                     <div
                       key={item._id}
-                      className='border-blue-500 border-2 w-full rounded-md shadow-sm py-4 px-6 mb-4 relative'
+                      className='bg-blue-100 border-blue-500 border-2 w-full rounded-md shadow-sm py-4 px-6 mb-4 relative'
                     >
                       <div className='absolute flex justify-center items-center right-4 bottom-3'>
                         <span className='text-sm bg-blue-500 px-4 py-1 text-white rounded-full'>

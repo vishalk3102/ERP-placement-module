@@ -20,7 +20,7 @@ const EditCompany = () => {
     dispatch(getCompany(params.id))
   }, [dispatch, params.id])
 
-  const { loading, company } = useSelector(state => state.company)
+  const { loading, company } = useSelector(state => state.adminPlacement)
 
   const [companyName, setCompanyName] = useState('')
   const [website, setWebsite] = useState('')

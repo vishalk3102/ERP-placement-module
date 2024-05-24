@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { toast } from 'react-hot-toast'
-import { FiUpload } from 'react-icons/fi'
 import Box from '@mui/material/Box'
 import SideNavbar from '../SideNavbar'
 import Loader from '../../../../components/Loader'
 import {
-  createDrive,
   getDrive,
   updateDrive
 } from '../../../../Redux/Actions/placementAction'
