@@ -37,11 +37,11 @@ const Application = () => {
           {loading === false ? (
             <div className='max-w-[1200px] w-[100%] mx-auto my-10'>
               <Heading title={` Company Wise Registered Student Application`} />
-              <div className='my-6 flex justify-evenly  items-center flex-wrap mt-10'>
+              <div className='my-6 flex   items-center flex-wrap mt-10'>
                 {companies &&
                   companies.map((i, index) => (
                     <Link to={`/admin/placement/application/${i._id}`}>
-                      <span className='text-[#fff] text-[18px] font-semibold flex justify-center items-center bg-blue-500  rounded m-1 py-4 px-8 hover:bg-blue-700 ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all capitalize'>
+                      <span className='text-[#fff] text-[18px] font-semibold flex justify-center items-center bg-blue-500  rounded m-1 py-4 px-8 hover:bg-blue-700 ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all capitalize mx-4'>
                         {' '}
                         {i.companyName}
                       </span>

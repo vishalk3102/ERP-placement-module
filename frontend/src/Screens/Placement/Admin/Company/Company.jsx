@@ -50,40 +50,40 @@ const Company = () => {
                 </Link>
               </div>
               <div className='overflow-auto'>
-                <table className='table-auto border-solid border-2 border-black border-collapse rounded mx-auto my-5'>
+                <table className='table-auto  border-collapse rounded mx-auto my-5'>
                   <thead>
-                    <tr className='w-[100%] border-solid border-2 border-black'>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400  border border-slate-900 p-3 uppercase text-center'>
+                    <tr className='w-[100%] bg-blue-300 '>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold   border border-slate-900 p-3 uppercase text-center'>
                         S.No
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold  border border-slate-900 p-3  uppercase text-center'>
                         Company Name
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold  border border-slate-900 p-3  uppercase text-center'>
                         Website
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold  border border-slate-900 p-3  uppercase text-center'>
                         Industry
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold  border border-slate-900 p-3  uppercase text-center'>
                         Location
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold  border border-slate-900 p-3  uppercase text-center'>
                         About
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold  border border-slate-900 p-3  uppercase text-center'>
                         Contact Person
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold  border border-slate-900 p-3  uppercase text-center'>
                         Contact Email
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold  border border-slate-900 p-3  uppercase text-center'>
                         Contact Phone No
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold  border border-slate-900 p-3  uppercase text-center'>
                         View
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold  border border-slate-900 p-3  uppercase text-center'>
                         Action
                       </th>
                     </tr>
@@ -92,7 +92,10 @@ const Company = () => {
                     {companies &&
                       companies.map((i, index) => {
                         return (
-                          <tr className='border border-slate-900' key={i}>
+                          <tr
+                            className='border bg-blue-50 border-slate-900'
+                            key={i}
+                          >
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
                               1
                             </td>

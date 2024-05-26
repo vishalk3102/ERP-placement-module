@@ -49,43 +49,43 @@ const JobPosting = () => {
                 </Link>
               </div>
               <div className='overflow-auto'>
-                <table className='table-auto border-solid border-2 border-black border-collapse rounded mx-auto my-5'>
+                <table className='table-auto  border-collapse rounded mx-auto my-5'>
                   <thead>
-                    <tr className='w-[100%] border-solid border-2 border-black'>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400  border border-slate-900 p-3 uppercase text-center'>
+                    <tr className='w-[100%] bg-blue-300 '>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold  border border-slate-900 p-3 uppercase text-center'>
                         S.No
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold border border-slate-900 p-3  uppercase text-center'>
                         Company Name
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold border border-slate-900 p-3  uppercase text-center'>
                         Title
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold border border-slate-900 p-3  uppercase text-center'>
                         Eligible Course
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold border border-slate-900 p-3  uppercase text-center'>
                         Qualifications
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold border border-slate-900 p-3  uppercase text-center'>
                         Description
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold border border-slate-900 p-3  uppercase text-center'>
                         Package
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold border border-slate-900 p-3  uppercase text-center'>
                         Location
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold border border-slate-900 p-3  uppercase text-center'>
                         Registration Link
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold border border-slate-900 p-3  uppercase text-center'>
                         deadline
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold border border-slate-900 p-3  uppercase text-center'>
                         View
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold border border-slate-900 p-3  uppercase text-center'>
                         Action
                       </th>
                     </tr>
@@ -94,9 +94,12 @@ const JobPosting = () => {
                     {jobs &&
                       jobs.map((i, index) => {
                         return (
-                          <tr className='border border-slate-900 '>
+                          <tr
+                            className='bg-blue-50 border  border-slate-900 '
+                            key={index}
+                          >
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              1
+                              (index+1)
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
                               {i.companyName}

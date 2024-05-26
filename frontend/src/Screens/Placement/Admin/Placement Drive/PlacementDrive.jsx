@@ -58,34 +58,36 @@ const PlacementDrive = () => {
                 </Link>
               </div>
               <div className='overflow-auto'>
-                <table className='table-[100%] border-solid border-2 border-black border-collapse rounded my-5 mx-auto'>
+                <table className='table-[100%]  border-collapse rounded my-5 mx-auto'>
                   <thead>
-                    <tr className='w-[100%] border-solid border-2 border-black'>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400  border border-slate-900 p-3 uppercase text-center'>
+                    <tr className='w-[100%] bg-blue-300'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold   border border-slate-900 p-3 uppercase text-center'>
                         S.No
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold  border border-slate-900 p-3  uppercase text-center'>
                         Company Name
                       </th>
-
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold  border border-slate-900 p-3  uppercase text-center'>
                         Location
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold  border border-slate-900 p-3  uppercase text-center'>
                         Date
                       </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold  border border-slate-900 p-3  uppercase text-center'>
                         Action
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     {drives &&
-                      drives.map(i => {
+                      drives.map((i, index) => {
                         return (
-                          <tr className='border border-slate-900 '>
+                          <tr
+                            className='border bg-blue-50 border-slate-900 '
+                            key={index}
+                          >
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              1
+                              {index + 1}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
                               {i.companyName}

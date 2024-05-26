@@ -6,7 +6,7 @@ import { addNotice, getAllNotice } from '../../../../Redux/Actions/adminAction'
 const AddNotice = ({ setOpen }) => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [type, setType] = useState('student')
+  const [type, setType] = useState('placement')
   const [link, setLink] = useState('')
 
   const dispatch = useDispatch()
