@@ -36,6 +36,10 @@ exports.registerStudent = catchAsyncError(async (req, res, next) => {
 
   const password = 'student@1234'
 
+  const myCloud = await cloudinary.v2.uploader.upload(profile, {
+    folder: 'profile'
+  })
+
   student = await User.create({
     userType: 'student',
     enrollmentNo,

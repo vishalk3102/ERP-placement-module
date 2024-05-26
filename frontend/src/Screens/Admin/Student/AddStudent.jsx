@@ -62,7 +62,7 @@ const AddStudent = () => {
     }
 
     dispatch(addStudent(formData))
-      .then(() => {
+    /*  .then(() => {
         setEnrollmentNo('')
         setFirstName('')
         setLastName('')
@@ -78,7 +78,7 @@ const AddStudent = () => {
       })
       .catch(error => {
         toast.error('Error adding Faculty')
-      })
+      }) */
   }
 
   return (
