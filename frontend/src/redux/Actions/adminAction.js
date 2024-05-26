@@ -359,6 +359,7 @@ export const addBranch = name => async dispatch => {
       type: 'addBranchSuccess',
       payload: data.message
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'addBranchFail',
@@ -378,6 +379,7 @@ export const deleteBranch = id => async dispatch => {
       type: 'deleteBranchSuccess',
       payload: data.message
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'deleteBranchFail',
@@ -534,6 +536,8 @@ export const addSubject = subjectData => async dispatch => {
       type: 'addSubjectSuccess',
       payload: data.message
     })
+    console.log(data)
+    return data
   } catch (error) {
     dispatch({
       type: 'addSubjectFail',

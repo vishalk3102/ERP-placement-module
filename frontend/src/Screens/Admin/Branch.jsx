@@ -17,21 +17,36 @@ const Branch = () => {
   const { loading, branches, error } = useSelector(state => state.admin)
 
   useEffect(() => {
-    if (error) {
-      toast.error(error)
-      dispatch({ type: 'clearError' })
-    }
     dispatch(getAllBranch())
   }, [dispatch, error])
 
   // FUNCTION TO HANDLE ADD BRANCH CLICK
   const addBranchHandler = () => {
     dispatch(addBranch(branch))
+      .then(data => {
+        if (data.success) {
+          toast.success('Branch Added Successfully')
+          dispatch(getAllBranch())
+          setBranch('')
+        }
+      })
+      .catch(err => {
+        toast.error('Failed to Add Branch')
+      })
   }
 
   // FUNCTION TO HANDLE DELETE BRANCH CLICK
   const deleteBranchHandler = id => {
     dispatch(deleteBranch(id))
+      .then(data => {
+        if (data.success) {
+          toast.success('Branch Deleted Successfully')
+          dispatch(getAllBranch())
+        }
+      })
+      .catch(err => {
+        toast.error('Failed to Delete Branch')
+      })
   }
 
   return (

@@ -29,13 +29,16 @@ const Subjects = () => {
     }
 
     dispatch(addSubject(subjectData))
-      .then(() => {
-        setName('')
-        setCode('')
-        dispatch(getAllSubject())
+      .then(data => {
+        if (data.success) {
+          toast.success('Subject Added Successfully')
+          setName('')
+          setCode('')
+          dispatch(getAllSubject())
+        }
       })
       .catch(error => {
-        console.error('Error adding subject:', error)
+        console.error('Failed to add subject')
       })
 
     setSelected('view')

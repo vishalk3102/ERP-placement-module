@@ -42,14 +42,17 @@ const AddAdmin = () => {
     }
 
     dispatch(addAdmin(formData))
-      .then(() => {
-        setEmployeeId('')
-        setFirstName('')
-        setLastName('')
-        setEmail('')
-        setPhoneNumber('')
-        setGender('')
-        setProfile('')
+      .then(data => {
+        if (data.success) {
+          toast.success('Admin Added successfully')
+          setEmployeeId('')
+          setFirstName('')
+          setLastName('')
+          setEmail('')
+          setPhoneNumber('')
+          setGender('')
+          setProfile('')
+        }
       })
       .catch(error => {
         toast.error('Error adding Admin')

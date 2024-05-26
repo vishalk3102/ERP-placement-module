@@ -22,10 +22,6 @@ const AddFaculty = () => {
   const { loading, branches, error } = useSelector(state => state.admin)
 
   useEffect(() => {
-    if (error) {
-      toast.error(error)
-      dispatch({ type: 'clearError' })
-    }
     dispatch(getAllBranch())
   }, [dispatch, error])
 
@@ -59,17 +55,20 @@ const AddFaculty = () => {
     }
 
     dispatch(addFaculty(formData))
-      .then(() => {
-        setEmployeeId('')
-        setFirstName('')
-        setLastName('')
-        setEmail('')
-        setPhoneNumber('')
-        setGender('')
-        setDepartment('')
-        setPost('')
-        setExperience('')
-        setProfile('')
+      .then(data => {
+        if (data.success) {
+          toast.success('Faculty Added successfully')
+          setEmployeeId('')
+          setFirstName('')
+          setLastName('')
+          setEmail('')
+          setPhoneNumber('')
+          setGender('')
+          setDepartment('')
+          setPost('')
+          setExperience('')
+          setProfile('')
+        }
       })
       .catch(error => {
         toast.error('Error adding Faculty')

@@ -80,7 +80,7 @@ const AddStudent = () => {
         }
       })
       .catch(error => {
-        toast.error('Error adding Faculty')
+        toast.error('Error adding Student')
       })
   }
 
