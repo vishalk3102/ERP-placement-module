@@ -23,7 +23,8 @@ exports.registerStudent = catchAsyncError(async (req, res, next) => {
     course,
     branch,
     universityRollNo,
-    section
+    section,
+    profile
   } = req.body
   console.log('Received Form Data:', req.body)
 
