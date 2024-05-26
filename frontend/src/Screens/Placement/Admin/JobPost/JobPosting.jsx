@@ -14,6 +14,7 @@ import {
 import Loader from '../../../../components/Loader'
 import Heading from '../../../../components/Heading'
 import MetaData from '../../../../components/MetaData'
+import toast from 'react-hot-toast'
 
 const JobPosting = () => {
   const dispatch = useDispatch()
@@ -26,6 +27,15 @@ const JobPosting = () => {
 
   const deleteHandler = id => {
     dispatch(deleteJobPosting(id))
+      .then(data => {
+        if (data.success) {
+          toast.success('Job Post Deleted Successfully')
+          dispatch(getAllJobPosting())
+        }
+      })
+      .catch(err => {
+        toast.error('Failed to delete Job Post')
+      })
   }
 
   return (
@@ -99,7 +109,7 @@ const JobPosting = () => {
                             key={index}
                           >
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              (index+1)
+                              {index + 1}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
                               {i.companyName}

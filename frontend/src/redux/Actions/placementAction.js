@@ -345,6 +345,8 @@ export const updateJobPosting = (formData, id) => async dispatch => {
       type: 'updateJobPostingSuccess',
       payload: data
     })
+    console.log(data)
+    return data
   } catch (error) {
     dispatch({
       type: 'updateJobPostingFail',
@@ -366,6 +368,7 @@ export const deleteJobPosting = id => async dispatch => {
       type: 'deleteJobPostingSuccess',
       payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'deleteJobPostingFail',
@@ -406,6 +409,7 @@ export const getAllJobPosting = () => async dispatch => {
       type: 'getAllJobPostingSuccess',
       payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'getAllJobPostingFail',
@@ -474,6 +478,7 @@ export const getAllCompany = () => async dispatch => {
       type: 'getAllCompanySuccess',
       payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'getAllCompanyFail',
@@ -500,6 +505,7 @@ export const updateCompany = (formData, id) => async dispatch => {
       type: 'updateCompanySuccess',
       payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'updateCompanyFail',
@@ -520,6 +526,7 @@ export const deleteCompany = id => async dispatch => {
       type: 'deleteCompanySuccess',
       payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'deleteCompanyFail',

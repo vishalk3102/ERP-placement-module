@@ -6,6 +6,7 @@ import { FiUpload } from 'react-icons/fi'
 import Box from '@mui/material/Box'
 import SideNavbar from '../SideNavbar'
 import {
+  getAllJobPosting,
   getJobPosting,
   updateJobPosting
 } from '../../../../Redux/Actions/placementAction'
@@ -61,7 +62,15 @@ const EditJobPost = () => {
       deadline
     }
     dispatch(updateJobPosting(formData, params.id))
-    navigate('/admin/placement/jobpostings')
+      .then(data => {
+        if (data.success) {
+          dispatch(getAllJobPosting())
+          navigate('/admin/placement/jobpostings')
+        }
+      })
+      .catch(err => {
+        toast.error('Failed to update Company ')
+      })
   }
   return (
     <>

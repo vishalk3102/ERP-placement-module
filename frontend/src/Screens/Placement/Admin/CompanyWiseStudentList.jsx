@@ -55,31 +55,31 @@ const CompanyWiseStudentList = () => {
                 <div className='overflow-auto'>
                   <table className='w-[100%] border-solid border-2 border-black border-collapse rounded mx-auto my-5'>
                     <thead>
-                      <tr className='w-[100%] border-solid border-2 border-black'>
-                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400  border border-slate-900 p-3 uppercase text-center'>
+                      <tr className='w-[100%] bg-blue-300'>
+                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold  border border-slate-900 p-3 uppercase text-center'>
                           S.NO
                         </th>
 
-                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold border border-slate-900 p-3  uppercase text-center'>
                           Student Name
                         </th>
 
-                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold border border-slate-900 p-3  uppercase text-center'>
                           Email
                         </th>
-                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold border border-slate-900 p-3  uppercase text-center'>
                           Phone Number
                         </th>
-                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold border border-slate-900 p-3  uppercase text-center'>
                           University
                         </th>
-                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold border border-slate-900 p-3  uppercase text-center'>
                           Course
                         </th>
-                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold border border-slate-900 p-3  uppercase text-center'>
                           Branch
                         </th>
-                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-gray-400 border border-slate-900 p-3  uppercase text-center'>
+                        <th className='text-[0.8rem] md:text-[1.2rem] font-bold border border-slate-900 p-3  uppercase text-center'>
                           University Roll No
                         </th>
                       </tr>
@@ -88,7 +88,7 @@ const CompanyWiseStudentList = () => {
                       {applications &&
                         applications.map(i => {
                           return (
-                            <tr className='border border-slate-900 '>
+                            <tr className='bg-blue-50'>
                               <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
                                 1
                               </td>

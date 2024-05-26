@@ -83,112 +83,106 @@ const Notice = () => {
   return (
     <>
       <MetaData title='Notices' />
-      {loading === false ? (
-        <section id='Notice' className='w-full h-full  mt-20'>
-          <Box sx={{ display: 'flex', marginTop: '5rem' }}>
-            <SideNavbar />
-            {loading === false ? (
-              <div className='w-[85%] mx-auto flex justify-center items-start flex-col my-10'>
-                <div className='relative flex justify-between items-center w-full'>
-                  <Heading title='Notices' />
-                  {open ? (
-                    <button
-                      className='absolute right-2 flex justify-center items-center border-2 border-red-500 px-3 py-2 rounded text-red-500'
-                      onClick={openHandler}
-                    >
-                      <span className='mr-2'>
-                        <BiArrowBack className='text-red-500' />
-                      </span>
-                      Close
-                    </button>
-                  ) : (
-                    <button
-                      className='absolute right-2 flex justify-center items-center border-2 border-red-500 px-3 py-2 rounded text-red-500'
-                      onClick={openHandler}
-                    >
-                      Add Notice
-                      <span className='ml-2'>
-                        <IoAddOutline className='text-red-500 text-xl' />
-                      </span>
-                    </button>
-                  )}
-                </div>
-                {!open && (
-                  <div className='mt-8 w-full'>
-                    {notices &&
-                      notices.map((item, index) => {
-                        return (
-                          <div
-                            key={item._id}
-                            className='bg-blue-100 border-blue-500 border-2 w-full rounded-md shadow-sm py-4 px-6 mb-4 relative'
-                          >
-                            <div className='absolute flex justify-center items-center right-4 bottom-3'>
-                              <span className='text-sm bg-blue-500 px-4 py-1 text-white rounded-full'>
-                                {item.type}
-                              </span>
-                              <span
-                                className='text-2xl group-hover:text-blue-500 ml-2 cursor-pointer hover:text-red-500'
-                                onClick={() => deleteNoticeHandler(item._id)}
-                              >
-                                <MdDeleteOutline />
-                              </span>
-                              <span
-                                className='text-2xl group-hover:text-blue-500 ml-2 cursor-pointer hover:text-blue-500'
-                                onClick={() => EditNoticeHandler(item._id)}
-                              >
-                                <MdEditNote />
-                              </span>
-                            </div>
-                            <p
-                              className={`text-xl font-medium flex justify-start items-center ${
-                                item.link && 'cursor-pointer'
-                              } group`}
-                              onClick={() =>
-                                item.link && window.open(item.link)
-                              }
-                            >
-                              {item.title}
-                              {item.link && (
-                                <span className='text-2xl group-hover:text-blue-500 ml-1'>
-                                  <IoMdLink />
-                                </span>
-                              )}
-                            </p>
-                            <p className='text-base font-normal mt-1'>
-                              {item.description}
-                            </p>
-                            <p className='text-sm absolute top-4 right-4 flex justify-center items-center'>
-                              <span className='text-base mr-1'>
-                                <HiOutlineCalendar />
-                              </span>
-                              {item.createdAt.split('T')[0].split('-')[2] +
-                                '/' +
-                                item.createdAt.split('T')[0].split('-')[1] +
-                                '/' +
-                                item.createdAt.split('T')[0].split('-')[0] +
-                                ' ' +
-                                item.createdAt.split('T')[1].split('.')[0]}
-                            </p>
-                          </div>
-                        )
-                      })}
-                  </div>
-                )}
-                {selected === 'add' ? <AddNotice setOpen={setOpen} /> : ''}
-                {selected === 'edit' ? (
-                  <EditNotice setOpen={setOpen} id={id} />
+      <section id='Notice' className='w-full h-full  mt-20'>
+        <Box sx={{ display: 'flex', marginTop: '5rem' }}>
+          <SideNavbar />
+          {loading === false ? (
+            <div className='w-[85%] mx-auto flex justify-center items-start flex-col my-10'>
+              <div className='relative flex justify-between items-center w-full'>
+                <Heading title='Notices' />
+                {open ? (
+                  <button
+                    className='absolute right-2 flex justify-center items-center border-2 border-red-500 px-3 py-2 rounded text-red-500'
+                    onClick={openHandler}
+                  >
+                    <span className='mr-2'>
+                      <BiArrowBack className='text-red-500' />
+                    </span>
+                    Close
+                  </button>
                 ) : (
-                  ''
+                  <button
+                    className='absolute right-2 flex justify-center items-center border-2 border-red-500 px-3 py-2 rounded text-red-500'
+                    onClick={openHandler}
+                  >
+                    Add Notice
+                    <span className='ml-2'>
+                      <IoAddOutline className='text-red-500 text-xl' />
+                    </span>
+                  </button>
                 )}
               </div>
-            ) : (
-              <Loader />
-            )}
-          </Box>
-        </section>
-      ) : (
-        <Loader />
-      )}
+              {!open && (
+                <div className='mt-8 w-full'>
+                  {notices &&
+                    notices.map((item, index) => {
+                      return (
+                        <div
+                          key={item._id}
+                          className='bg-blue-100 border-blue-500 border-2 w-full rounded-md shadow-sm py-4 px-6 mb-4 relative'
+                        >
+                          <div className='absolute flex justify-center items-center right-4 bottom-3'>
+                            <span className='text-sm bg-blue-500 px-4 py-1 text-white rounded-full'>
+                              {item.type}
+                            </span>
+                            <span
+                              className='text-2xl group-hover:text-blue-500 ml-2 cursor-pointer hover:text-red-500'
+                              onClick={() => deleteNoticeHandler(item._id)}
+                            >
+                              <MdDeleteOutline />
+                            </span>
+                            <span
+                              className='text-2xl group-hover:text-blue-500 ml-2 cursor-pointer hover:text-blue-500'
+                              onClick={() => EditNoticeHandler(item._id)}
+                            >
+                              <MdEditNote />
+                            </span>
+                          </div>
+                          <p
+                            className={`text-xl font-medium flex justify-start items-center ${
+                              item.link && 'cursor-pointer'
+                            } group`}
+                            onClick={() => item.link && window.open(item.link)}
+                          >
+                            {item.title}
+                            {item.link && (
+                              <span className='text-2xl group-hover:text-blue-500 ml-1'>
+                                <IoMdLink />
+                              </span>
+                            )}
+                          </p>
+                          <p className='text-base font-normal mt-1'>
+                            {item.description}
+                          </p>
+                          <p className='text-sm absolute top-4 right-4 flex justify-center items-center'>
+                            <span className='text-base mr-1'>
+                              <HiOutlineCalendar />
+                            </span>
+                            {item.createdAt.split('T')[0].split('-')[2] +
+                              '/' +
+                              item.createdAt.split('T')[0].split('-')[1] +
+                              '/' +
+                              item.createdAt.split('T')[0].split('-')[0] +
+                              ' ' +
+                              item.createdAt.split('T')[1].split('.')[0]}
+                          </p>
+                        </div>
+                      )
+                    })}
+                </div>
+              )}
+              {selected === 'add' ? <AddNotice setOpen={setOpen} /> : ''}
+              {selected === 'edit' ? (
+                <EditNotice setOpen={setOpen} id={id} />
+              ) : (
+                ''
+              )}
+            </div>
+          ) : (
+            <Loader />
+          )}
+        </Box>
+      </section>
     </>
   )
 }

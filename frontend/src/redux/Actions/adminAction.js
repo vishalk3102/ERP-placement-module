@@ -124,8 +124,10 @@ export const addStudent = formData => async dispatch => {
     )
     dispatch({
       type: 'addStudentSuccess',
-      payload: data.message
+      payload: data
     })
+    console.log(data)
+    return data
   } catch (error) {
     dispatch({
       type: 'addStudentFail',

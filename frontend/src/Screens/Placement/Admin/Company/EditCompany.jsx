@@ -6,6 +6,7 @@ import { FiUpload } from 'react-icons/fi'
 import Box from '@mui/material/Box'
 import SideNavbar from '../SideNavbar'
 import {
+  getAllCompany,
   getCompany,
   updateCompany
 } from '../../../../Redux/Actions/placementAction'
@@ -20,7 +21,9 @@ const EditCompany = () => {
     dispatch(getCompany(params.id))
   }, [dispatch, params.id])
 
-  const { loading, company } = useSelector(state => state.adminPlacement)
+  const { loading, company, message } = useSelector(
+    state => state.adminPlacement
+  )
 
   const [companyName, setCompanyName] = useState('')
   const [website, setWebsite] = useState('')
@@ -58,7 +61,15 @@ const EditCompany = () => {
       contactEmail
     }
     dispatch(updateCompany(formData, params.id))
-    navigate('/admin/placement/companies')
+      .then(data => {
+        if (data.success) {
+          dispatch(getAllCompany())
+          navigate('/admin/placement/companies')
+        }
+      })
+      .catch(err => {
+        toast.error('Failed to update Company ')
+      })
   }
 
   return (

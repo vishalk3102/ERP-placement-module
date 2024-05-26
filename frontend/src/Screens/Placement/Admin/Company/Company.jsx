@@ -27,6 +27,14 @@ const Company = () => {
 
   const deleteHandler = id => {
     dispatch(deleteCompany(id))
+      .then(data => {
+        if (data) {
+          toast.success('Company Deleted Successfully')
+        }
+      })
+      .catch(err => {
+        toast.error('Failed to delete company')
+      })
   }
 
   return (
@@ -94,10 +102,10 @@ const Company = () => {
                         return (
                           <tr
                             className='border bg-blue-50 border-slate-900'
-                            key={i}
+                            key={index}
                           >
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
-                              1
+                              {index + 1}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
                               {i.companyName}
@@ -117,7 +125,7 @@ const Company = () => {
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
                               {i.contactPerson}
                             </td>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
+                            <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1  text-center'>
                               {i.contactEmail}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal border border-slate-900 p-1 capitalize text-center'>
