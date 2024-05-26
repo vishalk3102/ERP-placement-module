@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Heading from '../../../components/Heading'
 import AddStudent from './AddStudent'
 import EditStudent from './EditStudent'
+
 const Student = () => {
   const [selected, setSelected] = useState('add')
   return (

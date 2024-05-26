@@ -61,7 +61,7 @@ router.delete('/admin/:id', deleteAdmin)
 // STUDENT
 router.get('/admin/student', getAllStudent)
 router.post('/admin/student/register', registerStudent)
-router.get('/admin/student/:id', getStudent)
+router.get('/admin/student/:enrollmentNo', getStudent)
 router.put('/admin/student/:id', updateStudent)
 router.delete('/admin/student/:id', deleteStudent)
 

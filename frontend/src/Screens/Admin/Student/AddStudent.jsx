@@ -62,23 +62,26 @@ const AddStudent = () => {
     }
 
     dispatch(addStudent(formData))
-    /*  .then(() => {
-        setEnrollmentNo('')
-        setFirstName('')
-        setLastName('')
-        setEmail('')
-        setPhoneNumber('')
-        setGender('')
-        setCourse('')
-        setBranch('')
-        setSemester('')
-        setUniversityRollNo('')
-        setSection('')
-        setProfile('')
+      .then(data => {
+        if (data.success) {
+          toast.success('Student Added successfully')
+          setEnrollmentNo('')
+          setFirstName('')
+          setLastName('')
+          setEmail('')
+          setPhoneNumber('')
+          setGender('')
+          setCourse('')
+          setBranch('')
+          setSemester('')
+          setUniversityRollNo('')
+          setSection('')
+          setProfile('')
+        }
       })
       .catch(error => {
         toast.error('Error adding Faculty')
-      }) */
+      })
   }
 
   return (

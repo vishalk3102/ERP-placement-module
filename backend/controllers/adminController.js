@@ -80,7 +80,10 @@ exports.getAllStudent = catchAsyncError(async (req, res, next) => {
 
 // GET STUDENT
 exports.getStudent = catchAsyncError(async (req, res, next) => {
-  let student = await User.findById(req.params.id)
+  const enrollmentNo = req.params.enrollmentNo
+
+  let student = await User.findOne({ enrollmentNo })
+
   if (!student) {
     return next(new ErrorHandler('No Student Exists', 400))
   }

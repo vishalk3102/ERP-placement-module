@@ -34,10 +34,6 @@ const EditStudent = () => {
   )
 
   useEffect(() => {
-    if (error) {
-      toast.error(error)
-      dispatch({ type: 'clearError' })
-    }
     dispatch(getAllBranch())
   }, [dispatch, error])
 
@@ -94,9 +90,16 @@ const EditStudent = () => {
       section
     }
     setId(student._id)
-    console.log(id)
     dispatch(updateStudent(formData, id))
-    navigate('/admin/home')
+      .then(data => {
+        if (data.success) {
+          toast.success('Student Detail update successfully')
+          navigate('/admin/home')
+        }
+      })
+      .catch(err => {
+        toast.error('Failed to Update student details')
+      })
   }
 
   return (
