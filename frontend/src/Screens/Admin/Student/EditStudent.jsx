@@ -13,7 +13,6 @@ import Loader from '../../../components/Loader'
 const EditStudent = () => {
   const [searchActive, setSearchActive] = useState(false)
   const [search, setSearch] = useState()
-  const [id, setId] = useState()
 
   const [enrollmentNo, setEnrollmentNo] = useState('')
   const [firstName, setFirstName] = useState('')
@@ -89,8 +88,7 @@ const EditStudent = () => {
       universityRollNo,
       section
     }
-    setId(student._id)
-    dispatch(updateStudent(formData, id))
+    dispatch(updateStudent(formData, enrollmentNo))
       .then(data => {
         if (data.success) {
           toast.success('Student Detail update successfully')

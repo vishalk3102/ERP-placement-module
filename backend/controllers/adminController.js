@@ -26,7 +26,6 @@ exports.registerStudent = catchAsyncError(async (req, res, next) => {
     section,
     profile
   } = req.body
-  console.log('Received Form Data:', req.body)
 
   let student = await User.findOne({ enrollmentNo })
   if (student) {
@@ -97,14 +96,18 @@ exports.getStudent = catchAsyncError(async (req, res, next) => {
 
 // UPDATE STUDENT
 exports.updateStudent = catchAsyncError(async (req, res, next) => {
-  const { id } = req.params
+  const enrollmentNo = req.params.enrollmentNo
 
-  let student = await User.findById(id)
+  let student = await User.findOne({ enrollmentNo })
   if (!student) {
     return next(new ErrorHandler('No Student Exists', 400))
   }
 
-  await User.findByIdAndUpdate(id, req.body)
+  await User.findOneAndUpdate({ enrollmentNo }, req.body, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false
+  })
 
   res.status(200).json({
     success: true,
