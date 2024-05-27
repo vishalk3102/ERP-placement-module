@@ -20,6 +20,7 @@ export const addAdmin = formData => async dispatch => {
       type: 'addAdminSuccess',
       payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'addAdminFail',
@@ -42,6 +43,7 @@ export const updateAdmin = (formData, id) => async dispatch => {
       type: 'updateAdminSuccess',
       payload: data.message
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'updateAdminFail',
@@ -61,6 +63,7 @@ export const deleteAdmin = id => async dispatch => {
       type: 'deleteAdminSuccess',
       payload: data.message
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'deleteAdminFail',
@@ -80,6 +83,7 @@ export const getAdmin = id => async dispatch => {
       type: 'getAdminSuccess',
       payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'getAdminFail',
@@ -153,6 +157,7 @@ export const updateStudent = (formData, id) => async dispatch => {
       type: 'updateStudentSuccess',
       payload: data.message
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'updateStudentFail',
@@ -172,6 +177,7 @@ export const deleteStudent = id => async dispatch => {
       type: 'deleteStudentSuccess',
       payload: data.message
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'deleteStudentFail',
@@ -180,17 +186,18 @@ export const deleteStudent = id => async dispatch => {
   }
 }
 
-export const getStudent = id => async dispatch => {
+export const getStudent = enrollmentNo => async dispatch => {
   try {
     dispatch({
       type: 'getStudentRequest'
     })
 
-    const { data } = await axios.get(`${server}/admin/student/${id}`)
+    const { data } = await axios.get(`${server}/admin/student/${enrollmentNo}`)
     dispatch({
       type: 'getStudentSuccess',
       payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'getStudentFail',
@@ -237,6 +244,7 @@ export const addFaculty = formData => async dispatch => {
       type: 'addFacultySuccess',
       payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'addFacultyFail',
@@ -261,8 +269,9 @@ export const updateFaculty = (formData, id) => async dispatch => {
     )
     dispatch({
       type: 'updateFacultySuccess',
-      payload: data.message
+      payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'updateFacultyFail',
@@ -280,8 +289,9 @@ export const deleteFaculty = id => async dispatch => {
     const { data } = await axios.delete(`${server}/admin/faculty/${id}`)
     dispatch({
       type: 'deleteFacultySuccess',
-      payload: data.message
+      payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'deleteFacultyFail',
@@ -301,6 +311,7 @@ export const getFaculty = id => async dispatch => {
       type: 'getFacultySuccess',
       payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'getFacultyFail',
@@ -400,6 +411,7 @@ export const getNotice = id => async dispatch => {
       type: 'getNoticeSuccess',
       payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'getNoticeFail',
@@ -442,8 +454,9 @@ export const addNotice = formData => async dispatch => {
     )
     dispatch({
       type: 'addNoticeSuccess',
-      payload: data.message
+      payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'addNoticeFail',
@@ -468,7 +481,7 @@ export const updateNotice = (formData, id) => async dispatch => {
     )
     dispatch({
       type: 'updateNoticeSuccess',
-      payload: data.message
+      payload: data
     })
     return data
   } catch (error) {
@@ -488,8 +501,9 @@ export const deleteNotice = id => async dispatch => {
     const { data } = await axios.delete(`${server}/admin/notice/${id}`)
     dispatch({
       type: 'deleteNoticeSuccess',
-      payload: data.message
+      payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'deleteNoticeFail',

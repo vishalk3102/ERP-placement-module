@@ -66,7 +66,7 @@ const userSchema = new mongoose.Schema({
 
   // STUDENT FIELD
   enrollmentNo: {
-    type: String
+    type: Number
   },
   semester: {
     type: Number
