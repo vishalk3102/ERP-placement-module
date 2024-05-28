@@ -22,7 +22,7 @@ const EditAdmin = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { loading, admin, error } = useSelector(state => state.admin)
+  const { loading, admin } = useSelector(state => state.admin)
 
   useEffect(() => {
     if (admin) {
