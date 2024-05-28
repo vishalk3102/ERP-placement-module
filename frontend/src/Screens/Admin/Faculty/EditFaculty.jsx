@@ -8,6 +8,7 @@ import {
 } from '../../../Redux/Actions/adminAction'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../../../components/Loader'
+import { useNavigate } from 'react-router-dom'
 
 const EditFaculty = () => {
   const [searchActive, setSearchActive] = useState(false)
@@ -26,6 +27,7 @@ const EditFaculty = () => {
   const [profile, setProfile] = useState()
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const { loading, faculty, branches, error } = useSelector(
     state => state.admin
   )
@@ -101,10 +103,17 @@ const EditFaculty = () => {
       department,
       profile
     }
-    setId(faculty._id)
-    console.log(id)
-    dispatch(updateFaculty(formData, id))
-      .then(() => {
+    dispatch(updateFaculty(formData, employeeId))
+      .then(data => {
+        if (data.success) {
+          toast.success('Faculty Detail updated successfully')
+          navigate('/admin/home')
+        }
+      })
+      .catch(err => {
+        toast.error('Failed to Update Faculty details')
+      })
+    /* .then(() => {
         setEmployeeId('')
         setFirstName('')
         setLastName('')
@@ -118,7 +127,7 @@ const EditFaculty = () => {
       })
       .catch(error => {
         toast.error('Error adding Faculty')
-      })
+      }) */
   }
   return (
     <div className='my-6 mx-auto w-full'>

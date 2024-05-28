@@ -21,6 +21,7 @@ const EditAdmin = () => {
   const [profile, setProfile] = useState()
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const { loading, admin, error } = useSelector(state => state.admin)
 
   useEffect(() => {
@@ -75,20 +76,28 @@ const EditAdmin = () => {
       gender,
       profile
     }
-    setId(admin._id)
-    dispatch(updateAdmin(formData, id))
-      .then(() => {
-        setEmployeeId('')
-        setFirstName('')
-        setLastName('')
-        setEmail('')
-        setPhoneNumber('')
-        setGender('')
-        setProfile('')
+    dispatch(updateAdmin(formData, employeeId))
+      .then(data => {
+        if (data.success) {
+          toast.success('Admin Detail updated successfully')
+          navigate('/admin/home')
+        }
       })
-      .catch(error => {
-        toast.error('Error adding Admin')
+      .catch(err => {
+        toast.error('Failed to Update Admin details')
       })
+    // .then(() => {
+    //   setEmployeeId('')
+    //   setFirstName('')
+    //   setLastName('')
+    //   setEmail('')
+    //   setPhoneNumber('')
+    //   setGender('')
+    //   setProfile('')
+    // })
+    // .catch(error => {
+    //   toast.error('Error adding Admin')
+    // })
   }
 
   return (

@@ -29,7 +29,7 @@ export const addAdmin = formData => async dispatch => {
   }
 }
 
-export const updateAdmin = (formData, id) => async dispatch => {
+export const updateAdmin = (formData, employeeId) => async dispatch => {
   try {
     dispatch({
       type: 'updateAdminRequest'
@@ -38,10 +38,14 @@ export const updateAdmin = (formData, id) => async dispatch => {
     const config = {
       headers: { 'Content-Type': 'application/json' }
     }
-    const { data } = await axios.put(`${server}/admin/${id}`, formData, config)
+    const { data } = await axios.put(
+      `${server}/admin/${employeeId}`,
+      formData,
+      config
+    )
     dispatch({
       type: 'updateAdminSuccess',
-      payload: data.message
+      payload: data
     })
     return data
   } catch (error) {
@@ -139,7 +143,8 @@ export const addStudent = formData => async dispatch => {
   }
 }
 
-export const updateStudent = (formData, id) => async dispatch => {
+export const updateStudent = (formData, enrollmentNo) => async dispatch => {
+  console.log(enrollmentNo)
   try {
     dispatch({
       type: 'updateStudentRequest'
@@ -149,7 +154,7 @@ export const updateStudent = (formData, id) => async dispatch => {
       headers: { 'Content-Type': 'application/json' }
     }
     const { data } = await axios.put(
-      `${server}/admin/student/${id}`,
+      `${server}/admin/student/${enrollmentNo}`,
       formData,
       config
     )
@@ -253,7 +258,7 @@ export const addFaculty = formData => async dispatch => {
   }
 }
 
-export const updateFaculty = (formData, id) => async dispatch => {
+export const updateFaculty = (formData, employeeId) => async dispatch => {
   try {
     dispatch({
       type: 'updateFacultyRequest'
@@ -263,7 +268,7 @@ export const updateFaculty = (formData, id) => async dispatch => {
       headers: { 'Content-Type': 'application/json' }
     }
     const { data } = await axios.put(
-      `${server}/admin/faculty/${id}`,
+      `${server}/admin/faculty/${employeeId}`,
       formData,
       config
     )

@@ -54,22 +54,22 @@ router.post('/admin/subject/add', addSubject)
 // ADMIN
 router.post('/admin/register', registerAdmin)
 router.get('/admin', getAllAdmin)
-router.get('/admin/:id', getAdmin)
-router.put('/admin/:id', updateAdmin)
+router.get('/admin/:employeeId', getAdmin)
+router.put('/admin/:employeeId', updateAdmin)
 router.delete('/admin/:id', deleteAdmin)
 
 // STUDENT
 router.get('/admin/student', getAllStudent)
 router.post('/admin/student/register', registerStudent)
 router.get('/admin/student/:enrollmentNo', getStudent)
-router.put('/admin/student/:id', updateStudent)
+router.put('/admin/student/:enrollmentNo', updateStudent)
 router.delete('/admin/student/:id', deleteStudent)
 
 // FACULTY
 router.get('/admin/faculty', getAllFaculty)
 router.post('/admin/faculty/register', registerFaculty)
-router.get('/admin/faculty/:id', getFaculty)
-router.put('/admin/faculty/:id', updateFaculty)
+router.get('/admin/faculty/:employeeId', getFaculty)
+router.put('/admin/faculty/:employeeId', updateFaculty)
 router.delete('/admin/faculty/:id', deleteFaculty)
 
 module.exports = router

@@ -97,13 +97,28 @@ exports.getStudent = catchAsyncError(async (req, res, next) => {
 // UPDATE STUDENT
 exports.updateStudent = catchAsyncError(async (req, res, next) => {
   const enrollmentNo = req.params.enrollmentNo
+  console.log(enrollmentNo)
 
   let student = await User.findOne({ enrollmentNo })
+  console.log(student)
   if (!student) {
     return next(new ErrorHandler('No Student Exists', 400))
   }
 
-  await User.findOneAndUpdate({ enrollmentNo }, req.body, {
+  const updatedStudent = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    phoneNumber: req.body.phoneNumber,
+    gender: req.body.gender,
+    course: req.body.course,
+    branch: req.body.branch,
+    semester: req.body.semester,
+    universityRollNo: req.body.universityRollNo,
+    section: req.body.section
+  }
+
+  student = await User.findOneAndUpdate({ enrollmentNo }, updatedStudent, {
     new: true,
     runValidators: true,
     useFindAndModify: false
@@ -111,6 +126,7 @@ exports.updateStudent = catchAsyncError(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
+    student,
     message: 'Successfully Updated'
   })
 })
@@ -198,7 +214,9 @@ exports.getAllFaculty = catchAsyncError(async (req, res, next) => {
 
 // GET FACULTY
 exports.getFaculty = catchAsyncError(async (req, res, next) => {
-  let faculty = await User.findById(req.params.id)
+  const employeeId = req.params.employeeId
+
+  let faculty = await User.findOne({ employeeId, userType: 'faculty' })
   if (!faculty) {
     return next(new ErrorHandler('No Faculty Exists', 400))
   }
@@ -212,18 +230,38 @@ exports.getFaculty = catchAsyncError(async (req, res, next) => {
 
 // UPDATE FACULTY
 exports.updateFaculty = catchAsyncError(async (req, res, next) => {
-  const { id } = req.params
+  const employeeId = req.params.employeeId
 
-  let faculty = await User.findById(id)
+  let faculty = await User.findOne({ employeeId, userType: 'faculty' })
   if (!faculty) {
     return next(new ErrorHandler('No Faculty Exists', 400))
   }
 
-  await User.findByIdAndUpdate(id, req.body)
+  const updatedFaculty = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    phoneNumber: req.body.phoneNumber,
+    gender: req.body.gender,
+    department: req.body.department,
+    experience: req.body.experience,
+    post: req.body.post
+  }
+
+  faculty = await User.findOneAndUpdate(
+    { employeeId, userType: 'faculty' },
+    updatedFaculty,
+    {
+      new: true,
+      runValidators: true,
+      useFindAndModify: false
+    }
+  )
 
   res.status(200).json({
     success: true,
-    message: 'Successfully Updated'
+    message: 'Successfully Updated',
+    faculty
   })
 })
 
@@ -351,18 +389,35 @@ exports.getAdmin = catchAsyncError(async (req, res, next) => {
 
 // UPDATE ADMIN
 exports.updateAdmin = catchAsyncError(async (req, res, next) => {
-  const { id } = req.params
+  const employeeId = req.params.employeeId
 
-  let admin = await User.findById(id)
+  let admin = await User.findOne({ employeeId, userType: 'admin' })
   if (!admin) {
     return next(new ErrorHandler('No Admin Exists', 400))
   }
 
-  await User.findByIdAndUpdate(id, req.body)
+  const updatedAdmin = {
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    phoneNumber: req.body.phoneNumber,
+    gender: req.body.gender
+  }
+
+  admin = await User.findOneAndUpdate(
+    { employeeId, userType: 'admin' },
+    updatedAdmin,
+    {
+      new: true,
+      runValidators: true,
+      useFindAndModify: false
+    }
+  )
 
   res.status(200).json({
     success: true,
-    message: 'Successfully Updated'
+    message: 'Successfully Updated',
+    admin
   })
 })
 

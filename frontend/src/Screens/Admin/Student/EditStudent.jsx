@@ -91,7 +91,7 @@ const EditStudent = () => {
     dispatch(updateStudent(formData, enrollmentNo))
       .then(data => {
         if (data.success) {
-          toast.success('Student Detail update successfully')
+          toast.success('Student Detail updated successfully')
           navigate('/admin/home')
         }
       })
