@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import { FiSearch, FiX } from 'react-icons/fi'
+import { FiSearch, FiUpload, FiX } from 'react-icons/fi'
 import {
   getAllBranch,
   getStudent,
@@ -25,6 +25,7 @@ const EditStudent = () => {
   const [semester, setSemester] = useState('')
   const [universityRollNo, setUniversityRollNo] = useState('')
   const [section, setSection] = useState('')
+  const [profile, setProfile] = useState()
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -49,6 +50,7 @@ const EditStudent = () => {
       setSemester(student.semester)
       setUniversityRollNo(student.universityRollNo)
       setSection(student.section)
+      setProfile(student.profile)
     }
   }, [student])
 
@@ -93,6 +95,18 @@ const EditStudent = () => {
         if (data.success) {
           toast.success('Student Detail updated successfully')
           navigate('/admin/home')
+          setFirstName('')
+          setLastName('')
+          setEnrollmentNo('')
+          setEmail('')
+          setPhoneNumber('')
+          setGender('')
+          setCourse('')
+          setBranch('')
+          setSemester('')
+          setUniversityRollNo('')
+          setSection('')
+          setProfile('')
         }
       })
       .catch(err => {
@@ -100,6 +114,18 @@ const EditStudent = () => {
       })
   }
 
+  const handleImage = e => {
+    const file = e.target.files[0]
+    setFileToBase(file)
+  }
+
+  const setFileToBase = file => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onloadend = () => {
+      setProfile(reader.result)
+    }
+  }
   return (
     <div className='my-6 mx-auto w-full'>
       <form
@@ -128,8 +154,7 @@ const EditStudent = () => {
         )}
       </form>
       {loading === false ? (
-        searchActive &&
-        student && (
+        searchActive && student ? (
           <form
             onSubmit={updateStudentProfile}
             className='w-[70%] flex justify-center items-center flex-wrap gap-6 mx-auto mt-10'
@@ -197,11 +222,25 @@ const EditStudent = () => {
               />
             </div>
             <div className='w-[40%]'>
+              <label htmlFor='gender' className='leading-7 text-sm '>
+                Select Gender
+              </label>
+              <select
+                id='gender'
+                className='px-2 bg-blue-50 py-3 rounded-sm text-base w-full accent-blue-700 mt-1'
+                value={gender}
+                onChange={e => setGender(e.target.value)}
+              >
+                <option defaultValue>-- Select --</option>
+                <option value='Male'>Male</option>
+                <option value='Female'>Female</option>
+              </select>
+            </div>
+            <div className='w-[40%]'>
               <label htmlFor='semester' className='leading-7 text-sm '>
                 Semester
               </label>
               <select
-                disabled
                 id='semester'
                 className='px-2 bg-blue-50 py-3 rounded-sm text-base w-full accent-blue-700 mt-1'
                 value={semester}
@@ -219,11 +258,24 @@ const EditStudent = () => {
               </select>
             </div>
             <div className='w-[40%]'>
+              <label htmlFor='course' className='leading-7 text-sm '>
+                Select Course
+              </label>
+              <select
+                id='course'
+                className='px-2 bg-blue-50 py-3 rounded-sm text-base w-full accent-blue-700 mt-1'
+                value={course}
+                onChange={e => setCourse(e.target.value)}
+              >
+                <option defaultValue>-- Select --</option>
+                <option value='B-Tech'>Bachelor's of Technology</option>
+              </select>
+            </div>
+            <div className='w-[40%]'>
               <label htmlFor='branch' className='leading-7 text-sm '>
                 Branch
               </label>
               <select
-                disabled
                 id='branch'
                 className='px-2 bg-blue-50 py-3 rounded-sm text-base w-full accent-blue-700 mt-1'
                 value={branch}
@@ -241,45 +293,61 @@ const EditStudent = () => {
               </select>
             </div>
             <div className='w-[40%]'>
-              <label htmlFor='gender' className='leading-7 text-sm '>
-                Select Gender
+              <label htmlFor='university-rollno' className='leading-7 text-sm '>
+                Enter University Rollno
               </label>
-              <select
-                id='gender'
-                className='px-2 bg-blue-50 py-3 rounded-sm text-base w-full accent-blue-700 mt-1'
-                value={gender}
-                onChange={e => setGender(e.target.value)}
+              <input
+                type='text'
+                id='university-rollno'
+                value={universityRollNo}
+                onChange={e => setUniversityRollNo(e.target.value)}
+                className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+              />
+            </div>
+            <div className='w-[40%]'>
+              <label htmlFor='section' className='leading-7 text-sm '>
+                Enter Section
+              </label>
+              <input
+                type='text'
+                id='section'
+                value={section}
+                onChange={e => setSection(e.target.value)}
+                className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+              />
+            </div>
+            <div className='w-[40%]'>
+              <label htmlFor='file' className='leading-7 text-sm '>
+                Select Profile
+              </label>
+              <label
+                htmlFor='file'
+                className='px-2 bg-blue-50 py-3 rounded-sm text-base w-full flex justify-center items-center cursor-pointer'
               >
-                <option value='Male'>Male</option>
-                <option value='Female'>Female</option>
-              </select>
+                Upload
+                <span className='ml-2'>
+                  <FiUpload />
+                </span>
+              </label>
+              <input
+                hidden
+                onChange={handleImage}
+                type='file'
+                id='file'
+                name='profile'
+                accept='image/*'
+              />
             </div>
-            {/*  <div className='w-[40%]'>
-            <label htmlFor='file' className='leading-7 text-sm '>
-              Select New Profile
-            </label>
-            <label
-              htmlFor='file'
-              className='px-2 bg-blue-50 py-3 rounded-sm text-base w-full flex justify-center items-center cursor-pointer'
-            >
-              Upload
-              <span className='ml-2'>
-                <FiUpload />
-              </span>
-            </label>
-            <input
-              hidden
-              type='file'
-              id='file'
-              accept='image/*'
-              onChange={e => setFile(e.target.files[0])}
-            />
-          </div>
-          {data.profile && (
-            <div className='w-full flex justify-center items-center'>
-              <img src={data.profile} alt='student' className='h-36' />
-            </div>
-          )} */}
+            {profile && (
+              <div className='w-full flex justify-center items-center'>
+                <img
+                  src={profile}
+                  alt='student'
+                  className='h-36'
+                  name='profile'
+                />
+              </div>
+            )}
             <button
               type='submit'
               className='bg-blue-500 px-6 py-3 rounded-sm mb-6 text-white'
@@ -287,6 +355,12 @@ const EditStudent = () => {
               Update Student
             </button>
           </form>
+        ) : searchActive && error?.error?.message ? (
+          <div className='text-center text-red-500 mt-4'>
+            User doesn't exist with the provided Enrollment Number.
+          </div>
+        ) : (
+          <Loader />
         )
       ) : (
         <Loader />

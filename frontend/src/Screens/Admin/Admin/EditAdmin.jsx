@@ -10,7 +10,7 @@ import toast from 'react-hot-toast'
 const EditAdmin = () => {
   const [searchActive, setSearchActive] = useState(false)
   const [search, setSearch] = useState()
-  const [id, setId] = useState()
+  // const [id, setId] = useState()
 
   const [employeeId, setEmployeeId] = useState('')
   const [firstName, setFirstName] = useState('')
@@ -32,6 +32,7 @@ const EditAdmin = () => {
       setEmail(admin.email)
       setPhoneNumber(admin.phoneNumber)
       setGender(admin.gender)
+      setProfile(admin.profile)
     }
   }, [admin])
 
@@ -81,23 +82,18 @@ const EditAdmin = () => {
         if (data.success) {
           toast.success('Admin Detail updated successfully')
           navigate('/admin/home')
+          setEmployeeId('')
+          setFirstName('')
+          setLastName('')
+          setEmail('')
+          setPhoneNumber('')
+          setGender('')
+          setProfile('')
         }
       })
       .catch(err => {
         toast.error('Failed to Update Admin details')
       })
-    // .then(() => {
-    //   setEmployeeId('')
-    //   setFirstName('')
-    //   setLastName('')
-    //   setEmail('')
-    //   setPhoneNumber('')
-    //   setGender('')
-    //   setProfile('')
-    // })
-    // .catch(error => {
-    //   toast.error('Error adding Admin')
-    // })
   }
 
   return (
@@ -135,7 +131,7 @@ const EditAdmin = () => {
             onSubmit={updateAdminProfile}
             className='w-[70%] flex justify-center items-center flex-wrap gap-6 mx-auto mt-10'
           >
-            <div className='w-[40%] hidden '>
+            {/* <div className='w-[40%] hidden '>
               <label htmlFor='id' className='leading-7 text-sm '>
                 Id
               </label>
@@ -146,7 +142,7 @@ const EditAdmin = () => {
                 onChange={e => setId(e.target.value)}
                 className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
               />
-            </div>
+            </div> */}
             <div className='w-[40%]'>
               <label htmlFor='firstname' className='leading-7 text-sm '>
                 Enter First Name
@@ -222,7 +218,7 @@ const EditAdmin = () => {
                 <option value='Female'>Female</option>
               </select>
             </div>
-            <div className='w-[40%]'>
+            <div className='w-[80%]'>
               <label htmlFor='file' className='leading-7 text-sm '>
                 Select Profile
               </label>
@@ -248,7 +244,7 @@ const EditAdmin = () => {
               <div className='w-full flex justify-center items-center'>
                 <img
                   src={profile}
-                  alt='faculty'
+                  alt='admin'
                   className='h-36'
                   name='profile'
                 />

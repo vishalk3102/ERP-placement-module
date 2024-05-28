@@ -355,6 +355,33 @@ const SideNavbar = () => {
           <ListItem
             disablePadding
             sx={{ display: 'block' }}
+            onClick={() => navigate('/admin/placement/placedstudents')}
+          >
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center'
+                }}
+              >
+                <PersonIcon style={{ color: '#feb21a' }} />
+              </ListItemIcon>
+              <ListItemText
+                primary='Placed Students'
+                sx={{ opacity: open ? 1 : 0 }}
+              />
+            </ListItemButton>
+          </ListItem>
+          <ListItem
+            disablePadding
+            sx={{ display: 'block' }}
             onClick={() => navigate('/admin/placement/notice')}
           >
             <ListItemButton

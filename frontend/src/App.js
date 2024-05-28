@@ -30,10 +30,9 @@ import CompanyWiseStudentList from './Screens/Placement/Admin/CompanyWiseStudent
 import PlacementDrive from './Screens/Placement/Admin/Placement Drive/PlacementDrive'
 import AddDrive from './Screens/Placement/Admin/Placement Drive/AddDrive'
 import EditDrive from './Screens/Placement/Admin/Placement Drive/EditDrive'
-// Placement Drive
+
+// Notice
 import PlacementNotice from './Screens/Placement/Admin/Notice/Notice'
-import AddPlacementNotice from './Screens/Placement/Admin/Notice/AddNotice'
-import EditPlacementNotice from './Screens/Placement/Admin/Notice/EditNotice'
 
 //Company
 import Company from './Screens/Placement/Admin/Company/Company'
@@ -54,6 +53,11 @@ import ViewStudent from './Screens/Placement/Admin/Student/ViewStudent'
 import Apply from './Screens/Placement/Student/Apply'
 import ViewStudentCompany from './Screens/Placement/Student/ViewCompany'
 import ViewStudentJobPost from './Screens/Placement/Student/ViewJobPost'
+
+//Placed Student
+import PlacedStudent from './Screens/Placement/Admin/PlacedStudent/Student'
+import EditPlacedStudent from './Screens/Placement/Admin/PlacedStudent/EditStudent'
+import ViewPlacedStudent from './Screens/Placement/Admin/PlacedStudent/ViewStudent'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -224,16 +228,21 @@ const App = () => {
               path='/admin/placement/notice'
               element={<PlacementNotice />}
             />
-            {/*  <Route
+            <Route
               exact
-              path='/admin/placement/notice/add'
-              element={<AddPlacementNotice />}
+              path='/admin/placement/placedstudents'
+              element={<PlacedStudent />}
             />
             <Route
               exact
-              path='/admin/placement/notice/:id'
-              element={<EditPlacementNotice />}
-            /> */}
+              path='/admin/placement/student/edit/:id'
+              element={<EditPlacedStudent />}
+            />
+            <Route
+              exact
+              path='/admin/placement/student/view/:id'
+              element={<ViewPlacedStudent />}
+            />
           </Route>
 
           {/* STUDENT PLACEMENT DASHBOARD ROUTES */}

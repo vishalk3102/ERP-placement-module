@@ -42,6 +42,7 @@ const EditFaculty = () => {
 
   useEffect(() => {
     if (faculty) {
+      console.log(faculty)
       setFirstName(faculty.firstName)
       setLastName(faculty.lastName)
       setEmployeeId(faculty.employeeId)
@@ -51,7 +52,7 @@ const EditFaculty = () => {
       setExperience(faculty.experience)
       setPost(faculty.post)
       setDepartment(faculty.department)
-      setDepartment(faculty.profile)
+      setProfile(faculty.profile)
     }
   }, [faculty])
 
@@ -108,26 +109,21 @@ const EditFaculty = () => {
         if (data.success) {
           toast.success('Faculty Detail updated successfully')
           navigate('/admin/home')
+          setEmployeeId('')
+          setFirstName('')
+          setLastName('')
+          setEmail('')
+          setPhoneNumber('')
+          setGender('')
+          setDepartment('')
+          setPost('')
+          setExperience('')
+          setProfile('')
         }
       })
       .catch(err => {
         toast.error('Failed to Update Faculty details')
       })
-    /* .then(() => {
-        setEmployeeId('')
-        setFirstName('')
-        setLastName('')
-        setEmail('')
-        setPhoneNumber('')
-        setGender('')
-        setDepartment('')
-        setPost('')
-        setExperience('')
-        setProfile('')
-      })
-      .catch(error => {
-        toast.error('Error adding Faculty')
-      }) */
   }
   return (
     <div className='my-6 mx-auto w-full'>
