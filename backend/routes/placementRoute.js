@@ -31,7 +31,9 @@ const {
   insertPlacedStudentDetails,
   updatePlacedStudentDetails,
   getAdminDashboardStats,
-  getStudentDashboardStats
+  getStudentDashboardStats,
+  deletePlacedStudentDetails,
+  getPlacedStudentDetails
 } = require('../controllers/placementController')
 const { isAuthenticated, authorizeAdmin } = require('../middlewares/auth')
 
@@ -76,7 +78,9 @@ router.delete('/admin/placement/drive/:id', deleteDrive)
 //--> PLACED STUDENT
 router.get('/admin/placement/placedstudents', getAllPlacedStudentDetails)
 router.post('/admin/placement/placedstudent/add', insertPlacedStudentDetails)
+router.get('/admin/placement/placedstudents/:id', getPlacedStudentDetails)
 router.put('/admin/placement/placedstudent/:id', updatePlacedStudentDetails)
+router.delete('/admin/placement/placedstudent/:id', deletePlacedStudentDetails)
 
 // STUDENT
 router.get(

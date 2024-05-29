@@ -384,6 +384,61 @@ export const AdminPlacementReducer = createReducer(
       state.loading = false
       state.error = action.payload
     },
+    getAllPlacedStudentRequest: state => {
+      state.loading = true
+    },
+    getAllPlacedStudentSuccess: (state, action) => {
+      state.loading = false
+      state.students = action.payload.students
+    },
+    getAllPlacedStudentFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    getPlacedStudentRequest: state => {
+      state.loading = true
+    },
+    getPlacedStudentSuccess: (state, action) => {
+      state.loading = false
+      state.student = action.payload.student
+    },
+    getPlacedStudentFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    addPlacedStudentRequest: state => {
+      state.loading = true
+    },
+    addPlacedStudentSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    addPlacedStudentFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    updatePlacedStudentRequest: state => {
+      state.loading = true
+    },
+    updatePlacedStudentSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    updatePlacedStudentFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+    deletePlacedStudentRequest: state => {
+      state.loading = true
+    },
+    deletePlacedStudentSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+    },
+    deletePlacedStudentFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
     clearError: state => {
       state.error = null
     },

@@ -57,7 +57,7 @@ import ViewStudentJobPost from './Screens/Placement/Student/ViewJobPost'
 //Placed Student
 import PlacedStudent from './Screens/Placement/Admin/PlacedStudent/Student'
 import EditPlacedStudent from './Screens/Placement/Admin/PlacedStudent/EditStudent'
-import ViewPlacedStudent from './Screens/Placement/Admin/PlacedStudent/ViewStudent'
+import AddPlacedStudent from './Screens/Placement/Admin/PlacedStudent/AddStudent'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -235,13 +235,13 @@ const App = () => {
             />
             <Route
               exact
-              path='/admin/placement/student/edit/:id'
-              element={<EditPlacedStudent />}
+              path='/admin/placement/placedstudents/add'
+              element={<AddPlacedStudent />}
             />
             <Route
               exact
-              path='/admin/placement/student/view/:id'
-              element={<ViewPlacedStudent />}
+              path='/admin/placement/placedstudents/edit/:id'
+              element={<EditPlacedStudent />}
             />
           </Route>
 

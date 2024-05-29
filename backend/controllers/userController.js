@@ -21,12 +21,9 @@ exports.login = catchAsyncError(async (req, res, next) => {
     user = await User.findOne({ enrollmentNo }).select('+password')
   }
 
-  // let employeeId = userId
-  // let user = await User.findOne({ employeeId }).select('+password')
   if (!user) {
     return next(new ErrorHandler('Invalid Credentials', 401))
   }
-  console.log(user)
   const isPasswordMatched = await user.comparePassword(password)
 
   if (!isPasswordMatched) {

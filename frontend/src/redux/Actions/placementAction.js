@@ -643,6 +643,123 @@ export const deleteDrive = id => async dispatch => {
   }
 }
 
+//PLACED STUDENT
+export const addPlacedStudent = formData => async dispatch => {
+  try {
+    dispatch({
+      type: 'addPlacedStudentRequest'
+    })
+    console.log('Form Data:', formData)
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const { data } = await axios.post(
+      `${server}/admin/placement/placedstudent/add`,
+      formData,
+      config
+    )
+    dispatch({
+      type: 'addPlacedStudentSuccess',
+      payload: data
+    })
+    return data
+  } catch (error) {
+    dispatch({
+      type: 'addPlacedStudentFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
+export const updatePlacedStudent = (formData, id) => async dispatch => {
+  try {
+    dispatch({
+      type: 'updatePlacedStudentRequest'
+    })
+
+    const config = {
+      headers: { 'Content-Type': 'application/json' }
+    }
+    const { data } = await axios.put(
+      `${server}/admin/placement/placedstudent/${id}`,
+      formData,
+      config
+    )
+    dispatch({
+      type: 'updatePlacedStudentSuccess',
+      payload: data.message
+    })
+    return data
+  } catch (error) {
+    dispatch({
+      type: 'updatePlacedStudentFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
+export const deletePlacedStudent = id => async dispatch => {
+  try {
+    dispatch({
+      type: 'deletePlacedStudentRequest'
+    })
+
+    const { data } = await axios.delete(
+      `${server}/admin/placement/placedstudent/${id}`
+    )
+    dispatch({
+      type: 'deletePlacedStudentSuccess',
+      payload: data.message
+    })
+    return data
+  } catch (error) {
+    dispatch({
+      type: 'deletePlacedStudentFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
+export const getAllPlacedStudent = () => async dispatch => {
+  try {
+    dispatch({
+      type: 'getAllPlacedStudentRequest'
+    })
+
+    const { data } = await axios.get(`${server}/admin/placement/placedstudents`)
+    dispatch({
+      type: 'getAllPlacedStudentSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getAllPlacedStudentFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
+export const getPlacedStudent = id => async dispatch => {
+  try {
+    dispatch({
+      type: 'getPlacedStudentRequest'
+    })
+
+    const { data } = await axios.get(
+      `${server}/admin/placement/placedstudents/${id}`
+    )
+    dispatch({
+      type: 'getPlacedStudentSuccess',
+      payload: data
+    })
+  } catch (error) {
+    dispatch({
+      type: 'getPlacedStudentFail',
+      payload: error.response.data.message
+    })
+  }
+}
+
 //ADMIN DASHBOARD STATS
 export const getAdminDashboardStats = () => async dispatch => {
   try {

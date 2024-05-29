@@ -456,6 +456,7 @@ exports.deleteDrive = catchAsyncError(async (req, res, next) => {
 })
 
 //PLACED STUDENT
+// ADD PLACED STUDENT --admin
 exports.insertPlacedStudentDetails = catchAsyncError(async (req, res, next) => {
   const { fullName, email, phoneNumber, offers } = req.body
 
@@ -478,6 +479,7 @@ exports.insertPlacedStudentDetails = catchAsyncError(async (req, res, next) => {
   })
 })
 
+// UPDATE PLACED STUDENT --admin
 exports.updatePlacedStudentDetails = catchAsyncError(async (req, res, next) => {
   const student = await PlacedStudent.findById(req.params.id)
 
@@ -494,12 +496,39 @@ exports.updatePlacedStudentDetails = catchAsyncError(async (req, res, next) => {
   })
 })
 
+// GET ALL PLACED STUDENT --admin
 exports.getAllPlacedStudentDetails = catchAsyncError(async (req, res, next) => {
   const students = await PlacedStudent.find()
 
   res.status(200).json({
     success: true,
     students
+  })
+})
+
+// GET PLACED STUDENT --admin
+exports.getPlacedStudentDetails = catchAsyncError(async (req, res, next) => {
+  const student = await PlacedStudent.findById(req.params.id)
+  if (!student) {
+    return next(new ErrorHandler('Student Details Not Found', 404))
+  }
+  res.status(200).json({
+    status: 'success',
+    message: 'profile fetched successfully',
+    student
+  })
+})
+
+// DELETE PLACED STUDENT --admin
+exports.deletePlacedStudentDetails = catchAsyncError(async (req, res, next) => {
+  const student = await PlacedStudent.findById(req.params.id)
+  if (!student) {
+    next(new ErrorHandler('No Student exists', 404))
+  }
+  await PlacedStudent.findByIdAndDelete(id)
+  res.status(200).json({
+    success: true,
+    message: 'Deleted Successfully'
   })
 })
 
