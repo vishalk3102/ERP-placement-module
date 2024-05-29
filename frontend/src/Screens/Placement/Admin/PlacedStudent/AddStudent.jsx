@@ -37,13 +37,13 @@ const AddStudent = () => {
         if (data.success) {
           toast.success('Student Added successfully')
           navigate('/admin/placement/placedstudents')
-          setEnrollmentNo('')
+          /*  setEnrollmentNo('')
           setFirstName('')
           setLastName('')
           setEmail('')
           setPhoneNumber('')
           setCompanyName('')
-          setSalaryPackage('')
+          setSalaryPackage('') */
         }
       })
       .catch(error => {
