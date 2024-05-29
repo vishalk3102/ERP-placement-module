@@ -22,14 +22,14 @@ const AddStudent = () => {
 
   const addStudentProfile = e => {
     e.preventDefault()
+    const offers = [{ companyName, salaryPackage }]
     const formData = {
       firstName,
       lastName,
       enrollmentNo,
       email,
       phoneNumber,
-      companyName,
-      salaryPackage
+      offers
     }
 
     dispatch(addPlacedStudent(formData))

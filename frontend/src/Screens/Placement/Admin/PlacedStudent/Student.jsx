@@ -83,7 +83,7 @@ const Student = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {students &&
+                    {/*  {students &&
                       students.map(i => {
                         return (
                           <tr className='border border-slate-900 bg-blue-50 '>
@@ -128,7 +128,7 @@ const Student = () => {
                             </td>
                           </tr>
                         )
-                      })}
+                      })} */}
                   </tbody>
                 </table>
               </div>

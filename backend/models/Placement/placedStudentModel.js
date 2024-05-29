@@ -11,7 +11,15 @@ const offerSchema = new mongoose.Schema({
   }
 })
 const placedStudentSchema = new mongoose.Schema({
-  fullName: {
+  enrollmentNo: {
+    type: Number,
+    required: true
+  },
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
     type: String,
     required: true
   },

@@ -46,14 +46,14 @@ const EditStudent = () => {
   const handleSubmit = e => {
     e.preventDefault()
 
+    const offers = [{ companyName, salaryPackage }]
     const formData = {
       firstName,
       lastName,
       enrollmentNo,
       email,
       phoneNumber,
-      companyName,
-      salaryPackage
+      offers
     }
     dispatch(updatePlacedStudent(formData, params.id))
       .then(data => {

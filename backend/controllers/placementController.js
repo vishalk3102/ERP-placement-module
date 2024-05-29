@@ -458,7 +458,8 @@ exports.deleteDrive = catchAsyncError(async (req, res, next) => {
 //PLACED STUDENT
 // ADD PLACED STUDENT --admin
 exports.insertPlacedStudentDetails = catchAsyncError(async (req, res, next) => {
-  const { fullName, email, phoneNumber, offers } = req.body
+  const { firstName, lastName, enrollmentNo, email, phoneNumber, offers } =
+    req.body
 
   const offersArray = offers.map(offer => ({
     companyName: offer.companyName,
@@ -466,7 +467,9 @@ exports.insertPlacedStudentDetails = catchAsyncError(async (req, res, next) => {
   }))
 
   const student = await PlacedStudent.create({
-    fullName,
+    firstName,
+    lastName,
+    enrollmentNo,
     email,
     phoneNumber,
     offers: offersArray
