@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Box from '@mui/material/Box'
 import SideNavbar from '../SideNavbar'
@@ -13,9 +13,11 @@ import Loader from '../../../../components/Loader'
 import Heading from '../../../../components/Heading'
 import MetaData from '../../../../components/MetaData'
 import { IoIosAdd } from 'react-icons/io'
+import toast from 'react-hot-toast'
 
 const Student = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const { loading, students, error, message } = useSelector(
     state => state.adminPlacement
@@ -27,6 +29,15 @@ const Student = () => {
 
   const deleteHandler = id => {
     dispatch(deletePlacedStudent(id))
+      .then(data => {
+        if (data.success) {
+          toast.success('Deleted successfully')
+          navigate('/admin/placement/placedstudents')
+        }
+      })
+      .catch(error => {
+        toast.error('Fail to delete Student ')
+      })
   }
 
   return (
