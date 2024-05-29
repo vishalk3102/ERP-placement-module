@@ -528,7 +528,7 @@ exports.deletePlacedStudentDetails = catchAsyncError(async (req, res, next) => {
   if (!student) {
     next(new ErrorHandler('No Student exists', 404))
   }
-  await PlacedStudent.findByIdAndDelete(id)
+  await PlacedStudent.findByIdAndDelete(req.params.id)
   res.status(200).json({
     success: true,
     message: 'Deleted Successfully'

@@ -33,13 +33,13 @@ const EditStudent = () => {
 
   useEffect(() => {
     if (student) {
-      setEnrollmentNo(student.academics.enrollmentNo)
+      setEnrollmentNo(student.enrollmentNo)
       setFirstName(student.firstName)
       setLastName(student.lastName)
       setEmail(student.email)
       setPhoneNumber(student.phoneNumber)
-      setCompanyName('')
-      setSalaryPackage('')
+      setCompanyName(student.offers[0].companyName)
+      setSalaryPackage(student.offers[0].salaryPackage)
     }
   }, [student])
 
@@ -160,7 +160,7 @@ const EditStudent = () => {
                     className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                   />
                 </div>
-                <div className='w-[40%]'>
+                <div className='w-[80%]'>
                   <label htmlFor='package' className='leading-7 text-sm '>
                     Enter Package
                   </label>

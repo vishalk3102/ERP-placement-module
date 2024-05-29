@@ -6,7 +6,7 @@ import SideNavbar from '../SideNavbar'
 import { MdEdit } from 'react-icons/md'
 import { MdDelete } from 'react-icons/md'
 import {
-  deleteStudent,
+  deletePlacedStudent,
   getAllPlacedStudent
 } from '../../../../Redux/Actions/placementAction'
 import Loader from '../../../../components/Loader'
@@ -26,7 +26,7 @@ const Student = () => {
   }, [dispatch, message, error])
 
   const deleteHandler = id => {
-    dispatch(deleteStudent(id))
+    dispatch(deletePlacedStudent(id))
   }
 
   return (
@@ -75,23 +75,23 @@ const Student = () => {
                         Package
                       </th>
                       <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-200 border border-slate-900 p-3  uppercase text-center'>
-                        University
-                      </th>
-                      <th className='text-[0.8rem] md:text-[1.2rem] font-bold bg-blue-200 border border-slate-900 p-3  uppercase text-center'>
                         Action
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {/*  {students &&
-                      students.map(i => {
+                    {students &&
+                      students.map((i, index) => {
                         return (
-                          <tr className='border border-slate-900 bg-blue-50 '>
+                          <tr
+                            className='border border-slate-900 bg-blue-50'
+                            key={index}
+                          >
                             <td className='text-[0.7rem] md:text-[1rem] font-normal   border border-slate-900 p-1 capitalize text-center'>
-                              1
+                              {index + 1}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal   border border-slate-900 p-1 capitalize text-center'>
-                              {i.academics.enrollmentNo}
+                              {i.enrollmentNo}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal   border border-slate-900 p-1 capitalize text-center'>
                               {i.firstName} {i.lastName}
@@ -103,13 +103,10 @@ const Student = () => {
                               {i.phoneNumber}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal   border border-slate-900 p-1 capitalize text-center'>
-                              {i.phoneNumber}
+                              {i.offers[0].companyName}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal   border border-slate-900 p-1 capitalize text-center'>
-                              {i.phoneNumber}
-                            </td>
-                            <td className='text-[0.7rem] md:text-[1rem] font-normal   border border-slate-900 p-1 capitalize text-center'>
-                              {i.academics.university}
+                              {i.offers[0].salaryPackage}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal  border border-slate-900 p-1 capitalize text-center'>
                               <Link
@@ -128,7 +125,7 @@ const Student = () => {
                             </td>
                           </tr>
                         )
-                      })} */}
+                      })}
                   </tbody>
                 </table>
               </div>

@@ -135,7 +135,7 @@ const AddStudent = () => {
                   className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                 />
               </div>
-              <div className='w-[40%]'>
+              <div className='w-[80%]'>
                 <label htmlFor='package' className='leading-7 text-sm '>
                   Enter Package
                 </label>
