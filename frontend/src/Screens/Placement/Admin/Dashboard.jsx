@@ -93,7 +93,7 @@ const Dashboard = () => {
                     </h3>
                   </div>
                 </div>
-                <div className='grid grid-cols-2  p-2'>
+                {/* <div className='grid grid-cols-2  p-2'>
                   <div className='col-span-2 md:col-span-1   flex justify-center items-center'>
                     <PieChart
                       series={[
@@ -149,7 +149,7 @@ const Dashboard = () => {
                       height={300}
                     />
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </>

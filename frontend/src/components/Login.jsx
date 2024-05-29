@@ -105,7 +105,6 @@ const Login = () => {
             Admin
           </button>
         </div>
-        <Toaster position='bottom-center' />
       </div>
     </>
   )
