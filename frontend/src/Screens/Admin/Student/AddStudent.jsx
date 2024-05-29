@@ -4,6 +4,7 @@ import { toast } from 'react-hot-toast'
 import { FiUpload } from 'react-icons/fi'
 import { addStudent, getAllBranch } from '../../../Redux/Actions/adminAction'
 import Loader from '../../../components/Loader'
+import MetaData from '../../../components/MetaData'
 
 const AddStudent = () => {
   const [enrollmentNo, setEnrollmentNo] = useState('')
@@ -85,6 +86,7 @@ const AddStudent = () => {
 
   return (
     <>
+      <MetaData title='Student' />
       {loading === false ? (
         <form
           onSubmit={addStudentProfile}

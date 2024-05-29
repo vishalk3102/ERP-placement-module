@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../../components/Loader'
 import { updatePassword } from '../../Redux/Actions/authAction'
 import toast from 'react-hot-toast'
+import MetaData from '../../components/MetaData'
 
 const Profile = () => {
   const [showPass, setShowPass] = useState(false)
@@ -37,6 +38,7 @@ const Profile = () => {
 
   return (
     <>
+      <MetaData title='Profile' />
       {loading === false ? (
         <>
           <div className='w-[85%] mx-auto my-8 flex justify-between items-center'>

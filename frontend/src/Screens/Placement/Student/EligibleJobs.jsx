@@ -21,16 +21,6 @@ const EligibleJobs = () => {
     dispatch(getEligibleJobPostings())
   }, [dispatch, message, error])
 
-  // const handleApply = registrationLink => {
-  //   if (
-  //     !registrationLink.startsWith('http://') &&
-  //     !registrationLink.startsWith('https://')
-  //   ) {
-  //     registrationLink = 'http://' + registrationLink
-  //   }
-  //   window.location.href = registrationLink
-  // }
-
   return (
     <>
       <MetaData title='Eligible Jobs' />

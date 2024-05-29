@@ -4,6 +4,7 @@ import { FiUpload } from 'react-icons/fi'
 import { useDispatch, useSelector } from 'react-redux'
 import { addFaculty, getAllBranch } from '../../../Redux/Actions/adminAction'
 import Loader from '../../../components/Loader'
+import MetaData from '../../../components/MetaData'
 
 const AddFaculty = () => {
   const [employeeId, setEmployeeId] = useState('')
@@ -77,6 +78,7 @@ const AddFaculty = () => {
 
   return (
     <>
+      <MetaData title='Faculty' />
       {loading === false ? (
         <form
           onSubmit={addFacultyProfile}
