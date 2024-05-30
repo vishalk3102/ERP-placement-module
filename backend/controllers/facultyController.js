@@ -69,7 +69,7 @@ exports.deleteMaterial = catchAsyncError(async (req, res, next) => {
 
 // ADD MARKS
 exports.addStudentMarks = catchAsyncError(async (req, res, next) => {
-  const { enrollmentNo, branch, marks, semester, examType } = req.body
+  const { enrollmentNo, branch, marks } = req.body
   console.log(req.body)
   if (!enrollmentNo || !branch || !marks || !Array.isArray(marks)) {
     return next(
@@ -80,7 +80,7 @@ exports.addStudentMarks = catchAsyncError(async (req, res, next) => {
   const updatedMarks = {}
 
   marks.forEach(semesterMarks => {
-    const { midTerm, endTerm } = semesterMarks
+    const { semester, midTerm, endTerm } = semesterMarks
 
     if (!semester) {
       return next(new ErrorHandler('Semester is missing', 400))
