@@ -4,7 +4,6 @@ import Loader from '../../components/Loader'
 import { updatePassword } from '../../Redux/Actions/authAction'
 import toast from 'react-hot-toast'
 import MetaData from '../../components/MetaData'
-import profile from '../../assets/profile.jpg'
 
 const Profile = () => {
   const [showPass, setShowPass] = useState(false)

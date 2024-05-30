@@ -284,12 +284,17 @@ exports.deleteFaculty = catchAsyncError(async (req, res, next) => {
 
 // REGISTER ADMIN
 exports.registerAdmin = catchAsyncError(async (req, res, next) => {
-  let { employeeId, firstName, lastName, email, phoneNumber, gender } = req.body
+  let { employeeId, firstName, lastName, email, phoneNumber, gender, profile } =
+    req.body
 
   let admin = await User.findOne({ employeeId })
   if (admin) {
     return next(new ErrorHandler('Admin With this LoginId Already Exists', 400))
   }
+
+  const myCloud = await cloudinary.v2.uploader.upload(profile, {
+    folder: 'profile'
+  })
 
   const password = 'admin@1234'
   admin = await User.create({
@@ -300,7 +305,11 @@ exports.registerAdmin = catchAsyncError(async (req, res, next) => {
     email,
     password,
     phoneNumber,
-    gender
+    gender,
+    profile: {
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url
+    }
   })
 
   res.status(201).json({
