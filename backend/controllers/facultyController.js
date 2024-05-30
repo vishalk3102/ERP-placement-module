@@ -80,10 +80,10 @@ exports.addStudentMarks = catchAsyncError(async (req, res, next) => {
   const updatedMarks = {}
 
   marks.forEach(semesterMarks => {
-    const { semester, midTerm, endTerm } = semesterMarks
+    const { midTerm, endTerm } = semesterMarks
 
     if (!semester) {
-      return next(new ErrorHandler('Semester each mark entry', 400))
+      return next(new ErrorHandler('Semester is missing', 400))
     }
 
     const semesterKey = `marks.${semester - 1}`

@@ -42,7 +42,8 @@ export const getAllNotice = () => async dispatch => {
 
 // MARKS
 export const addStudentMarks =
-  (enrollmentNo, branch, semester, examType, marksList) => async dispatch => {
+  ({ enrollmentNo, branch, semester, examType, marksList }) =>
+  async dispatch => {
     console.log(enrollmentNo, branch, semester, examType, marksList)
     console.log('enrollmentNo :', enrollmentNo)
     console.log('branch :', branch)
