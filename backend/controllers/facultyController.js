@@ -92,8 +92,7 @@ exports.addStudentMarks = catchAsyncError(async (req, res, next) => {
       midTerm,
       endTerm
     }
-  })
-
+  })``
   const result = await Marks.findOneAndUpdate(
     { enrollmentNo, branch },
     { $set: updatedMarks },
