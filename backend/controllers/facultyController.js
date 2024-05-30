@@ -72,8 +72,8 @@ exports.deleteMaterial = catchAsyncError(async (req, res, next) => {
 
 // ADD MARKS
 exports.addStudentMarks = catchAsyncError(async (req, res, next) => {
-  const { enrollmentNo, branch, marks } = req.body
-
+  const { enrollmentNo, branch, marks, semester, examType } = req.body
+  console.log(req.body)
   if (!enrollmentNo || !branch || !marks || !Array.isArray(marks)) {
     return next(
       new ErrorHandler('Enrollment number, branch, and marks are required', 400)
@@ -127,11 +127,10 @@ exports.deleteMarks = catchAsyncError(async (req, res, next) => {
 //ADD TIMETABLE
 exports.addTimetable = catchAsyncError(async (req, res, next) => {
   let { timetable, semester, branch } = req.body
-  console.log(req.body)
-  const existingTimetabble = await Timetable.findOne({ semester, branch })
+  const existingTimetable = await Timetable.findOne({ semester, branch })
 
   if (existingTimetabble) {
-    await existingTimetabble.remove()
+    await Timetable.deleteOne({ _id: existingTimetabble._id })
   }
   const myCloud = await cloudinary.v2.uploader.upload(timetable, {
     folder: 'timetable'

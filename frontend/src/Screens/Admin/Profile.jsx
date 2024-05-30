@@ -96,11 +96,11 @@ const Profile = () => {
               )}
             </div>
 
-            {/* <img
+            <img
               src={user.Profile.url}
               alt='admin profile'
               className='h-[200px] w-[200px] object-cover rounded-lg shadow-md'
-            /> */}
+            />
           </div>
         </>
       ) : (

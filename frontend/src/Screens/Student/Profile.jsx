@@ -100,8 +100,7 @@ const Profile = () => {
           </div>
 
           <img
-            // src={user.profile.url}
-            src={profile}
+            src={user.profile.url}
             alt='student profile'
             className='h-[200px] w-[200px] object-cover rounded-lg shadow-md'
           />
