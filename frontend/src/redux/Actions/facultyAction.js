@@ -44,6 +44,11 @@ export const getAllNotice = () => async dispatch => {
 export const addStudentMarks =
   (enrollmentNo, branch, semester, examType, marksList) => async dispatch => {
     console.log(enrollmentNo, branch, semester, examType, marksList)
+    console.log('enrollmentNo :', enrollmentNo)
+    console.log('branch :', branch)
+    console.log('semester :', semester)
+    console.log('examType :', examType)
+    console.log('marksList :', marksList)
     try {
       dispatch({
         type: 'addMarksRequest'

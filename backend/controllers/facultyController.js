@@ -11,11 +11,8 @@ const getDataUri = require('../utils/dataUri')
 // ADD MATERIAL
 exports.addMaterial = catchAsyncError(async (req, res, next) => {
   let { title, subject } = req.body
-  console.log(req.body)
-
   const file = req.file
   const fileUri = getDataUri(file)
-  console.log(file)
 
   const myCloud = await cloudinary.v2.uploader.upload(fileUri.content, {
     folder: 'materials',
