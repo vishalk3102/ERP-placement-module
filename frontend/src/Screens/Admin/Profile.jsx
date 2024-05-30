@@ -97,7 +97,7 @@ const Profile = () => {
             </div>
 
             <img
-              src={user.profile.url}
+              // src={user.profile.url}
               alt='admin profile'
               className='h-[200px] w-[200px] object-cover rounded-lg shadow-md'
             />
