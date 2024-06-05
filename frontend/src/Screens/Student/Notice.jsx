@@ -7,26 +7,6 @@ import Loader from '../../components/Loader'
 import MetaData from '../../components/MetaData'
 import toast from 'react-hot-toast'
 
-const notices = [
-  {
-    _id: '1',
-    title: 'Notice 1',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse eaque doloremque iure reiciendis ea nisi saepe quae excepturi laboriosam rem non blanditiis recusandae sit deserunt at veritatis laudantium, sed dolorum ad exercitationem ducimus aperiam assumenda officia vel. Maiores quidem, facere ad fuga, placeat distinctio numquam mollitia velit culpa sapiente neque?',
-    type: 'student',
-    link: '',
-    createdAt: '2024-04-20T10:00:00.000Z'
-  },
-  {
-    _id: '2',
-    title: 'Notice 2',
-    description: 'Description for Notice 2',
-    type: 'faculty',
-    link: 'https://example.com',
-    createdAt: '2024-04-19T10:00:00.000Z'
-  }
-]
-
 const Notice = () => {
   const dispatch = useDispatch()
 

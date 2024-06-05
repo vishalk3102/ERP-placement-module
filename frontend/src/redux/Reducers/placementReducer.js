@@ -119,6 +119,31 @@ export const studentPlacementReducer = createReducer(
     getAllDriveFail: (state, action) => {
       state.loading = false
       state.error = action.payload
+    }, // NOTICE
+    getAllNoticeRequest: state => {
+      state.loading = true
+    },
+    getAllNoticeSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+      state.notices = action.payload.notices
+    },
+    getAllNoticeFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    },
+
+    getNoticeRequest: state => {
+      state.loading = true
+    },
+    getNoticeSuccess: (state, action) => {
+      state.loading = false
+      state.message = action.payload.message
+      state.notice = action.payload.notice
+    },
+    getNoticeFail: (state, action) => {
+      state.loading = false
+      state.error = action.payload
     },
     clearError: state => {
       state.error = null

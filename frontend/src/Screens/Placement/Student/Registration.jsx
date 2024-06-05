@@ -73,8 +73,6 @@ const Registration = () => {
       phoneNumber,
       dateOfBirth,
       gender,
-      profile,
-      resume: resumeFile,
       academics: {
         university,
         enrollmentNo,
@@ -368,7 +366,7 @@ const Registration = () => {
                   className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                 />
               </div>
-              <div className='w-[40%]'>
+              {/* <div className='w-[40%]'>
                 <label htmlFor='file' className='leading-7 text-sm '>
                   Upload Profile Photo
                 </label>
@@ -423,7 +421,7 @@ const Registration = () => {
                     name='profile'
                   />
                 </div>
-              )}
+              )} */}
               <div className='w-[40%] flex justify-center items-center'>
                 <button
                   type='submit'

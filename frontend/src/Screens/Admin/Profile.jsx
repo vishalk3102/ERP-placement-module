@@ -4,6 +4,7 @@ import Loader from '../../components/Loader'
 import { updatePassword } from '../../Redux/Actions/authAction'
 import toast from 'react-hot-toast'
 import MetaData from '../../components/MetaData'
+import profile from '../../assets/profile2.jpg'
 
 const Profile = () => {
   const [showPass, setShowPass] = useState(false)
@@ -97,7 +98,7 @@ const Profile = () => {
             </div>
 
             <img
-              // src={user.profile.url}
+              src={profile}
               alt='admin profile'
               className='h-[200px] w-[200px] object-cover rounded-lg shadow-md'
             />
