@@ -74,7 +74,7 @@ const Registration = () => {
       dateOfBirth,
       gender,
       profile,
-      resumeFile,
+      resume: resumeFile,
       academics: {
         university,
         enrollmentNo,
