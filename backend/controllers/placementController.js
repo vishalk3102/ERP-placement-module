@@ -6,7 +6,7 @@ const Application = require('../models/Placement/applicationModel')
 const JobPosting = require('../models/Placement/jobPostingModel')
 const PlacementDrive = require('../models/Placement/driveModel')
 const PlacedStudent = require('../models/Placement/placedStudentModel')
-const { authorizeAdmin } = require('../middlewares/auth')
+const cloudinary = require('cloudinary')
 
 // STUDENT
 // REGISTER FOR PLACEMENT PROFILE --student

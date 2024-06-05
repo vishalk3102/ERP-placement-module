@@ -73,6 +73,8 @@ const Registration = () => {
       phoneNumber,
       dateOfBirth,
       gender,
+      profile,
+      resumeFile,
       academics: {
         university,
         enrollmentNo,
@@ -88,7 +90,6 @@ const Registration = () => {
         yearOfCompletionIntermediate
       }
     }
-    console.log(formData)
     dispatch(registerPlacementProfile(formData, navigate))
   }
   return (
