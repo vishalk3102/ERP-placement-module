@@ -18,6 +18,7 @@ exports.registerPlacementProfile = catchAsyncError(async (req, res, next) => {
     phoneNumber,
     dateOfBirth,
     gender,
+    profile,
     academics: {
       university,
       enrollmentNo,
@@ -34,6 +35,13 @@ exports.registerPlacementProfile = catchAsyncError(async (req, res, next) => {
     }
   } = req.body
 
+  const myCloudProfile = await cloudinary.v2.uploader.upload(profile, {
+    folder: 'placementStudentProfile'
+  })
+  const myCloudResume = await cloudinary.v2.uploader.upload(resume, {
+    folder: 'placementStudentResume'
+  })
+
   const user = await Placement.create({
     firstName,
     lastName,
@@ -41,6 +49,14 @@ exports.registerPlacementProfile = catchAsyncError(async (req, res, next) => {
     phoneNumber,
     dateOfBirth,
     gender,
+    profile: {
+      public_id: myCloudProfile.public_id,
+      url: myCloudProfile.secure_url
+    },
+    resume: {
+      public_id: myCloudResume.public_id,
+      url: myCloudResume.secure_url
+    },
     academics: {
       university,
       enrollmentNo,

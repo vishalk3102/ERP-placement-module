@@ -18,7 +18,6 @@ const Profile = () => {
   const { loading, user, error, message } = useSelector(
     state => state.studentPlacement
   )
-
   useEffect(() => {
     if (message) {
       toast.success(message)

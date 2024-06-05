@@ -70,7 +70,6 @@ exports.deleteMaterial = catchAsyncError(async (req, res, next) => {
 // ADD MARKS
 exports.addStudentMarks = catchAsyncError(async (req, res, next) => {
   const { enrollmentNo, branch, marks } = req.body
-  console.log(req.body.marks)
 
   if (!enrollmentNo || !branch || !Array.isArray(marks) || marks.length === 0) {
     return next(

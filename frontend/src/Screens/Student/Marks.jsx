@@ -13,19 +13,25 @@ const Marks = () => {
 
   const dispatch = useDispatch()
 
-  const { user } = useSelector(state => state.auth)
-  // const {
-  //   user: { enrollmentNo }
-  // } = useSelector(state => state.auth)
+  // const { user } = useSelector(state => state.auth)
+  const {
+    user: { enrollmentNo }
+  } = useSelector(state => state.auth)
 
   const { loading, marks } = useSelector(state => state.student)
 
   // FUNCTION TO HANDLE GETMARKS CLICK
   const getMarks = () => {
-    const enrollmentNo = 2017132
+    // const enrollmentNo = 2017132
     dispatch(getMarksByEnrollmentNo(enrollmentNo))
       .then(result => {
         if (result.marks) {
+          if (marks) {
+            console.log(marks[0])
+            console.log(marks[0][semester - 1])
+            console.log(marks[0][semester - 1].midTerm)
+            console.log(result.marks)
+          }
           setMarksActive(true)
         } else {
           toast.error('No marks found')
@@ -76,8 +82,8 @@ const Marks = () => {
                   onChange={e => setExamType(e.target.value)}
                 >
                   <option value=''>-- Select Exam Type --</option>
-                  <option value='mid'>Mid Term</option>
-                  <option value='end'>End Term</option>
+                  <option value='midTerm'>Mid Term</option>
+                  <option value='endTerm'>End Term</option>
                 </select>
               </div>
             </div>
@@ -96,7 +102,7 @@ const Marks = () => {
                 {marks &&
                   marks[0] &&
                   marks[0][semester - 1] &&
-                  examType === 'mid' &&
+                  examType === 'midTerm' &&
                   marks[0][semester - 1].midTerm && (
                     <div className='shadow-md p-4'>
                       <p className='border-b-2 border-red-500 text-2xl font-semibold pb-2'>
@@ -144,7 +150,7 @@ const Marks = () => {
                 {marks &&
                   marks[0] &&
                   marks[0][semester - 1] &&
-                  examType === 'end' &&
+                  examType === 'endTerm' &&
                   marks[0][semester - 1].endTerm && (
                     <div className='shadow-md p-4'>
                       <p className='border-b-2 border-red-500 text-2xl font-semibold pb-2'>
