@@ -70,8 +70,9 @@ exports.deleteMaterial = catchAsyncError(async (req, res, next) => {
 // ADD MARKS
 exports.addStudentMarks = catchAsyncError(async (req, res, next) => {
   const { enrollmentNo, branch, marks } = req.body
-  console.log(req.body)
-  if (!enrollmentNo || !branch || !marks || !Array.isArray(marks)) {
+  console.log(req.body.marks)
+
+  if (!enrollmentNo || !branch || !Array.isArray(marks) || marks.length === 0) {
     return next(
       new ErrorHandler('Enrollment number, branch, and marks are required', 400)
     )
@@ -79,20 +80,23 @@ exports.addStudentMarks = catchAsyncError(async (req, res, next) => {
 
   const updatedMarks = {}
 
-  marks.forEach(semesterMarks => {
-    const { semester, midTerm, endTerm } = semesterMarks
+  if (Array.isArray(marks)) {
+    marks.forEach(semesterMarks => {
+      const { semester, midTerm, endTerm } = semesterMarks
+      if (!semester) {
+        return next(new ErrorHandler('Semester is missing', 400))
+      }
+      const semesterKey = `marks.${semester - 1}`
+      updatedMarks[semesterKey] = {
+        semester,
+        midTerm,
+        endTerm
+      }
+    })
+  } else {
+    return next(new ErrorHandler('Marks must be an array', 400))
+  }
 
-    if (!semester) {
-      return next(new ErrorHandler('Semester is missing', 400))
-    }
-
-    const semesterKey = `marks.${semester - 1}`
-    updatedMarks[semesterKey] = {
-      semester,
-      midTerm,
-      endTerm
-    }
-  })``
   const result = await Marks.findOneAndUpdate(
     { enrollmentNo, branch },
     { $set: updatedMarks },
