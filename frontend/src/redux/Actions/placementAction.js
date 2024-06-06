@@ -150,6 +150,7 @@ export const applyForJob = (formData, id) => async dispatch => {
       type: 'applyForJobSuccess',
       payload: data
     })
+    return data
   } catch (error) {
     dispatch({
       type: 'applyForJobFail',

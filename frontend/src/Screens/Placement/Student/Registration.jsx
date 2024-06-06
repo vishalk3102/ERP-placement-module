@@ -8,6 +8,7 @@ import { registerPlacementProfile } from '../../../Redux/Actions/placementAction
 import toast from 'react-hot-toast'
 import Heading from '../../../components/Heading'
 import MetaData from '../../../components/MetaData'
+import { getAllBranch } from '../../../Redux/Actions/adminAction'
 
 const Registration = () => {
   const [enrollmentNo, setEnrollmentNo] = useState('')
@@ -36,6 +37,12 @@ const Registration = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    dispatch(getAllBranch())
+  }, [dispatch])
+
+  const { branches } = useSelector(state => state.admin)
 
   const handleImageChange = e => {
     const file = e.target.files[0]
@@ -245,15 +252,14 @@ const Registration = () => {
                   onChange={e => setBranch(e.target.value)}
                 >
                   <option defaultValue>-- Select --</option>
-                  <option value='CSE'>CSE</option>
-                  <option value='CSST'>CST</option>
-                  {/*  {branch?.map(branch => {
-                return (
-                  <option value={branch.name} key={branch.name}>
-                    {branch.name}
-                  </option>
-                )
-              })} */}
+                  {branches &&
+                    branches.map(i => {
+                      return (
+                        <option value={i.name} key={i.name}>
+                          {i.name}
+                        </option>
+                      )
+                    })}
                 </select>
               </div>
               <div className='w-[40%]'>

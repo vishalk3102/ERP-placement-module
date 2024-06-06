@@ -1,36 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import Box from '@mui/material/Box'
 import SideNavbar from '../Student/SideNavbar'
 import { applyForJob } from '../../../Redux/Actions/placementAction'
 import Heading from '../../../components/Heading'
 import MetaData from '../../../components/MetaData'
+import toast from 'react-hot-toast'
+import { getAllBranch } from '../../../Redux/Actions/adminAction'
 
 const Apply = () => {
-  const [enrollmentNo, setEnrollmentNo] = useState('')
   const [universityRollNo, setUniversityRollNo] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-  const [dateOfBirth, SetDateOfBirth] = useState('')
-  const [gender, setGender] = useState('')
   const [email, setEmail] = useState('')
   const [phoneNumber, setPhoneNumber] = useState('')
   const [university, setUniversity] = useState('')
   const [course, setCourse] = useState('')
   const [branch, setBranch] = useState('')
-  const [semester, setSemester] = useState('')
-  const [highSchoolPercentage, setHighSchoolPercentage] = useState('')
-  const [intermediatePercentage, setIntermediatePercentage] = useState('')
-  const [BtechCgpa, setBtechCgpa] = useState('')
-  const [highSchoolCompletionYear, setHighSchoolCompletionYear] = useState('')
-  const [intermediateCompletionYear, setIntermediateCompletionYear] =
-    useState('')
-  const [btechGraduationYear, setBtechGraduationYear] = useState('')
 
   const dispatch = useDispatch()
   const params = useParams()
   const navigate = useNavigate()
+
+  useEffect(() => {
+    dispatch(getAllBranch())
+  }, [dispatch])
+
+  const { branches } = useSelector(state => state.admin)
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -45,7 +42,13 @@ const Apply = () => {
       branch
     }
     dispatch(applyForJob(formData, params.id))
-    navigate('/student/placement/eligiblejobs')
+      .then(result => {
+        if (result.success) {
+          toast.success('Applied Successfully')
+          navigate('/student/placement/eligiblejobs')
+        }
+      })
+      .catch(err => {})
   }
 
   return (
@@ -149,15 +152,14 @@ const Apply = () => {
                   onChange={e => setBranch(e.target.value)}
                 >
                   <option defaultValue>-- Select --</option>
-                  <option value='CSE'>CSE</option>
-                  <option value='CSST'>CST</option>
-                  {/*  {branch?.map(branch => {
-                return (
-                  <option value={branch.name} key={branch.name}>
-                    {branch.name}
-                  </option>
-                )
-              })} */}
+                  {branches &&
+                    branches.map(i => {
+                      return (
+                        <option value={i.name} key={i.name}>
+                          {i.name}
+                        </option>
+                      )
+                    })}
                 </select>
               </div>
               <div className='w-[40%]'>
