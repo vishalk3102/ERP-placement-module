@@ -41,7 +41,7 @@ const Profile = () => {
               <div className='max-w-[1200px] w-[100%] mx-auto my-10'>
                 <Heading title={` PROFILE`} />
                 <div className='w-[90%] mx-auto bg-blue-200 border-2 border-solid rounded-[10px] mt-12'>
-                  <div className='flex justify-center items-center'>
+                  {/*  <div className='flex justify-center items-center'>
                     <div className='p-5 my-2'>
                       <img
                         src={profile}
@@ -50,7 +50,7 @@ const Profile = () => {
                         className='h-[175px] w-[175px] rounded-[50%]'
                       />
                     </div>
-                  </div>
+                  </div> */}
                   <div className='w-[80%]  mx-auto p-4'>
                     <h4 className='text-[16px] md:text-[1.4rem] font-bold text-left capitalize'>
                       Personal Details
@@ -207,7 +207,7 @@ const Profile = () => {
                       </ul>
                     </div>
                   </div>
-                  <div className='w-[80%] mx-auto flex justify-center items-center  my-4'>
+                  {/*  <div className='w-[80%] mx-auto flex justify-center items-center  my-4'>
                     <button className='text-[#fff] text-[14px] font-semibold flex justify-center items-center bg-blue-500  rounded px-6 py-3 hover:bg-blue-700 ease-linear duration-300 hover:ease-linear hover:duration-300 hover:transition-all transition-all'>
                       {' '}
                       Resume
@@ -215,7 +215,7 @@ const Profile = () => {
                         <MdDownload size={22} />
                       </span>
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             )
