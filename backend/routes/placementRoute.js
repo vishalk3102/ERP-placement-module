@@ -93,7 +93,10 @@ router.get('/student/placement/companies', getAllCompanies)
 router.get('/student/placement/company/view/:id', getCompany)
 router.get('/student/placement/eligiblejobs', getEligibleJobPostings)
 router.get('/student/placement/eligiblejob/view/:id', getJobPosting)
-router.get('/student/placement/application', getAllAppliedApplications)
+router.get(
+  '/student/placement/application/:enrollmentNo',
+  getAllAppliedApplications
+)
 
 router.post('/student/placement/eligiblejob/apply/:id', applyForJob)
 

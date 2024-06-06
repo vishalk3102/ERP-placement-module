@@ -362,8 +362,8 @@ exports.applyForJob = catchAsyncError(async (req, res, next) => {
 
 // GET ALL APPLIED JOB APPLICATION --student
 exports.getAllAppliedApplications = catchAsyncError(async (req, res, next) => {
-  const studentId = req.params.studentId
-  const applications = await Application.find({ student: studentId })
+  const enrollmentNo = req.params.enrollmentNo
+  const applications = await Application.find({ enrollmentNo: enrollmentNo })
 
   res.status(200).json({
     success: true,

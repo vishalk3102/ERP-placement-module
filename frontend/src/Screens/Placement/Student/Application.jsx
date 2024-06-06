@@ -15,17 +15,13 @@ const Application = () => {
     state => state.admin
   )
 
+  const { user } = useSelector(state => state.auth)
+
   useEffect(() => {
-    if (message) {
-      toast.success(message)
-      dispatch({ type: 'clearMessage' })
-    }
-    if (error) {
-      toast.error(error)
-      dispatch({ type: 'clearError' })
-    }
-    dispatch(getAllAppliedApplications())
-  }, [dispatch, message, error])
+    console.log(user.enrollmentNo)
+    const enrollmentNo = user.enrollmentNo
+    dispatch(getAllAppliedApplications(enrollmentNo))
+  }, [dispatch, message, error, user.enrollmentNo])
 
   return (
     <>

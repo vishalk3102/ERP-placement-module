@@ -159,13 +159,15 @@ export const applyForJob = (formData, id) => async dispatch => {
   }
 }
 
-export const getAllAppliedApplications = () => async dispatch => {
+export const getAllAppliedApplications = enrollmentNo => async dispatch => {
   try {
     dispatch({
       type: 'getAllAppliedApplicationRequest'
     })
 
-    const { data } = await axios.get(`${server}/student/placement/application`)
+    const { data } = await axios.get(
+      `${server}/student/placement/application/${enrollmentNo}`
+    )
     dispatch({
       type: 'getAllAppliedApplicationSuccess',
       payload: data
