@@ -24,7 +24,7 @@ const Dashboard = () => {
   useEffect(() => {
     const enrollmentNo = user.enrollmentNo
     dispatch(getStudentDashboardStats(enrollmentNo))
-  }, [dispatch])
+  }, [dispatch, user.enrollmentNo])
 
   return (
     <>
