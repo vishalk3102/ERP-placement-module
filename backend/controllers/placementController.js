@@ -337,11 +337,11 @@ exports.applyForJob = catchAsyncError(async (req, res, next) => {
     branch
   } = req.body
 
-  const studentId = await Placement.findOne({ email: email }, { _id: 1 })
+  const enrollmentNo = await Placement.findOne({ email: email }, { _id: 1 })
   const jobPostingId = req.params.id
 
   const newJob = await Application.create({
-    student: studentId,
+    student: enrollmentNo,
     jobPosting: jobPostingId,
     firstName,
     lastName,

@@ -18,7 +18,6 @@ const Application = () => {
   const { user } = useSelector(state => state.auth)
 
   useEffect(() => {
-    console.log(user.enrollmentNo)
     const enrollmentNo = user.enrollmentNo
     dispatch(getAllAppliedApplications(enrollmentNo))
   }, [dispatch, message, error, user.enrollmentNo])
