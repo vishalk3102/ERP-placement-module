@@ -363,7 +363,7 @@ exports.applyForJob = catchAsyncError(async (req, res, next) => {
 // GET ALL APPLIED JOB APPLICATION --student
 exports.getAllAppliedApplications = catchAsyncError(async (req, res, next) => {
   const enrollmentNo = req.params.enrollmentNo
-  const applications = await Application.find({ student: enrollmentNo })
+  const applications = await Application.find({ enrollmentNo: enrollmentNo })
     .populate('jobPosting')
     .exec()
 
