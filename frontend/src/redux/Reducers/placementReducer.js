@@ -91,6 +91,7 @@ export const studentPlacementReducer = createReducer(
     applyForJobSuccess: (state, action) => {
       state.loading = false
       state.message = action.payload.message
+      state.job = action.payload.newJob
     },
     applyForJobFail: (state, action) => {
       state.loading = false

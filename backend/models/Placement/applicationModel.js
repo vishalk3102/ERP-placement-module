@@ -39,8 +39,8 @@ const applicationSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  universityRollNo: {
-    type: String,
+  enrollmentNo: {
+    type: Number,
     required: true
   }
 })

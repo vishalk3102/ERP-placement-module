@@ -10,7 +10,7 @@ import toast from 'react-hot-toast'
 import { getAllBranch } from '../../../Redux/Actions/adminAction'
 
 const Apply = () => {
-  const [universityRollNo, setUniversityRollNo] = useState('')
+  const [enrollmentNo, setEnrollmentNo] = useState('')
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
@@ -37,7 +37,7 @@ const Apply = () => {
       email,
       phoneNumber,
       university,
-      universityRollNo,
+      enrollmentNo,
       course,
       branch
     }
@@ -163,17 +163,14 @@ const Apply = () => {
                 </select>
               </div>
               <div className='w-[40%]'>
-                <label
-                  htmlFor='university-rollno'
-                  className='leading-7 text-sm '
-                >
-                  Enter University Rollno
+                <label htmlFor='enrollmentNo' className='leading-7 text-sm '>
+                  Enter Enrollment No
                 </label>
                 <input
                   type='text'
-                  id='university-rollno'
-                  value={universityRollNo}
-                  onChange={e => setUniversityRollNo(e.target.value)}
+                  id='enrollmentNo'
+                  value={enrollmentNo}
+                  onChange={e => setEnrollmentNo(e.target.value)}
                   className='w-full bg-blue-50 rounded border focus:border-dark-green focus:bg-secondary-light focus:ring-2 focus:ring-light-green text-base outline-none py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                 />
               </div>

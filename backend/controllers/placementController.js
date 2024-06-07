@@ -332,23 +332,23 @@ exports.applyForJob = catchAsyncError(async (req, res, next) => {
     email,
     phoneNumber,
     university,
-    universityRollNo,
+    enrollmentNo,
     course,
     branch
   } = req.body
 
-  const enrollmentNo = await Placement.findOne({ email: email }, { _id: 1 })
+  const studentId = (await Placement.findOne({ email: email }, { _id: 1 }))._id
   const jobPostingId = req.params.id
 
   const newJob = await Application.create({
-    student: enrollmentNo,
+    student: studentId,
     jobPosting: jobPostingId,
     firstName,
     lastName,
     email,
     phoneNumber,
     university,
-    universityRollNo,
+    enrollmentNo,
     course,
     branch
   })
@@ -363,7 +363,9 @@ exports.applyForJob = catchAsyncError(async (req, res, next) => {
 // GET ALL APPLIED JOB APPLICATION --student
 exports.getAllAppliedApplications = catchAsyncError(async (req, res, next) => {
   const enrollmentNo = req.params.enrollmentNo
-  const applications = await Application.find({ enrollmentNo: enrollmentNo })
+  const applications = await Application.find({ student: enrollmentNo })
+    .populate('jobPosting')
+    .exec()
 
   res.status(200).json({
     success: true,
