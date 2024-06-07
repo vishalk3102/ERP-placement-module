@@ -201,7 +201,7 @@ const SideNavbar = () => {
               <ListItemText primary='Home' sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
-          <ListItem
+          {/* <ListItem
             disablePadding
             sx={{ display: 'block' }}
             onClick={() => navigate('/student/placement/dashboard')}
@@ -227,7 +227,7 @@ const SideNavbar = () => {
                 sx={{ opacity: open ? 1 : 0 }}
               />
             </ListItemButton>
-          </ListItem>
+          </ListItem> */}
           {!isRegisteredForPlacement && (
             <ListItem
               disablePadding
