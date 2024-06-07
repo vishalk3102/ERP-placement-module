@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled, useTheme } from '@mui/material/styles'
 import Box from '@mui/material/Box'
@@ -18,16 +18,17 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import LogoutIcon from '@mui/icons-material/Logout'
+import DashboardIcon from '@mui/icons-material/Dashboard'
 import PersonIcon from '@mui/icons-material/Person'
 import HomeIcon from '@mui/icons-material/Home'
 import BusinessIcon from '@mui/icons-material/Business'
 import WorkIcon from '@mui/icons-material/Work'
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile'
 import { SlCalender } from 'react-icons/sl'
-import { IoIosNotifications } from 'react-icons/io'
 import { useNavigate } from 'react-router-dom'
 import { logout } from '../../../Redux/Actions/authAction'
 import logo from '../../../assets/geulogo.png'
+import { getPlacementProfile } from '../../../Redux/Actions/placementAction'
 
 const drawerWidth = 240
 
@@ -103,8 +104,13 @@ const SideNavbar = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { user } = useSelector(state => state.studentPlacement)
+  // const { user } = useSelector(state => state.auth)
 
-  const id = user ? user._id : ''
+  useEffect(() => {
+    const id = user._id
+    dispatch(getPlacementProfile(id))
+  }, [])
+
   const isRegisteredForPlacement = user ? user.isRegisteredForPlacement : false
 
   const handleDrawerOpen = () => {
@@ -193,6 +199,33 @@ const SideNavbar = () => {
                 <HomeIcon style={{ color: '#feb21a' }} />
               </ListItemIcon>
               <ListItemText primary='Home' sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem
+            disablePadding
+            sx={{ display: 'block' }}
+            onClick={() => navigate('/student/placement/dashboard')}
+          >
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center'
+                }}
+              >
+                <DashboardIcon style={{ color: '#feb21a' }} />
+              </ListItemIcon>
+              <ListItemText
+                primary='Dashboard'
+                sx={{ opacity: open ? 1 : 0 }}
+              />
             </ListItemButton>
           </ListItem>
           {!isRegisteredForPlacement && (
@@ -361,7 +394,7 @@ const SideNavbar = () => {
               />
             </ListItemButton>
           </ListItem>
-          <ListItem
+          {/*  <ListItem
             disablePadding
             sx={{ display: 'block' }}
             onClick={() => navigate('/student/placement/notice')}
@@ -384,7 +417,7 @@ const SideNavbar = () => {
               </ListItemIcon>
               <ListItemText primary='Notice' sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
-          </ListItem>
+          </ListItem> */}
           <ListItem
             disablePadding
             sx={{ display: 'block' }}

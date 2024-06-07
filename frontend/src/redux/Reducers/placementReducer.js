@@ -103,7 +103,7 @@ export const studentPlacementReducer = createReducer(
     getAllAppliedApplicationSuccess: (state, action) => {
       state.loading = false
       state.count = action.payload.count
-      state.applications = action.payload
+      state.applications = action.payload.applications
     },
     getAllAppliedApplicationFail: (state, action) => {
       state.loading = false

@@ -12,7 +12,7 @@ const Application = () => {
   const dispatch = useDispatch()
 
   const { loading, applications, error, message } = useSelector(
-    state => state.admin
+    state => state.studentPlacement
   )
 
   const { user } = useSelector(state => state.auth)
@@ -69,23 +69,23 @@ const Application = () => {
                                 {index + 1}
                               </td>
                               <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50 border border-slate-900 p-1 capitalize text-center'>
-                                {i.companyName}
+                                {i.jobPosting.companyName}
                               </td>
                               <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50 border border-slate-900 p-1  text-left'>
-                                {i.website}
+                                {i.jobPosting.registrationLink}
                               </td>
                               <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50 border border-slate-900 p-1 capitalize text-center'>
-                                {i.title}
+                                {i.jobPosting.title}
                               </td>
                               <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50 border border-slate-900 p-1 capitalize text-center'>
-                                {i.location}
+                                {i.jobPosting.location}
                               </td>
                               <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50 border border-slate-900 p-1 capitalize text-center'>
-                                {i.salaryPackage}
+                                {i.jobPosting.salaryPackage}
                               </td>
-                              {/*  <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50 border border-slate-900 p-1 capitalize text-center'>
-                                {i.deadline}
-                              </td> */}
+                              <td className='text-[0.7rem] md:text-[1rem] font-normal bg-blue-50 border border-slate-900 p-1 capitalize text-center'>
+                                {i.jobPosting.deadline}
+                              </td>
                             </tr>
                           </>
                         )

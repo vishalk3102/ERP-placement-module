@@ -114,7 +114,9 @@ const Student = () => {
                               {i.phoneNumber}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal   border border-slate-900 p-1 capitalize text-center'>
-                              {i.offers[0].companyName}
+                              {i.offers && i.offers.length > 0
+                                ? i.offers[0].companyName
+                                : '-'}
                             </td>
                             <td className='text-[0.7rem] md:text-[1rem] font-normal   border border-slate-900 p-1 capitalize text-center'>
                               {i.offers[0].salaryPackage}
