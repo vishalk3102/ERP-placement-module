@@ -106,11 +106,6 @@ const SideNavbar = () => {
   const { user } = useSelector(state => state.studentPlacement)
   // const { user } = useSelector(state => state.auth)
 
-  useEffect(() => {
-    const id = user._id
-    dispatch(getPlacementProfile(id))
-  }, [])
-
   const isRegisteredForPlacement = user ? user.isRegisteredForPlacement : false
 
   const handleDrawerOpen = () => {
