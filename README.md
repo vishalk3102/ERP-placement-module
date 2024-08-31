@@ -123,16 +123,43 @@ To run this system locally, follow the instructions below:
    ```bash
    cd placement-management-system
    ```
-3. Install dependencies:
+
+### Frontend Setup
+
+1. Navigate to the `frontend` folder:
+   ```bash
+   cd frontend
+   ```
+2. Install frontend dependencies:
    ```bash
    npm install
    ```
-4. Configure the environment variables, including the MongoDB connection and Cloudinary API keys.
-5. Run the application:
+3. Start the frontend application:
    ```bash
    npm start
    ```
-6. Access the application at `http://localhost:3000`.
+
+### Backend Setup
+
+1. Navigate to the `backend` folder:
+   ```bash
+   cd ../backend
+   ```
+2. Install backend dependencies:
+   ```bash
+   npm install
+   ```
+3. Configure environment variables, including MongoDB connection and Cloudinary API keys.
+4. Start the backend server:
+   ```bash
+   npm run dev
+   ```
+
+### Accessing the Application
+
+- The frontend can be accessed at `http://localhost:3000`.
+- The backend server runs at `http://localhost:5000` (or whichever port you have configured).
+
 
 ## Contributing
 
